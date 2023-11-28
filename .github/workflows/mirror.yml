@@ -15,8 +15,7 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.BENS_SSH_KEY }}" > ~/.ssh/id_rsa
-          echo "${{ secrets.BENS_SSH_KEY }}"
+          echo -e "${{ secrets.BENS_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
