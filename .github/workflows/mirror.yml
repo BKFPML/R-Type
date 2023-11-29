@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout Source Repo
         uses: actions/checkout@v2
+        with:
+            repository: 'git@github.com:BKFP/R-Type.git'
+            ref: 'main'
 
       - name: Set up SSH
         run: |
@@ -22,4 +25,4 @@ jobs:
       - name: Push to Target Repository
         run: |
           git fetch --prune origin
-          git push --force git@github.com:EpitechPromo2026/B-CPP-500-BER-5-2-rtype-kentin.paille.git HEAD:main
+          git push --force git@github.com:EpitechPromo2026/B-CPP-500-BER-5-2-rtype-kentin.paille.git main:main
