@@ -1,0 +1,17 @@
+name: Protect Main Branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  block_direct_commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if PR
+        run: |
+          if [ "$GITHUB_REF" == "refs/heads/main" ]; then
+            echo "Direct commits to main branch are not allowed. Please create a pull request."
+            exit 1
+          fi
