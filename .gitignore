@@ -3,7 +3,14 @@
 *.o
 *.so
 .vscode/
+
+# CMake
 build/
+
+# Documentation
+docs/
+technical_documentation.html
+
+# Executables
 r-type_client
 r-type_server
-
