@@ -4,7 +4,7 @@
  * @date 2023-11-29
  */
 
-#include <iostream>
+# include "../includes/server.hpp"
 
 /**
  * @brief Server Main Function
