@@ -4,4 +4,6 @@
 *.so
 .vscode/
 build/
-r-type
+r-type_client
+r-type_server
+
