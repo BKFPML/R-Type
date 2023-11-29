@@ -1,6 +1,7 @@
 *.pdf
 *.log
-*.txt
 *.o
 *.so
 .vscode/
+build/
+r-type
