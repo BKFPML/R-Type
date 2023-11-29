@@ -1,2 +1,5 @@
 # R-TYPE #
-* A 2023 epitech project by BKFP *
+* A C++ Game Engine build from (nearly) scratch
+
+# USAGE #
+* todo
