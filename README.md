@@ -1,5 +1,5 @@
 # R-TYPE #
-* A C++ Game Engine build from (nearly) scratch
+* A C++ Game Engine built from scratch
 
 # USAGE #
 * todo
