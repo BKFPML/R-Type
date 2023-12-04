@@ -7,14 +7,14 @@
 
 #pragma once
 #include <vector>
-
+#include components.hpp
 
 class entity {
     public:
-        entity(size_t id);
+        entity(size_t UID);
         ~entity();
     private:
-        size_t _id;
+        size_t _UID;
 };
 
 class ECS {
@@ -22,7 +22,8 @@ class ECS {
         ECS();
         ~ECS();
         createEntity();
-        destroyEntity();
+        destroyEntity(size_t UID);
     private:
         std::vector<entity> _entities;
+        std::size_t _UIDs;
 }
