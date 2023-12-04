@@ -1,20 +1,40 @@
 /**
  * @file client.cpp
- * @brief Main file for the client
- * @date 2023-11-29
+ * @brief
+ * @date 04-12-2023
  */
 
-# include "../includes/client.hpp"
+#include "client.hpp"
 
-/**
- * @brief Client Main Function
- *
- * @param argc number of arguments
- * @param argv arguments
- * @return int return code
- */
-int main(int argc, char **argv)
+rtype::Client::Client()
 {
     std::cout << "This is the R-Type Client" << std::endl;
-    return 0;
+}
+
+rtype::Client::~Client()
+{
+    std::cout << "Goodbye" << std::endl;
+}
+
+void rtype::Client::run()
+{
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
+
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+                window.close();
+        }
+        window.clear(sf::Color::Black);
+        window.draw(shape);
+        window.display();
+    }
 }

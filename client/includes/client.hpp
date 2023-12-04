@@ -6,4 +6,24 @@
 
 # pragma once
 
-# include <iostream>
+#include <iostream>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
+namespace rtype
+{
+    const std::string WINDOW_NAME = "R-Type";
+    const int WINDOW_WIDTH = 1920;
+    const int WINDOW_HEIGHT = 1080;
+
+    class Client {
+        public:
+            Client();
+            ~Client();
+
+            void run();
+
+        private:
+
+    };
+}
