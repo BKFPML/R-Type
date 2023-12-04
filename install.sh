@@ -32,10 +32,10 @@ else
 fi
 
 # Check for Python, pip, and pkg-config
-if program_exists python3 && program_exists pip3 && program_exists pkg-config ; then
-    echo "Python, pip, and pkg-config are installed."
+if program_exists python3 && program_exists pip3 ; then
+    echo "Python and pip and are installed."
 else
-    echo "Please install Python, pip, and pkg-config."
+    echo "Please install Python and pip."
     exit 1
 fi
 
