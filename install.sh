@@ -60,10 +60,11 @@ else
 fi
 
 # Create a build directory and navigate into it
-mkdir -p build && cd build || exit
+mkdir -p build
+cd build
 
 # Run Conan to install dependencies
-conan install .. --build=missing --output-folder=. -c tools.system.package_manager:mode=install
+conan install .. --build=missing --output-folder=.
 
 # Run CMake to configure the project
 cmake ..
