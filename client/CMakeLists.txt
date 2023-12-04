@@ -14,4 +14,4 @@ include_directories("./includes")
 add_executable(r-type_client ${CLIENT_FILES})
 
 # Linking with Conan packages
-target_link_libraries(r-type_client PRIVATE CONAN_PKG::sfml CONAN_PKG::boost)
+target_link_libraries(r-type_client ${CONAN_LIBS})

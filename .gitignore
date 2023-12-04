@@ -6,6 +6,7 @@
 
 # CMake
 build/
+CMakeUserPresets.json
 
 # Documentation
 docs/

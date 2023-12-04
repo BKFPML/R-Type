@@ -3,4 +3,5 @@ boost/1.76.0
 sfml/2.5.1
 
 [generators]
-cmake
+CMakeDeps
+CMakeToolchain

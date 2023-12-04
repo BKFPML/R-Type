@@ -63,7 +63,7 @@ fi
 mkdir -p build && cd build || exit
 
 # Run Conan to install dependencies
-conan install .. --build=missing -c tools.system.package_manager:mode=install
+conan install .. --build=missing --output-folder=. -c tools.system.package_manager:mode=install
 
 # Run CMake to configure the project
 cmake ..
