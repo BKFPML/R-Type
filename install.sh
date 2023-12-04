@@ -8,6 +8,29 @@ program_exists () {
     type "$1" &> /dev/null ;
 }
 
+install pkg-config () {
+    if [ -f /etc/debian_version ]; then
+        # Debian-based systems
+        echo "Debian-based system detected. Installing pkg-config..."
+        sudo apt-get update
+        sudo apt-get install -y pkg-config
+    elif [ -f /etc/redhat-release ]; then
+        # Fedora systems
+        echo "Fedora system detected. Installing pkg-config..."
+        sudo dnf install -y pkg-config
+    else
+        echo "Unsupported Linux distribution. Please manually install pkg-config."
+        exit 1
+    fi
+}
+
+# Install pkg-config if it's not installed
+if program_exists pkg-config ; then
+    echo "pkg-config is already installed."
+else
+    install pkg-config
+fi
+
 # Check for Python, pip, and pkg-config
 if program_exists python3 && program_exists pip3 && program_exists pkg-config ; then
     echo "Python, pip, and pkg-config are installed."
