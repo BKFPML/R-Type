@@ -8,7 +8,7 @@ program_exists () {
     type "$1" &> /dev/null ;
 }
 
-install pkg-config () {
+install_pkg-config () {
     if [ -f /etc/debian_version ]; then
         # Debian-based systems
         echo "Debian-based system detected. Installing pkg-config..."
