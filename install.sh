@@ -8,11 +8,11 @@ program_exists () {
     type "$1" &> /dev/null ;
 }
 
-# Check for Python and pip
-if program_exists python3 && program_exists pip3 ; then
-    echo "Python and pip are installed."
+# Check for Python, pip, and pkg-config
+if program_exists python3 && program_exists pip3 && program_exists pkg-config ; then
+    echo "Python, pip, and pkg-config are installed."
 else
-    echo "Please install Python and pip."
+    echo "Please install Python, pip, and pkg-config."
     exit 1
 fi
 
