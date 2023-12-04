@@ -6,16 +6,25 @@
 
 #include "client.hpp"
 
+/**
+ * @brief Construct a new rtype::Client::Client object
+ */
 rtype::Client::Client()
 {
     std::cout << "This is the R-Type Client" << std::endl;
 }
 
+/**
+ * @brief Destroy the rtype::Client::Client object
+ */
 rtype::Client::~Client()
 {
     std::cout << "Goodbye" << std::endl;
 }
 
+/**
+ * @brief Run the client
+ */
 void rtype::Client::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
