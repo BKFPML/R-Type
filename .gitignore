@@ -3,9 +3,13 @@
 *.o
 *.so
 .vscode/
+vcpkg/
+vcpkg_installed/
 
 # CMake
 build/
+vcpkg/
+vcpkg_installed/
 
 # Documentation
 docs/
