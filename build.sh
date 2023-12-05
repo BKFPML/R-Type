@@ -3,16 +3,6 @@
 SERVER_NAME="r-type_server"
 CLIENT_NAME="r-type_client"
 
-# mkdir -p build
-# cd build || exit
-
-# cmake ..
-
-# make
-
-# mv ./server/${SERVER_NAME} ../
-# mv ./client/${CLIENT_NAME} ../
-
 # vcpkg
 if [ ! -d "vcpkg" ]; then
     git clone https://github.com/microsoft/vcpkg.git
@@ -26,6 +16,7 @@ fi
 cd vcpkg
 ./bootstrap-vcpkg.sh
 
+# Manually install mandatory Debian dependencies
 if [ -f "/etc/debian_version" ]; then
     sudo apt-get install pkg-config
     sudo apt install autoconf libtool
@@ -33,11 +24,7 @@ if [ -f "/etc/debian_version" ]; then
 fi
 
 # Install dependencies from vcpkg.json
-
 ./vcpkg install
-./vcpkg update
-
-
 
 cd ..
 mkdir -p build
