@@ -3,6 +3,8 @@
 *.o
 *.so
 .vscode/
+vcpkg/
+vcpkg_installed/
 
 # CMake
 build/
