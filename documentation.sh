@@ -1,3 +1,3 @@
 #!/bin/bash
 
-doxygen Doxyfile
+doxygen ./docs/Doxyfile
