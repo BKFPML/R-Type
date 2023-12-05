@@ -25,10 +25,7 @@ private:
 
 public:
     Entity createEntity();
-    template<typename T>
-    void registerComponent();
-    template<typename T>
-    void addComponent(Entity entity, T component);
-    template<typename T>
-    T* getComponent(Entity entity);
+    template<typename T> void registerComponent();
+    template<typename T> void addComponent(Entity entity, T component);
+    template<typename T> T* getComponent(Entity entity);
 };

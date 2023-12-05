@@ -18,21 +18,20 @@ ECS::Entity ECS::createEntity()
     return _nextEntityID++;
 }
 
-template<typename T>
-void ECS::registerComponent()
+template<typename T> void ECS::registerComponent()
 {
     _componentTypeToIndex[std::type_index(typeid(T))] = _components.size();
     _components.emplace_back();
 }
 
-template<typename T>
-void ECS::addComponent(Entity entity, T component) {
+template<typename T> void ECS::addComponent(Entity entity, T component)
+{
     auto componentIndex = _componentTypeToIndex[std::type_index(typeid(T))];
     _components[componentIndex][entity] = std::make_shared<T>(component);
 }
 
-template<typename T>
-T* ECS::getComponent(Entity entity) {
+template<typename T> T* ECS::getComponent(Entity entity)
+{
     auto index = _componentTypeToIndex[std::type_index(typeid(T))];
     auto it = _components[index].find(entity);
     if (it != _components[index].end()) {
