@@ -7,35 +7,36 @@
 
 #include "../includes/ECS.hpp"
 
+// * This is ugly, but it's the only way to make the compiler happy
+template void ECS::registerComponent<Pos>();
+template void ECS::addComponent<Pos>(ECS::Entity, Pos);
+template Pos* ECS::getComponent<Pos>(ECS::Entity);
 
-// * ENTITY
-entity::~entity()
+
+ECS::Entity ECS::createEntity()
 {
+    return _nextEntityID++;
 }
 
-entity::entity(size_t UID)
+template<typename T>
+void ECS::registerComponent()
 {
-    _UID = UID;
+    _componentTypeToIndex[std::type_index(typeid(T))] = _components.size();
+    _components.emplace_back();
 }
 
-
-// * ECS
-ECS::~ECS()
-{
+template<typename T>
+void ECS::addComponent(Entity entity, T component) {
+    auto componentIndex = _componentTypeToIndex[std::type_index(typeid(T))];
+    _components[componentIndex][entity] = std::make_shared<T>(component);
 }
 
-ECS::ECS()
-{
-    _UIDs = 0;
-}
-
-ECS::createEntity()
-{
-    _entities.push_back(entity(_UIDs));
-    return (++_UIDs);
-}
-
-ECS::destroyEntity(size_t UID)
-{
-    _entities.erase(_entities.begin() + id);
+template<typename T>
+T* ECS::getComponent(Entity entity) {
+    auto index = _componentTypeToIndex[std::type_index(typeid(T))];
+    auto it = _components[index].find(entity);
+    if (it != _components[index].end()) {
+        return static_cast<T*>(it->second.get());
+    }
+    return nullptr;
 }

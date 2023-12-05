@@ -7,7 +7,7 @@
 
 #pragma once
 
-struct positionComponent {
-    float x;
-    float y;
+struct Pos {
+    float x, y;
+    Pos(float x, float y) : x(x), y(y) {}
 };
