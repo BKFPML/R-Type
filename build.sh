@@ -26,8 +26,18 @@ fi
 cd vcpkg
 ./bootstrap-vcpkg.sh
 
+if [ -f "/etc/debian_version" ]; then
+    sudo apt-get install pkg-config
+    sudo apt install autoconf libtool
+    sudo apt-get install libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libgl1-mesa-dev
+fi
+
 # Install dependencies from vcpkg.json
+
 ./vcpkg install
+./vcpkg update
+
+
 
 cd ..
 mkdir -p build
