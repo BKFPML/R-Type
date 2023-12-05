@@ -1,0 +1,7 @@
+{
+    "dependencies": [
+        "alsa",
+        "sfml",
+        "boost-asio"
+    ]
+}

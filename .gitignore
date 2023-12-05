@@ -6,7 +6,8 @@
 
 # CMake
 build/
-CMakeUserPresets.json
+vcpkg/
+vcpkg_installed/
 
 # Documentation
 docs/

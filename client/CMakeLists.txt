@@ -5,11 +5,23 @@
 ## CMakeLists client
 ##
 
+# Dependencies
+# include(FetchContent)
+
+# FetchContent_Declare(
+#     SFML
+#     GIT_REPOSITORY https://github.com/SFML/SFML.git
+#     GIT_TAG 2.5.1
+# )
+# FetchContent_MakeAvailable(SFML)
+
+# Project Files
 file(GLOB CLIENT_FILES "src/*.cpp")
 include_directories("./includes")
 
 add_executable(r-type_client ${CLIENT_FILES})
 
-# Linking with Conan packages
-target_link_libraries(r-type_client PRIVATE ${CONAN_LIBS} sfml-graphics sfml-window sfml-system)
+# target_link_libraries(r-type_client PRIVATE sfml-system sfml-window sfml-graphics sfml-network sfml-audio)
 
+find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
+target_link_libraries(r-type_client PRIVATE sfml-system sfml-window sfml-graphics sfml-network sfml-audio)
