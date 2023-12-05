@@ -13,8 +13,10 @@
  * @param argv arguments
  * @return int return code
  */
-int main(int argc, char **argv)
-{
-    std::cout << "This is the R-Type Server" << std::endl;
+int main() {
+    boost::asio::io_context io;
+    boost::asio::steady_timer t(io, boost::asio::chrono::seconds(5));
+    t.wait();
+    std::cout << "Hello, Boost.Asio!" << std::endl;
     return 0;
 }
