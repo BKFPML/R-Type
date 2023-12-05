@@ -33,6 +33,14 @@ echo "Configuring and building project..."
 cmake -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake ..
 cmake --build .
 
+
+# Assuming vcpkg installs SFML to this path
+SFML_DLL_PATH="C:/Users/felix/School/R-TYPE\R-Type/vcpkg_installed\x64-windows/bin/"
+
+# Temporarily add SFML DLL path to the PATH environment variable
+export PATH=$PATH:$SFML_DLL_PATH
+
+
 echo "Moving executables..."
 mv server/Debug/$SERVER_NAME.exe ../
 mv client/Debug/$CLIENT_NAME.exe ../

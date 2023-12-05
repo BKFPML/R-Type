@@ -1,6 +1,6 @@
 @echo off
-SET SERVER_NAME=r-type_server
-SET CLIENT_NAME=r-type_client
+SET SERVER_NAME=r-type_server.exe
+SET CLIENT_NAME=r-type_client.exe
 
 REM Remove directories and files
 IF EXIST build RMDIR /S /Q build
