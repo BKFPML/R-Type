@@ -5,6 +5,8 @@
 .vscode/
 vcpkg/
 vcpkg_installed/
+*Makefile
+test.*
 
 # CMake
 build/
