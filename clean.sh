@@ -7,3 +7,5 @@ rm -rf build
 rm -rf ${SERVER_NAME}
 rm -rf ${CLIENT_NAME}
 rm -rf ./docs/
+rm -rf ./vcpkg/
+rm -rf ./vcpkg_installed/

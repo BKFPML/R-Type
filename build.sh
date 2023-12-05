@@ -26,11 +26,10 @@ fi
 cd vcpkg
 ./bootstrap-vcpkg.sh
 
-# Install dependencies
-./vcpkg install sfml boost-asio
+# Install dependencies from vcpkg.json
+./vcpkg install
 
 cd ..
-
 mkdir -p build
 cd build || exit
 
