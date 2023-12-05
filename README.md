@@ -1,12 +1,15 @@
 # R-TYPE #
-## A C++ Game Engine built from scratch
+A C++ Game Engine built from scratch with a focus on ECS performance
 
 
 ## USAGE #
-### TODO
+TODO
 
 ## DOCUMENTATION
-### TODO
+TODO
+
+> [!WARNING]
+> This project is still in early stages of development. Information is subject to change.
 
 > [!NOTE]
-> This project is still in early stages of development.
+> Found a problem? Please provide feedback either by contacting benjamin.desprets@epitech.eu or creating an issue.
