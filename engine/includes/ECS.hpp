@@ -1,9 +1,8 @@
-/*
-** EPITECH PROJECT, 2023
-** R-Type [WSL: Ubuntu]
-** File description:
-** ECS.hpp
-*/
+/**
+ * @file ECS.hpp
+ * @brief Declaration of the ECS manager class
+ * @date 05-12-2023
+ */
 
 #pragma once
 
@@ -14,6 +13,10 @@
 #include <typeindex>
 #include <vector>
 
+/**
+ * @brief The Entity Component System manager class
+ * 
+ */
 class ECS {
 public:
     using Entity = size_t;
