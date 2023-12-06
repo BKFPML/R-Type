@@ -6,6 +6,7 @@ CLIENT_NAME="r-type_client"
 rm -rf build
 rm -rf ${SERVER_NAME}
 rm -rf ${CLIENT_NAME}
-rm -rf ./docs/
+rm -rf ./docs/html/
+rm -rf ./docs/latex/
 rm -rf ./vcpkg/
 rm -rf ./vcpkg_installed/

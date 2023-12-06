@@ -1,0 +1,30 @@
+/**
+ @mainpage R-Type Game Engine Technical Documentation
+
+    ### R-Type is a game engine designed for networked games.
+
+    @section intro_sec Introduction
+
+    This is the documentation for the **R-Type** Game Engine.\n
+    This manual provides comprehensive information about the server and client components, installation instructions and usage guidelines.
+
+    @section install_sec Installation
+
+    Follow these steps to install the R-Type Game Engine:
+
+    - *Step 1*: Download the installer executable.
+    - *Step 2*: Run the installer executable.
+    - *Step 3*: Launch the R-Type Game Engine.
+
+    @section scripts_sec Scripts
+
+    The R-Type Game Engine comes with the following scripts:
+
+    - `build.sh`: builds the R-Type Game Engine.
+    - `documentation.sh`: generates the documentation.
+    - `clean.sh`: cleans the build directory.
+
+
+    \ref dependencies_page "Dependencies page"
+
+*/

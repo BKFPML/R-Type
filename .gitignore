@@ -14,7 +14,8 @@ vcpkg/
 vcpkg_installed/
 
 # Documentation
-docs/
+docs/html/
+docs/latex/
 technical_documentation.html
 
 # Executables
