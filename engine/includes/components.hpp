@@ -51,3 +51,12 @@ struct Status {
     StatusType status;
     Status(StatusType status) : status(status) {}
 };
+
+/**
+ * @brief Rotation component
+ * @param angle Angle of rotation
+ */
+struct Rotation {
+    float angle;
+    Rotation(float angle) : angle(angle) {}
+};
