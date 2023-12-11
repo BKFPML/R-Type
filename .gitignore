@@ -6,7 +6,7 @@
 vcpkg/
 vcpkg_installed/
 *Makefile
-test.*
+test*
 
 # CMake
 build/

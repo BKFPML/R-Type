@@ -25,3 +25,12 @@ struct Health {
     int hp;
     Health(int hp) : hp(hp) {}
 };
+
+/**
+ * @brief Attack component
+ * @param damage Damage points dealt by the attack
+ */
+struct Attack {
+    int damage;
+    Attack(int damage) : damage(damage) {}
+};
