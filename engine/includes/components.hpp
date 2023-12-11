@@ -1,9 +1,8 @@
-/*
-** EPITECH PROJECT, 2023
-** R-Type
-** File description:
-** components.hpp
-*/
+/**
+ * @file components.hpp
+ * @brief Declaration of the components used in the ECS
+ * @date 11-12-2023
+ */
 
 #pragma once
 
@@ -33,4 +32,22 @@ struct Health {
 struct Attack {
     int damage;
     Attack(int damage) : damage(damage) {}
+};
+
+/**
+ * @brief Enum that defines the status of an entity
+ * Used with the Status component
+ */
+enum class StatusType {
+    ALLY,
+    ENEMY
+};
+
+/**
+ * @brief Status component
+ * @param status StatusType (ALLY or ENEMY)
+ */
+struct Status {
+    StatusType status;
+    Status(StatusType status) : status(status) {}
 };
