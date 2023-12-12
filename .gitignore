@@ -6,7 +6,6 @@
 vcpkg/
 vcpkg_installed/
 *Makefile
-test*
 
 # CMake
 build/
@@ -21,3 +20,7 @@ technical_documentation.html
 # Executables
 r-type_client
 r-type_server
+
+# Tests
+ECSTest
+test.cpp
