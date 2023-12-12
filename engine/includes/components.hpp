@@ -86,3 +86,11 @@ struct Status {
     Status(StatusType status) : status(status) {}
 };
 
+/**
+ * @brief Damage component
+ * @param damage Damage points dealt by the attack
+ */
+struct Damage {
+    int damage;
+    Damage(int damage) : damage(damage) {}
+};
