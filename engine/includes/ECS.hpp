@@ -66,6 +66,31 @@ class ECS {
         }
 
         /**
+         * @brief Removes a component from an entity
+         *
+         * @tparam T The component type, defined in components.hpp
+         * @param entity The entity to remove the component from
+         */
+        template <typename T> void removeComponent(Entity entity)
+        {
+            auto index = _componentTypeToIndex[std::type_index(typeid(T))];
+            _components[index].erase(entity);
+        }
+
+        /**
+         * @brief Removes a component from an entity
+         *
+         * @tparam T The component type, defined in components.hpp
+         * @param entity The entity to remove the component from
+         */
+        template<typename T> bool hasComponent(Entity entity)
+        {
+            auto index = _componentTypeToIndex[std::type_index(typeid(T))];
+            auto it = _components[index].find(entity);
+            return it != _components[index].end();
+        };
+
+        /**
          * @brief Gets a component from an entity
          *
          * @tparam T The component type, defined in components.hpp
@@ -81,4 +106,12 @@ class ECS {
             }
             return nullptr;
         };
+
+        std::vector<Entity> getEntities() {
+            std::vector<Entity> entities;
+            for (auto& component : _components[0]) {
+                entities.push_back(component.first);
+            }
+            return entities;
+    }
 };
