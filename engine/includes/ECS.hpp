@@ -42,7 +42,8 @@ class ECS {
          *
          * @tparam T The component type, defined in components.hpp
          */
-        template<typename T> void registerComponent()
+        template<typename T> 
+        void registerComponent()
         {
             _componentTypeToIndex[std::type_index(typeid(T))] = _components.size();
             _components.emplace_back();

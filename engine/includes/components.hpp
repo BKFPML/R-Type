@@ -6,14 +6,49 @@
 
 #pragma once
 
+#include <cmath>
+
 /**
  * @brief Position component
  * @param x X position
  * @param y Y position
  */
-struct Pos {
+struct Position {
     float x, y;
-    Pos(float x, float y) : x(x), y(y) {}
+    Position(float x, float y) : x(x), y(y) {}
+};
+
+/**
+ * @brief Velocity component
+ * @param x X velocity
+ * @param y Y velocity
+ * @param magnitude Magnitude of the velocity vector
+ */
+struct Velocity {
+    float x, y;
+    float magnitude;
+    // Constructor
+    Velocity(float x, float y, float magnitude) : x(x), y(y), magnitude(magnitude) {
+        normalize();
+    }
+    // Method to normalize the vector
+    void normalize() {
+        float len = std::sqrt(x * x + y * y);
+        // Check if length is not zero to avoid division by zero
+        if (len != 0) {
+            x /= len;
+            y /= len;
+        }
+    }
+};
+
+/**
+ * @brief Rotation component
+ * @param angle Angle of rotation
+ */
+struct Rotation {
+    float angle;
+    Rotation(float angle) : angle(angle) {}
 };
 
 /**
@@ -52,11 +87,3 @@ struct Status {
     Status(StatusType status) : status(status) {}
 };
 
-/**
- * @brief Rotation component
- * @param angle Angle of rotation
- */
-struct Rotation {
-    float angle;
-    Rotation(float angle) : angle(angle) {}
-};
