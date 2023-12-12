@@ -116,3 +116,32 @@ class ECS {
             return entities;
     }
 };
+
+/**
+ * @brief The interface for a system
+ * 
+ */
+class ISystem {
+    public:
+        virtual void update(ECS& ecs) = 0;
+};
+
+
+/**
+ * @brief The movement system. Updates the position of based on their velocity
+ * 
+ */
+class MovementSystem : public ISystem {
+    public:
+        void update(ECS& ecs) override
+        {
+            for (auto entity: ecs.getEntities()) {
+                if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Velocity>(entity))) {
+                    auto position = ecs.getComponent<Position>(entity);
+                    auto velocity = ecs.getComponent<Velocity>(entity);
+                    position->x += velocity->x * velocity->magnitude;
+                    position->y += velocity->y * velocity->magnitude;
+                }
+            }
+        }
+};

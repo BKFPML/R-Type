@@ -19,7 +19,7 @@ struct Position {
 };
 
 /**
- * @brief Velocity component
+ * @brief Velocity component, normalized
  * @param x X velocity
  * @param y Y velocity
  * @param magnitude Magnitude of the velocity vector
@@ -34,7 +34,6 @@ struct Velocity {
     // Method to normalize the vector
     void normalize() {
         float len = std::sqrt(x * x + y * y);
-        // Check if length is not zero to avoid division by zero
         if (len != 0) {
             x /= len;
             y /= len;
