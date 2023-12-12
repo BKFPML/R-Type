@@ -42,7 +42,7 @@ class ECS {
          *
          * @tparam T The component type, defined in components.hpp
          */
-        template<typename T> 
+        template<typename T>
         void registerComponent()
         {
             _componentTypeToIndex[std::type_index(typeid(T))] = _components.size();
@@ -56,7 +56,8 @@ class ECS {
          * @param entity The entity to add the component to
          * @param component The component to add
          */
-        template<typename T> void addComponent(Entity entity, T component)
+        template<typename T>
+        void addComponent(Entity entity, T component)
         {
             auto componentIndex = _componentTypeToIndex[std::type_index(typeid(T))];
             _components[componentIndex][entity] = std::make_shared<T>(component);
@@ -72,7 +73,8 @@ class ECS {
          * @tparam T The component type, defined in components.hpp
          * @param entity The entity to remove the component from
          */
-        template <typename T> void removeComponent(Entity entity)
+        template <typename T>
+        void removeComponent(Entity entity)
         {
             auto index = _componentTypeToIndex[std::type_index(typeid(T))];
             _components[index].erase(entity);
@@ -84,7 +86,8 @@ class ECS {
          * @tparam T The component type, defined in components.hpp
          * @param entity The entity to remove the component from
          */
-        template<typename T> bool hasComponent(Entity entity)
+        template<typename T>
+        bool hasComponent(Entity entity)
         {
             auto index = _componentTypeToIndex[std::type_index(typeid(T))];
             auto it = _components[index].find(entity);
@@ -98,7 +101,8 @@ class ECS {
          * @param entity The entity to get the component from
          * @return T* A pointer to the component
          */
-        template<typename T> T* getComponent(Entity entity)
+        template<typename T>
+        T* getComponent(Entity entity)
         {
             auto index = _componentTypeToIndex[std::type_index(typeid(T))];
             auto it = _components[index].find(entity);
