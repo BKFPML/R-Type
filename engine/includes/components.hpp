@@ -7,6 +7,7 @@
 #pragma once
 
 #include <cmath>
+#include <string>
 
 /**
  * @brief Position component
@@ -93,4 +94,46 @@ struct Status {
 struct Damage {
     int damage;
     Damage(int damage) : damage(damage) {}
+};
+
+// *Graphical components
+
+/**
+ * @brief Enum that defines the type of graphical entity
+ * Used with the GraphicalType component
+ */
+enum class GraphicalType {
+    Sprite,
+    Text
+};
+
+/**
+ * @brief GraphicalType component
+ * @param type GraphicalType (Sprite or Text)
+ */
+struct Graphical {
+    GraphicalType type;
+    Graphical(GraphicalType type) : type(type) {}
+};
+
+/**
+ * @brief Sprite component
+ * @param texture Texture of the sprite
+ */
+struct Sprite {
+    std::string texture;
+    Sprite(std::string texture) : texture(texture) {}
+};
+
+/**
+ * @brief Text component
+ * @param text Text of the entity
+ * @param font Font of the text
+ * @param size Size of the text
+ */
+struct Text {
+    std::string text;
+    std::string font;
+    int size;
+    Text(std::string text, std::string font, int size) : text(text), font(font), size(size) {}
 };

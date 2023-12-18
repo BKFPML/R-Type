@@ -169,3 +169,21 @@ class DamageSystem : public ISystem {
             // TODO Implement immunity
         }
 };
+
+/**
+ * @brief Graphical system. Updates the graphical representation of entities
+ * 
+ */
+class GraphicalSystem : public ISystem {
+    public:
+        void update(ECS& ecs) override
+        {
+            for (auto entity: ecs.getEntities()) {
+                if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Rotation>(entity))) {
+                    auto position = ecs.getComponent<Position>(entity);
+                    auto rotation = ecs.getComponent<Rotation>(entity);
+                    // TODO Implement graphical system
+                }
+            }
+        }
+};
