@@ -28,7 +28,7 @@ rtype::Client::~Client()
 void rtype::Client::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
-
+    Network::Sender sender;
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -37,6 +37,8 @@ void rtype::Client::run()
         sf::Event event;
         while (window.pollEvent(event))
         {
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
+                sender.send(std::string("Key Enter Pressed"), 13152);
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
