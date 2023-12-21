@@ -14,6 +14,15 @@
 #include <vector>
 
 /**
+ * @brief The interface for a system
+ * 
+ */
+class ISystem {
+    public:
+        virtual void update(ECS& ecs) = 0;
+};
+
+/**
  * @brief The Entity Component System manager class
  */
 class ECS {
@@ -23,6 +32,7 @@ class ECS {
     private:
         std::vector<std::map<Entity, std::shared_ptr<void>>> _components;
         std::map<std::type_index, size_t> _componentTypeToIndex;
+        std::vector<std::unique_ptr<ISystem>> _systems;
         Entity _nextEntityID = 0;
 
     public:
@@ -118,17 +128,22 @@ class ECS {
                 entities.push_back(component.first);
             }
             return entities;
+        }
+
+        template<typename T, typename... Args>
+        void registerSystem(Args&&... args)
+        {
+            _systems.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
+        }
+
+        void updateSystems()
+        {
+        for (auto& system : _systems) {
+            system->update(*this);
+        }
     }
 };
 
-/**
- * @brief The interface for a system
- * 
- */
-class ISystem {
-    public:
-        virtual void update(ECS& ecs) = 0;
-};
 
 
 /**
