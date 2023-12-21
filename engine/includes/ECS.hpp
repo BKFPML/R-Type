@@ -122,6 +122,11 @@ class ECS {
             return nullptr;
         };
 
+        /**
+         * @brief Gets all the entities in the ECS
+         *
+         * @return std::vector<Entity> A vector of all the entities
+         */
         std::vector<Entity> getEntities() {
             std::vector<Entity> entities;
             for (auto& component : _components[0]) {
@@ -130,12 +135,23 @@ class ECS {
             return entities;
         }
 
+        /**
+         * @brief Registers a new system
+         *
+         * @tparam T The system type
+         * @tparam Args The arguments to pass to the system constructor
+         * @param args The arguments to pass to the system constructor
+         */
         template<typename T, typename... Args>
         void registerSystem(Args&&... args)
         {
             _systems.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
         }
 
+        /**
+         * @brief Updates all the registered systems
+         *
+         */
         void updateSystems()
         {
         for (auto& system : _systems) {
