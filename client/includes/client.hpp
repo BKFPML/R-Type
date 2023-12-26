@@ -27,12 +27,15 @@ namespace rtype
             void run();
             void loadTextures();
             void drawParallax(sf::RenderWindow &window);
+            ECS initECS();
 
         private:
+            sf::Texture planeTexture;
             sf::Texture parallaxTexture1;
             sf::Texture parallaxTexture2;
             sf::Texture parallaxTexture3;
 
+            sf::Sprite planeSprite;
             sf::Sprite parallaxSprite1;
             sf::Sprite parallaxSprite1b;
             sf::Sprite parallaxSprite2;
