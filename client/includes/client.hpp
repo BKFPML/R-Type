@@ -10,6 +10,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "../../engine/includes/network.hpp"
+#include "../../engine/includes/ECS.hpp"
+
 
 namespace rtype
 {
