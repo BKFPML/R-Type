@@ -9,6 +9,9 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "../../engine/includes/network.hpp"
+#include "../../engine/includes/ECS.hpp"
+
 
 namespace rtype
 {
@@ -22,8 +25,19 @@ namespace rtype
             ~Client();
 
             void run();
+            void loadTextures();
+            void drawParallax(sf::RenderWindow &window);
 
         private:
+            sf::Texture parallaxTexture1;
+            sf::Texture parallaxTexture2;
+            sf::Texture parallaxTexture3;
 
+            sf::Sprite parallaxSprite1;
+            sf::Sprite parallaxSprite1b;
+            sf::Sprite parallaxSprite2;
+            sf::Sprite parallaxSprite2b;
+            sf::Sprite parallaxSprite3;
+            sf::Sprite parallaxSprite3b;
     };
 }
