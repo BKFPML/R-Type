@@ -30,6 +30,7 @@ class ECS {
         using Entity = size_t;
 
     private:
+    
         std::vector<std::map<Entity, std::shared_ptr<void>>> _components;
         std::map<std::type_index, size_t> _componentTypeToIndex;
         std::vector<std::unique_ptr<ISystem>> _systems;

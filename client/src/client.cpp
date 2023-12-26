@@ -38,7 +38,7 @@ void rtype::Client::run()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
-                sender.send(std::string("Key Enter Pressed"), 13152);
+                sender.send(std::string("Key Enter Pressed by client 13151"), 13152);
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
