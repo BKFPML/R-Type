@@ -42,18 +42,11 @@ void rtype::Client::loadTextures()
     parallaxSprite3b.setTexture(parallaxTexture3);
 
     parallaxSprite1.setPosition(0, 0);
-    parallaxSprite1b.setPosition(parallaxSprite1.getLocalBounds().width, 0);
+    parallaxSprite1b.setPosition(WINDOW_WIDTH, 0);
     parallaxSprite2.setPosition(0, 0);
-    parallaxSprite2b.setPosition(parallaxSprite2.getLocalBounds().width, 0);
+    parallaxSprite2b.setPosition(WINDOW_WIDTH, 0);
     parallaxSprite3.setPosition(0, 0);
-    parallaxSprite3b.setPosition(parallaxSprite3.getLocalBounds().width, 0);
-
-    parallaxSprite1.setScale(4, 2);
-    parallaxSprite1b.setScale(4, 2);
-    parallaxSprite2.setScale(4, 2);
-    parallaxSprite2b.setScale(4, 2);
-    parallaxSprite3.setScale(4, 2);
-    parallaxSprite3b.setScale(4, 2);
+    parallaxSprite3b.setPosition(WINDOW_WIDTH, 0);
 }
 
 /**
@@ -75,17 +68,17 @@ void rtype::Client::drawParallax(sf::RenderWindow &window)
     parallaxSprite3b.move(-parallaxSpeed3, 0);
 
     if (parallaxSprite1.getPosition().x < -parallaxSprite1.getLocalBounds().width)
-        parallaxSprite1.setPosition(parallaxSprite1.getLocalBounds().width, 0);
+        parallaxSprite1.setPosition(WINDOW_WIDTH, 0);
     if (parallaxSprite1b.getPosition().x < -parallaxSprite1b.getLocalBounds().width)
-        parallaxSprite1b.setPosition(parallaxSprite1b.getLocalBounds().width, 0);
+        parallaxSprite1b.setPosition(WINDOW_WIDTH, 0);
     if (parallaxSprite2.getPosition().x < -parallaxSprite2.getLocalBounds().width)
-        parallaxSprite2.setPosition(parallaxSprite2.getLocalBounds().width, 0);
+        parallaxSprite2.setPosition(WINDOW_WIDTH, 0);
     if (parallaxSprite2b.getPosition().x < -parallaxSprite2b.getLocalBounds().width)
-        parallaxSprite2b.setPosition(parallaxSprite2b.getLocalBounds().width, 0);
+        parallaxSprite2b.setPosition(WINDOW_WIDTH, 0);
     if (parallaxSprite3.getPosition().x < -parallaxSprite3.getLocalBounds().width)
-        parallaxSprite3.setPosition(parallaxSprite3.getLocalBounds().width, 0);
+        parallaxSprite3.setPosition(WINDOW_WIDTH, 0);
     if (parallaxSprite3b.getPosition().x < -parallaxSprite3b.getLocalBounds().width)
-        parallaxSprite3b.setPosition(parallaxSprite3b.getLocalBounds().width, 0);
+        parallaxSprite3b.setPosition(WINDOW_WIDTH, 0);
 
     window.draw(parallaxSprite1);
     window.draw(parallaxSprite1b);
