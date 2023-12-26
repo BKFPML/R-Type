@@ -14,11 +14,11 @@ TEST(ECSTest, CreatePosComponent) {
     ECS ecs;
     ECS::Entity entity = ecs.createEntity();
 
-    ecs.registerComponent<Pos>();
+    ecs.registerComponent<Position>();
 
-    ecs.addComponent(entity, Pos{1, 2});
+    ecs.addComponent(entity, Position{1, 2});
 
-    Pos *pos = ecs.getComponent<Pos>(entity);
+    Position *pos = ecs.getComponent<Position>(entity);
 
     EXPECT_EQ(pos->x, 1);
     EXPECT_EQ(pos->y, 2);
