@@ -103,18 +103,19 @@ ECS rtype::Client::initECS()
 /**
  * @brief Run the client
  */
-void rtype::Client::run()
+void rtype::Client::run(Network::Sender sender, int port)
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
-    Network::Sender sender;
+    
     ECS ecs = initECS();
     auto player = ecs.createEntity();
     ecs.addComponent<Position>(player, {100, 100});
     ecs.addComponent<Health>(player, 100);
     ecs.addComponent<Velocity>(player, {1, 1, 2});
+    srand(time(0));
     
 
-    planeSprite.setPosition(200, 200);
+    planeSprite.setPosition(rand() % 300 + 200, rand() % 500 + 200);
     planeSprite.setScale(5, 5);
     planeSprite.setTextureRect(sf::IntRect(0, 0, 34, 34));
     planeSprite.setRotation(180);
@@ -124,34 +125,32 @@ void rtype::Client::run()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
-                sender.send(std::string("x:0-y:10-hp:40-ip:127.0.0.1:13151"), 13152);
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+                sender.send("bullet-x:100-y:100-vx:1-vy:1");
+            }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
                 planeSprite.move(0, -10);
-                sender.send(std::string("Up-127.0.0.1:13151"), 13152);
             }
                 
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
                 planeSprite.move(-10, 0);
-                sender.send(std::string("Left-127.0.0.1:13151"), 13152);
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down) {
                 planeSprite.move(0, 10);
-                sender.send(std::string("Down-127.0.0.1:13151"), 13152);
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
                 planeSprite.move(10, 0);
-                sender.send(std::string("Rigth-127.0.0.1:13151"), 13152);
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                sender.send(std::string("Space-13151"), 13152);
             }
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 window.close();
-            planeSprite.move(10, 0);
         }
+        planeSprite.move(1, 0);
+        sleep(1);
+        sender.send(std::to_string(planeSprite.getPosition().x) + " " + std::to_string(planeSprite.getPosition().y) + " " + std::to_string(port));
         window.clear(sf::Color::Black);
         drawParallax(window);
         window.draw(planeSprite);

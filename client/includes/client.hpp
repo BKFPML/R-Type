@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "../../engine/includes/network.hpp"
 #include "../../engine/includes/ECS.hpp"
+#include <ctime> // for time()
 
 
 namespace rtype
@@ -24,7 +25,7 @@ namespace rtype
             Client();
             ~Client();
 
-            void run();
+            void run(Network::Sender sender, int port);
             void loadTextures();
             void drawParallax(sf::RenderWindow &window);
             ECS initECS();
