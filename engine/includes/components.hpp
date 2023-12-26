@@ -6,14 +6,49 @@
 
 #pragma once
 
+#include <cmath>
+#include <string>
+
 /**
  * @brief Position component
  * @param x X position
  * @param y Y position
  */
-struct Pos {
+struct Position {
     float x, y;
-    Pos(float x, float y) : x(x), y(y) {}
+    Position(float x, float y) : x(x), y(y) {}
+};
+
+/**
+ * @brief Velocity component, normalized
+ * @param x X velocity
+ * @param y Y velocity
+ * @param magnitude Magnitude of the velocity vector
+ */
+struct Velocity {
+    float x, y;
+    float magnitude;
+    // Constructor
+    Velocity(float x, float y, float magnitude) : x(x), y(y), magnitude(magnitude) {
+        normalize();
+    }
+    // Method to normalize the vector
+    void normalize() {
+        float len = std::sqrt(x * x + y * y);
+        if (len != 0) {
+            x /= len;
+            y /= len;
+        }
+    }
+};
+
+/**
+ * @brief Rotation component
+ * @param angle Angle of rotation
+ */
+struct Rotation {
+    float angle;
+    Rotation(float angle) : angle(angle) {}
 };
 
 /**
@@ -53,10 +88,52 @@ struct Status {
 };
 
 /**
- * @brief Rotation component
- * @param angle Angle of rotation
+ * @brief Damage component
+ * @param damage Damage points dealt by the attack
  */
-struct Rotation {
-    float angle;
-    Rotation(float angle) : angle(angle) {}
+struct Damage {
+    int damage;
+    Damage(int damage) : damage(damage) {}
+};
+
+// *Graphical components
+
+/**
+ * @brief Enum that defines the type of graphical entity
+ * Used with the GraphicalType component
+ */
+enum class GraphicalType {
+    Sprite,
+    Text
+};
+
+/**
+ * @brief GraphicalType component
+ * @param type GraphicalType (Sprite or Text)
+ */
+struct Graphical {
+    GraphicalType type;
+    Graphical(GraphicalType type) : type(type) {}
+};
+
+/**
+ * @brief Sprite component
+ * @param texture Texture of the sprite
+ */
+struct Sprite {
+    std::string texture;
+    Sprite(std::string texture) : texture(texture) {}
+};
+
+/**
+ * @brief Text component
+ * @param text Text of the entity
+ * @param font Font of the text
+ * @param size Size of the text
+ */
+struct Text {
+    std::string text;
+    std::string font;
+    int size;
+    Text(std::string text, std::string font, int size) : text(text), font(font), size(size) {}
 };

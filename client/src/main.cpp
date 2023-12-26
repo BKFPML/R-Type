@@ -16,7 +16,9 @@
 int main(int argc, char **argv)
 {
     rtype::Client client;
-
+    Network::Receive client_boost;
+    std::thread r([&] { client_boost.receiver(13151); });
     client.run();
+    r.join();
     return 0;
 }
