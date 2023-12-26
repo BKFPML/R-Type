@@ -5,13 +5,17 @@
  */
 
 #include "../includes/server.hpp"
-#include "../../client/includes/client.hpp"
 
+/**
+ * @brief Server Main Function
+ *
+ * @return int return code
+ */
 int main(int argc, char *argv[])
 {
     Network::Receive client_boost_receive;
     Network::Sender client_boost_sender;
-    std::thread r([&]{ client_boost_receive.receiver(13152); });
+    std::thread r([&]{ client_boost_receive.receiver(13152);});
 
     while (true)
     {

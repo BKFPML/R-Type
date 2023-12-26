@@ -30,6 +30,15 @@ void rtype::Client::run()
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
     Network::Sender sender;
     sf::CircleShape shape(100.f);
+    ECS ecs;
+    auto entity = ecs.createEntity();
+    ecs.registerComponent<Position>();
+    ecs.addComponent<Position>(entity, {1, 2});
+    ecs.registerComponent<Velocity>();
+
+    auto pos = ecs.getComponent<Position>(entity);
+    std::cout << pos->x << " " << pos->y << std::endl;
+    return;
     shape.setFillColor(sf::Color::Green);
 
     while (window.isOpen())
@@ -38,7 +47,20 @@ void rtype::Client::run()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
-                sender.send(std::string("Key Enter Pressed"), 13152);
+                sender.send(std::string("x:0-y:10-hp:40-ip:127.0.0.1:13151"), 13152);
+            
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up)
+                sender.send(std::string("Up-127.0.0.1:13151"), 13152);
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left)
+                sender.send(std::string("Left-127.0.0.1:13151"), 13152);
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down)
+                sender.send(std::string("Down-127.0.0.1:13151"), 13152);
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right)
+                sender.send(std::string("Rigth-127.0.0.1:13151"), 13152);
+
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+                sender.send(std::string("Space-13151"), 13152);
+            
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
