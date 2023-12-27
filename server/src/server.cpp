@@ -6,6 +6,13 @@
 
 #include "../includes/server.hpp"
 
+/**
+ * @brief Check for new connections
+ * 
+ * @param clients 
+ * @param client_boost_receive 
+ * @return std::vector<Network::Sender> 
+ */
 std::vector<Network::Sender> check_new_connections(std::vector<Network::Sender> clients, Network::Receive& client_boost_receive)
 {
     const std::vector<std::string>& received_ips = client_boost_receive.getReceivedIPs();

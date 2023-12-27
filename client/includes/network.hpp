@@ -1,3 +1,8 @@
+/**
+ * @file network.hpp
+ * @brief Network class
+ * @date 27-12-2023
+ */
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
 #include <boost/bind.hpp>
@@ -32,6 +37,12 @@ class Network {
 
                 int count = 0;
 
+                /**
+                 * @brief Handle the receive and store the received IPs
+                 * 
+                 * @param error 
+                 * @param bytes_transferred 
+                 */
                 void handle_receive(const boost::system::error_code &error, size_t bytes_transferred)
                 {
                     if (error)
@@ -62,19 +73,34 @@ class Network {
                         wait();
                     }
                 }
-                
+                /**
+                 * @brief Get the received IPs
+                 * 
+                 * @return std::vector<std::string> 
+                 */
                 const std::vector<std::string>& getReceivedIPs() const {
                     return received_ips;
                 }
 
+                /**
+                 * @brief Clear the received IPs
+                */
                 const void clearReceivedIPs() {
                     received_ips.clear();
                 }
 
+                /**
+                 * @brief Get the IP object
+                 * 
+                 * @return int 
+                 */
                 int getIP() const {
                     return _udp_port;
                 }
 
+                /**
+                 * @brief Wait for a message
+                */
                 void wait()
                 {
                     socket.async_receive_from(boost::asio::buffer(recv_buffer),
@@ -82,6 +108,9 @@ class Network {
                                             boost::bind(&Receive::handle_receive, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
                 }
 
+                /**
+                 * @brief Receiver function
+                */
                 void receiver()
                 {
                     socket.open(udp::v4());
@@ -108,6 +137,11 @@ class Network {
             public:
                 Sender(int port) : _port(port) {}
                 
+                /**
+                 * @brief Send a string to the server
+                 * 
+                 * @param in string to send
+                 */
                 void send(std::string in)
                 {
                     boost::asio::io_service io_service;

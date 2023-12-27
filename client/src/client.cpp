@@ -92,6 +92,11 @@ void rtype::Client::drawParallax(sf::RenderWindow &window)
     window.draw(parallaxSprite3b);
 }
 
+/**
+ * @brief Initialize the ECS
+ * 
+ * @return ECS 
+ */
 ECS rtype::Client::initECS()
 {
     ECS ecs;
@@ -103,6 +108,10 @@ ECS rtype::Client::initECS()
 
 /**
  * @brief Run the client
+ * 
+ * @param sender Network::Sender to send data to the server
+ * @param receive Network::Receive to receive data from the server
+ * @param port int port to use for the client
  */
 void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int port)
 {
