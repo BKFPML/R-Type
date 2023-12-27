@@ -1,0 +1,56 @@
+/**
+ * @page network_message_norm Network Message Norm Documentation
+ *
+ * @section overview Overview
+ *
+ * This document outlines the standard message format utilised by the server 
+ * in our network application. The message norm is designed to ensure 
+ * consistency, efficiency, and ease of parsing across all network communications.
+ *
+ * @section message_format Message Format
+ *
+ * Each message follows a specific structure to maintain uniformity. 
+ * The general format is:
+ * \verbatim
+   element:value-element:value-ip:ip_address
+   \endverbatim
+ *
+ * @subsection components Components
+ *
+ * - <b>Element</b>: Represents a key in the message. It is a string that describes the type of data.
+ * - <b>Value</b>: The value associated with the corresponding element. It can be a string, 
+ *   number, or any other data type as per requirement.
+ * - <b>IP Address</b>: A special element representing the IP address of the sender or target, 
+ *   depending on the context.
+ *
+ * @subsection separator Separator
+ *
+ * - Elements and their values are separated by a colon <b>:</b>.
+ * - Different key-value pairs are separated by a hyphen <b>-</b>.
+ *
+ * @section rules Rules
+ *
+ * 1. <b>Order</b>: The order of key-value pairs in a message is not fixed and can vary.
+ * 2. <b>Uniqueness</b>: Each key within a single message must be unique. If a key is repeated, 
+ *    the last occurrence is considered valid.
+ * 3. <b>IP Address Format</b>: The IP address should follow the standard IPv4 or IPv6 formatting.
+ * 4. <b>Special Characters</b>: Avoid using the colon <b>:</b> and hyphen <b>-</b> within keys 
+ *    and values, as these are reserved for separating message components.
+ *
+ * @section example_messages Example Messages
+ *
+ * 1. <b>Basic Message</b>: 
+ *    \verbatim x:0-y:10-hp:40-ip:127.0.0.1:13151 \endverbatim
+ *    This message contains three data elements (<b>x</b>, <b>y</b>, <b>hp</b>) and the IP address.
+ *
+ * 2. <b>Variable Elements</b>: 
+ *    \verbatim status:active-id:12345-ip:192.168.1.10:13152 \endverbatim
+ *    A different set of data elements showing the flexibility of the message format.
+ *
+ * @section parsing Parsing
+ *
+ * Messages should be parsed according to the defined separators. Ensure that the parser is 
+ * robust enough to handle variations in the order of elements and the inclusion of different 
+ * data types as values.
+ *
+ */

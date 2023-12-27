@@ -1,0 +1,16 @@
+/**
+    @page dependencies_page Dependencies
+
+    @section dependencies_section R-Type Dependencies
+
+    The R-Type Game Engine depends on the following libraries:
+
+    ### Client:
+
+    - **SFML** 2.5.1 (for the graphics)
+
+    ### Server:
+
+    - **Boost** 1.72.0 (for the networking)
+
+*/

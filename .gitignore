@@ -3,14 +3,24 @@
 *.o
 *.so
 .vscode/
+vcpkg/
+vcpkg_installed/
+*Makefile
 
 # CMake
 build/
+vcpkg/
+vcpkg_installed/
 
 # Documentation
-docs/
+docs/html/
+docs/latex/
 technical_documentation.html
 
 # Executables
 r-type_client
 r-type_server
+
+# Tests
+ECSTest
+test.cpp
