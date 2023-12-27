@@ -16,9 +16,14 @@
 int main(int argc, char **argv)
 {
     rtype::Client client;
-    Network::Receive client_boost;
-    std::thread r([&] { client_boost.receiver(13151); });
-    client.run();
+    
+    srand(time(0));
+    int port = rand() % 10000 + 1000;
+    Network::Receive receive = Network::Receive(port);
+    Network::Sender sender = Network::Sender(13152);
+    sender.send("new " + std::to_string(port));
+    std::thread r([&] { receive.receiver(); });
+    client.run(sender, receive, port);
     r.join();
     return 0;
 }
