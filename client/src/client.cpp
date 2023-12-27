@@ -34,9 +34,10 @@ void rtype::Client::loadTextures()
         std::cerr << "Error loading parallax2.png" << std::endl;
     if (!parallaxTexture3.loadFromFile("assets/background/Parallax60.png"))
         std::cerr << "Error loading parallax3.png" << std::endl;
-    if (!planeTexture.loadFromFile("assets/sprites/r-typesheet5.gif"))
+    if (!playerTexture.loadFromFile("assets/sprites/r-typesheet5.gif"))
         std::cerr << "Error loading r-typesheet5.gif" << std::endl;
-    planeSprite.setTexture(planeTexture);
+    planeSprite.setTexture(playerTexture);
+    playersSprites.push_back(planeSprite);
     parallaxSprite1.setTexture(parallaxTexture1);
     parallaxSprite1b.setTexture(parallaxTexture1);
     parallaxSprite2.setTexture(parallaxTexture2);
@@ -103,25 +104,42 @@ ECS rtype::Client::initECS()
 /**
  * @brief Run the client
  */
-void rtype::Client::run(Network::Sender sender, int port)
+void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int port)
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
     
     ECS ecs = initECS();
-    auto player = ecs.createEntity();
-    ecs.addComponent<Position>(player, {100, 100});
-    ecs.addComponent<Health>(player, 100);
-    ecs.addComponent<Velocity>(player, {1, 1, 2});
+    std::vector<ECS::Entity> players;
+    players.push_back(ecs.createEntity()); 
+    ecs.addComponent<Position>(players[0], {100, 100});
+    ecs.addComponent<Health>(players[0], 100);
+    ecs.addComponent<Velocity>(players[0], {1, 1, 2});
     srand(time(0));
     
 
-    planeSprite.setPosition(rand() % 300 + 200, rand() % 500 + 200);
-    planeSprite.setScale(5, 5);
-    planeSprite.setTextureRect(sf::IntRect(0, 0, 34, 34));
-    planeSprite.setRotation(180);
+    playersSprites[0].setPosition(rand() % 300 + 200, rand() % 500 + 200);
+    playersSprites[0].setScale(5, 5);
+    playersSprites[0].setTextureRect(sf::IntRect(0, 0, 34, 34));
+    playersSprites[0].setRotation(180);
 
     while (window.isOpen())
     {
+        if (receive.getReceivedIPs().size() > 0) {
+            std::cout << "Received IPs: " << std::endl;
+            for (const auto& ip : receive.getReceivedIPs()) {
+                std::cout << ip << std::endl;
+                players.push_back(ecs.createEntity());
+                ecs.addComponent<Position>(players[-1], {100, 100});
+                ecs.addComponent<Health>(players[-1], 100);
+                ecs.addComponent<Velocity>(players[-1], {1, 1, 2});
+                playersSprites.push_back(planeSprite);
+                playersSprites.back().setPosition(500, 800);
+                playersSprites.back().setScale(5, 5);
+                playersSprites.back().setTextureRect(sf::IntRect(0, 0, 34, 34));
+                playersSprites.back().setRotation(180);
+            }
+            receive.clearReceivedIPs();
+        }
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -129,17 +147,17 @@ void rtype::Client::run(Network::Sender sender, int port)
                 sender.send("bullet-x:100-y:100-vx:1-vy:1");
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
-                planeSprite.move(0, -10);
+                playersSprites[0].move(0, -10);
             }
                 
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
-                planeSprite.move(-10, 0);
+                playersSprites[0].move(-10, 0);
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down) {
-                planeSprite.move(0, 10);
+                playersSprites[0].move(0, 10);
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
-                planeSprite.move(10, 0);
+                playersSprites[0].move(10, 0);
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
             }
@@ -148,12 +166,17 @@ void rtype::Client::run(Network::Sender sender, int port)
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 window.close();
         }
-        planeSprite.move(1, 0);
-        sleep(1);
-        sender.send(std::to_string(planeSprite.getPosition().x) + " " + std::to_string(planeSprite.getPosition().y) + " " + std::to_string(port));
+        for (auto& player: playersSprites) {
+            player.move(0.1, 0);
+        }
+        sender.send(std::to_string(playersSprites[0].getPosition().x) + " " + std::to_string(playersSprites[0].getPosition().y) + " " + std::to_string(port));
         window.clear(sf::Color::Black);
         drawParallax(window);
-        window.draw(planeSprite);
+        std::cout << "Players: " << playersSprites.size() << std::endl;
+        for (auto& player: playersSprites) {
+            std::cout << "Player: " << player.getPosition().x << " " << player.getPosition().y << std::endl;
+            window.draw(player);
+        }
         window.display();
     }
 }

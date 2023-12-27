@@ -16,6 +16,9 @@ std::vector<Network::Sender> check_new_connections(std::vector<Network::Sender> 
         }
         clients.push_back(Network::Sender(std::stoi(ip)));
         clients.back().send("connected");
+        for (int i = 0; i < clients.size() - 1; i++) {
+            clients.back().send("new " + std::to_string(clients[i].getIP()));
+        }
     }
     client_boost_receive.clearReceivedIPs();
     return clients;

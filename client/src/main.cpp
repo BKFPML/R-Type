@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     Network::Sender sender = Network::Sender(13152);
     sender.send("new " + std::to_string(port));
     std::thread r([&] { receive.receiver(); });
-    client.run(sender, port);
+    client.run(sender, receive, port);
     r.join();
     return 0;
 }
