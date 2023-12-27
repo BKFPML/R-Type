@@ -133,7 +133,7 @@ void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int p
                 ecs.addComponent<Health>(players[-1], 100);
                 ecs.addComponent<Velocity>(players[-1], {1, 1, 2});
                 playersSprites.push_back(planeSprite);
-                playersSprites.back().setPosition(500, 800);
+                playersSprites.back().setPosition(500 + rand()%200, 800 - rand()%300);
                 playersSprites.back().setScale(5, 5);
                 playersSprites.back().setTextureRect(sf::IntRect(0, 0, 34, 34));
                 playersSprites.back().setRotation(180);
