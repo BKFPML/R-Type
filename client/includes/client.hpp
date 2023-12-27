@@ -9,8 +9,9 @@
 #include <iostream>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "../../engine/includes/network.hpp"
+#include "network.hpp"
 #include "../../engine/includes/ECS.hpp"
+#include <ctime> // for time()
 
 
 namespace rtype
@@ -24,15 +25,19 @@ namespace rtype
             Client();
             ~Client();
 
-            void run();
+            void run(Network::Sender sender, Network::Receive& receive, int port);
             void loadTextures();
             void drawParallax(sf::RenderWindow &window);
+            ECS initECS();
 
         private:
+            sf::Texture playerTexture;
             sf::Texture parallaxTexture1;
             sf::Texture parallaxTexture2;
             sf::Texture parallaxTexture3;
 
+            std::vector<sf::Sprite> playersSprites;
+            sf::Sprite planeSprite;
             sf::Sprite parallaxSprite1;
             sf::Sprite parallaxSprite1b;
             sf::Sprite parallaxSprite2;
