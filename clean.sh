@@ -10,3 +10,6 @@ rm -rf ./docs/html/
 rm -rf ./docs/latex/
 rm -rf ./vcpkg/
 rm -rf ./vcpkg_installed/
+
+# remove all .dll files
+rm -rf ./*.dll
