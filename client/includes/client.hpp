@@ -7,12 +7,12 @@
 # pragma once
 
 #include <iostream>
+#include <ctime>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "network.hpp"
 #include "../../engine/includes/ECS.hpp"
-#include <ctime> // for time()
-
+// #include "../external/sfml.hpp"
 
 namespace rtype
 {
@@ -26,9 +26,25 @@ namespace rtype
             ~Client();
 
             void run(Network::Sender sender, Network::Receive& receive, int port);
-            void loadTextures();
-            void drawParallax(sf::RenderWindow &window);
+            virtual void loadTextures() = 0;
+            virtual void drawParallax(sf::RenderWindow &window) = 0;
             ECS initECS();
+
+        private:
+    };
+
+    // TODO: put SFML in a separate file (external folder)
+    class SFML: public Client {
+        public:
+            SFML() {
+                std::cout << "SFML Client" << std::endl;
+                loadTextures();
+            };
+            ~SFML() {
+                std::cout << "Goodbye" << std::endl;
+            };
+            void loadTextures() override;
+            void drawParallax(sf::RenderWindow &window) override;
 
         private:
             sf::Texture playerTexture;

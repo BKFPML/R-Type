@@ -4,7 +4,7 @@
  * @date 2023-11-29
  */
 
-# include "client.hpp"
+#include "client.hpp"
 
 /**
  * @brief Client Main Function
@@ -15,7 +15,7 @@
  */
 int main(int argc, char **argv)
 {
-    rtype::Client client;
+    rtype::SFML client;
 
     srand(time(0));
     int port = rand() % 10000 + 1000;

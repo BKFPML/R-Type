@@ -7,9 +7,10 @@
 
 # Project Files
 file(GLOB CLIENT_FILES "src/*.cpp")
+file(GLOB EXTERNAL_FILES "external/*.cpp")
 include_directories("./includes")
 
-add_executable(r-type_client ${CLIENT_FILES})
+add_executable(r-type_client ${CLIENT_FILES} ${EXTERNAL_FILES})
 
 # Linking Dependencies
 find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
