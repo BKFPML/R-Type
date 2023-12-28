@@ -95,7 +95,7 @@ void rtype::Client::drawParallax(sf::RenderWindow &window)
 /**
  * @brief Initialize the ECS
  * 
- * @return ECS 
+ * @return ECS
  */
 ECS rtype::Client::initECS()
 {
@@ -116,15 +116,14 @@ ECS rtype::Client::initECS()
 void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int port)
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
-    
+
     ECS ecs = initECS();
     std::vector<ECS::Entity> players;
-    players.push_back(ecs.createEntity()); 
+    players.push_back(ecs.createEntity());
     ecs.addComponent<Position>(players[0], {100, 100});
     ecs.addComponent<Health>(players[0], 100);
     ecs.addComponent<Velocity>(players[0], {1, 1, 2});
     srand(time(0));
-    
 
     playersSprites[0].setPosition(rand() % 300 + 200, rand() % 500 + 200);
     playersSprites[0].setScale(5, 5);
@@ -158,7 +157,6 @@ void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int p
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
                 playersSprites[0].move(0, -10);
             }
-                
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
                 playersSprites[0].move(-10, 0);
             }

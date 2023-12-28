@@ -162,8 +162,6 @@ class ECS {
     }
 };
 
-
-
 /**
  * @brief The movement system. Updates the position of based on their velocity
  * 
