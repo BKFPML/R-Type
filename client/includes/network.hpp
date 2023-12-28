@@ -19,10 +19,10 @@ using boost::asio::ip::udp;
 #define UDP_PORT 13152
 
 /**
- * @brief Network Class 
+ * @brief Network Class
 */
 class Network {
-    public: 
+    public:
         /**
          * @brief Receive Class
         */
@@ -40,8 +40,8 @@ class Network {
                 /**
                  * @brief Handle the receive and store the received IPs
                  * 
-                 * @param error 
-                 * @param bytes_transferred 
+                 * @param error
+                 * @param bytes_transferred
                  */
                 void handle_receive(const boost::system::error_code &error, size_t bytes_transferred)
                 {
@@ -76,7 +76,7 @@ class Network {
                 /**
                  * @brief Get the received IPs
                  * 
-                 * @return std::vector<std::string> 
+                 * @return std::vector<std::string>
                  */
                 const std::vector<std::string>& getReceivedIPs() const {
                     return received_ips;
@@ -92,7 +92,7 @@ class Network {
                 /**
                  * @brief Get the IP object
                  * 
-                 * @return int 
+                 * @return int
                  */
                 int getIP() const {
                     return _udp_port;
@@ -136,7 +136,7 @@ class Network {
         class Sender {
             public:
                 Sender(int port) : _port(port) {}
-                
+
                 /**
                  * @brief Send a string to the server
                  * 

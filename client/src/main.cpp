@@ -16,7 +16,7 @@
 int main(int argc, char **argv)
 {
     rtype::Client client;
-    
+
     srand(time(0));
     int port = rand() % 10000 + 1000;
     Network::Receive receive = Network::Receive(port);
