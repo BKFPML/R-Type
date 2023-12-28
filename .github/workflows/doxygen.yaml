@@ -1,0 +1,28 @@
+name: Generate Doxygen Documentation
+
+on:
+  push:
+    branches:
+      - dev
+      - feat/github_pages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Doxygen
+        run: sudo apt-get install doxygen
+
+      - name: Generate Documentation
+        run: ./documentation.sh
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages  # The branch the action should deploy to.
+          folder: docs      # The folder the action should deploy.
+          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token.
