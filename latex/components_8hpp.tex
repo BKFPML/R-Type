@@ -1,0 +1,53 @@
+\hypertarget{components_8hpp}{}\doxysection{engine/includes/components.hpp File Reference}
+\label{components_8hpp}\index{engine/includes/components.hpp@{engine/includes/components.hpp}}
+
+
+Declaration of the components used in the \mbox{\hyperlink{classECS}{ECS}}.  
+
+
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPosition}{Position}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structPosition}{Position}} component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structVelocity}{Velocity}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structVelocity}{Velocity}} component, normalized. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structRotation}{Rotation}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structRotation}{Rotation}} component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structHealth}{Health}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structHealth}{Health}} component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structAttack}{Attack}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structAttack}{Attack}} component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structStatus}{Status}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structStatus}{Status}} component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDamage}{Damage}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structDamage}{Damage}} component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structGraphical}{Graphical}}
+\begin{DoxyCompactList}\small\item\em Graphical\+Type component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSprite}{Sprite}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structSprite}{Sprite}} component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structText}{Text}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structText}{Text}} component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{components_8hpp_a90549f45cfc442187c1d769596107d3e}\label{components_8hpp_a90549f45cfc442187c1d769596107d3e}} 
+enum class \mbox{\hyperlink{components_8hpp_a90549f45cfc442187c1d769596107d3e}{Status\+Type}} \{ {\bfseries ALLY}
+, {\bfseries ENEMY}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum that defines the status of an entity Used with the \mbox{\hyperlink{structStatus}{Status}} component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{components_8hpp_a6e59176e002c5ff36fde8bdd0cfef506}\label{components_8hpp_a6e59176e002c5ff36fde8bdd0cfef506}} 
+enum class \mbox{\hyperlink{components_8hpp_a6e59176e002c5ff36fde8bdd0cfef506}{Graphical\+Type}} \{ {\bfseries Sprite}
+, {\bfseries Text}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum that defines the type of graphical entity Used with the Graphical\+Type component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaration of the components used in the \mbox{\hyperlink{classECS}{ECS}}. 
+
+\begin{DoxyDate}{Date}
+11-\/12-\/2023 
+\end{DoxyDate}

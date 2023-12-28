@@ -1,0 +1,207 @@
+\hypertarget{classECS}{}\doxysection{ECS Class Reference}
+\label{classECS}\index{ECS@{ECS}}
+
+
+The Entity Component System manager class.  
+
+
+
+
+{\ttfamily \#include $<$ECS.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classECS_a344283d8575f7e37df5c83502b3beba9}\label{classECS_a344283d8575f7e37df5c83502b3beba9}} 
+using {\bfseries Entity} = size\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Entity \mbox{\hyperlink{classECS_a41b876f3725cbb04aac3f2edd95522c6}{create\+Entity}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classECS_a316db465b4e5d424406078cc410d83c0}{register\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Registers a new component type and adds it to the component list. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classECS_a3e470b32582ec8a6943017d143ceed73}{add\+Component}} (Entity entity, T component)
+\begin{DoxyCompactList}\small\item\em Adds a component to an entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classECS_ae5eb5367579567ac03a357cf22285ad2}\label{classECS_ae5eb5367579567ac03a357cf22285ad2}} 
+{\footnotesize template$<$typename ... T$>$ }\\void {\bfseries add\+Component} (Entity entity, T... components)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classECS_a8d8404847c1131d60dd9f6020263b64f}{remove\+Component}} (Entity entity)
+\begin{DoxyCompactList}\small\item\em Removes a component from an entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classECS_ad353dd9a1d3c7a8e96bf181be7428589}{has\+Component}} (Entity entity)
+\begin{DoxyCompactList}\small\item\em Removes a component from an entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classECS_a9528399640fc20d2042127473249e77a}{get\+Component}} (Entity entity)
+\begin{DoxyCompactList}\small\item\em Gets a component from an entity. \end{DoxyCompactList}\item 
+std\+::vector$<$ Entity $>$ \mbox{\hyperlink{classECS_a2140693763d02e20d8550bd42f5ff39d}{get\+Entities}} ()
+\begin{DoxyCompactList}\small\item\em Gets all the entities in the \mbox{\hyperlink{classECS}{ECS}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename... Args$>$ }\\void \mbox{\hyperlink{classECS_a5f78a9213243d2060a456a3c2ec53953}{register\+System}} (Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em Registers a new system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classECS_a9adf308675731fc4b241974364509540}\label{classECS_a9adf308675731fc4b241974364509540}} 
+void \mbox{\hyperlink{classECS_a9adf308675731fc4b241974364509540}{update\+Systems}} ()
+\begin{DoxyCompactList}\small\item\em Updates all the registered systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Entity Component System manager class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classECS_a3e470b32582ec8a6943017d143ceed73}\label{classECS_a3e470b32582ec8a6943017d143ceed73}} 
+\index{ECS@{ECS}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void ECS\+::add\+Component (\begin{DoxyParamCaption}\item[{Entity}]{entity,  }\item[{T}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a component to an entity. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The component type, defined in \mbox{\hyperlink{components_8hpp}{components.\+hpp}} \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity to add the component to \\
+\hline
+{\em component} & The component to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classECS_a41b876f3725cbb04aac3f2edd95522c6}\label{classECS_a41b876f3725cbb04aac3f2edd95522c6}} 
+\index{ECS@{ECS}!createEntity@{createEntity}}
+\index{createEntity@{createEntity}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{createEntity()}{createEntity()}}
+{\footnotesize\ttfamily Entity ECS\+::create\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new entity. 
+
+\begin{DoxyReturn}{Returns}
+ECS\+::\+Entity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classECS_a9528399640fc20d2042127473249e77a}\label{classECS_a9528399640fc20d2042127473249e77a}} 
+\index{ECS@{ECS}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T$\ast$ ECS\+::get\+Component (\begin{DoxyParamCaption}\item[{Entity}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets a component from an entity. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The component type, defined in \mbox{\hyperlink{components_8hpp}{components.\+hpp}} \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity to get the component from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T$\ast$ A pointer to the component 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classECS_a2140693763d02e20d8550bd42f5ff39d}\label{classECS_a2140693763d02e20d8550bd42f5ff39d}} 
+\index{ECS@{ECS}!getEntities@{getEntities}}
+\index{getEntities@{getEntities}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{getEntities()}{getEntities()}}
+{\footnotesize\ttfamily std\+::vector$<$Entity$>$ ECS\+::get\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets all the entities in the \mbox{\hyperlink{classECS}{ECS}}. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Entity$>$ A vector of all the entities 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classECS_ad353dd9a1d3c7a8e96bf181be7428589}\label{classECS_ad353dd9a1d3c7a8e96bf181be7428589}} 
+\index{ECS@{ECS}!hasComponent@{hasComponent}}
+\index{hasComponent@{hasComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{hasComponent()}{hasComponent()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool ECS\+::has\+Component (\begin{DoxyParamCaption}\item[{Entity}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a component from an entity. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The component type, defined in \mbox{\hyperlink{components_8hpp}{components.\+hpp}} \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity to remove the component from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classECS_a316db465b4e5d424406078cc410d83c0}\label{classECS_a316db465b4e5d424406078cc410d83c0}} 
+\index{ECS@{ECS}!registerComponent@{registerComponent}}
+\index{registerComponent@{registerComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{registerComponent()}{registerComponent()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void ECS\+::register\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Registers a new component type and adds it to the component list. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The component type, defined in \mbox{\hyperlink{components_8hpp}{components.\+hpp}} \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classECS_a5f78a9213243d2060a456a3c2ec53953}\label{classECS_a5f78a9213243d2060a456a3c2ec53953}} 
+\index{ECS@{ECS}!registerSystem@{registerSystem}}
+\index{registerSystem@{registerSystem}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{registerSystem()}{registerSystem()}}
+{\footnotesize\ttfamily template$<$typename T , typename... Args$>$ \\
+void ECS\+::register\+System (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Registers a new system. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The system type \\
+\hline
+{\em Args} & The arguments to pass to the system constructor \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The arguments to pass to the system constructor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classECS_a8d8404847c1131d60dd9f6020263b64f}\label{classECS_a8d8404847c1131d60dd9f6020263b64f}} 
+\index{ECS@{ECS}!removeComponent@{removeComponent}}
+\index{removeComponent@{removeComponent}!ECS@{ECS}}
+\doxysubsubsection{\texorpdfstring{removeComponent()}{removeComponent()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void ECS\+::remove\+Component (\begin{DoxyParamCaption}\item[{Entity}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a component from an entity. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The component type, defined in \mbox{\hyperlink{components_8hpp}{components.\+hpp}} \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity to remove the component from \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/includes/\mbox{\hyperlink{ECS_8hpp}{ECS.\+hpp}}\end{DoxyCompactItemize}

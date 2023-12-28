@@ -1,0 +1,41 @@
+\hypertarget{network_protocol_rfc_abstract}{}\doxysection{Abstract}\label{network_protocol_rfc_abstract}
+This document describes a network protocol for communication between components of a networked game engine. The protocol uses UDP (User Datagram Protocol) for efficient and low-\/latency communication. It is designed for educational purposes as part of a school project.\hypertarget{network_protocol_rfc_table_of_contents}{}\doxysection{Table of Contents}\label{network_protocol_rfc_table_of_contents}
+
+\begin{DoxyEnumerate}
+\item \mbox{\hyperlink{network_protocol_rfc_introduction}{1. Introduction}}
+\item \mbox{\hyperlink{network_protocol_rfc_protocol_overview}{2. Protocol Overview}}
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{network_protocol_rfc_components}{Components}}
+\item \mbox{\hyperlink{network_protocol_rfc_message_exchange}{2.\+2. Message Exchange}}
+\end{DoxyItemize}
+\item \mbox{\hyperlink{network_protocol_rfc_message_format}{Message Format}}
+\item \mbox{\hyperlink{network_protocol_rfc_sender_behavior}{4. Sender Behavior}}
+\item \mbox{\hyperlink{network_protocol_rfc_receiver_behavior}{5. Receiver Behavior}}
+\item \mbox{\hyperlink{network_protocol_rfc_error_handling}{6. Error Handling}}
+\item \mbox{\hyperlink{network_protocol_rfc_security_considerations}{7. Security Considerations}}
+\item \mbox{\hyperlink{network_protocol_rfc_conclusion}{8. Conclusion}}
+\item \mbox{\hyperlink{network_protocol_rfc_references}{9. References}}
+\end{DoxyEnumerate}\hypertarget{network_protocol_rfc_introduction}{}\doxysection{1. Introduction}\label{network_protocol_rfc_introduction}
+This document provides an overview and detailed specifications of a network protocol used in a networked game engine. The protocol is intended for educational purposes and utilizes UDP for communication.\hypertarget{network_protocol_rfc_protocol_overview}{}\doxysection{2. Protocol Overview}\label{network_protocol_rfc_protocol_overview}
+\hypertarget{network_protocol_rfc_components}{}\doxysubsection{Components}\label{network_protocol_rfc_components}
+The protocol consists of two main components\+:
+\begin{DoxyItemize}
+\item Sender\+: Responsible for sending messages to a specified IP address and UDP port.
+\item Receiver\+: Listens for incoming messages on a specified UDP port and processes them asynchronously.
+\end{DoxyItemize}\hypertarget{network_protocol_rfc_message_exchange}{}\doxysubsection{2.\+2. Message Exchange}\label{network_protocol_rfc_message_exchange}
+Messages are exchanged between the sender and the receiver using UDP datagrams. The sender sends messages to a specific IP address and UDP port, while the receiver listens on the designated UDP port for incoming messages.\hypertarget{network_protocol_rfc_message_format}{}\doxysection{Message Format}\label{network_protocol_rfc_message_format}
+Messages exchanged between the sender and the receiver have a simple format\+:
+\begin{DoxyItemize}
+\item Payload\+: The content of the message, typically a string.
+\end{DoxyItemize}
+
+Please see the \mbox{\hyperlink{network_message_norm}{Network Message Norm Documentation}} for the \mbox{\hyperlink{classNetwork}{Network}} Message Norm Documentation. \hypertarget{network_protocol_rfc_sender_behavior}{}\doxysection{4. Sender Behavior}\label{network_protocol_rfc_sender_behavior}
+The sender class has a {\ttfamily send} method that allows the sending of messages. It opens a UDP socket, sends the message payload to the specified IP address and UDP port, and then closes the socket.\hypertarget{network_protocol_rfc_receiver_behavior}{}\doxysection{5. Receiver Behavior}\label{network_protocol_rfc_receiver_behavior}
+The receiver class sets up a UDP socket, binds it to a specified UDP port, and enters a loop to listen for incoming messages. When a message is received, it processes it asynchronously.\hypertarget{network_protocol_rfc_error_handling}{}\doxysection{6. Error Handling}\label{network_protocol_rfc_error_handling}
+Both the sender and the receiver implement basic error handling. Errors are logged, but no sophisticated error recovery mechanisms are included in this protocol.\hypertarget{network_protocol_rfc_security_considerations}{}\doxysection{7. Security Considerations}\label{network_protocol_rfc_security_considerations}
+This protocol does not include any security features. It is intended for educational purposes only and should not be used in production environments without implementing appropriate security measures.\hypertarget{network_protocol_rfc_conclusion}{}\doxysection{8. Conclusion}\label{network_protocol_rfc_conclusion}
+The described network protocol provides a simple foundation for communication between components of a networked game engine. It uses UDP for low-\/latency communication and serves as a starting point for further development and learning.\hypertarget{network_protocol_rfc_references}{}\doxysection{9. References}\label{network_protocol_rfc_references}
+
+\begin{DoxyItemize}
+\item \href{https://www.boost.org/doc/libs/1_77_0/doc/html/boost_asio.html}{\texttt{ Boost.\+Asio Documentation}} -\/ Reference documentation for the Boost.\+Asio library. 
+\end{DoxyItemize}

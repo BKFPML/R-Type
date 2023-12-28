@@ -1,0 +1,59 @@
+\hypertarget{server_8cpp}{}\doxysection{server/src/server.cpp File Reference}
+\label{server_8cpp}\index{server/src/server.cpp@{server/src/server.cpp}}
+
+
+Main file for the server.  
+
+
+{\ttfamily \#include \char`\"{}../includes/server.\+hpp\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classNetwork_1_1Sender}{Network\+::\+Sender}} $>$ \mbox{\hyperlink{server_8cpp_ad7a6d5c732ef1d1935eb874563447808}{check\+\_\+new\+\_\+connections}} (std\+::vector$<$ \mbox{\hyperlink{classNetwork_1_1Sender}{Network\+::\+Sender}} $>$ clients, \mbox{\hyperlink{classNetwork_1_1Receive}{Network\+::\+Receive}} \&client\+\_\+boost\+\_\+receive)
+\begin{DoxyCompactList}\small\item\em Check for new connections. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{server_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Server Main Function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main file for the server. 
+
+\begin{DoxyDate}{Date}
+2023-\/11-\/29 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{server_8cpp_ad7a6d5c732ef1d1935eb874563447808}\label{server_8cpp_ad7a6d5c732ef1d1935eb874563447808}} 
+\index{server.cpp@{server.cpp}!check\_new\_connections@{check\_new\_connections}}
+\index{check\_new\_connections@{check\_new\_connections}!server.cpp@{server.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_new\_connections()}{check\_new\_connections()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classNetwork_1_1Sender}{Network\+::\+Sender}}$>$ check\+\_\+new\+\_\+connections (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classNetwork_1_1Sender}{Network\+::\+Sender}} $>$}]{clients,  }\item[{\mbox{\hyperlink{classNetwork_1_1Receive}{Network\+::\+Receive}} \&}]{client\+\_\+boost\+\_\+receive }\end{DoxyParamCaption})}
+
+
+
+Check for new connections. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clients} & \\
+\hline
+{\em client\+\_\+boost\+\_\+receive} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Network\+::\+Sender$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{server_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{server_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{server.cpp@{server.cpp}!main@{main}}
+\index{main@{main}!server.cpp@{server.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Server Main Function. 
+
+\begin{DoxyReturn}{Returns}
+int return code 
+\end{DoxyReturn}
