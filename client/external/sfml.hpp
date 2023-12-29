@@ -6,37 +6,36 @@
 
 #pragma once
 
-// #include "../includes/client.hpp"
+#include "../includes/client.hpp"
 
-// namespace rtype {
-//     class Client;
-//     class SFML;
-// }
+namespace rtype
+{
+    class SFML: public Client {
+        public:
+            SFML();
+            ~SFML();
 
-// namespace rtype
-// {
-//     class Client;
+            void run(Network::Sender sender, Network::Receive& receive, int port) override;
+            void loadTextures() override;
+            void drawParallax(sf::RenderWindow &window) override;
 
-//     class SFML: public Client {
-//         public:
-//             SFML();
-//             ~SFML();
-//             void loadTextures() override;
-//             void drawParallax(sf::RenderWindow &window) override;
+            sf::RenderWindow& getWindow() { return window; };
 
-//         private:
-//             sf::Texture playerTexture;
-//             sf::Texture parallaxTexture1;
-//             sf::Texture parallaxTexture2;
-//             sf::Texture parallaxTexture3;
+        private:
+            sf::RenderWindow window;
 
-//             std::vector<sf::Sprite> playersSprites;
-//             sf::Sprite planeSprite;
-//             sf::Sprite parallaxSprite1;
-//             sf::Sprite parallaxSprite1b;
-//             sf::Sprite parallaxSprite2;
-//             sf::Sprite parallaxSprite2b;
-//             sf::Sprite parallaxSprite3;
-//             sf::Sprite parallaxSprite3b;
-//     };
-// }
+            sf::Texture playerTexture;
+            sf::Texture parallaxTexture1;
+            sf::Texture parallaxTexture2;
+            sf::Texture parallaxTexture3;
+
+            std::vector<sf::Sprite> playersSprites;
+            sf::Sprite planeSprite;
+            sf::Sprite parallaxSprite1;
+            sf::Sprite parallaxSprite1b;
+            sf::Sprite parallaxSprite2;
+            sf::Sprite parallaxSprite2b;
+            sf::Sprite parallaxSprite3;
+            sf::Sprite parallaxSprite3b;
+    };
+}

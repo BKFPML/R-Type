@@ -4,24 +4,23 @@
  * @date 28-12-2023
  */
 
-// #include "sfml.hpp"
-#include "../includes/client.hpp"
+#include "sfml.hpp"
 
 /**
  * @brief Construct a new rtype::SFML::SFML object
  */
-// rtype::SFML::SFML()
-// {
-//     std::cout << "SFML Client" << std::endl;
-// }
+rtype::SFML::SFML(): window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME)
+{
+    std::cout << "SFML Client" << std::endl;
+}
 
 /**
  * @brief Destroy the rtype::SFML::SFML object
  */
-// rtype::SFML::~SFML()
-// {
-//     std::cout << "Goodbye" << std::endl;
-// }
+rtype::SFML::~SFML()
+{
+    std::cout << "Goodbye" << std::endl;
+}
 
 /**
  * @brief Run the client

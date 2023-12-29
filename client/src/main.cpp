@@ -5,6 +5,7 @@
  */
 
 #include "client.hpp"
+#include "../external/sfml.hpp"
 
 /**
  * @brief Client Main Function
