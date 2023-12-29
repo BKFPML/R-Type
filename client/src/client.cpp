@@ -5,6 +5,7 @@
  */
 
 #include "client.hpp"
+#include "r_typesheet5.h"
 
 /**
  * @brief Construct a new rtype::Client::Client object
@@ -34,8 +35,8 @@ void rtype::Client::loadTextures()
         std::cerr << "Error loading parallax2.png" << std::endl;
     if (!parallaxTexture3.loadFromFile("assets/background/Parallax60.png"))
         std::cerr << "Error loading parallax3.png" << std::endl;
-    if (!playerTexture.loadFromFile("assets/sprites/r-typesheet5.gif"))
-        std::cerr << "Error loading r-typesheet5.gif" << std::endl;
+    if (!playerTexture.loadFromMemory(r_typesheet5, r_typesheet5_len))
+        std::cerr << "Error loading embedded r-typesheet5.gif" << std::endl;
     planeSprite.setTexture(playerTexture);
     playersSprites.push_back(planeSprite);
     parallaxSprite1.setTexture(parallaxTexture1);
