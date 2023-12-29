@@ -33,5 +33,5 @@ cd build || exit
 cmake -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake ..
 cmake --build .
 
-mv ./server/${SERVER_NAME} ../
-mv ./client/${CLIENT_NAME} ../
+cp ./server/${SERVER_NAME} ../
+cp ./client/${CLIENT_NAME} ../
