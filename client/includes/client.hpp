@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <ctime>
+#include <memory>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "network.hpp"
@@ -25,7 +26,7 @@ namespace rtype
             Client();
             ~Client();
 
-            void run(Network::Sender sender, Network::Receive& receive, int port);
+            virtual void run(Network::Sender sender, Network::Receive& receive, int port) = 0;
             virtual void loadTextures() = 0;
             virtual void drawParallax(sf::RenderWindow &window) = 0;
             ECS initECS();
@@ -36,17 +37,22 @@ namespace rtype
     // TODO: put SFML in a separate file (external folder)
     class SFML: public Client {
         public:
-            SFML() {
+            SFML(): window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME) {
                 std::cout << "SFML Client" << std::endl;
                 loadTextures();
             };
             ~SFML() {
                 std::cout << "Goodbye" << std::endl;
             };
+            void run(Network::Sender sender, Network::Receive& receive, int port) override;
             void loadTextures() override;
             void drawParallax(sf::RenderWindow &window) override;
 
+            sf::RenderWindow& getWindow() { return window; };
+
         private:
+            sf::RenderWindow window;
+
             sf::Texture playerTexture;
             sf::Texture parallaxTexture1;
             sf::Texture parallaxTexture2;
