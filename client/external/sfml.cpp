@@ -6,9 +6,9 @@
 
 #include "sfml.hpp"
 #include "r_typesheet5.h"
-#include "Parallax100.h"
-#include "Parallax80.h"
-#include "Parallax60.h"
+#include "parallax100.h"
+#include "parallax80.h"
+#include "parallax60.h"
 
 /**
  * @brief Construct a new rtype::SFML::SFML object
