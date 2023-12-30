@@ -7,5 +7,5 @@ var searchData=
   ['registersystem_44',['registerSystem',['../classECS.html#a5f78a9213243d2060a456a3c2ec53953',1,'ECS']]],
   ['removecomponent_45',['removeComponent',['../classECS.html#a8d8404847c1131d60dd9f6020263b64f',1,'ECS']]],
   ['rotation_46',['Rotation',['../structRotation.html',1,'']]],
-  ['run_47',['run',['../classrtype_1_1Client.html#ac1b4c610e3dd2c259e897b7b09ebc0bc',1,'rtype::Client']]]
+  ['run_47',['run',['../classrtype_1_1SFML.html#a3e2f6e62f2292d02ec284c9ab15fea88',1,'rtype::SFML']]]
 ];

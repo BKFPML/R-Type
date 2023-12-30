@@ -69,9 +69,18 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrtype_1_1Client-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rtype::Client Class Reference</div>  </div>
+<div class="title">rtype::Client Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for rtype::Client:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classrtype_1_1Client.png" usemap="#rtype::Client_map" alt=""/>
+  <map id="rtype::Client_map" name="rtype::Client_map">
+<area href="classrtype_1_1SFML.html" alt="rtype::SFML" shape="rect" coords="0,56,81,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -83,47 +92,20 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a1e343d3201b6d391017f7345d8504612">~Client</a> ()</td></tr>
 <tr class="memdesc:a1e343d3201b6d391017f7345d8504612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classrtype_1_1Client.html#aed5c20fac90ad07852bebc5d94382b30" title="Construct a new rtype::Client::Client object.">rtype::Client::Client</a> object. <br /></td></tr>
 <tr class="separator:a1e343d3201b6d391017f7345d8504612"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1b4c610e3dd2c259e897b7b09ebc0bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ac1b4c610e3dd2c259e897b7b09ebc0bc">run</a> (<a class="el" href="classNetwork_1_1Sender.html">Network::Sender</a> sender, <a class="el" href="classNetwork_1_1Receive.html">Network::Receive</a> &amp;receive, int port)</td></tr>
-<tr class="memdesc:ac1b4c610e3dd2c259e897b7b09ebc0bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the client.  <a href="classrtype_1_1Client.html#ac1b4c610e3dd2c259e897b7b09ebc0bc">More...</a><br /></td></tr>
-<tr class="separator:ac1b4c610e3dd2c259e897b7b09ebc0bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa81c943f721a71f28c972cbb0112851a"><td class="memItemLeft" align="right" valign="top"><a id="aa81c943f721a71f28c972cbb0112851a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#aa81c943f721a71f28c972cbb0112851a">loadTextures</a> ()</td></tr>
-<tr class="memdesc:aa81c943f721a71f28c972cbb0112851a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the textures for the client's sprites. <br /></td></tr>
-<tr class="separator:aa81c943f721a71f28c972cbb0112851a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e9f5486f1bbe793eda95b7bfaf99611"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a7e9f5486f1bbe793eda95b7bfaf99611">drawParallax</a> (sf::RenderWindow &amp;window)</td></tr>
-<tr class="memdesc:a7e9f5486f1bbe793eda95b7bfaf99611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the background parallax effect.  <a href="classrtype_1_1Client.html#a7e9f5486f1bbe793eda95b7bfaf99611">More...</a><br /></td></tr>
-<tr class="separator:a7e9f5486f1bbe793eda95b7bfaf99611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95349321ab0f34c3784be76d91a7f1ef"><td class="memItemLeft" align="right" valign="top"><a id="a95349321ab0f34c3784be76d91a7f1ef"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (<a class="el" href="classNetwork_1_1Sender.html">Network::Sender</a> sender, <a class="el" href="classNetwork_1_1Receive.html">Network::Receive</a> &amp;receive, int port)=0</td></tr>
+<tr class="separator:a95349321ab0f34c3784be76d91a7f1ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e54adc97abd17d5d87f6e6e190cbf5"><td class="memItemLeft" align="right" valign="top"><a id="a10e54adc97abd17d5d87f6e6e190cbf5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loadTextures</b> ()=0</td></tr>
+<tr class="separator:a10e54adc97abd17d5d87f6e6e190cbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac32bb8883752f71e5f39807d3efd502b"><td class="memItemLeft" align="right" valign="top"><a id="ac32bb8883752f71e5f39807d3efd502b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawParallax</b> (sf::RenderWindow &amp;window)=0</td></tr>
+<tr class="separator:ac32bb8883752f71e5f39807d3efd502b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f243757ed056372217fd14056d477e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classECS.html">ECS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">initECS</a> ()</td></tr>
 <tr class="memdesc:a6f243757ed056372217fd14056d477e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>.  <a href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">More...</a><br /></td></tr>
 <tr class="separator:a6f243757ed056372217fd14056d477e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7e9f5486f1bbe793eda95b7bfaf99611"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e9f5486f1bbe793eda95b7bfaf99611">&#9670;&nbsp;</a></span>drawParallax()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rtype::Client::drawParallax </td>
-          <td>(</td>
-          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
-          <td class="paramname"><em>window</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Draw the background parallax effect. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">window</td><td>sf::RenderWindow to draw the parallax effect on </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a6f243757ed056372217fd14056d477e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f243757ed056372217fd14056d477e3">&#9670;&nbsp;</a></span>initECS()</h2>
 
@@ -141,50 +123,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Initialize the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a> </dd></dl>
-
-</div>
-</div>
-<a id="ac1b4c610e3dd2c259e897b7b09ebc0bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1b4c610e3dd2c259e897b7b09ebc0bc">&#9670;&nbsp;</a></span>run()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rtype::Client::run </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classNetwork_1_1Sender.html">Network::Sender</a>&#160;</td>
-          <td class="paramname"><em>sender</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classNetwork_1_1Receive.html">Network::Receive</a> &amp;&#160;</td>
-          <td class="paramname"><em>receive</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>port</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Run the client. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sender</td><td><a class="el" href="classNetwork_1_1Sender.html" title="Receive Class.">Network::Sender</a> to send data to the server </td></tr>
-    <tr><td class="paramname">receive</td><td><a class="el" href="classNetwork_1_1Receive.html" title="Receive Class.">Network::Receive</a> to receive data from the server </td></tr>
-    <tr><td class="paramname">port</td><td>int port to use for the client </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

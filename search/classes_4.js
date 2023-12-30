@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['graphical_65',['Graphical',['../structGraphical.html',1,'']]],
-  ['graphicalsystem_66',['GraphicalSystem',['../classGraphicalSystem.html',1,'']]]
+  ['graphical_69',['Graphical',['../structGraphical.html',1,'']]],
+  ['graphicalsystem_70',['GraphicalSystem',['../classGraphicalSystem.html',1,'']]]
 ];
