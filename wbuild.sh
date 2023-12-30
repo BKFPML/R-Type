@@ -41,7 +41,7 @@ SFML_DLL_PATH="./client/Debug/"
 cp ./client/Debug/*.dll ../ || echo "Failed to copy SFML DLLs."
 
 echo "Moving executables..."
-mv server/Debug/$SERVER_NAME.exe ../
-mv client/Debug/$CLIENT_NAME.exe ../
+cp server/Debug/$SERVER_NAME.exe ../
+cp client/Debug/$CLIENT_NAME.exe ../
 
 echo "Build script completed."

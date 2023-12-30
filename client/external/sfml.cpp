@@ -5,6 +5,10 @@
  */
 
 #include "sfml.hpp"
+#include "r_typesheet5.h"
+#include "Parallax100.h"
+#include "Parallax80.h"
+#include "Parallax60.h"
 
 /**
  * @brief Construct a new rtype::SFML::SFML object
@@ -109,18 +113,18 @@ void rtype::SFML::run(Network::Sender sender, Network::Receive& receive, int por
  */
 void rtype::SFML::loadTextures()
 {
-    std::cout << "Loading textures..." << std::endl;
+    if (!parallaxTexture1.loadFromMemory(Parallax100, Parallax100_len))
+        std::cerr << "Error loading embedded Parallax100.png" << std::endl;
+    if (!parallaxTexture2.loadFromMemory(Parallax80, Parallax80_len))
+        std::cerr << "Error loading embedded Parallax80.png" << std::endl;
+    if (!parallaxTexture3.loadFromMemory(Parallax60, Parallax60_len))
+        std::cerr << "Error loading embedded Parallax60.png" << std::endl;
+    if (!playerTexture.loadFromMemory(r_typesheet5, r_typesheet5_len))
+        std::cerr << "Error loading embedded r-typesheet5.gif" << std::endl;
 
-    if (!parallaxTexture1.loadFromFile("assets/background/Parallax100.png"))
-        std::cerr << "Error loading parallax1.png" << std::endl;
-    if (!parallaxTexture2.loadFromFile("assets/background/Parallax80.png"))
-        std::cerr << "Error loading parallax2.png" << std::endl;
-    if (!parallaxTexture3.loadFromFile("assets/background/Parallax60.png"))
-        std::cerr << "Error loading parallax3.png" << std::endl;
-    if (!playerTexture.loadFromFile("assets/sprites/r-typesheet5.gif"))
-        std::cerr << "Error loading r-typesheet5.gif" << std::endl;
     planeSprite.setTexture(playerTexture);
     playersSprites.push_back(planeSprite);
+
     parallaxSprite1.setTexture(parallaxTexture1);
     parallaxSprite1b.setTexture(parallaxTexture1);
     parallaxSprite2.setTexture(parallaxTexture2);
