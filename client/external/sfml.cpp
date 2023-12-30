@@ -113,11 +113,11 @@ void rtype::SFML::run(Network::Sender sender, Network::Receive& receive, int por
  */
 void rtype::SFML::loadTextures()
 {
-    if (!parallaxTexture1.loadFromMemory(Parallax100, Parallax100_len))
+    if (!parallaxTexture1.loadFromMemory(parallax100, parallax100_len))
         std::cerr << "Error loading embedded Parallax100.png" << std::endl;
-    if (!parallaxTexture2.loadFromMemory(Parallax80, Parallax80_len))
+    if (!parallaxTexture2.loadFromMemory(parallax80, parallax80_len))
         std::cerr << "Error loading embedded Parallax80.png" << std::endl;
-    if (!parallaxTexture3.loadFromMemory(Parallax60, Parallax60_len))
+    if (!parallaxTexture3.loadFromMemory(parallax60, parallax60_len))
         std::cerr << "Error loading embedded Parallax60.png" << std::endl;
     if (!playerTexture.loadFromMemory(r_typesheet5, r_typesheet5_len))
         std::cerr << "Error loading embedded r-typesheet5.gif" << std::endl;
