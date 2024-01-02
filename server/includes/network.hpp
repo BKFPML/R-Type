@@ -4,17 +4,7 @@
  * @date 27-12-2023
  */
 
-#include <boost/asio.hpp>
-#include <boost/array.hpp>
-#include <boost/bind.hpp>
-#include <thread>
-#include <iostream>
-#include <vector>
-#include <chrono>
-
-using boost::asio::ip::address;
-using boost::asio::ip::udp;
-
+#include "../../engine/includes/boost.hpp"
 
 #define IPADDRESS "127.0.0.1" // "192.168.1.64"
 #define UDP_PORT 13152
@@ -137,8 +127,8 @@ class Network {
         */
         class Sender {
             public:
-                Sender(int port) : _port(port) {}
-                
+                Sender(int port) : _port(port){}
+
                 /**
                  * @brief Send a message to client
                  * 
@@ -146,20 +136,15 @@ class Network {
                  */
                 void send(std::string in)
                 {
-                    boost::asio::io_service io_service;
-                    udp::socket socket(io_service);
-                    udp::endpoint remote_endpoint = udp::endpoint(address::from_string(IPADDRESS), _port);
-                    socket.open(udp::v4());
-
-                    boost::system::error_code err;
-                    auto sent = socket.send_to(boost::asio::buffer(in), remote_endpoint, 0, err);
-                    socket.close();
+                    BoostNetwork _boostNetwork(_port, IPADDRESS);
+                    _boostNetwork.send(in);
                     std::cout << "Sent Payload --- " << in << "\n";
                 }
 
                 int getIP() const {
                     return _port;
                 }
+
             private:
                 int _port;
         };

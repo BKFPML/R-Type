@@ -13,9 +13,10 @@
  * @param client_boost_receive 
  * @return std::vector<Network::Sender> 
  */
-std::vector<Network::Sender> check_new_connections(std::vector<Network::Sender> clients, Network::Receive& client_boost_receive)
+void Server::check_new_connections()
 {
     const std::vector<std::string>& received_ips = client_boost_receive.getReceivedIPs();
+
     for (const auto& ip : received_ips) {
         std::cout << "Stored IP: " << ip << "\n";
         for (auto& client : clients) {
@@ -28,7 +29,22 @@ std::vector<Network::Sender> check_new_connections(std::vector<Network::Sender> 
         }
     }
     client_boost_receive.clearReceivedIPs();
-    return clients;
+}
+
+int Server::run()
+{
+    std::thread r([&]{ client_boost_receive.receiver();});
+    while (true)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+        check_new_connections();
+
+        for (auto& client : clients) {
+            client.send("hello");
+        }
+    }
+    r.join();
+    return 0;
 }
 
 /**
@@ -36,21 +52,11 @@ std::vector<Network::Sender> check_new_connections(std::vector<Network::Sender> 
  *
  * @return int return code
  */
-int main(int argc, char *argv[])
+int main()
 {
-    Network::Receive client_boost_receive = Network::Receive(13152);
-    std::thread r([&]{ 
-        client_boost_receive.receiver();
-    });
-    std::vector<Network::Sender> clients;
-    while (true)
-    {
-        std::this_thread::sleep_for(std::chrono::milliseconds(4000));
-        clients = check_new_connections(clients, client_boost_receive);
-
-        for (auto& client : clients) {
-            client.send("hello");
-        }
-    }
-    r.join();
+    Server server = Server();
+    if (server.run() == 84)
+        return 84;
+    server.~Server();
+    return 0;
 }

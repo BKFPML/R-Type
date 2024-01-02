@@ -6,9 +6,9 @@
 
 #include "client.hpp"
 #include "r_typesheet5.h"
-#include "parallax100.h"
-#include "parallax80.h"
-#include "parallax60.h"
+#include "Parallax100.h"
+#include "Parallax80.h"
+#include "Parallax60.h"
 
 /**
  * @brief Construct a new rtype::Client::Client object
@@ -122,6 +122,7 @@ void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int p
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
 
     ECS ecs = initECS();
+
     std::vector<ECS::Entity> players;
     players.push_back(ecs.createEntity());
     ecs.addComponent<Position>(players[0], {100, 100});
@@ -134,6 +135,7 @@ void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int p
     playersSprites[0].setTextureRect(sf::IntRect(0, 0, 34, 34));
     playersSprites[0].setRotation(180);
 
+    sf::Clock clock;
     while (window.isOpen())
     {
         if (receive.getReceivedIPs().size() > 0) {
@@ -180,7 +182,10 @@ void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int p
         for (auto& player: playersSprites) {
             player.move(0.1, 0);
         }
-        sender.send(std::to_string(playersSprites[0].getPosition().x) + " " + std::to_string(playersSprites[0].getPosition().y) + " " + std::to_string(port));
+        if (clock.getElapsedTime().asMilliseconds() > 100) {
+            sender.send("x:" + std::to_string(playersSprites[0].getPosition().x) + "-y:" + std::to_string(playersSprites[0].getPosition().y));
+            clock.restart();
+        }
         window.clear(sf::Color::Black);
         drawParallax(window);
         std::cout << "Players: " << playersSprites.size() << std::endl;
