@@ -6,6 +6,24 @@
 
 #include "../includes/server.hpp"
 
+std::vector<std::string> split(const std::string& str, const std::string& delim)
+{
+    std::vector<std::string> tokens;
+    size_t prev = 0, pos = 0;
+
+    do {
+        pos = str.find(delim, prev);
+        if (pos == std::string::npos)
+            pos = str.length();
+        std::string token = str.substr(prev, pos - prev);
+        if (!token.empty())
+            tokens.push_back(token);
+        prev = pos + delim.length();
+    } while (pos < str.length() && prev < str.length());
+
+    return tokens;
+}
+
 /**
  * @brief Check for new connections
  * 
@@ -15,32 +33,37 @@
  */
 void Server::check_new_connections()
 {
-    const std::vector<std::string>& received_ips = client_boost_receive.getReceivedIPs();
+    const std::vector<std::string>& received_data = server_receive.get_received_data();
 
-    for (const auto& ip : received_ips) {
-        std::cout << "Stored IP: " << ip << "\n";
-        for (auto& client : clients) {
-            client.send("new " + ip);
-        }
-        clients.push_back(Network::Sender(std::stoi(ip)));
-        clients.back().send("connected");
-        for (int i = 0; i < clients.size() - 1; i++) {
-            clients.back().send("new " + std::to_string(clients[i].getIP()));
+    for (const auto& ip : received_data) {
+        if (split(ip, " ").front() == "new") {
+            std::cout << "New connection: " << ip << std::endl;
+            std::cout << "Set port to: " << split(ip, " ").back() << std::endl;
+            clients_send.push_back(UDPBoostNetwork::UDPSender(std::stoi(split(ip, " ").back())));
         }
     }
-    client_boost_receive.clearReceivedIPs();
+    server_receive.clear_received_data();
 }
 
+/**
+ * @brief Server run Function
+ *
+ * @return int return code
+ */
 int Server::run()
 {
-    std::thread r([&]{ client_boost_receive.receiver();});
+    std::thread r([&]{ server_receive.receive();});
+    auto start_time = std::chrono::high_resolution_clock::now();
+
     while (true)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(4000));
         check_new_connections();
 
-        for (auto& client : clients) {
-            client.send("hello");
+        if (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - start_time).count() > 3) {
+            for (auto& client : clients_send) {
+                client.send("hello from the server");
+            }
+            start_time = std::chrono::high_resolution_clock::now();
         }
     }
     r.join();

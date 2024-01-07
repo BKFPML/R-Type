@@ -11,7 +11,7 @@
 #include <memory>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "network.hpp"
+#include "../../engine/includes/network_library/boost_udp.hpp"
 #include "../../engine/includes/ECS.hpp"
 
 namespace rtype
@@ -25,10 +25,11 @@ namespace rtype
             Client();
             ~Client();
 
-            virtual void run(Network::Sender sender, Network::Receive& receive, int port) = 0;
+            virtual void run(Sender& sender, Receiver& receive, int port) = 0;
             virtual void loadTextures() = 0;
             virtual void drawParallax(sf::RenderWindow &window) = 0;
             ECS initECS();
+            
 
         private:
     };

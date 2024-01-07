@@ -15,7 +15,7 @@ namespace rtype
             SFML();
             ~SFML();
 
-            void run(Network::Sender sender, Network::Receive& receive, int port) override;
+            void run(Sender& sender, Receiver& receive, int port) override;
             void loadTextures() override;
             void drawParallax(sf::RenderWindow &window) override;
 

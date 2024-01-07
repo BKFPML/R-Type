@@ -4,27 +4,29 @@
  * @date 2023-11-29
  */
 
-#include "client.hpp"
+
 #include "../external/sfml.hpp"
+
 
 /**
  * @brief Client Main Function
  *
- * @param argc number of arguments
- * @param argv arguments
  * @return int return code
  */
-int main(int argc, char **argv)
-{
-    rtype::SFML client;
+int main() {
+    try {
+        rtype::SFML client;
+        int port = rand() % 10000 + 1000;
+        UDPBoostNetwork::UDPSender sender(13152);
+        UDPBoostNetwork::UDPReceiver receiver(port);
+        std::thread r([&] { receiver.receive(); });
+        sender.send("new " + std::to_string(port));
+        client.run(sender, receiver, port);
+        r.join();
+        
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
 
-    srand(time(0));
-    int port = rand() % 10000 + 1000;
-    Network::Receive receive = Network::Receive(port);
-    Network::Sender sender = Network::Sender(13152);
-    sender.send("new " + std::to_string(port));
-    std::thread r([&] { receive.receiver(); });
-    client.run(sender, receive, port);
-    r.join();
     return 0;
 }
