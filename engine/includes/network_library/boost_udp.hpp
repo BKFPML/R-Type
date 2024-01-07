@@ -27,6 +27,11 @@ public:
     public:
         UDPSender(int port_to_send, std::string ip = IPADDRESS) : _udp_port(port_to_send), _ip(ip) {}
 
+        /**
+         * @brief Send a message with UDP
+         * 
+         * @param message 
+         */
         void send(std::string message) override {
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
@@ -39,12 +44,22 @@ public:
             std::cout << "Sent: " << message << std::endl;
         }
 
+        /**
+         * @brief Send a vector of messages with UDP
+         * 
+         * @param messages 
+         */
         void send(std::vector<std::string> messages) override {
             for (const auto& message : messages) {
                 send(message);
             }
         }
 
+        /**
+         * @brief Get the port object
+         * 
+         * @return int 
+         */
         int get_port() override {
             return _udp_port;
         }
@@ -60,6 +75,11 @@ public:
     public:
         UDPReceiver(int port, std::string ip = IPADDRESS) : _udp_port(port), _ip(ip) {}
 
+        /**
+         * @brief Receive a message with UDP
+         * 
+         * @return std::string 
+         */
         void receive() override {
             std::cout << "Listening on port: " << _udp_port << std::endl;
             boost::asio::io_context io_context;
@@ -83,7 +103,14 @@ public:
                 received_data.push_back(received);
             }
         }        
-        
+
+        /**
+         * @brief Split a string
+         * 
+         * @param str 
+         * @param token 
+         * @return std::vector<std::string> 
+         */
         std::vector<std::string> split(const std::string& str, const std::string& delim)
         {
             std::vector<std::string> tokens;
@@ -102,6 +129,11 @@ public:
             return tokens;
         }
         
+        /**
+         * @brief Get the port object
+         * 
+         * @return int 
+         */
         bool is_port_bound() override {
             boost::asio::io_context io_context;
             boost::asio::ip::tcp::acceptor acceptor(io_context);
@@ -124,23 +156,44 @@ public:
         }
 
 
-
+        /**
+         * @brief Get the received data object
+         * 
+         * @return std::vector<std::string> 
+         */
         std::vector<std::string> get_received_data() override {
             return received_data;
         }
 
+        /**
+         * @brief Clear the received data object
+         * 
+         */
         void clear_received_data() override {
             received_data.clear();
         }
 
+        /**
+         * @brief Clear the received data object
+         * 
+         * @param index 
+         */
         void clear_received_data(int index) override {
             received_data.erase(received_data.begin() + index);
         }
 
+        /**
+         * @brief Clear the first received data object
+         * 
+         */
         void clear_first_received_data() override {
             received_data.erase(received_data.begin());
         }
 
+        /**
+         * @brief Clear the last received data object
+         * 
+         */
         void clear_last_received_data() override {
             received_data.pop_back();
         }
