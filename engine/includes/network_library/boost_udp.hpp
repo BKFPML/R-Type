@@ -25,33 +25,10 @@ public:
      */
     class UDPSender : public Sender {
     public:
-        UDPSender(int port_to_send, int my_port, std::string ip = IPADDRESS) : _udp_port(port_to_send), _ip(ip) {
-            send("new " + std::to_string(my_port));
-        }
-
         UDPSender(int port_to_send, std::string ip = IPADDRESS) : _udp_port(port_to_send), _ip(ip) {}
 
-        /**
-         * @brief Send data to the server
-         * 
-         * @param message 
-         */
-        void send(std::string message) override {
-            boost::asio::io_context io_context;
-            boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
-            boost::asio::ip::udp::resolver resolver(io_context);
-            boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "0.0.0.0", std::to_string(_udp_port));
-            boost::asio::ip::udp::endpoint receiver_endpoint = *resolver.resolve(query);
-            socket.send_to(boost::asio::buffer(message), receiver_endpoint);
-
-            std::cout << "Sent: " << message << std::endl;
-        }
-
-        void send(std::vector<std::string> messages) override {
-            for (auto& message : messages) {
-                send(message);
-            }
-        }
+        void send(std::string message) override;
+        void send(std::vector<std::string> messages) override;
 
     private:
         int _udp_port;
@@ -65,31 +42,7 @@ public:
     public:
         UDPReceiver(int port, std::string ip = IPADDRESS) : _udp_port(port), _ip(ip) {}
 
-        /**
-         * @brief Receive data from the server
-         * 
-         */
-        void receive() override {
-            boost::asio::io_context io_context;
-            boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), _udp_port));
-            boost::array<char, 1024> recv_buffer;
-            boost::asio::ip::udp::endpoint remote_endpoint;
-            boost::system::error_code error;
-            std::string received;
-
-            while (true) {
-                size_t received_bytes = socket.receive_from(boost::asio::buffer(recv_buffer), remote_endpoint, 0, error);
-                if (error && error != boost::asio::error::message_size) {
-                    throw boost::system::system_error(error);
-                }
-                received = std::string(recv_buffer.begin(), recv_buffer.begin() + received_bytes);
-                std::cout << "Received data from: " << remote_endpoint.address() << std::endl;
-                std::cout << "Received data: " << received << std::endl;
-
-                received_data.push_back(received);
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            }
-        }
+        void receive() override;
 
         std::vector<std::string> get_received_data() override {
             return received_data;
