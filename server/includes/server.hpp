@@ -9,6 +9,7 @@
 #include <iostream>
 #include <chrono>
 #include "../../engine/includes/network_library/boost_udp.hpp"
+#include "../includes/parser.hpp"
 
 #define UDP_SERVER_PORT 13152
 

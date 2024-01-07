@@ -5,7 +5,6 @@
  */
 
 #include "../includes/server.hpp"
-#include "../includes/parser.hpp"
 
 /**
  * @brief Check for new connections
@@ -94,7 +93,7 @@ void Server::parse_data_received(Parser parser)
         check_new_connections(data);
         check_new_deconnections(data);
         std::unordered_map<std::string, std::string> parsedMessage = parser.parseMessage(data);
-        
+
     }
     server_receive.clear_received_data();
 }
