@@ -81,10 +81,9 @@ public:
                     break;
                 }
                 received_data.push_back(received);
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
-        }
-
+        }        
+        
         std::vector<std::string> split(const std::string& str, const std::string& delim)
         {
             std::vector<std::string> tokens;
@@ -102,7 +101,7 @@ public:
 
             return tokens;
         }
-
+        
         bool is_port_bound() override {
             boost::asio::io_context io_context;
             boost::asio::ip::tcp::acceptor acceptor(io_context);
