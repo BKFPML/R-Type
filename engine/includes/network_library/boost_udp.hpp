@@ -45,6 +45,9 @@ public:
             }
         }
 
+        int get_port() override {
+            return _udp_port;
+        }
     private:
         int _udp_port;
         std::string _ip;
@@ -58,6 +61,7 @@ public:
         UDPReceiver(int port, std::string ip = IPADDRESS) : _udp_port(port), _ip(ip) {}
 
         void receive() override {
+            std::cout << "Listening on port: " << _udp_port << std::endl;
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), _udp_port));
             boost::array<char, 1024> recv_buffer;
@@ -73,11 +77,54 @@ public:
                 received = std::string(recv_buffer.begin(), recv_buffer.begin() + received_bytes);
                 std::cout << "Received data from: " << remote_endpoint.address() << std::endl;
                 std::cout << "Received data: " << received << std::endl;
-
+                if (split(received, " ")[0] == "quit" && split(received, " ")[1] == std::to_string(_udp_port)) {
+                    break;
+                }
                 received_data.push_back(received);
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
         }
+
+        std::vector<std::string> split(const std::string& str, const std::string& delim)
+        {
+            std::vector<std::string> tokens;
+            size_t prev = 0, pos = 0;
+
+            do {
+                pos = str.find(delim, prev);
+                if (pos == std::string::npos)
+                    pos = str.length();
+                std::string token = str.substr(prev, pos - prev);
+                if (!token.empty())
+                    tokens.push_back(token);
+                prev = pos + delim.length();
+            } while (pos < str.length() && prev < str.length());
+
+            return tokens;
+        }
+
+        bool is_port_bound() override {
+            boost::asio::io_context io_context;
+            boost::asio::ip::tcp::acceptor acceptor(io_context);
+
+            try {
+                boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), _udp_port);
+                acceptor.open(endpoint.protocol());
+                acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+                acceptor.bind(endpoint);
+                return false;  // Port is not bound
+            } catch (const boost::system::system_error& e) {
+                if (e.code() == boost::asio::error::address_in_use) {
+                    // Port is already bound
+                    return true;
+                } else {
+                    // Handle other errors if needed
+                    throw e;
+                }
+            }
+        }
+
+
 
         std::vector<std::string> get_received_data() override {
             return received_data;

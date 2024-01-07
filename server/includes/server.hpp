@@ -18,7 +18,9 @@ class Server {
         ~Server() = default;
 
         int run();
-        void check_new_connections();
+        void check_new_connections(std::string data);
+        void parse_data_received();
+        std::vector<std::string> split(const std::string& str, const std::string& delim);
 
     private:
         UDPBoostNetwork::UDPReceiver server_receive;

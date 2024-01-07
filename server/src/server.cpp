@@ -6,7 +6,31 @@
 
 #include "../includes/server.hpp"
 
-std::vector<std::string> split(const std::string& str, const std::string& delim)
+/**
+ * @brief Check for new connections
+ * 
+ * @param clients 
+ * @param client_boost_receive 
+ * @return std::vector<Network::Sender> 
+ */
+void Server::check_new_connections(std::string data)
+{
+    if (split(data, " ").front() == "new") {
+        std::cout << "New connection: " << data << std::endl;
+        std::cout << "Set port to: " << split(data, " ").back() << std::endl;
+        clients_send.push_back(UDPBoostNetwork::UDPSender(std::stoi(split(data, " ").back())));
+    }
+}
+
+/**
+ * @brief Split a string
+ * 
+ * @param str 
+ * @param token 
+ * @return std::vector<std::string> 
+ */
+
+std::vector<std::string> Server::split(const std::string& str, const std::string& delim)
 {
     std::vector<std::string> tokens;
     size_t prev = 0, pos = 0;
@@ -25,22 +49,29 @@ std::vector<std::string> split(const std::string& str, const std::string& delim)
 }
 
 /**
- * @brief Check for new connections
+ * @brief Parse data received
  * 
  * @param clients 
  * @param client_boost_receive 
- * @return std::vector<Network::Sender> 
  */
-void Server::check_new_connections()
+void Server::parse_data_received()
 {
     const std::vector<std::string>& received_data = server_receive.get_received_data();
 
-    for (const auto& ip : received_data) {
-        if (split(ip, " ").front() == "new") {
-            std::cout << "New connection: " << ip << std::endl;
-            std::cout << "Set port to: " << split(ip, " ").back() << std::endl;
-            clients_send.push_back(UDPBoostNetwork::UDPSender(std::stoi(split(ip, " ").back())));
+    for (const auto& data : received_data) {
+        check_new_connections(data);
+
+        if (split(data, " ").front() == "quit") {
+            for (int i = 0; i < clients_send.size(); i++) {
+                if (clients_send[i].get_port() == std::stoi(split(data, " ").back())) {
+                    std::cout << "Client: " << split(data, " ").back() << " erased" << std::endl;
+                    clients_send[i].send("quit " + split(data, " ").back());
+                    clients_send.erase(clients_send.begin() + i);
+                    break;
+                }
+            }
         }
+
     }
     server_receive.clear_received_data();
 }
@@ -57,8 +88,7 @@ int Server::run()
 
     while (true)
     {
-        check_new_connections();
-
+        parse_data_received();
         if (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - start_time).count() > 3) {
             for (auto& client : clients_send) {
                 client.send("hello from the server");

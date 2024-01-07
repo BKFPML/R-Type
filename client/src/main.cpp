@@ -7,7 +7,6 @@
 
 #include "../external/sfml.hpp"
 
-
 /**
  * @brief Client Main Function
  *
@@ -16,14 +15,19 @@
 int main() {
     try {
         rtype::SFML client;
-        int port = rand() % 10000 + 1000;
+        UDPBoostNetwork::UDPReceiver receiver(0);
+        int port;
+        
+        srand(time(NULL));
+        port = rand() % 30000 + 1000;
+        receiver = UDPBoostNetwork::UDPReceiver(port);
+        
         UDPBoostNetwork::UDPSender sender(13152);
-        UDPBoostNetwork::UDPReceiver receiver(port);
         std::thread r([&] { receiver.receive(); });
         sender.send("new " + std::to_string(port));
         client.run(sender, receiver, port);
+        sender.send("quit " + std::to_string(port));
         r.join();
-        
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
