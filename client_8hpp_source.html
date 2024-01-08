@@ -76,34 +76,58 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../external/sfml.hpp&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>rtype</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classrtype_1_1Client.html">   15</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classrtype_1_1Client.html">Client</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="classrtype_1_1Client.html#aed5c20fac90ad07852bebc5d94382b30">Client</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="classrtype_1_1Client.html#a1e343d3201b6d391017f7345d8504612">~Client</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="classECS.html">ECS</a> <a class="code" href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">initECS</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#ad552ba9ba48613ba1d918b4726764c4a">initPlayer</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">gameLoop</a>(<a class="code" href="classISender.html">ISender</a>&amp; sender, <a class="code" href="classIReceiver.html">IReceiver</a>&amp; receive, <span class="keywordtype">int</span> port);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordtype">void</span> handleKeys(<a class="code" href="structKeyState.html">KeyState</a> keys);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            std::unique_ptr&lt;IGraphical&gt; _graphical;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordtype">bool</span> _running;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            std::chrono::_V2::system_clock::time_point _start;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="classECS.html">ECS</a> _ecs;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            std::vector&lt;ECS::Entity&gt; _players;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    };</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">enum</span> ClientScene {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    MENU,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    MULTIPLAYER,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    GAME,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    SETTINGS,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    END</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>rtype</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classrtype_1_1Client.html">   23</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classrtype_1_1Client.html">Client</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="classrtype_1_1Client.html#aed5c20fac90ad07852bebc5d94382b30">Client</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="classrtype_1_1Client.html#a1e343d3201b6d391017f7345d8504612">~Client</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="classECS.html">ECS</a> <a class="code" href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">initECS</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#ad552ba9ba48613ba1d918b4726764c4a">initPlayer</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">gameLoop</a>(<a class="code" href="classISender.html">ISender</a>&amp; sender, <a class="code" href="classIReceiver.html">IReceiver</a>&amp; receive, <span class="keywordtype">int</span> port);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#abb8c5f7443f1c5ec77324c6e736951ca">manage_draw_scene</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#a4a1dede826d781ddce750b7981ffdc06">drawMenu</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#a5710e93c7d0c22b5ebd38f32d74d8962">drawMultiplayer</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#a24e73a44d7bd5e348df9f6f043ccfcda">drawGame</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de">drawSettings</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#ae6b137d57812453d3c1cbab422c1f3a5">drawEnd</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordtype">void</span> handleKeys(<a class="code" href="structKeyState.html">KeyState</a> keys);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            std::unique_ptr&lt;IGraphical&gt; _graphical;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordtype">bool</span> _running;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            std::chrono::_V2::system_clock::time_point _start;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            std::chrono::_V2::system_clock::time_point _drawClock;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <a class="code" href="classECS.html">ECS</a> _ecs;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            std::vector&lt;ECS::Entity&gt; _players;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            ClientScene _scene;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordtype">int</span> fps;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 <div class="ttc" id="aclassECS_html"><div class="ttname"><a href="classECS.html">ECS</a></div><div class="ttdoc">The Entity Component System manager class.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:30</div></div>
 <div class="ttc" id="aclassIReceiver_html"><div class="ttname"><a href="classIReceiver.html">IReceiver</a></div><div class="ttdoc">Virtual receive class.</div><div class="ttdef"><b>Definition:</b> network.hpp:13</div></div>
 <div class="ttc" id="aclassISender_html"><div class="ttname"><a href="classISender.html">ISender</a></div><div class="ttdoc">Virtual send class.</div><div class="ttdef"><b>Definition:</b> network.hpp:29</div></div>
-<div class="ttc" id="aclassrtype_1_1Client_html"><div class="ttname"><a href="classrtype_1_1Client.html">rtype::Client</a></div><div class="ttdef"><b>Definition:</b> client.hpp:15</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html"><div class="ttname"><a href="classrtype_1_1Client.html">rtype::Client</a></div><div class="ttdef"><b>Definition:</b> client.hpp:23</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_a1e343d3201b6d391017f7345d8504612"><div class="ttname"><a href="classrtype_1_1Client.html#a1e343d3201b6d391017f7345d8504612">rtype::Client::~Client</a></div><div class="ttdeci">~Client()</div><div class="ttdoc">Destroy the rtype::Client::Client object.</div><div class="ttdef"><b>Definition:</b> client.cpp:22</div></div>
-<div class="ttc" id="aclassrtype_1_1Client_html_a541d9b56fe98bb22b4de6997a2775a7c"><div class="ttname"><a href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">rtype::Client::gameLoop</a></div><div class="ttdeci">void gameLoop(ISender &amp;sender, IReceiver &amp;receive, int port)</div><div class="ttdoc">Run the game loop.</div><div class="ttdef"><b>Definition:</b> client.cpp:74</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_a24e73a44d7bd5e348df9f6f043ccfcda"><div class="ttname"><a href="classrtype_1_1Client.html#a24e73a44d7bd5e348df9f6f043ccfcda">rtype::Client::drawGame</a></div><div class="ttdeci">void drawGame()</div><div class="ttdoc">Draw the game.</div><div class="ttdef"><b>Definition:</b> client.cpp:96</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_a4a1dede826d781ddce750b7981ffdc06"><div class="ttname"><a href="classrtype_1_1Client.html#a4a1dede826d781ddce750b7981ffdc06">rtype::Client::drawMenu</a></div><div class="ttdeci">void drawMenu()</div><div class="ttdoc">Draw the menu.</div><div class="ttdef"><b>Definition:</b> client.cpp:70</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_a541d9b56fe98bb22b4de6997a2775a7c"><div class="ttname"><a href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">rtype::Client::gameLoop</a></div><div class="ttdeci">void gameLoop(ISender &amp;sender, IReceiver &amp;receive, int port)</div><div class="ttdoc">Run the game loop.</div><div class="ttdef"><b>Definition:</b> client.cpp:154</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_a5710e93c7d0c22b5ebd38f32d74d8962"><div class="ttname"><a href="classrtype_1_1Client.html#a5710e93c7d0c22b5ebd38f32d74d8962">rtype::Client::drawMultiplayer</a></div><div class="ttdeci">void drawMultiplayer()</div><div class="ttdoc">Draw the multiplayer menu.</div><div class="ttdef"><b>Definition:</b> client.cpp:82</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_a6815f9325f09ebe089c913156297f9de"><div class="ttname"><a href="classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de">rtype::Client::drawSettings</a></div><div class="ttdeci">void drawSettings()</div><div class="ttdoc">Draw the settings.</div><div class="ttdef"><b>Definition:</b> client.cpp:104</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_a6f243757ed056372217fd14056d477e3"><div class="ttname"><a href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">rtype::Client::initECS</a></div><div class="ttdeci">ECS initECS()</div><div class="ttdoc">Initialize the ECS.</div><div class="ttdef"><b>Definition:</b> client.cpp:32</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_abb8c5f7443f1c5ec77324c6e736951ca"><div class="ttname"><a href="classrtype_1_1Client.html#abb8c5f7443f1c5ec77324c6e736951ca">rtype::Client::manage_draw_scene</a></div><div class="ttdeci">void manage_draw_scene()</div><div class="ttdoc">Manage the draw of the scene.</div><div class="ttdef"><b>Definition:</b> client.cpp:121</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_ad552ba9ba48613ba1d918b4726764c4a"><div class="ttname"><a href="classrtype_1_1Client.html#ad552ba9ba48613ba1d918b4726764c4a">rtype::Client::initPlayer</a></div><div class="ttdeci">void initPlayer()</div><div class="ttdoc">Initialize the player and add it to the ECS.</div><div class="ttdef"><b>Definition:</b> client.cpp:45</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_ae6b137d57812453d3c1cbab422c1f3a5"><div class="ttname"><a href="classrtype_1_1Client.html#ae6b137d57812453d3c1cbab422c1f3a5">rtype::Client::drawEnd</a></div><div class="ttdeci">void drawEnd()</div><div class="ttdoc">Draw the end screen.</div><div class="ttdef"><b>Definition:</b> client.cpp:112</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_aed5c20fac90ad07852bebc5d94382b30"><div class="ttname"><a href="classrtype_1_1Client.html#aed5c20fac90ad07852bebc5d94382b30">rtype::Client::Client</a></div><div class="ttdeci">Client()</div><div class="ttdoc">Construct a new rtype::Client::Client object.</div><div class="ttdef"><b>Definition:</b> client.cpp:12</div></div>
 <div class="ttc" id="astructKeyState_html"><div class="ttname"><a href="structKeyState.html">KeyState</a></div><div class="ttdoc">these Keystates describe the state of the keys on the keyboard</div><div class="ttdef"><b>Definition:</b> keystates.hpp:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
