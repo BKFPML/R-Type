@@ -36,9 +36,9 @@ public:
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
             boost::asio::ip::udp::resolver resolver(io_context);
-            boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "0.0.0.0", std::to_string(_udp_port));
+            boost::asio::ip::udp::resolver::query query("0.0.0.0", std::to_string(_udp_port));
             boost::asio::ip::udp::endpoint receiver_endpoint = *resolver.resolve(query);
-            
+
             socket.send_to(boost::asio::buffer(message), receiver_endpoint);
 
             std::cout << "Sent: " << message << std::endl;
@@ -67,7 +67,7 @@ public:
         int _udp_port;
         std::string _ip;
     };
-        
+
     /**
      * @brief Receive Class
     */
@@ -85,7 +85,10 @@ public:
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), _udp_port));
             boost::array<char, 1024> recv_buffer;
-            boost::asio::ip::udp::endpoint remote_endpoint;
+            boost::asio::ip::udp::resolver::query query("0.0.0.0", std::to_string(_udp_port));
+            boost::asio::ip::udp::resolver resolver(io_context);
+
+            boost::asio::ip::udp::endpoint remote_endpoint = *resolver.resolve(query);
             boost::system::error_code error;
             std::string received;
 
@@ -102,7 +105,7 @@ public:
                 }
                 received_data.push_back(received);
             }
-        }        
+        }
 
         /**
          * @brief Split a string
@@ -128,7 +131,7 @@ public:
 
             return tokens;
         }
-        
+
         /**
          * @brief Get the port object
          * 
