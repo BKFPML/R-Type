@@ -50,6 +50,20 @@ void rtype::Client::initPlayer()
     _ecs.addComponent<Velocity>(_players[0], {1, 1, 2});
 }
 
+void rtype::Client::handleKeys(KeyState keys)
+{
+    if(keys.up)
+        std::cout << "UP" << std::endl;
+    if(keys.down)
+        std::cout << "DOWN" << std::endl;
+    if(keys.left)
+        std::cout << "LEFT" << std::endl;
+    if(keys.right)
+        std::cout << "RIGHT" << std::endl;
+    if(keys.a)
+        std::cout << "A" << std::endl;
+}
+
 /**
  * @brief Run the game loop
  *
@@ -59,11 +73,14 @@ void rtype::Client::initPlayer()
  */
 void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 {
+    KeyState keys;
+
     while (_running) {
-        _graphical->handleEvents(sender);
+        keys = _graphical->handleEvents();
 
         auto now = std::chrono::system_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count();
+        handleKeys(keys);
 
         if (elapsed > 1000) {
             _start = now;
@@ -76,7 +93,6 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 
             sender.send(data);
         }
-
         _graphical->drawWindow();
     }
 }

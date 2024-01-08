@@ -20,6 +20,7 @@ namespace rtype
             ECS initECS();
             void initPlayer();
             void gameLoop(ISender& sender, IReceiver& receive, int port);
+            void handleKeys(KeyState keys);
 
         private:
             std::unique_ptr<IGraphical> _graphical;
