@@ -35,7 +35,7 @@ rtype::SFML::~SFML()
  * @param receive Network::Receive to receive data from the server
  * @param port int port to use for the client
  */
-void rtype::SFML::run(Sender& sender, Receiver& receive, int port)
+void rtype::SFML::run(ISender& sender, IReceiver& receive, int port)
 {
     ECS ecs = initECS();
     std::vector<ECS::Entity> players;

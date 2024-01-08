@@ -23,7 +23,7 @@ public:
     /**
      * @brief Send Class
      */
-    class UDPSender : public Sender {
+    class UDPSender : public ISender {
     public:
         UDPSender(int port_to_send, std::string ip = IPADDRESS) : _udp_port(port_to_send), _ip(ip) {}
 
@@ -101,7 +101,7 @@ public:
     /**
      * @brief Receive Class
     */
-    class UDPReceiver : public Receiver {
+    class UDPReceiver : public IReceiver {
     public:
         UDPReceiver(int port, std::string ip = IPADDRESS) : _udp_port(port), _ip(ip) {}
 
