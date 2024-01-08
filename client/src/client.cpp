@@ -9,7 +9,7 @@
 /**
  * @brief Construct a new rtype::Client::Client object
  */
-rtype::Client::Client()
+rtype::Client::Client() : running(true)
 {
     std::cout << "This is the R-Type Client" << std::endl;
 }
@@ -34,4 +34,15 @@ ECS rtype::Client::initECS()
     ecs.registerComponent<Health>();
     ecs.registerComponent<Velocity>();
     return ecs;
+}
+
+/**
+ * @brief Run the game loop
+ *
+ */
+void rtype::Client::gameLoop()
+{
+    while (running) {
+
+    }
 }

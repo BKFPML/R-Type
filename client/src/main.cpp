@@ -17,11 +17,11 @@ int main() {
         rtype::SFML client;
         UDPBoostNetwork::UDPReceiver receiver(0);
         int port;
-        
+
         srand(time(NULL));
         port = rand() % 30000 + 1000;
         receiver = UDPBoostNetwork::UDPReceiver(port);
-        
+
         UDPBoostNetwork::UDPSender sender(13152);
         std::thread r([&] { receiver.receive(); });
         sender.send("new " + std::to_string(port));

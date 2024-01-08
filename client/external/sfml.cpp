@@ -60,7 +60,7 @@ void rtype::SFML::run(Sender& sender, Receiver& receive, int port)
             std::string data = std::to_string(playersSprites[0].getPosition().x) + " " + std::to_string(playersSprites[0].getPosition().y) + " " + std::to_string(port);
             sender.send(data);
         }
-        
+
         sf::Event event;
         while (window.pollEvent(event))
         {

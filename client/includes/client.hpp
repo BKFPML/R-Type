@@ -25,12 +25,14 @@ namespace rtype
             Client();
             ~Client();
 
+            void gameLoop();
+
             virtual void run(Sender& sender, Receiver& receive, int port) = 0;
             virtual void loadTextures() = 0;
             virtual void drawParallax(sf::RenderWindow &window) = 0;
             ECS initECS();
-            
 
         private:
+            bool running;
     };
 }
