@@ -26,7 +26,7 @@ void Server::check_new_connections(std::string data)
         clients_send.push_back(UDPBoostNetwork::UDPSender(std::stoi(split(ip, ":").back()), split(ip, ":").front()));
 
         for (int i = 0; i < clients_send.size() - 1; i++) {
-            clients_send.back().send("new " + std::to_string(clients_send[i].get_port()));
+            clients_send.back().send("new " + clients_send[i].get_ip() + ":" + std::to_string(clients_send[i].get_port()));
         }
     }
 }
@@ -42,7 +42,7 @@ void Server::check_new_deconnections(std::string data)
 {
     if (split(data, " ").front() == "quit") {
         for (int i = 0; i < clients_send.size(); i++) {
-            if (clients_send[i].get_port() == std::stoi(split(data, " ").back())) {
+            if (clients_send[i].get_port() == std::stoi(split(split(data, " ").back(), ":").back()) && clients_send[i].get_ip() == split(split(data, " ").back(), ":").front()) {
                 std::cout << "Client: " << split(data, " ").back() << " erased" << std::endl;
                 for (auto& client : clients_send) {
                     client.send("quit " + split(data, " ").back());

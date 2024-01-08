@@ -32,4 +32,5 @@ public:
     virtual void send(std::string in) = 0;
     virtual void send(std::vector<std::string> in) = 0;
     virtual int get_port() = 0;
+    virtual std::string get_ip() = 0;
 };

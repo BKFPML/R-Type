@@ -83,6 +83,16 @@ public:
         int get_port() override {
             return _udp_port;
         }
+
+        /**
+         * @brief Get the ip object
+         * 
+         * @return std::string 
+         */
+        std::string get_ip() override {
+            return _ip;
+        }
+
     private:
         int _udp_port;
         std::string _ip;
@@ -115,6 +125,10 @@ public:
                     throw boost::system::system_error(error);
                 std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
                 std::cout << "Message received: " << message << std::endl;
+                if (split(message, " ").front() == "quit" && split(message, " ").back() == _ip + ":" + std::to_string(_udp_port)) {
+                    std::cout << "Quit received" << std::endl;
+                    break;
+                }
                 received_data.push_back(message);
             }
 
