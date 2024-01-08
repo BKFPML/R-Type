@@ -7,32 +7,25 @@
 # pragma once
 
 #include <iostream>
-#include <ctime>
-#include <memory>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include "../../engine/includes/network_library/boost_udp.hpp"
-#include "../../engine/includes/ECS.hpp"
+#include <chrono>
+#include "../external/sfml.hpp"
 
 namespace rtype
 {
-    const std::string WINDOW_NAME = "R-Type";
-    const int WINDOW_WIDTH = 1920;
-    const int WINDOW_HEIGHT = 1080;
-
     class Client {
         public:
             Client();
             ~Client();
 
-            void gameLoop();
-
-            virtual void run(Sender& sender, Receiver& receive, int port) = 0;
-            virtual void loadTextures() = 0;
-            virtual void drawParallax(sf::RenderWindow &window) = 0;
             ECS initECS();
+            void initPlayer();
+            void gameLoop(Sender& sender, Receiver& receive, int port);
 
         private:
-            bool running;
+            std::unique_ptr<IGraphical> _graphical;
+            bool _running;
+            std::chrono::_V2::system_clock::time_point _start;
+            ECS _ecs;
+            std::vector<ECS::Entity> _players;
     };
 }
