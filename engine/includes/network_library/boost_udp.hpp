@@ -104,9 +104,8 @@ public:
             std::cout << "Listening on port: " << _udp_port << std::endl;
             boost::asio::io_context io_context;
             boost::array<char, 1024> recv_buffer;
-            std::string receiv = getLocalIPAddress();
-            std::cout << "IP: " << receiv << " Port: " << _udp_port << std::endl;
-            boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(receiv), _udp_port);
+            std::cout << "IP: " << _ip << " Port: " << _udp_port << std::endl;
+            boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
             boost::asio::ip::udp::socket socket(io_context, receiver_endpoint);
             boost::system::error_code error;
 

@@ -20,7 +20,9 @@ int main() {
         
         srand(time(NULL));
         port = rand() % 30000 + 1000;
-        receiver = UDPBoostNetwork::UDPReceiver(port);
+        std::string ip_receive = receiver.getLocalIPAddress();
+        std::cout << "Receive on Ip" << ip_receive << ":" << port << std::endl;
+        receiver = UDPBoostNetwork::UDPReceiver(port, ip_receive);
         
         UDPBoostNetwork::UDPSender sender(13152);
         std::thread r([&] { receiver.receive(); });
