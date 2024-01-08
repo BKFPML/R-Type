@@ -24,9 +24,10 @@ int main() {
         
         UDPBoostNetwork::UDPSender sender(13152);
         std::thread r([&] { receiver.receive(); });
-        sender.send("new " + std::to_string(port));
+        std::string ip = sender.getLocalIPAddress();
+        sender.send("new " + ip + ":" + std::to_string(port));
         client.run(sender, receiver, port);
-        sender.send("quit " + std::to_string(port));
+        sender.send("quit " + ip + ":" + std::to_string(port));
         r.join();
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;

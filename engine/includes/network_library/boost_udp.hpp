@@ -13,7 +13,7 @@
 #include <chrono>
 #include "../network.hpp"
 
-#define IPADDRESS "192.168.1.2"
+#define IPADDRESS "10.116.120.191"
 
 /**
  * @brief Boost Network Class
@@ -36,9 +36,9 @@ public:
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
             boost::asio::ip::udp::resolver resolver(io_context);
-            std::string receiv = getLocalIPAddress();
-            boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(receiv), _udp_port);
+            boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
             socket.connect(receiver_endpoint);
+            std::cout << "Sent: " << message << std::endl;
             socket.send(boost::asio::buffer(message, message.size()));
             socket.close();
 
