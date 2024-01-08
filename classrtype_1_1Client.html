@@ -69,18 +69,9 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrtype_1_1Client-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rtype::Client Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">rtype::Client Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for rtype::Client:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="classrtype_1_1Client.png" usemap="#rtype::Client_map" alt=""/>
-  <map id="rtype::Client_map" name="rtype::Client_map">
-<area href="classrtype_1_1SFML.html" alt="rtype::SFML" shape="rect" coords="0,56,81,80"/>
-  </map>
-</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,20 +83,62 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a1e343d3201b6d391017f7345d8504612">~Client</a> ()</td></tr>
 <tr class="memdesc:a1e343d3201b6d391017f7345d8504612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classrtype_1_1Client.html#aed5c20fac90ad07852bebc5d94382b30" title="Construct a new rtype::Client::Client object.">rtype::Client::Client</a> object. <br /></td></tr>
 <tr class="separator:a1e343d3201b6d391017f7345d8504612"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd5c1327595218b4f1ca11a233cd9c02"><td class="memItemLeft" align="right" valign="top"><a id="afd5c1327595218b4f1ca11a233cd9c02"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (<a class="el" href="classISender.html">ISender</a> &amp;sender, <a class="el" href="classIReceiver.html">IReceiver</a> &amp;receive, int port)=0</td></tr>
-<tr class="separator:afd5c1327595218b4f1ca11a233cd9c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10e54adc97abd17d5d87f6e6e190cbf5"><td class="memItemLeft" align="right" valign="top"><a id="a10e54adc97abd17d5d87f6e6e190cbf5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loadTextures</b> ()=0</td></tr>
-<tr class="separator:a10e54adc97abd17d5d87f6e6e190cbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac32bb8883752f71e5f39807d3efd502b"><td class="memItemLeft" align="right" valign="top"><a id="ac32bb8883752f71e5f39807d3efd502b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawParallax</b> (sf::RenderWindow &amp;window)=0</td></tr>
-<tr class="separator:ac32bb8883752f71e5f39807d3efd502b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f243757ed056372217fd14056d477e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classECS.html">ECS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">initECS</a> ()</td></tr>
 <tr class="memdesc:a6f243757ed056372217fd14056d477e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>.  <a href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">More...</a><br /></td></tr>
 <tr class="separator:a6f243757ed056372217fd14056d477e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad552ba9ba48613ba1d918b4726764c4a"><td class="memItemLeft" align="right" valign="top"><a id="ad552ba9ba48613ba1d918b4726764c4a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ad552ba9ba48613ba1d918b4726764c4a">initPlayer</a> ()</td></tr>
+<tr class="memdesc:ad552ba9ba48613ba1d918b4726764c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the player and add it to the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. <br /></td></tr>
+<tr class="separator:ad552ba9ba48613ba1d918b4726764c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a541d9b56fe98bb22b4de6997a2775a7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">gameLoop</a> (<a class="el" href="classISender.html">ISender</a> &amp;sender, <a class="el" href="classIReceiver.html">IReceiver</a> &amp;receive, int port)</td></tr>
+<tr class="memdesc:a541d9b56fe98bb22b4de6997a2775a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the game loop.  <a href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">More...</a><br /></td></tr>
+<tr class="separator:a541d9b56fe98bb22b4de6997a2775a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a541d9b56fe98bb22b4de6997a2775a7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a541d9b56fe98bb22b4de6997a2775a7c">&#9670;&nbsp;</a></span>gameLoop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Client::gameLoop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classISender.html">ISender</a> &amp;&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classIReceiver.html">IReceiver</a> &amp;&#160;</td>
+          <td class="paramname"><em>receive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Run the game loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sender</td><td>Network::ISender to send data to the server </td></tr>
+    <tr><td class="paramname">receive</td><td>Network::Receive to receive data from the server </td></tr>
+    <tr><td class="paramname">port</td><td>int port to use for the client </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6f243757ed056372217fd14056d477e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f243757ed056372217fd14056d477e3">&#9670;&nbsp;</a></span>initECS()</h2>
 
