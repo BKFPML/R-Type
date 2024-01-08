@@ -99,6 +99,29 @@ void Server::parse_data_received(Parser parser)
     }
     server_receive.clear_received_data();
 }
+/**
+ * @brief Get the Local IP Address object
+ * 
+ * @return std::string 
+ */
+std::string Server::getLocalIPAddress()
+{
+    try {
+        boost::asio::io_service netService;
+        boost::asio::ip::udp::resolver resolver(netService);
+        boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "google.com", "");
+        boost::asio::ip::udp::resolver::iterator endpoints = resolver.resolve(query);
+        boost::asio::ip::udp::endpoint ep = *endpoints;
+        boost::asio::ip::udp::socket socket(netService);
+        socket.connect(ep);
+        boost::asio::ip::address addr = socket.local_endpoint().address();
+        return addr.to_string();
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
+
+    return "";
+}
 
 /**
  * @brief Server run Function
@@ -132,7 +155,10 @@ int Server::run()
  */
 int main()
 {
+
     Server server = Server();
+    std::string ip = server.getLocalIPAddress();
+    server = Server(13152, ip);
     if (server.run() == 84)
         return 84;
     server.~Server();

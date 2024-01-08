@@ -26,6 +26,7 @@ class Server {
         void check_new_deconnections(std::string data);
         void parse_data_received(Parser parser);
         std::vector<std::string> split(const std::string& str, const std::string& delim);
+        std::string getLocalIPAddress();
 
     private:
         UDPBoostNetwork::UDPReceiver server_receive;
