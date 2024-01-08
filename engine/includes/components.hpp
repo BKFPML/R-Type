@@ -96,6 +96,10 @@ struct Damage {
     Damage(int damage) : damage(damage) {}
 };
 
+struct Npc {
+    //TODO
+};
+
 // *Graphical components
 
 /**

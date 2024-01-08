@@ -5,6 +5,7 @@
  */
 
 #include "../includes/server.hpp"
+#include "levels.hpp"
 
 /**
  * @brief Check for new connections
@@ -156,11 +157,21 @@ int Server::run()
 int main()
 {
 
-    Server server = Server();
-    std::string ip = server.getLocalIPAddress();
-    server = Server(13152, ip);
-    if (server.run() == 84)
-        return 84;
-    server.~Server();
+    // Server server = Server();
+    // std::string ip = server.getLocalIPAddress();
+    // server = Server(13152, ip);
+    // if (server.run() == 84)
+    //     return 84;
+    // server.~Server();
+    ECS ecs;
+    Levels::loadLevel("../levels/config_files/level_1.conf", ecs);
+
+    std::cout << "Entities: " << std::endl;
+    std::vector<ECS::Entity> entities = ecs.getEntities();
+
+    for (auto& entity : entities) {
+        std::cout << entity << std::endl;
+    }
+
     return 0;
 }

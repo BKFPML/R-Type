@@ -24,7 +24,7 @@ namespace rtype
         private:
             std::unique_ptr<IGraphical> _graphical;
             bool _running;
-            std::chrono::_V2::system_clock::time_point _start;
+            std::chrono::system_clock::time_point _start;
             ECS _ecs;
             std::vector<ECS::Entity> _players;
     };
