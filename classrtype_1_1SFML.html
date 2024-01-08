@@ -92,9 +92,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#a5341ab3e505d1458423d45b91a6bdeac">~SFML</a> ()</td></tr>
 <tr class="memdesc:a5341ab3e505d1458423d45b91a6bdeac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classrtype_1_1SFML.html#ae32646bf27139dfa6765c522163007ae" title="Construct a new rtype::SFML::SFML object.">rtype::SFML::SFML</a> object. <br /></td></tr>
 <tr class="separator:a5341ab3e505d1458423d45b91a6bdeac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e2f6e62f2292d02ec284c9ab15fea88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#a3e2f6e62f2292d02ec284c9ab15fea88">run</a> (<a class="el" href="classNetwork_1_1Sender.html">Network::Sender</a> sender, <a class="el" href="classNetwork_1_1Receive.html">Network::Receive</a> &amp;receive, int port) override</td></tr>
-<tr class="memdesc:a3e2f6e62f2292d02ec284c9ab15fea88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the client.  <a href="classrtype_1_1SFML.html#a3e2f6e62f2292d02ec284c9ab15fea88">More...</a><br /></td></tr>
-<tr class="separator:a3e2f6e62f2292d02ec284c9ab15fea88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad596074af953688d0f8f2a057bd74c0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#ad596074af953688d0f8f2a057bd74c0d">run</a> (<a class="el" href="classSender.html">Sender</a> &amp;sender, <a class="el" href="classReceiver.html">Receiver</a> &amp;receive, int port) override</td></tr>
+<tr class="memdesc:ad596074af953688d0f8f2a057bd74c0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the client.  <a href="classrtype_1_1SFML.html#ad596074af953688d0f8f2a057bd74c0d">More...</a><br /></td></tr>
+<tr class="separator:ad596074af953688d0f8f2a057bd74c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03de8e1ecbb8d9aa03d5d729ba0358aa"><td class="memItemLeft" align="right" valign="top"><a id="a03de8e1ecbb8d9aa03d5d729ba0358aa"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#a03de8e1ecbb8d9aa03d5d729ba0358aa">loadTextures</a> () override</td></tr>
 <tr class="memdesc:a03de8e1ecbb8d9aa03d5d729ba0358aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the textures for the client's sprites. <br /></td></tr>
@@ -155,8 +155,8 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get
 
 </div>
 </div>
-<a id="a3e2f6e62f2292d02ec284c9ab15fea88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e2f6e62f2292d02ec284c9ab15fea88">&#9670;&nbsp;</a></span>run()</h2>
+<a id="ad596074af953688d0f8f2a057bd74c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad596074af953688d0f8f2a057bd74c0d">&#9670;&nbsp;</a></span>run()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,13 +167,13 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get
         <tr>
           <td class="memname">void rtype::SFML::run </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classNetwork_1_1Sender.html">Network::Sender</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classSender.html">Sender</a> &amp;&#160;</td>
           <td class="paramname"><em>sender</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classNetwork_1_1Receive.html">Network::Receive</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classReceiver.html">Receiver</a> &amp;&#160;</td>
           <td class="paramname"><em>receive</em>, </td>
         </tr>
         <tr>
@@ -198,8 +198,8 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get
 <p>Run the client. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sender</td><td><a class="el" href="classNetwork_1_1Sender.html" title="Receive Class.">Network::Sender</a> to send data to the server </td></tr>
-    <tr><td class="paramname">receive</td><td><a class="el" href="classNetwork_1_1Receive.html" title="Receive Class.">Network::Receive</a> to receive data from the server </td></tr>
+    <tr><td class="paramname">sender</td><td>Network::Sender to send data to the server </td></tr>
+    <tr><td class="paramname">receive</td><td>Network::Receive to receive data from the server </td></tr>
     <tr><td class="paramname">port</td><td>int port to use for the client </td></tr>
   </table>
   </dd>

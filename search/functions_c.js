@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wait_122',['wait',['../classNetwork_1_1Receive.html#ab50ac8f9941a85ebbf3bf7c9fdc349e0',1,'Network::Receive::wait()'],['../classNetwork_1_1Receive.html#ab50ac8f9941a85ebbf3bf7c9fdc349e0',1,'Network::Receive::wait()']]]
+  ['_7eclient_137',['~Client',['../classrtype_1_1Client.html#a1e343d3201b6d391017f7345d8504612',1,'rtype::Client']]],
+  ['_7esfml_138',['~SFML',['../classrtype_1_1SFML.html#a5341ab3e505d1458423d45b91a6bdeac',1,'rtype::SFML']]]
 ];

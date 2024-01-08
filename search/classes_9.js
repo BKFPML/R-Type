@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['parser_75',['Parser',['../classParser.html',1,'']]],
-  ['position_76',['Position',['../structPosition.html',1,'']]]
+  ['receiver_83',['Receiver',['../classReceiver.html',1,'']]],
+  ['rotation_84',['Rotation',['../structRotation.html',1,'']]]
 ];

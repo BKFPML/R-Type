@@ -62,7 +62,7 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="classNetwork.html" title="Network Class.">Network</a> Protocol RFC Documentation </div>  </div>
+<div class="title">Network Protocol RFC Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="abstract"></a>
@@ -93,8 +93,8 @@ Table of Contents</h1>
 <h2><a class="anchor" id="components"></a>
 Components</h2>
 <p>The protocol consists of two main components:</p><ul>
-<li>Sender: Responsible for sending messages to a specified IP address and UDP port.</li>
-<li>Receiver: Listens for incoming messages on a specified UDP port and processes them asynchronously.</li>
+<li><a class="el" href="classSender.html" title="Virtual send class.">Sender</a>: Responsible for sending messages to a specified IP address and UDP port.</li>
+<li><a class="el" href="classReceiver.html" title="Virtual receive class.">Receiver</a>: Listens for incoming messages on a specified UDP port and processes them asynchronously.</li>
 </ul>
 <h2><a class="anchor" id="message_exchange"></a>
 2.2. Message Exchange</h2>
@@ -104,7 +104,7 @@ Message Format</h1>
 <p>Messages exchanged between the sender and the receiver have a simple format:</p><ul>
 <li>Payload: The content of the message, typically a string.</li>
 </ul>
-<p>Please see the <a class="el" href="network_message_norm.html">Network Message Norm Documentation</a> for the <a class="el" href="classNetwork.html" title="Network Class.">Network</a> Message Norm Documentation. </p>
+<p>Please see the <a class="el" href="network_message_norm.html">Network Message Norm Documentation</a> for the Network Message Norm Documentation. </p>
 <h1><a class="anchor" id="sender_behavior"></a>
 4. Sender Behavior</h1>
 <p>The sender class has a <code>send</code> method that allows the sending of messages. It opens a UDP socket, sends the message payload to the specified IP address and UDP port, and then closes the socket.</p>

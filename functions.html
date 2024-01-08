@@ -71,8 +71,20 @@ $(function() {
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
-<li>clearReceivedIPs()
-: <a class="el" href="classNetwork_1_1Receive.html#a735b9472c0c4b613c86d41b6feb1876c">Network::Receive</a>
+<li>check_new_connections()
+: <a class="el" href="classServer.html#a8ae004eb328cebc8acced9951c4b432e">Server</a>
+</li>
+<li>check_new_deconnections()
+: <a class="el" href="classServer.html#a745edf2f97dc254965a4d9fb9ed02e0a">Server</a>
+</li>
+<li>clear_first_received_data()
+: <a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#a9f272c637019a3636358154adbf9eb4b">UDPBoostNetwork::UDPReceiver</a>
+</li>
+<li>clear_last_received_data()
+: <a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#a990c032e479e121010b6edff00b73aa4">UDPBoostNetwork::UDPReceiver</a>
+</li>
+<li>clear_received_data()
+: <a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#a5d14b20bf878b76def2ee5d0c29505de">UDPBoostNetwork::UDPReceiver</a>
 </li>
 <li>Client()
 : <a class="el" href="classrtype_1_1Client.html#aed5c20fac90ad07852bebc5d94382b30">rtype::Client</a>
@@ -91,25 +103,22 @@ $(function() {
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>get_port()
+: <a class="el" href="classUDPBoostNetwork_1_1UDPSender.html#a8f347474d74d1d8bdc307c9ba691f62b">UDPBoostNetwork::UDPSender</a>
+</li>
+<li>get_received_data()
+: <a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#abc7b924b0d4ce1cdda64a4e44f9deec2">UDPBoostNetwork::UDPReceiver</a>
+</li>
 <li>getComponent()
 : <a class="el" href="classECS.html#a9528399640fc20d2042127473249e77a">ECS</a>
 </li>
 <li>getEntities()
 : <a class="el" href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">ECS</a>
 </li>
-<li>getIP()
-: <a class="el" href="classNetwork_1_1Receive.html#aae6a014afced496cbd74efedecfb4321">Network::Receive</a>
-</li>
-<li>getReceivedIPs()
-: <a class="el" href="classNetwork_1_1Receive.html#a6ad6c272e6cfbb32a0c85ee6dc493661">Network::Receive</a>
-</li>
 </ul>
 
 
 <h3><a id="index_h"></a>- h -</h3><ul>
-<li>handle_receive()
-: <a class="el" href="classNetwork_1_1Receive.html#a8b92423a336d372b6362957cb994255a">Network::Receive</a>
-</li>
 <li>hasComponent()
 : <a class="el" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">ECS</a>
 </li>
@@ -119,6 +128,9 @@ $(function() {
 <h3><a id="index_i"></a>- i -</h3><ul>
 <li>initECS()
 : <a class="el" href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">rtype::Client</a>
+</li>
+<li>is_port_bound()
+: <a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#ad1c69a54767d796b4e6c6374d1884967">UDPBoostNetwork::UDPReceiver</a>
 </li>
 </ul>
 
@@ -131,6 +143,9 @@ $(function() {
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
+<li>parse_data_received()
+: <a class="el" href="classServer.html#a07ff8dcc7dc8549e0e2d8772290a4cd2">Server</a>
+</li>
 <li>parseMessage()
 : <a class="el" href="classParser.html#af13b10be4a6f2a581ad1fb6c90414dee">Parser</a>
 </li>
@@ -141,8 +156,8 @@ $(function() {
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
-<li>receiver()
-: <a class="el" href="classNetwork_1_1Receive.html#a1d3de13dd2ae9eeb755832544f026abc">Network::Receive</a>
+<li>receive()
+: <a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#a1fd644fa35eb3e142c51e50766787ca2">UDPBoostNetwork::UDPReceiver</a>
 </li>
 <li>registerComponent()
 : <a class="el" href="classECS.html#a316db465b4e5d424406078cc410d83c0">ECS</a>
@@ -154,17 +169,22 @@ $(function() {
 : <a class="el" href="classECS.html#a8d8404847c1131d60dd9f6020263b64f">ECS</a>
 </li>
 <li>run()
-: <a class="el" href="classrtype_1_1SFML.html#a3e2f6e62f2292d02ec284c9ab15fea88">rtype::SFML</a>
+: <a class="el" href="classrtype_1_1SFML.html#ad596074af953688d0f8f2a057bd74c0d">rtype::SFML</a>
+, <a class="el" href="classServer.html#a30362b937b125d27916cf595bfc4c1a7">Server</a>
 </li>
 </ul>
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>send()
-: <a class="el" href="classNetwork_1_1Sender.html#af4606d793f42a8a8c96854eba7ec9faa">Network::Sender</a>
+: <a class="el" href="classUDPBoostNetwork_1_1UDPSender.html#a1a08ea36cdb118b3c2813cfa646693eb">UDPBoostNetwork::UDPSender</a>
 </li>
 <li>SFML()
 : <a class="el" href="classrtype_1_1SFML.html#ae32646bf27139dfa6765c522163007ae">rtype::SFML</a>
+</li>
+<li>split()
+: <a class="el" href="classServer.html#a6d0e8be8f18db3c7332fb055c43362d9">Server</a>
+, <a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be">UDPBoostNetwork::UDPReceiver</a>
 </li>
 </ul>
 
@@ -172,13 +192,6 @@ $(function() {
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>updateSystems()
 : <a class="el" href="classECS.html#a9adf308675731fc4b241974364509540">ECS</a>
-</li>
-</ul>
-
-
-<h3><a id="index_w"></a>- w -</h3><ul>
-<li>wait()
-: <a class="el" href="classNetwork_1_1Receive.html#ab50ac8f9941a85ebbf3bf7c9fdc349e0">Network::Receive</a>
 </li>
 </ul>
 

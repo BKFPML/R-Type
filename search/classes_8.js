@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['network_74',['Network',['../classNetwork.html',1,'']]]
+  ['parser_81',['Parser',['../classParser.html',1,'']]],
+  ['position_82',['Position',['../structPosition.html',1,'']]]
 ];

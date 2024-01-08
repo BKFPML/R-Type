@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['send_119',['send',['../classNetwork_1_1Sender.html#af4606d793f42a8a8c96854eba7ec9faa',1,'Network::Sender::send(std::string in)'],['../classNetwork_1_1Sender.html#af4606d793f42a8a8c96854eba7ec9faa',1,'Network::Sender::send(std::string in)']]],
-  ['sfml_120',['SFML',['../classrtype_1_1SFML.html#ae32646bf27139dfa6765c522163007ae',1,'rtype::SFML']]]
+  ['send_133',['send',['../classUDPBoostNetwork_1_1UDPSender.html#a1a08ea36cdb118b3c2813cfa646693eb',1,'UDPBoostNetwork::UDPSender::send(std::string message) override'],['../classUDPBoostNetwork_1_1UDPSender.html#a5e613e9b52e2552c989c51e378b15ce9',1,'UDPBoostNetwork::UDPSender::send(std::vector&lt; std::string &gt; messages) override']]],
+  ['sfml_134',['SFML',['../classrtype_1_1SFML.html#ae32646bf27139dfa6765c522163007ae',1,'rtype::SFML']]],
+  ['split_135',['split',['../classServer.html#a6d0e8be8f18db3c7332fb055c43362d9',1,'Server::split()'],['../classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be',1,'UDPBoostNetwork::UDPReceiver::split()']]]
 ];
