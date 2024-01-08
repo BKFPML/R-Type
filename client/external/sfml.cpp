@@ -64,7 +64,7 @@ void rtype::SFML::loadTextures()
 /**
  * @brief Handle the events from the SFML window
  *
- * @param sender Network::ISender to send data to the server
+ * @return KeyState the state of the keys on the keyboard
  */
 void rtype::SFML::handleEvents()
 {

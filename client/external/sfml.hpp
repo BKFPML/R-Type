@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include "../../engine/includes/network_library/boost_udp.hpp"
 #include "../../engine/includes/ECS.hpp"
+#include "../includes/keystates.hpp"
 
 namespace rtype
 {
@@ -18,10 +19,10 @@ namespace rtype
             virtual ~IGraphical() = default;
 
             virtual void loadTextures() = 0;
-            virtual void handleEvents() = 0;
             virtual void draw(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) = 0;
             virtual void clear() = 0;
             virtual void display() = 0;
+            virtual void handleEvents() = 0;
 
     };
 
@@ -42,8 +43,6 @@ namespace rtype
         private:
             sf::RenderWindow _window;
 
-            sf::Texture _texture;
-            sf::Sprite _sprite;
             std::vector<std::pair<std::string, sf::Texture*>> textures;
             std::vector<std::pair<std::string, sf::Sprite*>> sprites;
 

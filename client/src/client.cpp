@@ -10,11 +10,10 @@
  * @brief Construct a new rtype::Client::Client object
  */
 rtype::Client::Client()
-: _running(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>())
+: _running(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _scene(MENU), fps(60), _drawClock(std::chrono::system_clock::now())
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
-    _scene = MENU;
 }
 
 /**
@@ -51,6 +50,19 @@ void rtype::Client::initPlayer()
     _ecs.addComponent<Velocity>(_players[0], {1, 1, 2});
 }
 
+void rtype::Client::handleKeys(KeyState keys)
+{
+    if(keys.up)
+        std::cout << "UP" << std::endl;
+    if(keys.down)
+        std::cout << "DOWN" << std::endl;
+    if(keys.left)
+        std::cout << "LEFT" << std::endl;
+    if(keys.right)
+        std::cout << "RIGHT" << std::endl;
+
+}
+
 /**
  * @brief Draw the menu
  *
@@ -59,7 +71,7 @@ void rtype::Client::drawMenu()
 {
     _graphical->clear();
     _graphical->draw("parallax80", 0,0,1,0,1980, 1080);
-    _graphical->draw("logo", 600, 300, 1, 0, 0, 0);
+    _graphical->draw("logo", 750, 200, 1, 0, 0, 0);
     _graphical->display();
 }
 
@@ -108,24 +120,27 @@ void rtype::Client::drawEnd()
  */
 void rtype::Client::manage_draw_scene()
 {
-    switch (_scene) {
-        case MENU:
-            drawMenu();
-            break;
-        case MULTIPLAYER:
-            drawMultiplayer();
-            break;
-        case GAME:
-            drawGame();
-            break;
-        case SETTINGS:
-            drawSettings();
-            break;
-        case END:
-            drawEnd();
-            break;
-        default:
-            break;
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - _drawClock).count() > 1000 / fps) {
+        switch (_scene) {
+            case MENU:
+                drawMenu();
+                break;
+            case MULTIPLAYER:
+                drawMultiplayer();
+                break;
+            case GAME:
+                drawGame();
+                break;
+            case SETTINGS:
+                drawSettings();
+                break;
+            case END:
+                drawEnd();
+                break;
+            default:
+                break;
+        }
+        _drawClock = std::chrono::system_clock::now();
     }
 }
 
@@ -138,11 +153,14 @@ void rtype::Client::manage_draw_scene()
  */
 void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 {
+    KeyState keys;
+
     while (_running) {
         _graphical->handleEvents();
 
         auto now = std::chrono::system_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count();
+        handleKeys(keys);
 
         if (elapsed > 1000) {
             _start = now;

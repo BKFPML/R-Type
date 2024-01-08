@@ -34,15 +34,17 @@ namespace rtype
             void drawGame();
             void drawSettings();
             void drawEnd();
-            
-            
+            void handleKeys(KeyState keys);
 
         private:
             std::unique_ptr<IGraphical> _graphical;
             bool _running;
             std::chrono::_V2::system_clock::time_point _start;
+            std::chrono::_V2::system_clock::time_point _drawClock;
             ECS _ecs;
             std::vector<ECS::Entity> _players;
             ClientScene _scene;
+            int fps;
+
     };
 }
