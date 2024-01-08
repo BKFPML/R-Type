@@ -10,9 +10,9 @@
 /**
  * @brief Virtual receive class
 */
-class Receiver {
+class IReceiver {
 public:
-    virtual ~Receiver() = default;
+    virtual ~IReceiver() = default;
 
     virtual void receive() = 0;
     virtual std::vector<std::string> get_received_data() = 0;
@@ -26,10 +26,11 @@ public:
 /**
  * @brief Virtual send class
 */
-class Sender {
+class ISender {
 public:
-    virtual ~Sender() = default;
+    virtual ~ISender() = default;
     virtual void send(std::string in) = 0;
     virtual void send(std::vector<std::string> in) = 0;
     virtual int get_port() = 0;
+    virtual std::string get_ip() = 0;
 };

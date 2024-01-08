@@ -13,7 +13,7 @@
 #include <chrono>
 #include "../network.hpp"
 
-#define IPADDRESS "0.0.0.0"
+#define IPADDRESS "10.116.120.191"
 
 /**
  * @brief Boost Network Class
@@ -23,7 +23,7 @@ public:
     /**
      * @brief Send Class
      */
-    class UDPSender : public Sender {
+    class UDPSender : public ISender {
     public:
         UDPSender(int port_to_send, std::string ip = IPADDRESS) : _udp_port(port_to_send), _ip(ip) {}
 
@@ -36,15 +36,35 @@ public:
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
             boost::asio::ip::udp::resolver resolver(io_context);
-            boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "0.0.0.0", std::to_string(_udp_port));
-            boost::asio::ip::udp::endpoint receiver_endpoint = *resolver.resolve(query);
-            
-            socket.send_to(boost::asio::buffer(message), receiver_endpoint);
+            std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
 
-            std::cout << "Sent: " << message << std::endl;
+            boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
+            socket.connect(receiver_endpoint);
+            socket.send(boost::asio::buffer(message, message.size()));
+            socket.close();
+
+        }
+
+        std::string getLocalIPAddress() {
+            try {
+                boost::asio::io_service netService;
+                boost::asio::ip::udp::resolver resolver(netService);
+                boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "google.com", "");
+                boost::asio::ip::udp::resolver::iterator endpoints = resolver.resolve(query);
+                boost::asio::ip::udp::endpoint ep = *endpoints;
+                boost::asio::ip::udp::socket socket(netService);
+                socket.connect(ep);
+                boost::asio::ip::address addr = socket.local_endpoint().address();
+                return addr.to_string();
+            } catch (std::exception& e) {
+                std::cerr << e.what() << std::endl;
+            }
+
+            return "";
         }
 
         /**
+         * 
          * @brief Send a vector of messages with UDP
          * 
          * @param messages 
@@ -63,15 +83,25 @@ public:
         int get_port() override {
             return _udp_port;
         }
+
+        /**
+         * @brief Get the ip object
+         * 
+         * @return std::string 
+         */
+        std::string get_ip() override {
+            return _ip;
+        }
+
     private:
         int _udp_port;
         std::string _ip;
     };
-        
+
     /**
      * @brief Receive Class
     */
-    class UDPReceiver : public Receiver {
+    class UDPReceiver : public IReceiver {
     public:
         UDPReceiver(int port, std::string ip = IPADDRESS) : _udp_port(port), _ip(ip) {}
 
@@ -83,26 +113,46 @@ public:
         void receive() override {
             std::cout << "Listening on port: " << _udp_port << std::endl;
             boost::asio::io_context io_context;
-            boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), _udp_port));
             boost::array<char, 1024> recv_buffer;
-            boost::asio::ip::udp::endpoint remote_endpoint;
+            std::cout << "Serveur Ip: " << _ip << " Port: " << _udp_port << std::endl;
+            boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
+            boost::asio::ip::udp::socket socket(io_context, receiver_endpoint);
             boost::system::error_code error;
-            std::string received;
 
             while (true) {
-                size_t received_bytes = socket.receive_from(boost::asio::buffer(recv_buffer), remote_endpoint, 0, error);
-                if (error && error != boost::asio::error::message_size) {
+                size_t len = socket.receive_from(boost::asio::buffer(recv_buffer), receiver_endpoint, 0, error);
+                if (error && error != boost::asio::error::message_size)
                     throw boost::system::system_error(error);
-                }
-                received = std::string(recv_buffer.begin(), recv_buffer.begin() + received_bytes);
-                std::cout << "Received data from: " << remote_endpoint.address() << std::endl;
-                std::cout << "Received data: " << received << std::endl;
-                if (split(received, " ")[0] == "quit" && split(received, " ")[1] == std::to_string(_udp_port)) {
+                std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
+                std::cout << "Message received: " << message << std::endl;
+                if (split(message, " ").front() == "quit" && split(message, " ").back() == _ip + ":" + std::to_string(_udp_port)) {
+                    std::cout << "Quit received" << std::endl;
                     break;
                 }
-                received_data.push_back(received);
+                received_data.push_back(message);
             }
-        }        
+
+
+
+        }
+
+        std::string getLocalIPAddress() {
+            try {
+                boost::asio::io_service netService;
+                boost::asio::ip::udp::resolver resolver(netService);
+                boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "google.com", "");
+                boost::asio::ip::udp::resolver::iterator endpoints = resolver.resolve(query);
+                boost::asio::ip::udp::endpoint ep = *endpoints;
+                boost::asio::ip::udp::socket socket(netService);
+                socket.connect(ep);
+                boost::asio::ip::address addr = socket.local_endpoint().address();
+                return addr.to_string();
+            } catch (std::exception& e) {
+                std::cerr << e.what() << std::endl;
+            }
+
+            return "";
+        }
 
         /**
          * @brief Split a string
@@ -128,7 +178,7 @@ public:
 
             return tokens;
         }
-        
+
         /**
          * @brief Get the port object
          * 

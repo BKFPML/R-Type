@@ -14,19 +14,25 @@
  */
 int main() {
     try {
-        rtype::SFML client;
         UDPBoostNetwork::UDPReceiver receiver(0);
         int port;
         
         srand(time(NULL));
         port = rand() % 30000 + 1000;
-        receiver = UDPBoostNetwork::UDPReceiver(port);
-        
-        UDPBoostNetwork::UDPSender sender(13152);
+        std::string ip_receive = receiver.getLocalIPAddress();
+        std::cout << "Receive on Ip " << ip_receive << ":" << port << std::endl;
+        receiver = UDPBoostNetwork::UDPReceiver(port, ip_receive);
+        std::cout << "Enter the server ip:\n";
+        std::string ip_client;
+        std::cin >> ip_client;
+
+        rtype::SFML client;
+        UDPBoostNetwork::UDPSender sender(13152, ip_client);
         std::thread r([&] { receiver.receive(); });
-        sender.send("new " + std::to_string(port));
+        std::string ip = sender.getLocalIPAddress();
+        sender.send("new " + ip + ":" + std::to_string(port));
         client.run(sender, receiver, port);
-        sender.send("quit " + std::to_string(port));
+        sender.send("quit " + ip + ":" + std::to_string(port));
         r.join();
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;

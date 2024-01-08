@@ -25,7 +25,7 @@ namespace rtype
             Client();
             ~Client();
 
-            virtual void run(Sender& sender, Receiver& receive, int port) = 0;
+            virtual void run(ISender& sender, IReceiver& receive, int port) = 0;
             virtual void loadTextures() = 0;
             virtual void drawParallax(sf::RenderWindow &window) = 0;
             ECS initECS();
