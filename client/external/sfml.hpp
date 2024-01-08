@@ -6,23 +6,37 @@
 
 #pragma once
 
-#include "../includes/client.hpp"
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include "../../engine/includes/network_library/boost_udp.hpp"
+#include "../../engine/includes/ECS.hpp"
 
 namespace rtype
 {
-    class SFML: public Client {
+    class IGraphical {
+        public:
+            virtual ~IGraphical() = default;
+
+            virtual void loadTextures() = 0;
+            virtual void handleEvents(ISender& sender) = 0;
+            virtual void drawWindow() = 0;
+            virtual void drawParallax(sf::RenderWindow &window) = 0;
+    };
+
+    class SFML: public IGraphical {
         public:
             SFML();
             ~SFML();
 
-            void run(ISender& sender, IReceiver& receive, int port) override;
             void loadTextures() override;
+            void handleEvents(ISender& sender) override;
             void drawParallax(sf::RenderWindow &window) override;
+            void drawWindow() override;
 
-            sf::RenderWindow& getWindow() { return window; };
+            sf::RenderWindow& getWindow() { return _window; };
 
         private:
-            sf::RenderWindow window;
+            sf::RenderWindow _window;
 
             sf::Texture playerTexture;
             sf::Texture parallaxTexture1;
