@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['r_2dtype_20game_20engine_20technical_20documentation_52',['R-Type Game Engine Technical Documentation',['../index.html',1,'']]],
-  ['receive_53',['receive',['../classUDPBoostNetwork_1_1UDPReceiver.html#a1fd644fa35eb3e142c51e50766787ca2',1,'UDPBoostNetwork::UDPReceiver']]],
-  ['registercomponent_54',['registerComponent',['../classECS.html#a316db465b4e5d424406078cc410d83c0',1,'ECS']]],
-  ['registersystem_55',['registerSystem',['../classECS.html#a5f78a9213243d2060a456a3c2ec53953',1,'ECS']]],
-  ['removecomponent_56',['removeComponent',['../classECS.html#a8d8404847c1131d60dd9f6020263b64f',1,'ECS']]],
-  ['rotation_57',['Rotation',['../structRotation.html',1,'']]],
-  ['run_58',['run',['../classServer.html#a30362b937b125d27916cf595bfc4c1a7',1,'Server']]]
+  ['parse_5fdata_5freceived_48',['parse_data_received',['../classServer.html#a07ff8dcc7dc8549e0e2d8772290a4cd2',1,'Server']]],
+  ['parsemessage_49',['parseMessage',['../classParser.html#af13b10be4a6f2a581ad1fb6c90414dee',1,'Parser']]],
+  ['parser_50',['Parser',['../classParser.html',1,'Parser'],['../classParser.html#a12234f6cd36b61af4b50c94a179422c1',1,'Parser::Parser()']]],
+  ['parser_2ecpp_51',['parser.cpp',['../parser_8cpp.html',1,'']]],
+  ['parser_2ehpp_52',['parser.hpp',['../parser_8hpp.html',1,'']]],
+  ['position_53',['Position',['../structPosition.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['loadtextures_39',['loadTextures',['../classrtype_1_1SFML.html#a03de8e1ecbb8d9aa03d5d729ba0358aa',1,'rtype::SFML']]]
+  ['keystate_39',['KeyState',['../structKeyState.html',1,'']]],
+  ['keystates_2ehpp_40',['keystates.hpp',['../keystates_8hpp.html',1,'']]]
 ];

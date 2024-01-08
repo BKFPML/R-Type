@@ -86,24 +86,26 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="classECS.html">ECS</a> <a class="code" href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">initECS</a>();</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#ad552ba9ba48613ba1d918b4726764c4a">initPlayer</a>();</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">gameLoop</a>(<a class="code" href="classISender.html">ISender</a>&amp; sender, <a class="code" href="classIReceiver.html">IReceiver</a>&amp; receive, <span class="keywordtype">int</span> port);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            std::unique_ptr&lt;IGraphical&gt; _graphical;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordtype">bool</span> _running;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            std::chrono::_V2::system_clock::time_point _start;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="classECS.html">ECS</a> _ecs;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            std::vector&lt;ECS::Entity&gt; _players;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    };</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordtype">void</span> handleKeys(<a class="code" href="structKeyState.html">KeyState</a> keys);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            std::unique_ptr&lt;IGraphical&gt; _graphical;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordtype">bool</span> _running;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            std::chrono::_V2::system_clock::time_point _start;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="classECS.html">ECS</a> _ecs;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            std::vector&lt;ECS::Entity&gt; _players;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    };</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
 <div class="ttc" id="aclassECS_html"><div class="ttname"><a href="classECS.html">ECS</a></div><div class="ttdoc">The Entity Component System manager class.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:30</div></div>
 <div class="ttc" id="aclassIReceiver_html"><div class="ttname"><a href="classIReceiver.html">IReceiver</a></div><div class="ttdoc">Virtual receive class.</div><div class="ttdef"><b>Definition:</b> network.hpp:13</div></div>
 <div class="ttc" id="aclassISender_html"><div class="ttname"><a href="classISender.html">ISender</a></div><div class="ttdoc">Virtual send class.</div><div class="ttdef"><b>Definition:</b> network.hpp:29</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html"><div class="ttname"><a href="classrtype_1_1Client.html">rtype::Client</a></div><div class="ttdef"><b>Definition:</b> client.hpp:15</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_a1e343d3201b6d391017f7345d8504612"><div class="ttname"><a href="classrtype_1_1Client.html#a1e343d3201b6d391017f7345d8504612">rtype::Client::~Client</a></div><div class="ttdeci">~Client()</div><div class="ttdoc">Destroy the rtype::Client::Client object.</div><div class="ttdef"><b>Definition:</b> client.cpp:22</div></div>
-<div class="ttc" id="aclassrtype_1_1Client_html_a541d9b56fe98bb22b4de6997a2775a7c"><div class="ttname"><a href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">rtype::Client::gameLoop</a></div><div class="ttdeci">void gameLoop(ISender &amp;sender, IReceiver &amp;receive, int port)</div><div class="ttdoc">Run the game loop.</div><div class="ttdef"><b>Definition:</b> client.cpp:60</div></div>
+<div class="ttc" id="aclassrtype_1_1Client_html_a541d9b56fe98bb22b4de6997a2775a7c"><div class="ttname"><a href="classrtype_1_1Client.html#a541d9b56fe98bb22b4de6997a2775a7c">rtype::Client::gameLoop</a></div><div class="ttdeci">void gameLoop(ISender &amp;sender, IReceiver &amp;receive, int port)</div><div class="ttdoc">Run the game loop.</div><div class="ttdef"><b>Definition:</b> client.cpp:74</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_a6f243757ed056372217fd14056d477e3"><div class="ttname"><a href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">rtype::Client::initECS</a></div><div class="ttdeci">ECS initECS()</div><div class="ttdoc">Initialize the ECS.</div><div class="ttdef"><b>Definition:</b> client.cpp:32</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_ad552ba9ba48613ba1d918b4726764c4a"><div class="ttname"><a href="classrtype_1_1Client.html#ad552ba9ba48613ba1d918b4726764c4a">rtype::Client::initPlayer</a></div><div class="ttdeci">void initPlayer()</div><div class="ttdoc">Initialize the player and add it to the ECS.</div><div class="ttdef"><b>Definition:</b> client.cpp:45</div></div>
 <div class="ttc" id="aclassrtype_1_1Client_html_aed5c20fac90ad07852bebc5d94382b30"><div class="ttname"><a href="classrtype_1_1Client.html#aed5c20fac90ad07852bebc5d94382b30">rtype::Client::Client</a></div><div class="ttdeci">Client()</div><div class="ttdoc">Construct a new rtype::Client::Client object.</div><div class="ttdef"><b>Definition:</b> client.cpp:12</div></div>
+<div class="ttc" id="astructKeyState_html"><div class="ttname"><a href="structKeyState.html">KeyState</a></div><div class="ttdoc">these Keystates describe the state of the keys on the keyboard</div><div class="ttdef"><b>Definition:</b> keystates.hpp:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

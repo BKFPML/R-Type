@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rotation_93',['Rotation',['../structRotation.html',1,'']]]
+  ['parser_94',['Parser',['../classParser.html',1,'']]],
+  ['position_95',['Position',['../structPosition.html',1,'']]]
 ];

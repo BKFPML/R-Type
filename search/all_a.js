@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['parse_5fdata_5freceived_46',['parse_data_received',['../classServer.html#a07ff8dcc7dc8549e0e2d8772290a4cd2',1,'Server']]],
-  ['parsemessage_47',['parseMessage',['../classParser.html#af13b10be4a6f2a581ad1fb6c90414dee',1,'Parser']]],
-  ['parser_48',['Parser',['../classParser.html',1,'Parser'],['../classParser.html#a12234f6cd36b61af4b50c94a179422c1',1,'Parser::Parser()']]],
-  ['parser_2ecpp_49',['parser.cpp',['../parser_8cpp.html',1,'']]],
-  ['parser_2ehpp_50',['parser.hpp',['../parser_8hpp.html',1,'']]],
-  ['position_51',['Position',['../structPosition.html',1,'']]]
+  ['network_20message_20norm_20documentation_45',['Network Message Norm Documentation',['../network_message_norm.html',1,'']]],
+  ['network_20protocol_20rfc_20documentation_46',['Network Protocol RFC Documentation',['../network_protocol_rfc.html',1,'']]],
+  ['network_2ehpp_47',['network.hpp',['../network_8hpp.html',1,'']]]
 ];
