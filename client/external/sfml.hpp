@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include "../../engine/includes/network_library/boost_udp.hpp"
 #include "../../engine/includes/ECS.hpp"
+#include "../includes/keystates.hpp"
 
 namespace rtype
 {
@@ -18,7 +19,7 @@ namespace rtype
             virtual ~IGraphical() = default;
 
             virtual void loadTextures() = 0;
-            virtual void handleEvents(ISender& sender) = 0;
+            virtual KeyState handleEvents() = 0;
             virtual void drawWindow() = 0;
             virtual void drawParallax(sf::RenderWindow &window) = 0;
     };
@@ -29,7 +30,7 @@ namespace rtype
             ~SFML();
 
             void loadTextures() override;
-            void handleEvents(ISender& sender) override;
+            KeyState handleEvents() override;
             void drawParallax(sf::RenderWindow &window) override;
             void drawWindow() override;
 
