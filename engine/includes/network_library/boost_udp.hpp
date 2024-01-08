@@ -36,9 +36,10 @@ public:
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
             boost::asio::ip::udp::resolver resolver(io_context);
+            std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
+
             boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
             socket.connect(receiver_endpoint);
-            std::cout << "Sent: " << message << std::endl;
             socket.send(boost::asio::buffer(message, message.size()));
             socket.close();
 

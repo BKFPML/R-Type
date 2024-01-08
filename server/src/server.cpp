@@ -22,6 +22,7 @@ void Server::check_new_connections(std::string data)
             client.send("new " + split(data, " ").back());
         }
         std::string ip = split(data, " ").back();
+        std::cout << "Port " << std::stoi(split(ip, ":").back()) << ",IP "<< split(ip, ":").front() << std::endl;
         clients_send.push_back(UDPBoostNetwork::UDPSender(std::stoi(split(ip, ":").back()), split(ip, ":").front()));
 
         for (int i = 0; i < clients_send.size() - 1; i++) {
