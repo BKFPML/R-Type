@@ -18,9 +18,11 @@ namespace rtype
             virtual ~IGraphical() = default;
 
             virtual void loadTextures() = 0;
-            virtual void handleEvents(ISender& sender) = 0;
-            virtual void drawWindow() = 0;
-            virtual void drawParallax(sf::RenderWindow &window) = 0;
+            virtual void handleEvents() = 0;
+            virtual void draw(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) = 0;
+            virtual void clear() = 0;
+            virtual void display() = 0;
+
     };
 
     class SFML: public IGraphical {
@@ -29,27 +31,23 @@ namespace rtype
             ~SFML();
 
             void loadTextures() override;
-            void handleEvents(ISender& sender) override;
-            void drawParallax(sf::RenderWindow &window) override;
-            void drawWindow() override;
+            void handleEvents() override;
+            void draw(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) override;
+            void clear() override;
+            void display() override;
+            void initTextures(std::string name, unsigned char const *sheet, unsigned int size);
 
             sf::RenderWindow& getWindow() { return _window; };
 
         private:
             sf::RenderWindow _window;
 
-            sf::Texture playerTexture;
-            sf::Texture parallaxTexture1;
-            sf::Texture parallaxTexture2;
-            sf::Texture parallaxTexture3;
+            sf::Texture _texture;
+            sf::Sprite _sprite;
+            std::vector<std::pair<std::string, sf::Texture*>> textures;
+            std::vector<std::pair<std::string, sf::Sprite*>> sprites;
 
-            std::vector<sf::Sprite> playersSprites;
-            sf::Sprite planeSprite;
-            sf::Sprite parallaxSprite1;
-            sf::Sprite parallaxSprite1b;
-            sf::Sprite parallaxSprite2;
-            sf::Sprite parallaxSprite2b;
-            sf::Sprite parallaxSprite3;
-            sf::Sprite parallaxSprite3b;
+            int fps;
+            sf::Clock DrawClock;
     };
 }

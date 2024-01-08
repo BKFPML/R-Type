@@ -10,6 +10,14 @@
 #include <chrono>
 #include "../external/sfml.hpp"
 
+enum ClientScene {
+    MENU,
+    MULTIPLAYER,
+    GAME,
+    SETTINGS,
+    END
+};
+
 namespace rtype
 {
     class Client {
@@ -20,6 +28,14 @@ namespace rtype
             ECS initECS();
             void initPlayer();
             void gameLoop(ISender& sender, IReceiver& receive, int port);
+            void manage_draw_scene();
+            void drawMenu();
+            void drawMultiplayer();
+            void drawGame();
+            void drawSettings();
+            void drawEnd();
+            
+            
 
         private:
             std::unique_ptr<IGraphical> _graphical;
@@ -27,5 +43,6 @@ namespace rtype
             std::chrono::_V2::system_clock::time_point _start;
             ECS _ecs;
             std::vector<ECS::Entity> _players;
+            ClientScene _scene;
     };
 }

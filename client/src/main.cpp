@@ -22,8 +22,8 @@ int main() {
         std::cout << "Receive on Ip " << ip_receive << ":" << port << std::endl;
         receiver = UDPBoostNetwork::UDPReceiver(port, ip_receive);
         std::cout << "Enter the server ip:\n";
-        std::string ip_client;
-        std::cin >> ip_client;
+        std::string ip_client = "10.116.120.191";
+        // std::cin >> ip_client;
 
         UDPBoostNetwork::UDPSender sender(13152, ip_client);
         rtype::Client client;
