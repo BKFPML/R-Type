@@ -83,7 +83,7 @@ Inheritance diagram for UDPBoostNetwork::UDPSender:</div>
  <div class="center">
   <img src="classUDPBoostNetwork_1_1UDPSender.png" usemap="#UDPBoostNetwork::UDPSender_map" alt=""/>
   <map id="UDPBoostNetwork::UDPSender_map" name="UDPBoostNetwork::UDPSender_map">
-<area href="classSender.html" title="Virtual send class." alt="Sender" shape="rect" coords="0,0,186,24"/>
+<area href="classISender.html" title="Virtual send class." alt="ISender" shape="rect" coords="0,0,186,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -95,16 +95,52 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a08ea36cdb118b3c2813cfa646693eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPSender.html#a1a08ea36cdb118b3c2813cfa646693eb">send</a> (std::string message) override</td></tr>
 <tr class="memdesc:a1a08ea36cdb118b3c2813cfa646693eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message with UDP.  <a href="classUDPBoostNetwork_1_1UDPSender.html#a1a08ea36cdb118b3c2813cfa646693eb">More...</a><br /></td></tr>
 <tr class="separator:a1a08ea36cdb118b3c2813cfa646693eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d2953dfe354baae292c9deb220d37e0"><td class="memItemLeft" align="right" valign="top"><a id="a1d2953dfe354baae292c9deb220d37e0"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLocalIPAddress</b> ()</td></tr>
+<tr class="separator:a1d2953dfe354baae292c9deb220d37e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e613e9b52e2552c989c51e378b15ce9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPSender.html#a5e613e9b52e2552c989c51e378b15ce9">send</a> (std::vector&lt; std::string &gt; messages) override</td></tr>
 <tr class="memdesc:a5e613e9b52e2552c989c51e378b15ce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a vector of messages with UDP.  <a href="classUDPBoostNetwork_1_1UDPSender.html#a5e613e9b52e2552c989c51e378b15ce9">More...</a><br /></td></tr>
 <tr class="separator:a5e613e9b52e2552c989c51e378b15ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f347474d74d1d8bdc307c9ba691f62b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPSender.html#a8f347474d74d1d8bdc307c9ba691f62b">get_port</a> () override</td></tr>
 <tr class="memdesc:a8f347474d74d1d8bdc307c9ba691f62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the port object.  <a href="classUDPBoostNetwork_1_1UDPSender.html#a8f347474d74d1d8bdc307c9ba691f62b">More...</a><br /></td></tr>
 <tr class="separator:a8f347474d74d1d8bdc307c9ba691f62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a464edb5d8f9cda55f597abc345f86add"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPSender.html#a464edb5d8f9cda55f597abc345f86add">get_ip</a> () override</td></tr>
+<tr class="memdesc:a464edb5d8f9cda55f597abc345f86add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ip object.  <a href="classUDPBoostNetwork_1_1UDPSender.html#a464edb5d8f9cda55f597abc345f86add">More...</a><br /></td></tr>
+<tr class="separator:a464edb5d8f9cda55f597abc345f86add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Send Class. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a464edb5d8f9cda55f597abc345f86add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a464edb5d8f9cda55f597abc345f86add">&#9670;&nbsp;</a></span>get_ip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string UDPBoostNetwork::UDPSender::get_ip </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the ip object. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
+
+<p>Implements <a class="el" href="classISender.html">ISender</a>.</p>
+
+</div>
+</div>
 <a id="a8f347474d74d1d8bdc307c9ba691f62b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f347474d74d1d8bdc307c9ba691f62b">&#9670;&nbsp;</a></span>get_port()</h2>
 
@@ -131,7 +167,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the port object. </p>
 <dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
-<p>Implements <a class="el" href="classSender.html">Sender</a>.</p>
+<p>Implements <a class="el" href="classISender.html">ISender</a>.</p>
 
 </div>
 </div>
@@ -167,7 +203,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classSender.html">Sender</a>.</p>
+<p>Implements <a class="el" href="classISender.html">ISender</a>.</p>
 
 </div>
 </div>
@@ -203,7 +239,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classSender.html">Sender</a>.</p>
+<p>Implements <a class="el" href="classISender.html">ISender</a>.</p>
 
 </div>
 </div>

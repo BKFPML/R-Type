@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-TYPE: Sender Class Reference</title>
+<title>R-TYPE: IReceiver Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,40 +63,52 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classSender-members.html">List of all members</a>  </div>
+<a href="classIReceiver-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Sender Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">IReceiver Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Virtual send class.  
- <a href="classSender.html#details">More...</a></p>
+<p>Virtual receive class.  
+ <a href="classIReceiver.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="network_8hpp_source.html">network.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for Sender:</div>
+Inheritance diagram for IReceiver:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classSender.png" usemap="#Sender_map" alt=""/>
-  <map id="Sender_map" name="Sender_map">
-<area href="classUDPBoostNetwork_1_1UDPSender.html" title="Send Class." alt="UDPBoostNetwork::UDPSender" shape="rect" coords="0,56,186,80"/>
+  <img src="classIReceiver.png" usemap="#IReceiver_map" alt=""/>
+  <map id="IReceiver_map" name="IReceiver_map">
+<area href="classUDPBoostNetwork_1_1UDPReceiver.html" title="Receive Class." alt="UDPBoostNetwork::UDPReceiver" shape="rect" coords="0,56,196,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a410206afcc07a6535dfbda6821500de6"><td class="memItemLeft" align="right" valign="top"><a id="a410206afcc07a6535dfbda6821500de6"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> (std::string in)=0</td></tr>
-<tr class="separator:a410206afcc07a6535dfbda6821500de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2312f5fbd8f8262b4561c89e960a7c4"><td class="memItemLeft" align="right" valign="top"><a id="ab2312f5fbd8f8262b4561c89e960a7c4"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> (std::vector&lt; std::string &gt; in)=0</td></tr>
-<tr class="separator:ab2312f5fbd8f8262b4561c89e960a7c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4369950e50669545dd753e85b07cadc9"><td class="memItemLeft" align="right" valign="top"><a id="a4369950e50669545dd753e85b07cadc9"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>get_port</b> ()=0</td></tr>
-<tr class="separator:a4369950e50669545dd753e85b07cadc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d503b302c5dea0e5829961fa0f656f"><td class="memItemLeft" align="right" valign="top"><a id="ae7d503b302c5dea0e5829961fa0f656f"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>receive</b> ()=0</td></tr>
+<tr class="separator:ae7d503b302c5dea0e5829961fa0f656f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c6a4bd8d2a3e9f576350e1ad9a0554c"><td class="memItemLeft" align="right" valign="top"><a id="a3c6a4bd8d2a3e9f576350e1ad9a0554c"></a>
+virtual std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_received_data</b> ()=0</td></tr>
+<tr class="separator:a3c6a4bd8d2a3e9f576350e1ad9a0554c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c0ec95442f75782faaa431537d2bdb"><td class="memItemLeft" align="right" valign="top"><a id="a58c0ec95442f75782faaa431537d2bdb"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clear_received_data</b> ()=0</td></tr>
+<tr class="separator:a58c0ec95442f75782faaa431537d2bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07d3996192fb4234b71aaebe6ca46654"><td class="memItemLeft" align="right" valign="top"><a id="a07d3996192fb4234b71aaebe6ca46654"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_port_bound</b> ()=0</td></tr>
+<tr class="separator:a07d3996192fb4234b71aaebe6ca46654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f7a9cf8d7d846e3d068d393d5a8db3"><td class="memItemLeft" align="right" valign="top"><a id="a70f7a9cf8d7d846e3d068d393d5a8db3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clear_received_data</b> (int index)=0</td></tr>
+<tr class="separator:a70f7a9cf8d7d846e3d068d393d5a8db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d46406f3174aa634ca475facc815c6b"><td class="memItemLeft" align="right" valign="top"><a id="a5d46406f3174aa634ca475facc815c6b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clear_last_received_data</b> ()=0</td></tr>
+<tr class="separator:a5d46406f3174aa634ca475facc815c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20435270b71a221c357ce9b160b34767"><td class="memItemLeft" align="right" valign="top"><a id="a20435270b71a221c357ce9b160b34767"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clear_first_received_data</b> ()=0</td></tr>
+<tr class="separator:a20435270b71a221c357ce9b160b34767"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Virtual send class. </p>
+<div class="textblock"><p>Virtual receive class. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>engine/includes/<a class="el" href="network_8hpp_source.html">network.hpp</a></li>
 </ul>
