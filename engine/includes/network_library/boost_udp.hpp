@@ -13,8 +13,6 @@
 #include <chrono>
 #include "../network.hpp"
 
-#define IPADDRESS "10.116.120.191"
-
 /**
  * @brief Boost Network Class
  */
@@ -25,7 +23,7 @@ public:
      */
     class UDPSender : public ISender {
     public:
-        UDPSender(int port_to_send, std::string ip = IPADDRESS) : _udp_port(port_to_send), _ip(ip) {}
+        UDPSender(int port_to_send, std::string ip) : _udp_port(port_to_send), _ip(ip) {}
 
         /**
          * @brief Send a message with UDP
@@ -103,7 +101,7 @@ public:
     */
     class UDPReceiver : public IReceiver {
     public:
-        UDPReceiver(int port, std::string ip = IPADDRESS) : _udp_port(port), _ip(ip) {}
+        UDPReceiver(int port, std::string ip) : _udp_port(port), _ip(ip) {}
 
         /**
          * @brief Receive a message with UDP

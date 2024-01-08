@@ -156,7 +156,7 @@ int Server::run()
 int main()
 {
 
-    Server server = Server();
+    Server server = Server(0, "0.0.0.0");
     std::string ip = server.getLocalIPAddress();
     server = Server(13152, ip);
     if (server.run() == 84)

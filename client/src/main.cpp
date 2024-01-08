@@ -13,7 +13,7 @@
  */
 int main() {
     try {
-        UDPBoostNetwork::UDPReceiver receiver(0);
+        UDPBoostNetwork::UDPReceiver receiver(0, "0.0.0.0");
         int port;
 
         srand(time(NULL));
