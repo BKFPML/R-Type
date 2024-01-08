@@ -18,7 +18,7 @@ namespace rtype
             virtual ~IGraphical() = default;
 
             virtual void loadTextures() = 0;
-            virtual void handleEvents(Sender& sender) = 0;
+            virtual void handleEvents(ISender& sender) = 0;
             virtual void drawWindow() = 0;
             virtual void drawParallax(sf::RenderWindow &window) = 0;
     };
@@ -29,7 +29,7 @@ namespace rtype
             ~SFML();
 
             void loadTextures() override;
-            void handleEvents(Sender& sender) override;
+            void handleEvents(ISender& sender) override;
             void drawParallax(sf::RenderWindow &window) override;
             void drawWindow() override;
 

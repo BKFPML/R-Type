@@ -19,7 +19,7 @@ namespace rtype
 
             ECS initECS();
             void initPlayer();
-            void gameLoop(Sender& sender, Receiver& receive, int port);
+            void gameLoop(ISender& sender, IReceiver& receive, int port);
 
         private:
             std::unique_ptr<IGraphical> _graphical;

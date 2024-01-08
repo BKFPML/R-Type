@@ -73,9 +73,9 @@ void rtype::SFML::loadTextures()
 /**
  * @brief Handle the events from the SFML window
  *
- * @param sender Network::Sender to send data to the server
+ * @param sender Network::ISender to send data to the server
  */
-void rtype::SFML::handleEvents(Sender& sender)
+void rtype::SFML::handleEvents(ISender& sender)
 {
     sf::Event event;
     while (_window.pollEvent(event))

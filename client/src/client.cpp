@@ -53,11 +53,11 @@ void rtype::Client::initPlayer()
 /**
  * @brief Run the game loop
  *
- * @param sender Network::Sender to send data to the server
+ * @param sender Network::ISender to send data to the server
  * @param receive Network::Receive to receive data from the server
  * @param port int port to use for the client
  */
-void rtype::Client::gameLoop(Sender& sender, Receiver& receive, int port)
+void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 {
     while (_running) {
         _graphical->handleEvents(sender);
