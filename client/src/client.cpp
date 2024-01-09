@@ -50,6 +50,12 @@ void rtype::Client::initPlayer()
     _ecs.addComponent<Velocity>(_players[0], {1, 1, 2});
 }
 
+
+/**
+ * @brief maps the keys returned by the graphical lib to the game keys
+ *
+ * @param keys KeyState returned by the graphical lib
+ */
 void rtype::Client::handleKeys(KeyState keys)
 {
     if(keys.up)
@@ -60,7 +66,14 @@ void rtype::Client::handleKeys(KeyState keys)
         std::cout << "LEFT" << std::endl;
     if(keys.right)
         std::cout << "RIGHT" << std::endl;
-
+    if(keys.space)
+        std::cout << "SPACE" << std::endl;
+    if(keys.shift)
+        std::cout << "SHIFT" << std::endl;
+    if(keys.a)
+        std::cout << "A" << std::endl;
+    if(keys.eight)
+        std::cout << "8" << std::endl;
 }
 
 /**
@@ -162,7 +175,7 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
     KeyState keys;
 
     while (_running) {
-        _graphical->handleEvents();
+        keys = _graphical->handleEvents();
 
         auto now = std::chrono::system_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count();
