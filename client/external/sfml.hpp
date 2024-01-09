@@ -16,6 +16,9 @@
 #define WINDOW_HEIGHT 1080
 #define WINDOW_NAME "R-Type"
 
+#define HALF_WINDOW_WIDTH WINDOW_WIDTH / 2
+#define HALF_WINDOW_HEIGHT WINDOW_HEIGHT / 2
+
 namespace rtype
 {
     class IGraphical {

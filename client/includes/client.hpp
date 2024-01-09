@@ -11,11 +11,11 @@
 #include "../external/sfml.hpp"
 
 enum ClientScene {
-    MENU,
-    MULTIPLAYER,
+    MAIN_MENU,
+    CONNECTION,
     GAME,
     SETTINGS,
-    END
+    GAME_OVER
 };
 
 namespace rtype
@@ -28,9 +28,9 @@ namespace rtype
             ECS initECS();
             void initPlayer();
             void gameLoop(ISender& sender, IReceiver& receive, int port);
-            void manage_draw_scene();
-            void drawMenu();
-            void drawMultiplayer();
+            void sceneManager();
+            void drawMainMenu();
+            void drawConnection();
             void drawGame();
             void drawParallax();
             void drawSettings();

@@ -1,5 +1,5 @@
 # Project Files
-file(GLOB CLIENT_FILES "src/*.cpp")
+file(GLOB_RECURSE CLIENT_FILES "src/*.cpp")
 file(GLOB EXTERNAL_FILES "external/*.cpp")
 include_directories("./includes")
 
@@ -24,7 +24,7 @@ endfunction()
 
 # Find all asset files
 file(GLOB ASSET_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../assets/background/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/menu/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/sprites/*.gif" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/fonts/*.otf")
- 
+
 # Create a directory for generated headers
 set(GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated_assets")
 file(MAKE_DIRECTORY ${GENERATED_DIR})
