@@ -1,6 +1,6 @@
 /**
  * @file textures.cpp
- * @brief
+ * @brief Implementation of the textures loading
  * @date 09-01-2024
  */
 
