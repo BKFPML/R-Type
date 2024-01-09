@@ -7,8 +7,7 @@
 #pragma once
 
 /**
- * @brief 
- * these Keystates describe the state of the keys on the keyboard
+ * @brief these Keystates describe the state of the keys on the keyboard
  */
 struct KeyState {
     bool up;
