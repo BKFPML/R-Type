@@ -20,6 +20,7 @@ namespace rtype
 
             virtual void loadTextures() = 0;
             virtual void draw(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) = 0;
+            virtual void drawText(std::string text, int x, int y, int size) = 0;
             virtual void clear() = 0;
             virtual void display() = 0;
             virtual void handleEvents() = 0;
@@ -34,6 +35,7 @@ namespace rtype
             void loadTextures() override;
             void handleEvents() override;
             void draw(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) override;
+            void drawText(std::string text, int x, int y, int size) override;
             void clear() override;
             void display() override;
             void initTextures(std::string name, unsigned char const *sheet, unsigned int size);
@@ -45,8 +47,7 @@ namespace rtype
 
             std::vector<std::pair<std::string, sf::Texture*>> textures;
             std::vector<std::pair<std::string, sf::Sprite*>> sprites;
-
-            int fps;
-            sf::Clock DrawClock;
+            sf::Font font;
+            sf::Text text;
     };
 }
