@@ -10,6 +10,7 @@
 #include "parallax80.h"
 #include "parallax60.h"
 #include "logo.h"
+#include "r_type_font.h"
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
@@ -58,6 +59,13 @@ void rtype::SFML::loadTextures()
     initTextures("parallax80", parallax80, parallax80_len);
     initTextures("parallax60", parallax60, parallax60_len);
     initTextures("player_red", player_red, player_red_len);
+
+    if (!font.loadFromMemory(r_type_font, r_type_font_len)) {
+        std::cerr << "Error loading font" << std::endl;
+        exit(84);
+    }
+    text.setFont(font);
+
 
 }
 
@@ -115,6 +123,21 @@ void rtype::SFML::draw(std::string sprite, int x, int y, float scale = 1.0, int 
             _window.draw(*s.second);
         }
     }
+}
+
+/**
+ * @brief Draw a text on the SFML window
+ *
+ * @param text std::string text to draw
+ * @param x int x position of the text
+ * @param y int y position of the text
+ */
+void rtype::SFML::drawText(std::string text, int x, int y, int size)
+{
+    this->text.setString(text);
+    this->text.setCharacterSize(size);
+    this->text.setPosition(x, y);
+    _window.draw(this->text);
 }
 
 /**
