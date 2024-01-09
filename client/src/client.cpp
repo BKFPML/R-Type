@@ -70,14 +70,12 @@ void rtype::Client::handleKeys(KeyState keys)
 void rtype::Client::drawMenu()
 {
     _graphical->clear();
-    _graphical->draw("parallax80", 0, 0, 1, 0, 1980, 1080);
-    _graphical->draw("logo", 750, 200, 1, 0, 0, 0);
-    _graphical->drawText("Singleplayer", 800, 500, 50);
-    _graphical->drawText("Multiplayer", 800, 600, 50);
-    _graphical->drawText("Settings", 800, 700, 50);
-    _graphical->drawText("Quit", 800, 800, 50);
-    _graphical->draw("player_red", 100, 100, 5, 0, 34, 34);
-    _graphical->draw("player_red", 100, 200, 5, 0, 34, 34);
+    _graphical->draw("outerSpace", 960, 540, 1, 0, 0, 0);
+    _graphical->draw("logo", 960, 250, 2, 0, 0, 0);
+    _graphical->drawText("Singleplayer", 960, 450, 30);
+    _graphical->drawText("Multiplayer", 960, 550, 30);
+    _graphical->drawText("Settings", 960, 650, 30);
+    _graphical->drawText("Quit", 960, 750, 30);
     _graphical->display();
 }
 

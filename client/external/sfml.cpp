@@ -9,6 +9,7 @@
 #include "parallax100.h"
 #include "parallax80.h"
 #include "parallax60.h"
+#include "outerSpace.h"
 #include "logo.h"
 #include "r_type_font.h"
 
@@ -36,7 +37,7 @@ rtype::SFML::~SFML()
 
 /**
  * @brief load the textures for the client's sprites
- * 
+ *
  */
 void rtype::SFML::initTextures(std::string name, unsigned char const *sheet, unsigned int size)
 {
@@ -55,6 +56,7 @@ void rtype::SFML::initTextures(std::string name, unsigned char const *sheet, uns
 void rtype::SFML::loadTextures()
 {
     initTextures("logo", logo, logo_len);
+    initTextures("outerSpace", outerSpace, outerSpace_len);
     initTextures("parallax100", parallax100, parallax100_len);
     initTextures("parallax80", parallax80, parallax80_len);
     initTextures("parallax60", parallax60, parallax60_len);
@@ -80,19 +82,14 @@ void rtype::SFML::handleEvents()
     while (_window.pollEvent(event))
     {
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
-            
         }
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
-            
         }
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
-            
         }
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down) {
-            
         }
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
-            
         }
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
         }
@@ -113,13 +110,15 @@ void rtype::SFML::handleEvents()
 void rtype::SFML::draw(std::string sprite, int x, int y, float scale = 1.0, int rotation = 0, int size_x = 0, int size_y = 0)
 {
     for (auto& s : sprites) {
-        // std::cout << s.first << ":" <<sprite <<std::endl;
         if (s.first == sprite) {
             s.second->setPosition(x, y);
             s.second->setScale(scale, scale);
             s.second->setRotation(rotation);
             if (size_x != 0 && size_y != 0)
                 s.second->setTextureRect(sf::IntRect(0, 0, size_x, size_y));
+            sf::FloatRect bounds = s.second->getLocalBounds();
+            s.second->setOrigin(bounds.left + bounds.width / 2.0f, bounds.top + bounds.height / 2.0f);
+
             _window.draw(*s.second);
         }
     }
@@ -136,6 +135,8 @@ void rtype::SFML::drawText(std::string text, int x, int y, int size)
 {
     this->text.setString(text);
     this->text.setCharacterSize(size);
+    sf::FloatRect bounds = this->text.getLocalBounds();
+    this->text.setOrigin(bounds.width / 2, bounds.height / 2);
     this->text.setPosition(x, y);
     _window.draw(this->text);
 }
