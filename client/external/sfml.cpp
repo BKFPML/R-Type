@@ -76,7 +76,18 @@ void rtype::SFML::loadTextures()
  */
 KeyState rtype::SFML::handleEvents()
 {
-   KeyState keyState;
+    KeyState keyState;
+    sf::Event event;
+    while (_window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            _window.close();
+        }
+        if (event.type == sf::Event::KeyPressed) {
+            if (event.key.code == sf::Keyboard::Escape) {
+                _window.close();
+            }
+        }
+    }
 
     keyState.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
     keyState.down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
