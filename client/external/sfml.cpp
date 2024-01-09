@@ -14,10 +14,6 @@
 #include "logo.h"
 #include "r_type_font.h"
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
-#define WINDOW_NAME "R-Type"
-
 /**
  * @brief Construct a new rtype::SFML::SFML object
  */

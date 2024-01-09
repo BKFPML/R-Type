@@ -12,6 +12,10 @@
 #include "../../engine/includes/ECS.hpp"
 #include "../includes/keystates.hpp"
 
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+#define WINDOW_NAME "R-Type"
+
 namespace rtype
 {
     class IGraphical {
@@ -24,7 +28,6 @@ namespace rtype
             virtual void clear() = 0;
             virtual void display() = 0;
             virtual KeyState handleEvents() = 0;
-
     };
 
     class SFML: public IGraphical {
