@@ -28,11 +28,6 @@ namespace rtype
             virtual void clear() = 0;
             virtual void display() = 0;
             virtual KeyState handleEvents() = 0;
-
-            virtual sf::Vector2f getPosition(std::string spriteName) = 0;
-            virtual void setPosition(std::string spriteName, float x, float y) = 0;
-            virtual void move(std::string spriteName, float offsetX, float offsetY) = 0;
-            virtual sf::FloatRect getLocalBounds(const std::string spriteName) = 0;
     };
 
     class SFML: public IGraphical {
@@ -47,11 +42,6 @@ namespace rtype
             void clear() override;
             void display() override;
             void initTextures(std::string name, unsigned char const *sheet, unsigned int size);
-
-            sf::Vector2f getPosition(std::string spriteName) override;
-            void setPosition(std::string spriteName, float x, float y) override;
-            void move(std::string spriteName, float offsetX, float offsetY) override;
-            sf::FloatRect getLocalBounds(const std::string spriteName) override;
 
             sf::RenderWindow& getWindow() { return _window; };
 
