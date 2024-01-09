@@ -11,7 +11,7 @@
  * @brief Construct a new rtype::Client::Client object
  */
 rtype::Client::Client()
-: _running(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _scene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now())
+: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now())
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
@@ -95,7 +95,7 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 {
     KeyState keys;
 
-    while (_running) {
+    while (_isRunning) {
         keys = _graphical->handleEvents();
 
         auto now = std::chrono::system_clock::now();

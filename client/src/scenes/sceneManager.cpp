@@ -13,7 +13,7 @@
 void rtype::Client::sceneManager()
 {
     if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - _drawClock).count() > 1000 / fps) {
-        switch (_scene) {
+        switch (_currentScene) {
             case MAIN_MENU:
                 drawMainMenu();
                 break;
