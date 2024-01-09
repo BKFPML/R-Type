@@ -9,6 +9,7 @@
 #include <iostream>
 #include <chrono>
 #include "../external/sfml.hpp"
+#include "./actions.hpp"
 
 enum ClientScene {
     MENU,
@@ -45,6 +46,6 @@ namespace rtype
             std::vector<ECS::Entity> _players;
             ClientScene _scene;
             int fps;
-
+            std::map<int, Action> _keybindings;
     };
 }
