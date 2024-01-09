@@ -10,6 +10,7 @@
 #include "parallax80.h"
 #include "parallax60.h"
 #include "outerSpace.h"
+#include "spaceGarage.h"
 #include "logo.h"
 #include "r_type_font.h"
 
@@ -57,6 +58,7 @@ void rtype::SFML::loadTextures()
 {
     initTextures("logo", logo, logo_len);
     initTextures("outerSpace", outerSpace, outerSpace_len);
+    initTextures("spaceGarage", spaceGarage, spaceGarage_len);
     initTextures("parallax100", parallax100, parallax100_len);
     initTextures("parallax80", parallax80, parallax80_len);
     initTextures("parallax60", parallax60, parallax60_len);
