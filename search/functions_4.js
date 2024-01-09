@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['handleevents_152',['handleEvents',['../classrtype_1_1SFML.html#a29016e164675ab3b95ceb32bc8236aa7',1,'rtype::SFML']]],
-  ['hascomponent_153',['hasComponent',['../classECS.html#ad353dd9a1d3c7a8e96bf181be7428589',1,'ECS']]]
+  ['handleevents_153',['handleEvents',['../classrtype_1_1SFML.html#a529ed5f1713c9bd761cdddd375fbdfc6',1,'rtype::SFML']]],
+  ['handlekeys_154',['handleKeys',['../classrtype_1_1Client.html#a155a302f178a03e60f2fa66141f53ac5',1,'rtype::Client']]],
+  ['hascomponent_155',['hasComponent',['../classECS.html#ad353dd9a1d3c7a8e96bf181be7428589',1,'ECS']]]
 ];
