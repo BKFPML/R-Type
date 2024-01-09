@@ -13,7 +13,7 @@
  * @brief Construct a new rtype::Client::Client object
  */
 rtype::Client::Client()
-: _running(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _scene(GAME), fps(60), _drawClock(std::chrono::system_clock::now())
+: _running(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _scene(MENU), fps(60), _drawClock(std::chrono::system_clock::now())
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
