@@ -17,7 +17,7 @@ void rtype::Client::drawGame()
     drawParallax();
 
     //! TEMP
-    _graphical->draw("player_red", _ecs.getComponent<Position>(_players[0])->x, _ecs.getComponent<Position>(_players[0])->y, 3, 180, 34, 34);
+    _graphical->drawSprite("player_red", _ecs.getComponent<Position>(_players[0])->x, _ecs.getComponent<Position>(_players[0])->y, 3, 180, 34, 34);
 
     _graphical->display();
 }
@@ -48,10 +48,10 @@ void rtype::Client::drawParallax()
     if (_parallaxPos[5].first <= -HALF_WINDOW_WIDTH)
         _parallaxPos[5].first = HALF_WINDOW_WIDTH + WINDOW_WIDTH;
 
-    _graphical->draw("parallax100", _parallaxPos[0].first, _parallaxPos[0].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->draw("parallax100", _parallaxPos[1].first, _parallaxPos[1].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->draw("parallax80", _parallaxPos[2].first, _parallaxPos[2].second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->draw("parallax80", _parallaxPos[3].first, _parallaxPos[3].second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->draw("parallax60", _parallaxPos[4].first, _parallaxPos[4].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->draw("parallax60", _parallaxPos[5].first, _parallaxPos[5].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax100", _parallaxPos[0].first, _parallaxPos[0].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax100", _parallaxPos[1].first, _parallaxPos[1].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax80", _parallaxPos[2].first, _parallaxPos[2].second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax80", _parallaxPos[3].first, _parallaxPos[3].second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax60", _parallaxPos[4].first, _parallaxPos[4].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax60", _parallaxPos[5].first, _parallaxPos[5].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
 }
