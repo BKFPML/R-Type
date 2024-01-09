@@ -23,7 +23,7 @@ namespace rtype
             virtual void drawText(std::string text, int x, int y, int size) = 0;
             virtual void clear() = 0;
             virtual void display() = 0;
-            virtual void handleEvents() = 0;
+            virtual KeyState handleEvents() = 0;
 
     };
 
@@ -32,8 +32,8 @@ namespace rtype
             SFML();
             ~SFML();
 
+            KeyState handleEvents() override;
             void loadTextures() override;
-            void handleEvents() override;
             void draw(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) override;
             void drawText(std::string text, int x, int y, int size) override;
             void clear() override;
