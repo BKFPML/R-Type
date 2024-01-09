@@ -122,6 +122,9 @@ void rtype::Client::drawGame()
 
     drawParallax();
 
+    //! TEMP
+    _graphical->draw("player_red", _ecs.getComponent<Position>(_players[0])->x, _ecs.getComponent<Position>(_players[0])->y, 3, 180, 34, 34);
+
     _graphical->display();
 }
 
