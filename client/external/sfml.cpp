@@ -14,10 +14,6 @@
 #include "logo.h"
 #include "r_type_font.h"
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
-#define WINDOW_NAME "R-Type"
-
 /**
  * @brief Construct a new rtype::SFML::SFML object
  */
@@ -200,4 +196,68 @@ void rtype::SFML::clear()
 void rtype::SFML::display()
 {
     _window.display();
+}
+
+/**
+ * @brief Get the current position of a sprite
+ *
+ * @param spriteName std::string name of the sprite
+ * @return sf::Vector2f the position of the sprite
+ */
+sf::Vector2f rtype::SFML::getPosition(std::string spriteName)
+{
+    for (auto& s : sprites) {
+        if (s.first == spriteName) {
+            return s.second->getPosition();
+        }
+    }
+    return sf::Vector2f(0, 0);
+}
+
+/**
+ * @brief Set the position of a sprite
+ *
+ * @param spriteName std::string name of the sprite
+ * @param x float x position of the sprite
+ * @param y float y position of the sprite
+ */
+void rtype::SFML::setPosition(std::string spriteName, float x, float y)
+{
+    for (auto& s : sprites) {
+        if (s.first == spriteName) {
+            s.second->setPosition(x, y);
+        }
+    }
+}
+
+/**
+ * @brief Move a sprite
+ *
+ * @param spriteName std::string name of the sprite
+ * @param offsetX float x offset to move the sprite
+ * @param offsetY float y offset to move the sprite
+ */
+void rtype::SFML::move(std::string spriteName, float offsetX, float offsetY)
+{
+    for (auto& s : sprites) {
+        if (s.first == spriteName) {
+            s.second->move(offsetX, offsetY);
+        }
+    }
+}
+
+/**
+ * @brief Get the local bounds of a sprite
+ *
+ * @param spriteName std::string name of the sprite
+ * @return sf::FloatRect the local bounds of the sprite
+ */
+sf::FloatRect rtype::SFML::getLocalBounds(const std::string spriteName)
+{
+    for (auto& s : sprites) {
+        if (s.first == spriteName) {
+            return s.second->getLocalBounds();
+        }
+    }
+    return sf::FloatRect(0, 0, 0, 0);
 }

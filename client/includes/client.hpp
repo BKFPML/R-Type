@@ -32,6 +32,7 @@ namespace rtype
             void drawMenu();
             void drawMultiplayer();
             void drawGame();
+            void drawParallax();
             void drawSettings();
             void drawEnd();
             void handleKeys(KeyState keys);
@@ -43,6 +44,7 @@ namespace rtype
             std::chrono::_V2::system_clock::time_point _drawClock;
             ECS _ecs;
             std::vector<ECS::Entity> _players;
+            std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _scene;
             int fps;
 

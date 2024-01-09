@@ -12,6 +12,10 @@
 #include "../../engine/includes/ECS.hpp"
 #include "../includes/keystates.hpp"
 
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+#define WINDOW_NAME "R-Type"
+
 namespace rtype
 {
     class IGraphical {
@@ -25,6 +29,10 @@ namespace rtype
             virtual void display() = 0;
             virtual KeyState handleEvents() = 0;
 
+            virtual sf::Vector2f getPosition(std::string spriteName) = 0;
+            virtual void setPosition(std::string spriteName, float x, float y) = 0;
+            virtual void move(std::string spriteName, float offsetX, float offsetY) = 0;
+            virtual sf::FloatRect getLocalBounds(const std::string spriteName) = 0;
     };
 
     class SFML: public IGraphical {
@@ -39,6 +47,11 @@ namespace rtype
             void clear() override;
             void display() override;
             void initTextures(std::string name, unsigned char const *sheet, unsigned int size);
+
+            sf::Vector2f getPosition(std::string spriteName) override;
+            void setPosition(std::string spriteName, float x, float y) override;
+            void move(std::string spriteName, float offsetX, float offsetY) override;
+            sf::FloatRect getLocalBounds(const std::string spriteName) override;
 
             sf::RenderWindow& getWindow() { return _window; };
 
