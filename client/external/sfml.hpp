@@ -49,7 +49,5 @@ namespace rtype
             std::vector<std::pair<std::string, sf::Sprite*>> sprites;
             sf::Font font;
             sf::Text text;
-            int fps;
-            sf::Clock DrawClock;
     };
 }
