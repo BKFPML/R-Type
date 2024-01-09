@@ -9,5 +9,6 @@ var searchData=
   ['drawgame_19',['drawGame',['../classrtype_1_1Client.html#a24e73a44d7bd5e348df9f6f043ccfcda',1,'rtype::Client']]],
   ['drawmenu_20',['drawMenu',['../classrtype_1_1Client.html#a4a1dede826d781ddce750b7981ffdc06',1,'rtype::Client']]],
   ['drawmultiplayer_21',['drawMultiplayer',['../classrtype_1_1Client.html#a5710e93c7d0c22b5ebd38f32d74d8962',1,'rtype::Client']]],
-  ['drawsettings_22',['drawSettings',['../classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de',1,'rtype::Client']]]
+  ['drawsettings_22',['drawSettings',['../classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de',1,'rtype::Client']]],
+  ['drawtext_23',['drawText',['../classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b',1,'rtype::SFML']]]
 ];

@@ -102,6 +102,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:acfaac91624afb6d4554971873b7c6506"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#acfaac91624afb6d4554971873b7c6506">draw</a> (std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) override</td></tr>
 <tr class="memdesc:acfaac91624afb6d4554971873b7c6506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sprite on the <a class="el" href="classrtype_1_1SFML.html">SFML</a> window.  <a href="classrtype_1_1SFML.html#acfaac91624afb6d4554971873b7c6506">More...</a><br /></td></tr>
 <tr class="separator:acfaac91624afb6d4554971873b7c6506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2cc2bbcdd72d5b0551e173778fcf67b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b">drawText</a> (std::string text, int x, int y, int size) override</td></tr>
+<tr class="memdesc:af2cc2bbcdd72d5b0551e173778fcf67b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a text on the <a class="el" href="classrtype_1_1SFML.html">SFML</a> window.  <a href="classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b">More...</a><br /></td></tr>
+<tr class="separator:af2cc2bbcdd72d5b0551e173778fcf67b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d405be1c4ad83a1388b111d0f08e7ce"><td class="memItemLeft" align="right" valign="top"><a id="a5d405be1c4ad83a1388b111d0f08e7ce"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#a5d405be1c4ad83a1388b111d0f08e7ce">clear</a> () override</td></tr>
 <tr class="memdesc:a5d405be1c4ad83a1388b111d0f08e7ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the <a class="el" href="classrtype_1_1SFML.html">SFML</a> window. <br /></td></tr>
@@ -189,6 +192,66 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get
     <tr><td class="paramname">sprite</td><td>std::string path to the sprite </td></tr>
     <tr><td class="paramname">x</td><td>int x position of the sprite </td></tr>
     <tr><td class="paramname">y</td><td>int y position of the sprite </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classrtype_1_1IGraphical.html">rtype::IGraphical</a>.</p>
+
+</div>
+</div>
+<a id="af2cc2bbcdd72d5b0551e173778fcf67b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2cc2bbcdd72d5b0551e173778fcf67b">&#9670;&nbsp;</a></span>drawText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::SFML::drawText </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draw a text on the <a class="el" href="classrtype_1_1SFML.html">SFML</a> window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>std::string text to draw </td></tr>
+    <tr><td class="paramname">x</td><td>int x position of the text </td></tr>
+    <tr><td class="paramname">y</td><td>int y position of the text </td></tr>
   </table>
   </dd>
 </dl>
