@@ -11,8 +11,14 @@
  * 
  * @param action 
  */
-void performAction(Action action) {
+void rtype::Client::performAction(Action action) {
     switch (action) {
+        case EMPTY:
+            break;
+        case CLICK:
+            if (_keys.mouse.left) std::cout << "Left click" << std::endl;
+            if (_keys.mouse.right) std::cout << "Right click" << std::endl;
+            std::cout << "x: " << _keys.mouse.x << " y: " << _keys.mouse.y << std::endl;
         case MOVE_UP:
             std::cout << "Move up" << std::endl;
             break;
@@ -39,6 +45,8 @@ void performAction(Action action) {
  */
 KeyBinding defaultKeyBindings() {
     return {
+        CLICK,      // lClickAction
+        CLICK,      // rClickAction
         MOVE_UP,    // upAction
         MOVE_DOWN,  // downAction
         MOVE_LEFT,  // leftAction
@@ -105,6 +113,8 @@ void rtype::Client::resetKeyBindings() {
 void rtype::Client::handleInput() {
     KeyState keys = _keys;
     KeyBinding keyBindings = _keyBindings;
+    if(keys.mouse.left) performAction(keyBindings.lClickAction);
+    if(keys.mouse.right) performAction(keyBindings.rClickAction);
     if (keys.up) performAction(keyBindings.upAction);
     if (keys.down) performAction(keyBindings.downAction);
     if (keys.left) performAction(keyBindings.leftAction);

@@ -12,6 +12,7 @@
  */
 enum Action{
     EMPTY,
+    CLICK,
     MOVE_UP,
     MOVE_DOWN,
     MOVE_LEFT,
@@ -24,6 +25,8 @@ enum Action{
  * this struct contains the keybindings for the actions
  */
 struct KeyBinding {
+    Action lClickAction;
+    Action rClickAction;
     Action upAction;
     Action downAction;
     Action leftAction;

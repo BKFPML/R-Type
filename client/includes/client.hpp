@@ -32,6 +32,7 @@ namespace rtype
             ECS initECS();
             void initPlayer();
             void gameLoop(ISender& sender, IReceiver& receive, int port);
+            void performAction(Action action);
             void sceneManager();
             void drawMainMenu();
             void drawConnection();
