@@ -8,7 +8,8 @@
 
 #include <iostream>
 #include <chrono>
-#include "../external/sfml.hpp"
+#include "../external/sfml/sfml.hpp"
+// #include "./client/external/sfml/sfml.hpp"
 
 enum ClientScene {
     MAIN_MENU,

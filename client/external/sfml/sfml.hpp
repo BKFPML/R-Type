@@ -8,9 +8,9 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "../../engine/includes/network_library/boost_udp.hpp"
-#include "../../engine/includes/ECS.hpp"
-#include "../includes/keystates.hpp"
+#include "../../../engine/includes/network_library/boost_udp.hpp"
+#include "../../../engine/includes/ECS.hpp"
+#include "../../includes/keystates.hpp"
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080

@@ -1,6 +1,6 @@
 # Project Files
 file(GLOB_RECURSE CLIENT_FILES "src/*.cpp")
-file(GLOB EXTERNAL_FILES "external/*.cpp")
+file(GLOB_RECURSE EXTERNAL_FILES "external/*.cpp")
 include_directories("./includes")
 
 add_executable(r-type_client ${CLIENT_FILES} ${EXTERNAL_FILES})
