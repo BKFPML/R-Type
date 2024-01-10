@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loadtextures_51',['loadTextures',['../classrtype_1_1SFML.html#a03de8e1ecbb8d9aa03d5d729ba0358aa',1,'rtype::SFML']]]
+  ['loadassets_58',['loadAssets',['../classrtype_1_1SFML.html#a39a1f179984c8605525a3a85c18ef36d',1,'rtype::SFML']]]
 ];

@@ -10,5 +10,6 @@ var searchData=
   ['client_2ecpp_9',['client.cpp',['../client_8cpp.html',1,'']]],
   ['client_2ehpp_10',['client.hpp',['../client_8hpp.html',1,'']]],
   ['components_2ehpp_11',['components.hpp',['../components_8hpp.html',1,'']]],
-  ['createentity_12',['createEntity',['../classECS.html#a41b876f3725cbb04aac3f2edd95522c6',1,'ECS']]]
+  ['connection_2ecpp_12',['connection.cpp',['../connection_8cpp.html',1,'']]],
+  ['createentity_13',['createEntity',['../classECS.html#a41b876f3725cbb04aac3f2edd95522c6',1,'ECS']]]
 ];
