@@ -8,14 +8,15 @@
 
 #include <iostream>
 #include <chrono>
-#include "../external/sfml.hpp"
+#include "../external/sfml/sfml.hpp"
+// #include "./client/external/sfml/sfml.hpp"
 
 enum ClientScene {
-    MENU,
-    MULTIPLAYER,
+    MAIN_MENU,
+    CONNECTION,
     GAME,
     SETTINGS,
-    END
+    GAME_OVER
 };
 
 namespace rtype
@@ -28,9 +29,9 @@ namespace rtype
             ECS initECS();
             void initPlayer();
             void gameLoop(ISender& sender, IReceiver& receive, int port);
-            void manage_draw_scene();
-            void drawMenu();
-            void drawMultiplayer();
+            void sceneManager();
+            void drawMainMenu();
+            void drawConnection();
             void drawGame();
             void drawParallax();
             void drawSettings();
@@ -38,15 +39,14 @@ namespace rtype
             void handleKeys(KeyState keys);
 
         private:
+            bool _isRunning;
+            int fps;
+            ECS _ecs;
             std::unique_ptr<IGraphical> _graphical;
-            bool _running;
             std::chrono::_V2::system_clock::time_point _start;
             std::chrono::_V2::system_clock::time_point _drawClock;
-            ECS _ecs;
             std::vector<ECS::Entity> _players;
             std::vector<std::pair<int, int>> _parallaxPos;
-            ClientScene _scene;
-            int fps;
-
+            ClientScene _currentScene;
     };
 }
