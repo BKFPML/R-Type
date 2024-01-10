@@ -12,7 +12,8 @@
  */
 enum Action{
     EMPTY,
-    CLICK,
+    CLICK_PRESS,
+    CLICK_RELEASE,
     MOVE_UP,
     MOVE_DOWN,
     MOVE_LEFT,
@@ -26,8 +27,8 @@ enum Action{
  * this struct contains the keybindings for the actions
  */
 struct KeyBinding {
-    Action lClickAction;
-    Action rClickAction;
+    Action lClickPressAction;
+    Action rClickPressAction;
     Action upAction;
     Action downAction;
     Action leftAction;
@@ -81,8 +82,10 @@ struct KeyBinding {
 struct MouseState {
     int x;
     int y;
-    bool left;
-    bool right;
+    bool left_pressed;
+    bool right_pressed;
+    bool left_released;
+    bool right_released;
 };
 
 /**

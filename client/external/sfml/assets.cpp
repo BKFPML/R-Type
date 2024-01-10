@@ -22,6 +22,9 @@
 #include "mainTheme.h"
 #include "stageOne.h"
 
+//* effects
+#include "click.h"
+
 /**
  * @brief Initialises the textures for the client's sprites
  *
@@ -53,7 +56,6 @@ void rtype::SFML::initMusic(std::string name, unsigned char const *music, unsign
         std::cerr << "Error loading music" << std::endl;
         exit(84);
     }
-    musics.back().second->setLoop(true);
 }
 
 /**
@@ -77,4 +79,6 @@ void rtype::SFML::loadAssets()
 
     initMusic("mainTheme", mainTheme, mainTheme_len);
     initMusic("stageOne", stageOne, stageOne_len);
+    initMusic("click", click, click_len);
+
 }

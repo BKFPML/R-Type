@@ -41,7 +41,7 @@ rtype::Client::~Client()
 void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 {
     resetKeyBindings();
-    _graphical->playMusic("mainTheme");
+    _graphical->playMusic("mainTheme", true);
 
     while (_isRunning) {
         _keys = _graphical->handleEvents();
@@ -60,4 +60,5 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
         handleInput();
         sceneManager();
     }
+    _graphical->stopMusic("mainTheme");
 }

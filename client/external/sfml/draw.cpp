@@ -52,11 +52,28 @@ void rtype::SFML::drawText(std::string text, int x, int y, int size)
  *
  * @param music std::string name of the music to play
  */
-void rtype::SFML::playMusic(std::string music)
+void rtype::SFML::playMusic(std::string music, bool loop = true)
 {
     for (auto& m : musics) {
         if (m.first == music) {
+            m.second->setLoop(loop);
             m.second->play();
+        }
+    }
+}
+
+
+/**
+ * @brief Stops a music
+ * 
+ * @param music std::string name of the music to stop
+ */
+
+void rtype::SFML::stopMusic(std::string music)
+{
+    for (auto& m : musics) {
+        if (m.first == music) {
+            m.second->stop();
         }
     }
 }

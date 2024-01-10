@@ -13,15 +13,21 @@
  */
 KeyState rtype::SFML::handleEvents()
 {
-    KeyState keyState;
     sf::Event event;
 
     _window.pollEvent(event);
 
     keyState.mouse.x = sf::Mouse::getPosition(_window).x;
     keyState.mouse.y = sf::Mouse::getPosition(_window).y;
-    keyState.mouse.left = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-    keyState.mouse.right = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+
+    bool currentLeftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    keyState.mouse.left_pressed = currentLeftMousePressed && !keyState.mouse.left_released;
+    keyState.mouse.left_released = currentLeftMousePressed;
+
+    bool currentRightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+    keyState.mouse.right_pressed = currentRightMousePressed && !keyState.mouse.right_released;
+    keyState.mouse.right_released = currentRightMousePressed;
+
     keyState.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
     keyState.down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
     keyState.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);

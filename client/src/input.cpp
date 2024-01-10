@@ -15,10 +15,14 @@ void rtype::Client::performAction(Action action) {
     switch (action) {
         case EMPTY:
             break;
-        case CLICK:
-            if (_keys.mouse.left) std::cout << "Left click" << std::endl;
-            if (_keys.mouse.right) std::cout << "Right click" << std::endl;
-            std::cout << "x: " << _keys.mouse.x << " y: " << _keys.mouse.y << std::endl;
+        case CLICK_PRESS:
+            if (_keys.mouse.left_pressed && _keys.mouse.left_released) {
+                std::cout << "Left click pressed" << std::endl;
+                _graphical->playMusic("click", false);
+
+            }
+            if (_keys.mouse.right_pressed) std::cout << "Right click pressed" << std::endl;
+            break;
         case MOVE_UP:
             std::cout << "Move up" << std::endl;
             break;
@@ -49,8 +53,8 @@ void rtype::Client::performAction(Action action) {
  */
 KeyBinding defaultKeyBindings() {
     return {
-        CLICK,      // lClickAction
-        CLICK,      // rClickAction
+        CLICK_PRESS,      // lClickPressAction
+        CLICK_PRESS,      // rClickPressAction
         MOVE_UP,    // upAction
         MOVE_DOWN,  // downAction
         MOVE_LEFT,  // leftAction
@@ -104,7 +108,7 @@ KeyBinding defaultKeyBindings() {
 
 /**
  * @brief reset all keybinds to default setting
- * 
+ *
  */
 void rtype::Client::resetKeyBindings() {
     _keyBindings = defaultKeyBindings();
@@ -112,13 +116,13 @@ void rtype::Client::resetKeyBindings() {
 
 /**
  * @brief maps the keys to the actions
- * 
+ *
  */
 void rtype::Client::handleInput() {
     KeyState keys = _keys;
     KeyBinding keyBindings = _keyBindings;
-    if (keys.mouse.left) performAction(keyBindings.lClickAction);
-    if (keys.mouse.right) performAction(keyBindings.rClickAction);
+    if (keys.mouse.left_pressed) performAction(keyBindings.lClickPressAction);
+    if (keys.mouse.right_pressed) performAction(keyBindings.rClickPressAction);
     if (keys.up) performAction(keyBindings.upAction);
     if (keys.down) performAction(keyBindings.downAction);
     if (keys.left) performAction(keyBindings.leftAction);
