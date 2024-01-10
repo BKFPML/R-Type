@@ -23,7 +23,7 @@ function(embed_file input_file output_header)
 endfunction()
 
 # Find all asset files
-file(GLOB ASSET_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../assets/background/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/menu/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/sprites/*.gif" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/fonts/*.otf")
+file(GLOB_RECURSE ASSET_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../assets/background/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/menu/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/sprites/*.gif" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/fonts/*.otf" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/sounds/*.ogg")
 
 # Create a directory for generated headers
 set(GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated_assets")

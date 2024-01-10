@@ -46,3 +46,17 @@ void rtype::SFML::drawText(std::string text, int x, int y, int size)
     this->text.setPosition(x, y);
     _window.draw(this->text);
 }
+
+/**
+ * @brief Plays a music
+ *
+ * @param music std::string name of the music to play
+ */
+void rtype::SFML::playMusic(std::string music)
+{
+    for (auto& m : musics) {
+        if (m.first == music) {
+            m.second->play();
+        }
+    }
+}

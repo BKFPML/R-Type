@@ -1,6 +1,6 @@
 /**
- * @file textures.cpp
- * @brief Implementation of the textures loading
+ * @file assets.cpp
+ * @brief Implementation of the assets loading
  * @date 09-01-2024
  */
 
@@ -14,6 +14,7 @@
 #include "spaceGarage.h"
 #include "logo.h"
 #include "r_type_font.h"
+#include "mainTheme.h"
 
 /**
  * @brief Initialises the textures for the client's sprites
@@ -30,6 +31,23 @@ void rtype::SFML::initTextures(std::string name, unsigned char const *sheet, uns
         exit(84);
     }
     sprites.push_back(std::make_pair(name, new sf::Sprite(*textures.back().second)));
+}
+
+/**
+ * @brief Initialises a music for the client
+ *
+ * @param name std::string name of the music
+ * @param music unsigned char const * music
+ * @param size unsigned int size of the music
+ */
+void rtype::SFML::initMusic(std::string name, unsigned char const *music, unsigned int size)
+{
+    musics.push_back(std::make_pair(name, new sf::Music()));
+    if (!musics.back().second->openFromMemory(music, size)) {
+        std::cerr << "Error loading music" << std::endl;
+        exit(84);
+    }
+    musics.back().second->setLoop(true);
 }
 
 /**
@@ -50,4 +68,6 @@ void rtype::SFML::loadAssets()
         exit(84);
     }
     text.setFont(font);
+
+    initMusic("mainTheme", mainTheme, mainTheme_len);
 }

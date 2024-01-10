@@ -42,6 +42,8 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 {
     KeyState keys;
 
+    _graphical->playMusic("mainTheme");
+
     while (_isRunning) {
         keys = _graphical->handleEvents();
 
