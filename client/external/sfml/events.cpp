@@ -15,16 +15,8 @@ KeyState rtype::SFML::handleEvents()
 {
     KeyState keyState;
     sf::Event event;
-    while (_window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-            _window.close();
-        }
-        if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::Escape) {
-                _window.close();
-            }
-        }
-    }
+
+    _window.pollEvent(event);
 
     keyState.mouse.x = sf::Mouse::getPosition(_window).x;
     keyState.mouse.y = sf::Mouse::getPosition(_window).y;
@@ -78,6 +70,11 @@ KeyState rtype::SFML::handleEvents()
     keyState.seven = sf::Keyboard::isKeyPressed(sf::Keyboard::Num7);
     keyState.eight = sf::Keyboard::isKeyPressed(sf::Keyboard::Num8);
     keyState.nine = sf::Keyboard::isKeyPressed(sf::Keyboard::Num9);
+
+    if (keyState.escape || event.type == sf::Event::Closed) {
+        keyState.escape = true;
+        _window.close();
+    }
 
     return keyState;
 }
