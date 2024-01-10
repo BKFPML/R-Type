@@ -40,16 +40,14 @@ rtype::Client::~Client()
  */
 void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 {
-    KeyState keys;
-
+    resetKeyBindings();
     _graphical->playMusic("mainTheme");
 
     while (_isRunning) {
-        keys = _graphical->handleEvents();
+        _keys = _graphical->handleEvents();
 
         auto now = std::chrono::system_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count();
-        handleKeys(keys);
 
         if (elapsed > 1000) {
             _start = now;
@@ -59,6 +57,7 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
 
             sender.send(data);
         }
+        handleInput();
         sceneManager();
     }
 }

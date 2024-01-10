@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include "../../includes/input.hpp"
 #include "../../includes/IGraphical.hpp"
 
 #define WINDOW_WIDTH 1920

@@ -9,7 +9,7 @@
 #include <string>
 #include <iostream>
 
-#include "./keystates.hpp"
+#include "./input.hpp"
 
 namespace rtype {
     class IGraphical {

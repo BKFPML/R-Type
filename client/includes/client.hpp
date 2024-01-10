@@ -8,10 +8,10 @@
 
 #include <iostream>
 #include <chrono>
+#include "./input.hpp"
 #include "../external/sfml/sfml.hpp"
 #include "../../../engine/includes/ECS.hpp"
 #include "../../../engine/includes/network_library/boost_udp.hpp"
-
 #include "./IGraphical.hpp"
 
 enum ClientScene {
@@ -39,7 +39,9 @@ namespace rtype
             void drawParallax();
             void drawSettings();
             void drawEnd();
-            void handleKeys(KeyState keys);
+            void handleKeys();
+            void handleInput();
+            void resetKeyBindings();
 
         private:
             bool _isRunning;
@@ -51,5 +53,7 @@ namespace rtype
             std::vector<ECS::Entity> _players;
             std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _currentScene;
+            KeyBinding _keyBindings;
+            KeyState _keys;
     };
 }
