@@ -6,6 +6,7 @@
 
 #include "sfml.hpp"
 
+//* Textures
 #include "player_red.h"
 #include "parallax100.h"
 #include "parallax80.h"
@@ -13,8 +14,13 @@
 #include "outerSpace.h"
 #include "spaceGarage.h"
 #include "logo.h"
-#include "r_type_font.h"
+
+//* Fonts
+#include "rTypeFont.h"
+
+//* Musics
 #include "mainTheme.h"
+#include "stageOne.h"
 
 /**
  * @brief Initialises the textures for the client's sprites
@@ -63,11 +69,12 @@ void rtype::SFML::loadAssets()
     initTextures("parallax60", parallax60, parallax60_len);
     initTextures("player_red", player_red, player_red_len);
 
-    if (!font.loadFromMemory(r_type_font, r_type_font_len)) {
+    if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;
         exit(84);
     }
     text.setFont(font);
 
     initMusic("mainTheme", mainTheme, mainTheme_len);
+    initMusic("stageOne", stageOne, stageOne_len);
 }
