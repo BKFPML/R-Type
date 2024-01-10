@@ -6,7 +6,6 @@
 
 #include "client.hpp"
 
-
 /**
  * @brief Constructs a new rtype::Client::Client object
  */
