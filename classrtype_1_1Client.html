@@ -120,9 +120,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ae6b137d57812453d3c1cbab422c1f3a5">drawEnd</a> ()</td></tr>
 <tr class="memdesc:ae6b137d57812453d3c1cbab422c1f3a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the game over screen. <br /></td></tr>
 <tr class="separator:ae6b137d57812453d3c1cbab422c1f3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a155a302f178a03e60f2fa66141f53ac5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a155a302f178a03e60f2fa66141f53ac5">handleKeys</a> (<a class="el" href="structKeyState.html">KeyState</a> keys)</td></tr>
-<tr class="memdesc:a155a302f178a03e60f2fa66141f53ac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps the keys returned by the graphical lib to the game keys.  <a href="classrtype_1_1Client.html#a155a302f178a03e60f2fa66141f53ac5">More...</a><br /></td></tr>
-<tr class="separator:a155a302f178a03e60f2fa66141f53ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4278ff1cf7d2d4d7b6bca8ac793e5ad0"><td class="memItemLeft" align="right" valign="top"><a id="a4278ff1cf7d2d4d7b6bca8ac793e5ad0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleKeys</b> ()</td></tr>
+<tr class="separator:a4278ff1cf7d2d4d7b6bca8ac793e5ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a815d673d86db80c8abbc47957e31f"><td class="memItemLeft" align="right" valign="top"><a id="af5a815d673d86db80c8abbc47957e31f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#af5a815d673d86db80c8abbc47957e31f">handleInput</a> ()</td></tr>
+<tr class="memdesc:af5a815d673d86db80c8abbc47957e31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">maps the keys to the actions <br /></td></tr>
+<tr class="separator:af5a815d673d86db80c8abbc47957e31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950be9b438afe19933d0752e37e4a4ee"><td class="memItemLeft" align="right" valign="top"><a id="a950be9b438afe19933d0752e37e4a4ee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a950be9b438afe19933d0752e37e4a4ee">resetKeyBindings</a> ()</td></tr>
+<tr class="memdesc:a950be9b438afe19933d0752e37e4a4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset all keybinds to default setting <br /></td></tr>
+<tr class="separator:a950be9b438afe19933d0752e37e4a4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a24e73a44d7bd5e348df9f6f043ccfcda"></a>
@@ -189,32 +197,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a155a302f178a03e60f2fa66141f53ac5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a155a302f178a03e60f2fa66141f53ac5">&#9670;&nbsp;</a></span>handleKeys()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rtype::Client::handleKeys </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structKeyState.html">KeyState</a>&#160;</td>
-          <td class="paramname"><em>keys</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Maps the keys returned by the graphical lib to the game keys. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">keys</td><td><a class="el" href="structKeyState.html" title="these Keystates describe the state of the keys on the keyboard">KeyState</a> returned by the graphical lib </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a6f243757ed056372217fd14056d477e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f243757ed056372217fd14056d477e3">&#9670;&nbsp;</a></span>initECS()</h2>
 
@@ -239,7 +221,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <li>client/includes/<a class="el" href="client_8hpp_source.html">client.hpp</a></li>
 <li>client/src/<a class="el" href="client_8cpp.html">client.cpp</a></li>
 <li>client/src/<a class="el" href="ecs_8cpp.html">ecs.cpp</a></li>
-<li>client/src/<a class="el" href="inputs_8cpp.html">inputs.cpp</a></li>
+<li>client/src/input.cpp</li>
 <li>client/src/scenes/<a class="el" href="connection_8cpp.html">connection.cpp</a></li>
 <li>client/src/scenes/<a class="el" href="game_8cpp.html">game.cpp</a></li>
 <li>client/src/scenes/<a class="el" href="gameOver_8cpp.html">gameOver.cpp</a></li>
