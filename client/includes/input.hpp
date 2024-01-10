@@ -74,10 +74,18 @@ struct KeyBinding {
     Action nineAction;
 };
 
+struct MouseState {
+    int x;
+    int y;
+    bool left;
+    bool right;
+};
+
 /**
  * @brief these Keystates describe the state of the keys on the keyboard
  */
 struct KeyState {
+    MouseState mouse;
     bool up;
     bool down;
     bool left;
