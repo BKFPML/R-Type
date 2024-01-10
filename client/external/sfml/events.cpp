@@ -9,7 +9,7 @@
 /**
  * @brief Handles the events from the SFML window
  *
- * @return KeyState the state of the keys on the keyboard
+ * @return KeyState the state of the keys on the keyboard and of the mouse
  */
 KeyState rtype::SFML::handleEvents()
 {
@@ -26,6 +26,10 @@ KeyState rtype::SFML::handleEvents()
         }
     }
 
+    keyState.mouse.x = sf::Mouse::getPosition(_window).x;
+    keyState.mouse.y = sf::Mouse::getPosition(_window).y;
+    keyState.mouse.left = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    keyState.mouse.right = sf::Mouse::isButtonPressed(sf::Mouse::Right);
     keyState.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
     keyState.down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
     keyState.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
