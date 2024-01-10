@@ -34,6 +34,10 @@ void rtype::Client::performAction(Action action) {
         case SHOOT:
             std::cout << "Shoot" << std::endl;
             break;
+        case EXIT:
+            std::cout << "Exit" << std::endl;
+            _isRunning = false;
+            break;
         std::cout << "Unknown action" << std::endl;
     }
 }
@@ -56,7 +60,7 @@ KeyBinding defaultKeyBindings() {
         EMPTY,      //ctrlAction
         EMPTY,      //altAction
         SHOOT,      //enterAction
-        EMPTY,      //escapeAction
+        EXIT,      //escapeAction
         EMPTY,      //tabAction
         EMPTY,      //backspaceAction
         MOVE_LEFT,  //aAction
@@ -113,8 +117,8 @@ void rtype::Client::resetKeyBindings() {
 void rtype::Client::handleInput() {
     KeyState keys = _keys;
     KeyBinding keyBindings = _keyBindings;
-    if(keys.mouse.left) performAction(keyBindings.lClickAction);
-    if(keys.mouse.right) performAction(keyBindings.rClickAction);
+    if (keys.mouse.left) performAction(keyBindings.lClickAction);
+    if (keys.mouse.right) performAction(keyBindings.rClickAction);
     if (keys.up) performAction(keyBindings.upAction);
     if (keys.down) performAction(keyBindings.downAction);
     if (keys.left) performAction(keyBindings.leftAction);
