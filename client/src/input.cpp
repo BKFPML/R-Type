@@ -4,8 +4,6 @@
  * @date 09-01-2024
  */
 
-#pragma once
-
 #include "../includes/client.hpp"
 
 /**

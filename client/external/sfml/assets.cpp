@@ -1,11 +1,12 @@
 /**
- * @file textures.cpp
- * @brief Implementation of the textures loading
+ * @file assets.cpp
+ * @brief Implementation of the assets loading
  * @date 09-01-2024
  */
 
 #include "sfml.hpp"
 
+//* Textures
 #include "player_red.h"
 #include "parallax100.h"
 #include "parallax80.h"
@@ -13,7 +14,13 @@
 #include "outerSpace.h"
 #include "spaceGarage.h"
 #include "logo.h"
-#include "r_type_font.h"
+
+//* Fonts
+#include "rTypeFont.h"
+
+//* Musics
+#include "mainTheme.h"
+#include "stageOne.h"
 
 /**
  * @brief Initialises the textures for the client's sprites
@@ -33,6 +40,23 @@ void rtype::SFML::initTextures(std::string name, unsigned char const *sheet, uns
 }
 
 /**
+ * @brief Initialises a music for the client
+ *
+ * @param name std::string name of the music
+ * @param music unsigned char const * music
+ * @param size unsigned int size of the music
+ */
+void rtype::SFML::initMusic(std::string name, unsigned char const *music, unsigned int size)
+{
+    musics.push_back(std::make_pair(name, new sf::Music()));
+    if (!musics.back().second->openFromMemory(music, size)) {
+        std::cerr << "Error loading music" << std::endl;
+        exit(84);
+    }
+    musics.back().second->setLoop(true);
+}
+
+/**
  * @brief Loads the textures for the client's sprites
  */
 void rtype::SFML::loadAssets()
@@ -45,9 +69,12 @@ void rtype::SFML::loadAssets()
     initTextures("parallax60", parallax60, parallax60_len);
     initTextures("player_red", player_red, player_red_len);
 
-    if (!font.loadFromMemory(r_type_font, r_type_font_len)) {
+    if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;
         exit(84);
     }
     text.setFont(font);
+
+    initMusic("mainTheme", mainTheme, mainTheme_len);
+    initMusic("stageOne", stageOne, stageOne_len);
 }

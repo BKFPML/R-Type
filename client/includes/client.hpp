@@ -10,8 +10,9 @@
 #include <chrono>
 #include "./input.hpp"
 #include "../external/sfml/sfml.hpp"
-
-// #include "./client/external/sfml/sfml.hpp"
+#include "../../../engine/includes/ECS.hpp"
+#include "../../../engine/includes/network_library/boost_udp.hpp"
+#include "./IGraphical.hpp"
 
 enum ClientScene {
     MAIN_MENU,
