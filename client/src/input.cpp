@@ -6,7 +6,29 @@
 
 #include "../includes/client.hpp"
 
+bool check_ip_format(std::string ip) {
+    int count = 0;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int l = 0;
 
+    for (char c : ip) {
+        if (c == '.')
+            count++;
+        if (count == 0 && c != '.')
+            i++;
+        if (count == 1 && c != '.')
+            j++;
+        if (count == 2 && c != '.')
+            k++;
+        if (count == 3 && c != '.')
+            l++;
+    }
+    if (count != 3 || i > 3 || j > 3 || k > 3 || l > 3 || i == 0 || j == 0 || k == 0 || l == 0)
+        return false;
+    return true;
+}
 
 /**
  * @brief perform the set actions
@@ -44,7 +66,7 @@ void rtype::Client::performAction(Action action) {
                     } else if (_keys.mouse.x >= 642 && _keys.mouse.x <= 1505 && _keys.mouse.y >= 719 && _keys.mouse.y <= 811) {
                         _input_frames_state[0] = true;
                         _input_frames_state[1] = false;
-                    } else if (_keys.mouse.x >= 842 && _keys.mouse.x <= 1078 && _keys.mouse.y >= 895 && _keys.mouse.y <= 935) {
+                    } else if (_keys.mouse.x >= 842 && _keys.mouse.x <= 1078 && _keys.mouse.y >= 895 && _keys.mouse.y <= 935 && _username.size() > 0 && _ip.size() > 0 && check_ip_format(_ip)) {
                         _input_frames_state[0] = false;
                         _input_frames_state[1] = false;
                         sender = UDPBoostNetwork::UDPSender(13152, _ip);
@@ -58,6 +80,14 @@ void rtype::Client::performAction(Action action) {
                         _input_frames_state[1] = false;
                     }
                     
+                }
+                if (_currentScene == SELECT_GAME) {
+                    if (_keys.mouse.x >= 748 && _keys.mouse.x <= 1122 && _keys.mouse.y >= 501 && _keys.mouse.y <= 531) {
+                        _currentScene = GAME;
+                    }
+                    else if (_keys.mouse.x >= 748 && _keys.mouse.x <= 1110 && _keys.mouse.y >= 595 && _keys.mouse.y <= 630) {
+                        _currentScene = GAME;
+                    }
                 }
             }
             if (_keys.mouse.right) std::cout << "Right click pressed" << std::endl;
@@ -107,6 +137,8 @@ void rtype::Client::performAction(Action action) {
                     _currentScene = MAIN_MENU;
                 } else if (_currentScene == SELECT_GAME) {
                     _currentScene = CONNECTION;
+                    sender.send("quit " + _received_ip + ":" + std::to_string(_received_port));
+                    sender = UDPBoostNetwork::UDPSender(0, "1.1.1.1");
                 }
             }
             break;
@@ -115,8 +147,8 @@ void rtype::Client::performAction(Action action) {
                 std::cout << "Exit" << std::endl;
                 _isRunning = false;
                 _graphical->stop();
-                if (sender.get_port() != 0)
-                    sender.send("quit " + _received_ip + ":" + std::to_string(_received_port));
+                sender.send("quit " + _received_ip + ":" + std::to_string(_received_port));
+                
             }
             break;
         case A:
@@ -303,7 +335,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case ZERO:
             if (_keys.zero && !_previousKeys.zero) {
-                std::cout << "0 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "0";
                 }
@@ -316,7 +347,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case ONE:
             if (_keys.one && !_previousKeys.one) {
-                std::cout << "1 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "1";
                 }
@@ -329,7 +359,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case TWO:
             if (_keys.two && !_previousKeys.two) {
-                std::cout << "2 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "2";
                 }
@@ -342,7 +371,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case THREE:
             if (_keys.three && !_previousKeys.three) {
-                std::cout << "3 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "3";
                 }
@@ -355,7 +383,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case FOUR:
             if (_keys.four && !_previousKeys.four) {
-                std::cout << "4 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "4";
                 }
@@ -368,7 +395,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case FIVE:
             if (_keys.five && !_previousKeys.five) {
-                std::cout << "5 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "5";
                 }
@@ -381,7 +407,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case SIX:
             if (_keys.six && !_previousKeys.six) {
-                std::cout << "6 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "6";
                 }
@@ -394,7 +419,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case SEVEN:
             if (_keys.seven && !_previousKeys.seven) {
-                std::cout << "7 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "7";
                 }
@@ -407,7 +431,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case EIGHT:
             if (_keys.eight && !_previousKeys.eight) {
-                std::cout << "8 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "8";
                 }
@@ -420,7 +443,6 @@ void rtype::Client::performAction(Action action) {
             break;
         case NINE:
             if (_keys.nine && !_previousKeys.nine) {
-                std::cout << "9 pressed" << std::endl;
                 if (_input_frames_state[0] && _username.size() < 15) {
                     _username += "9";
                 }

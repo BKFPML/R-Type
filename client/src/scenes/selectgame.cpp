@@ -14,9 +14,10 @@ void rtype::Client::drawSelectGame()
 {
     _graphical->clear();
     _graphical->drawSprite("outerSpace", 0, 0, 1, 0, 0, 0);
-    _graphical->drawText("Select a game", 960, 250, 30);
-    _graphical->drawText("Game 1", 960, 500, 30);
-    _graphical->drawText("Game 2", 960, 600, 30);
-    _graphical->drawText("Game 3", 960, 700, 30);
+    _graphical->drawText("Connected to server " + _ip, 50, 50, 16);
+    _graphical->drawText("username " + _username, 50, 100, 16);
+    _graphical->drawText("Select Mode", 770, 400, 30);
+    _graphical->drawText("Singleplayer", 750, 500, 30);
+    _graphical->drawText("Multiplayer", 760, 600, 30);
     _graphical->display();
 }

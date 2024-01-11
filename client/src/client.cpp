@@ -14,12 +14,12 @@ rtype::Client::Client(std::string ip, int port)
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
-    _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
-    _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH + WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
-    _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
-    _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH + WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
-    _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
-    _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH + WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
 
     for (int i = 0; i < 6; i++)
         _input_frames_state.push_back(false);
@@ -65,4 +65,5 @@ void rtype::Client::gameLoop(IReceiver& receive)
         sceneManager();
     }
     _graphical->stopMusic("mainTheme");
+    receive.set_running(false);
 }

@@ -32,18 +32,19 @@ void rtype::Client::drawParallax()
     _parallaxPos[4].first -= 3;
     _parallaxPos[5].first -= 3;
 
-    if (_parallaxPos[0].first <= -HALF_WINDOW_WIDTH)
-        _parallaxPos[0].first = HALF_WINDOW_WIDTH + WINDOW_WIDTH;
-    if (_parallaxPos[1].first <= -HALF_WINDOW_WIDTH)
-        _parallaxPos[1].first = HALF_WINDOW_WIDTH + WINDOW_WIDTH;
-    if (_parallaxPos[2].first <= -HALF_WINDOW_WIDTH)
-        _parallaxPos[2].first = HALF_WINDOW_WIDTH + WINDOW_WIDTH;
-    if (_parallaxPos[3].first <= -HALF_WINDOW_WIDTH)
-        _parallaxPos[3].first = HALF_WINDOW_WIDTH + WINDOW_WIDTH;
-    if (_parallaxPos[4].first <= -HALF_WINDOW_WIDTH)
-        _parallaxPos[4].first = HALF_WINDOW_WIDTH + WINDOW_WIDTH;
-    if (_parallaxPos[5].first <= -HALF_WINDOW_WIDTH)
-        _parallaxPos[5].first = HALF_WINDOW_WIDTH + WINDOW_WIDTH;
+    if (_parallaxPos[0].first <= -WINDOW_WIDTH)
+        _parallaxPos[0].first = WINDOW_WIDTH;
+    if (_parallaxPos[1].first <= -WINDOW_WIDTH)
+        _parallaxPos[1].first = WINDOW_WIDTH;
+    if (_parallaxPos[2].first <= -WINDOW_WIDTH)
+        _parallaxPos[2].first = WINDOW_WIDTH;
+    if (_parallaxPos[3].first <= -WINDOW_WIDTH)
+        _parallaxPos[3].first = WINDOW_WIDTH;
+    if (_parallaxPos[4].first <= -WINDOW_WIDTH)
+        _parallaxPos[4].first = WINDOW_WIDTH;
+    if (_parallaxPos[5].first <= -WINDOW_WIDTH)
+        _parallaxPos[5].first = WINDOW_WIDTH;
+        
 
     _graphical->drawSprite("parallax100", _parallaxPos[0].first, _parallaxPos[0].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
     _graphical->drawSprite("parallax100", _parallaxPos[1].first, _parallaxPos[1].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
