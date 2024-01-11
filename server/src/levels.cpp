@@ -6,6 +6,10 @@
 
 #include "levels.hpp"
 #include <iostream>
+#include <nlohmann/json.hpp>
+#include <fstream>
+
+using json = nlohmann::json;
 
 void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, ECS& ecs) {
     //TODO
@@ -15,7 +19,7 @@ void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::str
 void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, ECS& ecs) {
     float x = std::stof(params.at("x"));
     float y = std::stof(params.at("y"));
-    std::cout << "Position: " << x << ", " << y << std::endl;
+    ecs.registerComponent<Position>();
     ecs.addComponent(entity, Position{x, y});
 }
 
@@ -27,13 +31,17 @@ void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::s
 }
 
 void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, ECS& ecs) {
-    float angle = std::stof(params.at("angle"));
+    float angle = std::stof(params.at("Rotation"));
+    ecs.registerComponent<Rotation>();
     ecs.addComponent(entity, Rotation{angle});
 }
 
 void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, ECS& ecs) {
-    int health = std::stoi(params.at("health"));
-    ecs.addComponent(entity, Health{health});
+    std::cout << "Health creation component" << std::endl;
+    std::cout << "Health: " << params.at("Health") << std::endl;
+    int hp = std::stoi(params.at("Health"));
+    ecs.registerComponent<Health>();
+    ecs.addComponent(entity, Health{hp});
 }
 
 void createNpcComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, ECS& ecs) {
@@ -43,27 +51,57 @@ void createNpcComponent(ECS::Entity entity, const std::unordered_map<std::string
 
 void Levels::loadLevel(const std::string& levelConfig, ECS& ecs) {
     std::ifstream file(levelConfig);
-    std::string line;
-    Parser parser;
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << levelConfig << std::endl;
+        return;
+    }
+    
+    json jsonArray;
+    file >> jsonArray;
 
-    while (std::getline(file, line)) {
-        auto parsedLine = parser.parseMessage(line);
+    std::cout << "Loaded JSON Data: " << jsonArray.dump(4) << std::endl; // Print entire JSON data
+
+    for (auto& jsonObj : jsonArray) {
         auto entity = ecs.createEntity();
+        std::cout << "Entity created with ID: " << entity << std::endl;
 
-        for (auto& component : parsedLine) {
-            if (Levels::componentFactories.find(component.first) != Levels::componentFactories.end()) {
-                Levels::componentFactories[component.first](entity, parsedLine, ecs);
+        for (auto& element : jsonObj.items()) {
+            auto componentType = element.key();
+            auto componentData = element.value();
+            std::cout << "Processing Component: " << componentType << std::endl;
+            std::cout << "Component Data: " << componentData.dump(4) << std::endl;
+            std::cout << "Component Data Type: " << componentData.type_name() << std::endl;
+
+            if (Levels::componentFactories.find(componentType) != Levels::componentFactories.end()) {
+                std::cout << "Invoking factory for Component Type: " << componentType << std::endl;
+
+                if (componentData.is_primitive()) {
+                    // std::cout << "Primitive Component Parameter: " << componentData.get<int>() << std::endl;
+                    std::unordered_map<std::string, std::string> params = {{componentType, componentData.get<std::string>()}};
+                    std::cout << "Primitive Component Parameters: " << componentData.get<std::string>() << std::endl;
+                    Levels::componentFactories[componentType](entity, params, ecs);
+                } else {
+                    std::unordered_map<std::string, std::string> nestedParams;
+                    for (auto& nestedElement : componentData.items()) {
+                        nestedParams[nestedElement.key()] = nestedElement.value().get<std::string>();
+                        std::cout << "Nested Component Parameter - " << nestedElement.key() << ": " << nestedElement.value() << std::endl;
+                    }
+                    Levels::componentFactories[componentType](entity, nestedParams, ecs);
+                }
+            } else {
+                std::cout << "No factory found for Component Type: " << componentType << std::endl;
             }
         }
     }
-    std::cout << "Level loaded" << std::endl;
+    std::cout << "Level loading completed." << std::endl;
 }
 
+
 std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, ECS&)>> Levels::componentFactories = {
-    {"player", createPlayerComponent},
-    {"position", createPositionComponent},
-    {"velocity", createVelocityComponent},
-    {"rotation", createRotationComponent},
-    {"health", createHealthComponent},
-    {"npc", createNpcComponent}
+    {"Player", createPlayerComponent},
+    {"Position", createPositionComponent},
+    {"Velocity", createVelocityComponent},
+    {"Rotation", createRotationComponent},
+    {"Health", createHealthComponent},
+    {"Npc", createNpcComponent}
 };

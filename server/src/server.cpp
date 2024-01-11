@@ -164,14 +164,29 @@ int main()
     //     return 84;
     // server.~Server();
     ECS ecs;
-    Levels::loadLevel("../levels/config_files/level_1.conf", ecs);
-
+    Levels::loadLevel("server/levels/config_files/level_1.conf", ecs);
+    
     std::cout << "Entities: " << std::endl;
     std::vector<ECS::Entity> entities = ecs.getEntities();
 
+    if (entities.empty()) {
+        std::cout << "No entities found." << std::endl;
+    } else {
+        std::cout << "Number of entities: " << entities.size() << std::endl;
+    }
     for (auto& entity : entities) {
         std::cout << entity << std::endl;
+        std::cout << "Entity: " << entity << std::endl;
+        // if (ecs.hasComponent<Health>(entity)) {
+        //     std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
+        // }
+        if (ecs.hasComponent<Rotation>(entity)) {
+            std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
+        }
+        // if (ecs.hasComponent<Position>(entity)) {
+        //     std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << ", " << ecs.getComponent<Position>(entity)->y << std::endl;
+        // }
     }
-
+    
     return 0;
 }
