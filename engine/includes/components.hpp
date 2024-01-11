@@ -56,8 +56,10 @@ struct Rotation {
  * @param hp Health points
  */
 struct Health {
-    int hp;
-    Health(int hp) : hp(hp) {}
+    int hp, immuneFrames;
+    Health(int hp) : hp(hp) {
+        immuneFrames = 0;
+    }
 };
 
 /**

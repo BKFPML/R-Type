@@ -193,11 +193,13 @@ class DamageSystem : public ISystem {
                 if ((ecs.hasComponent<Health>(entity)) && (ecs.hasComponent<Damage>(entity))) {
                     auto health = ecs.getComponent<Health>(entity);
                     auto damage = ecs.getComponent<Damage>(entity);
-                    health->hp -= damage->damage;
-                    damage->damage = 0;
+                    if (health->immuneFrames = 0) {
+                        health->hp -= damage->damage;
+                        damage->damage = 0;
+                        health->immuneFrames = 60;
+                    }
                 }
             }
-            // TODO Implement immunity
         }
 };
 
