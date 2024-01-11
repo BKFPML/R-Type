@@ -30,10 +30,14 @@ namespace rtype
             void loadAssets() override;
             void drawSprite(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) override;
             void drawText(std::string text, int x, int y, int size) override;
-            void playMusic(std::string music) override;
+            void playMusic(std::string music, bool loop) override;
+            void stopMusic(std::string music) override;
             void clear() override;
             void display() override;
-            KeyState handleEvents() override;
+            std::pair<KeyState, KeyState> handleEvents() override;
+            void stop() override;
+            void init_key_bindings();
+
 
             void initTextures(std::string name, unsigned char const *sheet, unsigned int size);
             void initMusic(std::string name, unsigned char const *music, unsigned int size);
@@ -47,5 +51,6 @@ namespace rtype
             std::vector<std::pair<std::string, sf::Music*>> musics;
             sf::Font font;
             sf::Text text;
+            KeyState keyState;
     };
 }

@@ -17,6 +17,7 @@
 enum ClientScene {
     MAIN_MENU,
     CONNECTION,
+    SELECT_GAME,
     GAME,
     SETTINGS,
     GAME_OVER
@@ -26,12 +27,12 @@ namespace rtype
 {
     class Client {
         public:
-            Client();
+            Client(std::string ip, int port);
             ~Client();
 
             ECS initECS();
             void initPlayer();
-            void gameLoop(ISender& sender, IReceiver& receive, int port);
+            void gameLoop(IReceiver& receive);
             void performAction(Action action);
             void sceneManager();
             void drawMainMenu();
@@ -39,8 +40,8 @@ namespace rtype
             void drawGame();
             void drawParallax();
             void drawSettings();
+            void drawSelectGame();
             void drawEnd();
-            void handleKeys();
             void handleInput();
             void resetKeyBindings();
 
@@ -56,5 +57,13 @@ namespace rtype
             ClientScene _currentScene;
             KeyBinding _keyBindings;
             KeyState _keys;
+            KeyState _previousKeys;
+            std::string _ip;
+            std::string _username;
+            std::vector<bool> _input_frames_state;
+            UDPBoostNetwork::UDPSender sender;
+            std::string _received_ip;
+            int _received_port;
+
     };
 }
