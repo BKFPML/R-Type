@@ -138,6 +138,21 @@ class ECS {
         }
 
         /**
+         * @brief Gets all the entities that are drawable
+         *
+         * @return std::vector<Entity> A vector of all the entities
+         */
+        std::vector<Entity> getDrawableEntities() {
+            std::vector<Entity> entities;
+            for (auto& component : _components[0]) {
+                if (hasComponent<Position>(component.first) && hasComponent<Sprite>(component.first)) {
+                    entities.push_back(component.first);
+                }
+            }
+            return entities;
+        }
+
+        /**
          * @brief Registers a new system
          *
          * @tparam T The system type
