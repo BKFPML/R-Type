@@ -181,6 +181,20 @@ class MovementSystem : public ISystem {
         }
 };
 
+class Immunity : public ISystem {
+    public:
+        void update(ECS& ecs) override
+        {
+            for (auto entity: ecs.getEntities()) {
+                if (ecs.hasComponent<Health>(entity)) {
+                    auto health = ecs.getComponent<Health>(entity);
+                    if (health->immuneFrames > 0)
+                        health->immuneFrames--;
+                }
+            }
+        }
+};
+
 /**
  * @brief The damage system. Updates the health of entities based on the damage they take
  * 
