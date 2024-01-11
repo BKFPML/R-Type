@@ -84,18 +84,19 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> clear_received_data(<span class="keywordtype">int</span> index) = 0;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> clear_last_received_data() = 0;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> clear_first_received_data() = 0;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classISender.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classISender.html">ISender</a> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classISender.html">ISender</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> send(std::string in) = 0;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> send(std::vector&lt;std::string&gt; in) = 0;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> get_port() = 0;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> std::string get_ip() = 0;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> set_running(<span class="keywordtype">bool</span> running) = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classISender.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="classISender.html">ISender</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classISender.html">ISender</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> send(std::string in) = 0;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> send(std::vector&lt;std::string&gt; in) = 0;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> get_port() = 0;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> std::string get_ip() = 0;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
 <div class="ttc" id="aclassIReceiver_html"><div class="ttname"><a href="classIReceiver.html">IReceiver</a></div><div class="ttdoc">Virtual receive class.</div><div class="ttdef"><b>Definition:</b> network.hpp:13</div></div>
-<div class="ttc" id="aclassISender_html"><div class="ttname"><a href="classISender.html">ISender</a></div><div class="ttdoc">Virtual send class.</div><div class="ttdef"><b>Definition:</b> network.hpp:29</div></div>
+<div class="ttc" id="aclassISender_html"><div class="ttname"><a href="classISender.html">ISender</a></div><div class="ttdoc">Virtual send class.</div><div class="ttdef"><b>Definition:</b> network.hpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
