@@ -202,23 +202,44 @@ $(function() {
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        }</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;};</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="classDamageSystem.html">  219</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDamageSystem.html">DamageSystem</a> : <span class="keyword">public</span> <a class="code" href="classISystem.html">ISystem</a> {</div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="classImmunitySystem.html">  219</a></span>&#160;<span class="keyword">class </span><a class="code" href="classImmunitySystem.html">ImmunitySystem</a> : <span class="keyword">public</span> <a class="code" href="classISystem.html">ISystem</a> {</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <span class="keywordtype">void</span> update(<a class="code" href="classECS.html">ECS</a>&amp; ecs)<span class="keyword"> override</span></div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> entity: ecs.<a class="code" href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">getEntities</a>()) {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                <span class="keywordflow">if</span> ((ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structHealth.html">Health</a>&gt;(entity)) &amp;&amp; (ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structDamage.html">Damage</a>&gt;(entity))) {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                    <span class="keyword">auto</span> health = ecs.<a class="code" href="classECS.html#a9528399640fc20d2042127473249e77a">getComponent</a>&lt;<a class="code" href="structHealth.html">Health</a>&gt;(entity);</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                    <span class="keyword">auto</span> damage = ecs.<a class="code" href="classECS.html#a9528399640fc20d2042127473249e77a">getComponent</a>&lt;<a class="code" href="structDamage.html">Damage</a>&gt;(entity);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                    health-&gt;hp -= damage-&gt;damage;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    damage-&gt;damage = 0;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="comment">// TODO Implement immunity</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        }</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;};</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
-<div class="ttc" id="aclassDamageSystem_html"><div class="ttname"><a href="classDamageSystem.html">DamageSystem</a></div><div class="ttdoc">The damage system. Updates the health of entities based on the damage they take.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:219</div></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                <span class="keywordflow">if</span> (ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structImmunity.html">Immunity</a>&gt;(entity)) {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                    <span class="keyword">auto</span> immunity = ecs.<a class="code" href="classECS.html#a9528399640fc20d2042127473249e77a">getComponent</a>&lt;<a class="code" href="structImmunity.html">Immunity</a>&gt;(entity);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                    <span class="keywordflow">if</span> (immunity-&gt;frames &gt; 0) {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                        immunity-&gt;frames--;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                    <span class="keywordflow">if</span> (immunity-&gt;frames == 0) {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                        ecs.<a class="code" href="classECS.html#a8d8404847c1131d60dd9f6020263b64f">removeComponent</a>&lt;<a class="code" href="structImmunity.html">Immunity</a>&gt;(entity);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;};</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="classDamageSystem.html">  241</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDamageSystem.html">DamageSystem</a> : <span class="keyword">public</span> <a class="code" href="classISystem.html">ISystem</a> {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordtype">void</span> update(<a class="code" href="classECS.html">ECS</a>&amp; ecs)<span class="keyword"> override</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> entity: ecs.<a class="code" href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">getEntities</a>()) {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                <span class="keywordflow">if</span> ((ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structHealth.html">Health</a>&gt;(entity)) &amp;&amp; (ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structDamage.html">Damage</a>&gt;(entity))) {</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                    <span class="keyword">auto</span> health = ecs.<a class="code" href="classECS.html#a9528399640fc20d2042127473249e77a">getComponent</a>&lt;<a class="code" href="structHealth.html">Health</a>&gt;(entity);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                    <span class="keyword">auto</span> damage = ecs.<a class="code" href="classECS.html#a9528399640fc20d2042127473249e77a">getComponent</a>&lt;<a class="code" href="structDamage.html">Damage</a>&gt;(entity);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    <span class="keywordflow">if</span> (!ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structImmunity.html">Immunity</a>&gt;(entity))</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                    {</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                        health-&gt;hp -= damage-&gt;damage;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                        ecs.<a class="code" href="classECS.html#a3e470b32582ec8a6943017d143ceed73">addComponent</a>&lt;<a class="code" href="structImmunity.html">Immunity</a>&gt;(entity, {60});</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                        ecs.<a class="code" href="classECS.html#a8d8404847c1131d60dd9f6020263b64f">removeComponent</a>&lt;<a class="code" href="structDamage.html">Damage</a>&gt;(entity);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                    }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            }</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        }</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;};</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="ttc" id="aclassDamageSystem_html"><div class="ttname"><a href="classDamageSystem.html">DamageSystem</a></div><div class="ttdoc">The damage system. Updates the health of entities based on the damage they take.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:241</div></div>
 <div class="ttc" id="aclassECS_html"><div class="ttname"><a href="classECS.html">ECS</a></div><div class="ttdoc">The Entity Component System manager class.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:30</div></div>
 <div class="ttc" id="aclassECS_html_a2140693763d02e20d8550bd42f5ff39d"><div class="ttname"><a href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">ECS::getEntities</a></div><div class="ttdeci">std::vector&lt; Entity &gt; getEntities()</div><div class="ttdoc">Gets all the entities in the ECS.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:132</div></div>
 <div class="ttc" id="aclassECS_html_a316db465b4e5d424406078cc410d83c0"><div class="ttname"><a href="classECS.html#a316db465b4e5d424406078cc410d83c0">ECS::registerComponent</a></div><div class="ttdeci">void registerComponent()</div><div class="ttdoc">Registers a new component type and adds it to the component list.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:58</div></div>
@@ -232,10 +253,12 @@ $(function() {
 <div class="ttc" id="aclassECS_html_ab2ff77d2ea94fa3a80b91fac6288d295"><div class="ttname"><a href="classECS.html#ab2ff77d2ea94fa3a80b91fac6288d295">ECS::updateComponent</a></div><div class="ttdeci">void updateComponent(Entity entity, Func updater)</div><div class="ttdoc">Updates a component, if it exists.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:188</div></div>
 <div class="ttc" id="aclassECS_html_ad353dd9a1d3c7a8e96bf181be7428589"><div class="ttname"><a href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">ECS::hasComponent</a></div><div class="ttdeci">bool hasComponent(Entity entity)</div><div class="ttdoc">Removes a component from an entity.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:102</div></div>
 <div class="ttc" id="aclassISystem_html"><div class="ttname"><a href="classISystem.html">ISystem</a></div><div class="ttdoc">The interface for a system.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:22</div></div>
+<div class="ttc" id="aclassImmunitySystem_html"><div class="ttname"><a href="classImmunitySystem.html">ImmunitySystem</a></div><div class="ttdoc">The immunity system. Updates the immunity frames of entities.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:219</div></div>
 <div class="ttc" id="aclassMovementSystem_html"><div class="ttname"><a href="classMovementSystem.html">MovementSystem</a></div><div class="ttdoc">The movement system. Updates the position of based on their velocity.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:200</div></div>
 <div class="ttc" id="acomponents_8hpp_html"><div class="ttname"><a href="components_8hpp.html">components.hpp</a></div><div class="ttdoc">Declaration of the components used in the ECS.</div></div>
 <div class="ttc" id="astructDamage_html"><div class="ttname"><a href="structDamage.html">Damage</a></div><div class="ttdoc">Damage component.</div><div class="ttdef"><b>Definition:</b> components.hpp:94</div></div>
 <div class="ttc" id="astructHealth_html"><div class="ttname"><a href="structHealth.html">Health</a></div><div class="ttdoc">Health component.</div><div class="ttdef"><b>Definition:</b> components.hpp:58</div></div>
+<div class="ttc" id="astructImmunity_html"><div class="ttname"><a href="structImmunity.html">Immunity</a></div><div class="ttdoc">Immunity component.</div><div class="ttdef"><b>Definition:</b> components.hpp:103</div></div>
 <div class="ttc" id="astructPosition_html"><div class="ttname"><a href="structPosition.html">Position</a></div><div class="ttdoc">Position component.</div><div class="ttdef"><b>Definition:</b> components.hpp:17</div></div>
 <div class="ttc" id="astructVelocity_html"><div class="ttname"><a href="structVelocity.html">Velocity</a></div><div class="ttdoc">Velocity component, normalized.</div><div class="ttdef"><b>Definition:</b> components.hpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->

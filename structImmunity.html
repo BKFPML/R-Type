@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-TYPE: ISystem Class Reference</title>
+<title>R-TYPE: Immunity Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,38 +63,40 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classISystem-members.html">List of all members</a>  </div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structImmunity-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ISystem Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Immunity Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>The interface for a system.  
- <a href="classISystem.html#details">More...</a></p>
+<p><a class="el" href="structImmunity.html" title="Immunity component.">Immunity</a> component.  
+ <a href="structImmunity.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="ECS_8hpp_source.html">ECS.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for ISystem:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="classISystem.png" usemap="#ISystem_map" alt=""/>
-  <map id="ISystem_map" name="ISystem_map">
-<area href="classDamageSystem.html" title="The damage system. Updates the health of entities based on the damage they take." alt="DamageSystem" shape="rect" coords="0,56,110,80"/>
-<area href="classImmunitySystem.html" title="The immunity system. Updates the immunity frames of entities." alt="ImmunitySystem" shape="rect" coords="120,56,230,80"/>
-<area href="classMovementSystem.html" title="The movement system. Updates the position of based on their velocity." alt="MovementSystem" shape="rect" coords="240,56,350,80"/>
-  </map>
-</div></div>
+<p><code>#include &lt;<a class="el" href="components_8hpp_source.html">components.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aff1703783add9d3f1fa63aaac4a0b6c9"><td class="memItemLeft" align="right" valign="top"><a id="aff1703783add9d3f1fa63aaac4a0b6c9"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (<a class="el" href="classECS.html">ECS</a> &amp;ecs)=0</td></tr>
-<tr class="separator:aff1703783add9d3f1fa63aaac4a0b6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6746fe168939a4c9533b5eb71127cf65"><td class="memItemLeft" align="right" valign="top"><a id="a6746fe168939a4c9533b5eb71127cf65"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Immunity</b> (int frames)</td></tr>
+<tr class="separator:a6746fe168939a4c9533b5eb71127cf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a9a437caf270fbbca12ee6b462c5206fe"><td class="memItemLeft" align="right" valign="top"><a id="a9a437caf270fbbca12ee6b462c5206fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>frames</b></td></tr>
+<tr class="separator:a9a437caf270fbbca12ee6b462c5206fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The interface for a system. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>engine/includes/<a class="el" href="ECS_8hpp_source.html">ECS.hpp</a></li>
+<div class="textblock"><p><a class="el" href="structImmunity.html" title="Immunity component.">Immunity</a> component. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frames</td><td>Number of frames of immunity </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>engine/includes/<a class="el" href="components_8hpp_source.html">components.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
