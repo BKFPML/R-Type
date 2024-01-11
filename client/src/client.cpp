@@ -14,7 +14,6 @@ rtype::Client::Client()
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
-
     _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
     _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH + WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
     _parallaxPos.push_back(std::make_pair(HALF_WINDOW_WIDTH, HALF_WINDOW_HEIGHT));
@@ -44,6 +43,7 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
     _graphical->playMusic("mainTheme", true);
 
     while (_isRunning) {
+        sceneManager();
         _keys = _graphical->handleEvents();
 
         auto now = std::chrono::system_clock::now();
@@ -58,7 +58,6 @@ void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
             sender.send(data);
         }
         handleInput();
-        sceneManager();
     }
     _graphical->stopMusic("mainTheme");
 }

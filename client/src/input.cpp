@@ -17,9 +17,24 @@ void rtype::Client::performAction(Action action) {
             break;
         case CLICK_PRESS:
             if (_keys.mouse.left_pressed && _keys.mouse.left_released) {
-                std::cout << "Left click pressed" << std::endl;
-                _graphical->playMusic("click", false);
-
+                if (_currentScene == MAIN_MENU) {
+                    std::cout << "Left click pressed" << std::endl;
+                    std::cout << "X: " << _keys.mouse.x << " Y: " << _keys.mouse.y << std::endl;
+                    _graphical->playMusic("click", false);
+                    if (_keys.mouse.x >= 100 && _keys.mouse.x <= 300 && _keys.mouse.y >= 100 && _keys.mouse.y <= 200) {
+                        _currentScene = CONNECTION;
+                        _graphical->stopMusic("menu");
+                    }
+                    else if (_keys.mouse.x >= 100 && _keys.mouse.x <= 300 && _keys.mouse.y >= 300 && _keys.mouse.y <= 400) {
+                        _currentScene = SETTINGS;
+                        _graphical->stopMusic("menu");
+                    }
+                    else if (_keys.mouse.x >= 900 && _keys.mouse.x <= 1024 && _keys.mouse.y >= 741 && _keys.mouse.y <= 770) {
+                        _isRunning = false;
+                        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                        _graphical->stop();
+                    }
+                }
             }
             if (_keys.mouse.right_pressed) std::cout << "Right click pressed" << std::endl;
             break;

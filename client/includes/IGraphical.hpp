@@ -24,5 +24,6 @@ namespace rtype {
             virtual void clear() = 0;
             virtual void display() = 0;
             virtual KeyState handleEvents() = 0;
+            virtual void stop() = 0;
     };
 }

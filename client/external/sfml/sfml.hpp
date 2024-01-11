@@ -35,6 +35,7 @@ namespace rtype
             void clear() override;
             void display() override;
             KeyState handleEvents() override;
+            void stop() override;
 
             void initTextures(std::string name, unsigned char const *sheet, unsigned int size);
             void initMusic(std::string name, unsigned char const *music, unsigned int size);

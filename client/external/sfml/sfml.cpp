@@ -10,7 +10,7 @@
  * @brief Constructs a new rtype::SFML::SFML object
  */
 rtype::SFML::SFML()
-: _window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME)
+: _window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME, sf::Style::Fullscreen)
 {
     std::cout << "SFML Client" << std::endl;
     loadAssets();
@@ -22,6 +22,8 @@ rtype::SFML::SFML()
 rtype::SFML::~SFML()
 {
     std::cout << "Goodbye" << std::endl;
+    if (_window.isOpen())
+        _window.close();
 }
 
 /**
@@ -38,4 +40,12 @@ void rtype::SFML::clear()
 void rtype::SFML::display()
 {
     _window.display();
+}
+
+/**
+ * @brief stops the SFML window
+ */
+void rtype::SFML::stop()
+{
+    _window.close();
 }
