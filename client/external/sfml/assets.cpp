@@ -13,7 +13,9 @@
 #include "parallax60.h"
 #include "outerSpace.h"
 #include "spaceGarage.h"
+#include "connection.h"
 #include "logo.h"
+#include "input_frame.h"
 
 //* Fonts
 #include "rTypeFont.h"
@@ -21,6 +23,9 @@
 //* Musics
 #include "mainTheme.h"
 #include "stageOne.h"
+
+//* effects
+#include "click.h"
 
 /**
  * @brief Initialises the textures for the client's sprites
@@ -53,7 +58,7 @@ void rtype::SFML::initMusic(std::string name, unsigned char const *music, unsign
         std::cerr << "Error loading music" << std::endl;
         exit(84);
     }
-    musics.back().second->setLoop(true);
+    musics.back().second->setVolume(10);
 }
 
 /**
@@ -68,6 +73,8 @@ void rtype::SFML::loadAssets()
     initTextures("parallax80", parallax80, parallax80_len);
     initTextures("parallax60", parallax60, parallax60_len);
     initTextures("player_red", player_red, player_red_len);
+    initTextures("connection", connection, connection_len);
+    initTextures("input_frame", input_frame, input_frame_len);
 
     if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;
@@ -77,4 +84,6 @@ void rtype::SFML::loadAssets()
 
     initMusic("mainTheme", mainTheme, mainTheme_len);
     initMusic("stageOne", stageOne, stageOne_len);
+    initMusic("click", click, click_len);
+
 }
