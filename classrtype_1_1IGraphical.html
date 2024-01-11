@@ -93,18 +93,24 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawSprite</b
 <tr class="memitem:a5e887bd47e9a26ac5871b6a747cf524d"><td class="memItemLeft" align="right" valign="top"><a id="a5e887bd47e9a26ac5871b6a747cf524d"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawText</b> (std::string text, int x, int y, int size)=0</td></tr>
 <tr class="separator:a5e887bd47e9a26ac5871b6a747cf524d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34adbfa36a389804ba6f91f5f5163e93"><td class="memItemLeft" align="right" valign="top"><a id="a34adbfa36a389804ba6f91f5f5163e93"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>playMusic</b> (std::string music)=0</td></tr>
-<tr class="separator:a34adbfa36a389804ba6f91f5f5163e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d4f926689d9e348fc27427ae76d3c6f"><td class="memItemLeft" align="right" valign="top"><a id="a7d4f926689d9e348fc27427ae76d3c6f"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>playMusic</b> (std::string music, bool loop)=0</td></tr>
+<tr class="separator:a7d4f926689d9e348fc27427ae76d3c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21fc4cd4654088300c9e0f69009f5d74"><td class="memItemLeft" align="right" valign="top"><a id="a21fc4cd4654088300c9e0f69009f5d74"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>stopMusic</b> (std::string music)=0</td></tr>
+<tr class="separator:a21fc4cd4654088300c9e0f69009f5d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9650fe1bcf11074a881f15dc78027e5"><td class="memItemLeft" align="right" valign="top"><a id="ac9650fe1bcf11074a881f15dc78027e5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()=0</td></tr>
 <tr class="separator:ac9650fe1bcf11074a881f15dc78027e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f81e2b09e0eee57d444f865d228442c"><td class="memItemLeft" align="right" valign="top"><a id="a0f81e2b09e0eee57d444f865d228442c"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>display</b> ()=0</td></tr>
 <tr class="separator:a0f81e2b09e0eee57d444f865d228442c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a524142ba4bf0f23efa6d91976da21e92"><td class="memItemLeft" align="right" valign="top"><a id="a524142ba4bf0f23efa6d91976da21e92"></a>
-virtual <a class="el" href="structKeyState.html">KeyState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvents</b> ()=0</td></tr>
-<tr class="separator:a524142ba4bf0f23efa6d91976da21e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8809009bf7e2a399d68822d83f9c1816"><td class="memItemLeft" align="right" valign="top"><a id="a8809009bf7e2a399d68822d83f9c1816"></a>
+virtual std::pair&lt; <a class="el" href="structKeyState.html">KeyState</a>, <a class="el" href="structKeyState.html">KeyState</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvents</b> ()=0</td></tr>
+<tr class="separator:a8809009bf7e2a399d68822d83f9c1816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58384b0dc55db1c7c3d5f7c9efafacc8"><td class="memItemLeft" align="right" valign="top"><a id="a58384b0dc55db1c7c3d5f7c9efafacc8"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()=0</td></tr>
+<tr class="separator:a58384b0dc55db1c7c3d5f7c9efafacc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>client/includes/<a class="el" href="IGraphical_8hpp_source.html">IGraphical.hpp</a></li>

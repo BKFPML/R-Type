@@ -10,7 +10,8 @@ var searchData=
   ['drawgame_22',['drawGame',['../classrtype_1_1Client.html#a24e73a44d7bd5e348df9f6f043ccfcda',1,'rtype::Client']]],
   ['drawmainmenu_23',['drawMainMenu',['../classrtype_1_1Client.html#a0471b6b294260b4f65f7ae90addcd532',1,'rtype::Client']]],
   ['drawparallax_24',['drawParallax',['../classrtype_1_1Client.html#afbb7616f666dea0ad63e02f8f1d9fc12',1,'rtype::Client']]],
-  ['drawsettings_25',['drawSettings',['../classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de',1,'rtype::Client']]],
-  ['drawsprite_26',['drawSprite',['../classrtype_1_1SFML.html#a672a5a5aa4eb27bc77337ad87b027832',1,'rtype::SFML']]],
-  ['drawtext_27',['drawText',['../classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b',1,'rtype::SFML']]]
+  ['drawselectgame_25',['drawSelectGame',['../classrtype_1_1Client.html#a6eaf6741b5b5724079457b1997b64c24',1,'rtype::Client']]],
+  ['drawsettings_26',['drawSettings',['../classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de',1,'rtype::Client']]],
+  ['drawsprite_27',['drawSprite',['../classrtype_1_1SFML.html#a672a5a5aa4eb27bc77337ad87b027832',1,'rtype::SFML']]],
+  ['drawtext_28',['drawText',['../classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b',1,'rtype::SFML']]]
 ];

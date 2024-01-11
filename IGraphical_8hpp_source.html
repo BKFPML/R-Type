@@ -85,14 +85,15 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> loadAssets() = 0;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> drawSprite(std::string sprite, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">float</span> scale, <span class="keywordtype">int</span> rotation, <span class="keywordtype">int</span> size_x, <span class="keywordtype">int</span> size_y) = 0;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> drawText(std::string text, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> size) = 0;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> playMusic(std::string music) = 0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> clear() = 0;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> display() = 0;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keyword">virtual</span> <a class="code" href="structKeyState.html">KeyState</a> handleEvents() = 0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> playMusic(std::string music, <span class="keywordtype">bool</span> loop) = 0;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> stopMusic(std::string music) = 0;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> clear() = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> display() = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keyword">virtual</span> std::pair&lt;KeyState, KeyState&gt; handleEvents() = 0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> stop() = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    };</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
 <div class="ttc" id="aclassrtype_1_1IGraphical_html"><div class="ttname"><a href="classrtype_1_1IGraphical.html">rtype::IGraphical</a></div><div class="ttdef"><b>Definition:</b> IGraphical.hpp:15</div></div>
-<div class="ttc" id="astructKeyState_html"><div class="ttname"><a href="structKeyState.html">KeyState</a></div><div class="ttdoc">these Keystates describe the state of the keys on the keyboard</div><div class="ttdef"><b>Definition:</b> input.hpp:91</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
