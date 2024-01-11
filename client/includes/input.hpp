@@ -19,7 +19,46 @@ enum Action{
     MOVE_LEFT,
     MOVE_RIGHT,
     SHOOT,
-    EXIT
+    EXIT,
+    GOBACK,
+    DELETE,
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I,
+    J,
+    K,
+    L,
+    M,
+    N,
+    O,
+    P,
+    Q,
+    R,
+    S,
+    T,
+    U,
+    V,
+    W,
+    X,
+    Y,
+    Z,
+    DOT,
+    ZERO,
+    ONE,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE
 };
 
 /**
@@ -67,6 +106,7 @@ struct KeyBinding {
     Action xAction;
     Action yAction;
     Action zAction;
+    Action dotAction;
     Action zeroAction;
     Action oneAction;
     Action twoAction;
@@ -82,10 +122,8 @@ struct KeyBinding {
 struct MouseState {
     int x;
     int y;
-    bool left_pressed;
-    bool right_pressed;
-    bool left_released;
-    bool right_released;
+    bool left;
+    bool right;
 };
 
 /**
@@ -131,6 +169,7 @@ struct KeyState {
     bool x;
     bool y;
     bool z;
+    bool dot;
     bool zero;
     bool one;
     bool two;

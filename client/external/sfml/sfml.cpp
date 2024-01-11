@@ -14,6 +14,7 @@ rtype::SFML::SFML()
 {
     std::cout << "SFML Client" << std::endl;
     loadAssets();
+    init_key_bindings();
 }
 
 /**

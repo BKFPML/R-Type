@@ -7,26 +7,81 @@
 #include "sfml.hpp"
 
 /**
+ * @brief Initializes the key bindings
+ */
+void rtype::SFML::init_key_bindings()
+{
+    keyState.mouse.x = 0;
+    keyState.mouse.y = 0;
+    keyState.mouse.left = false;
+    keyState.mouse.right = false;
+    keyState.up = false;
+    keyState.down = false;
+    keyState.left = false;
+    keyState.right = false;
+    keyState.space = false;
+    keyState.shift = false;
+    keyState.ctrl = false;
+    keyState.alt = false;
+    keyState.enter = false;
+    keyState.escape = false;
+    keyState.tab = false;
+    keyState.backspace = false;
+    keyState.a = false;
+    keyState.b = false;
+    keyState.c = false;
+    keyState.d = false;
+    keyState.e = false;
+    keyState.f = false;
+    keyState.g = false;
+    keyState.h = false;
+    keyState.i = false;
+    keyState.j = false;
+    keyState.k = false;
+    keyState.l = false;
+    keyState.m = false;
+    keyState.n = false;
+    keyState.o = false;
+    keyState.p = false;
+    keyState.q = false;
+    keyState.r = false;
+    keyState.s = false;
+    keyState.t = false;
+    keyState.u = false;
+    keyState.v = false;
+    keyState.w = false;
+    keyState.x = false;
+    keyState.y = false;
+    keyState.z = false;
+    keyState.zero = false;
+    keyState.one = false;
+    keyState.two = false;
+    keyState.three = false;
+    keyState.four = false;
+    keyState.five = false;
+    keyState.six = false;
+    keyState.seven = false;
+    keyState.eight = false;
+    keyState.nine = false;
+}
+
+/**
  * @brief Handles the events from the SFML window
  *
  * @return KeyState the state of the keys on the keyboard and of the mouse
  */
-KeyState rtype::SFML::handleEvents()
+std::pair<KeyState, KeyState> rtype::SFML::handleEvents()
 {
     sf::Event event;
 
     _window.pollEvent(event);
 
+    KeyState previousKeyState = keyState;
+
     keyState.mouse.x = sf::Mouse::getPosition(_window).x;
     keyState.mouse.y = sf::Mouse::getPosition(_window).y;
-
-    bool currentLeftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-    keyState.mouse.left_pressed = currentLeftMousePressed && !keyState.mouse.left_released;
-    keyState.mouse.left_released = currentLeftMousePressed;
-
-    bool currentRightMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
-    keyState.mouse.right_pressed = currentRightMousePressed && !keyState.mouse.right_released;
-    keyState.mouse.right_released = currentRightMousePressed;
+    keyState.mouse.left = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    keyState.mouse.right = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
     keyState.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
     keyState.down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
@@ -66,21 +121,17 @@ KeyState rtype::SFML::handleEvents()
     keyState.x = sf::Keyboard::isKeyPressed(sf::Keyboard::X);
     keyState.y = sf::Keyboard::isKeyPressed(sf::Keyboard::Y);
     keyState.z = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
-    keyState.zero = sf::Keyboard::isKeyPressed(sf::Keyboard::Num0);
-    keyState.one = sf::Keyboard::isKeyPressed(sf::Keyboard::Num1);
-    keyState.two = sf::Keyboard::isKeyPressed(sf::Keyboard::Num2);
-    keyState.three = sf::Keyboard::isKeyPressed(sf::Keyboard::Num3);
-    keyState.four = sf::Keyboard::isKeyPressed(sf::Keyboard::Num4);
-    keyState.five = sf::Keyboard::isKeyPressed(sf::Keyboard::Num5);
-    keyState.six = sf::Keyboard::isKeyPressed(sf::Keyboard::Num6);
-    keyState.seven = sf::Keyboard::isKeyPressed(sf::Keyboard::Num7);
-    keyState.eight = sf::Keyboard::isKeyPressed(sf::Keyboard::Num8);
-    keyState.nine = sf::Keyboard::isKeyPressed(sf::Keyboard::Num9);
+    keyState.dot = sf::Keyboard::isKeyPressed(sf::Keyboard::Period);
+    keyState.zero = sf::Keyboard::isKeyPressed(sf::Keyboard::Num0) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0);
+    keyState.one = sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1);
+    keyState.two = sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2);
+    keyState.three = sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3);
+    keyState.four = sf::Keyboard::isKeyPressed(sf::Keyboard::Num4) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4);
+    keyState.five = sf::Keyboard::isKeyPressed(sf::Keyboard::Num5) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5);
+    keyState.six = sf::Keyboard::isKeyPressed(sf::Keyboard::Num6) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6);
+    keyState.seven = sf::Keyboard::isKeyPressed(sf::Keyboard::Num7) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7);
+    keyState.eight = sf::Keyboard::isKeyPressed(sf::Keyboard::Num8) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8);
+    keyState.nine = sf::Keyboard::isKeyPressed(sf::Keyboard::Num9) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9);
 
-    if (keyState.escape || event.type == sf::Event::Closed) {
-        keyState.escape = true;
-        _window.close();
-    }
-
-    return keyState;
+    return std::make_pair(keyState, previousKeyState);
 }

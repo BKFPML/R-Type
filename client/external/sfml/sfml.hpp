@@ -34,8 +34,10 @@ namespace rtype
             void stopMusic(std::string music) override;
             void clear() override;
             void display() override;
-            KeyState handleEvents() override;
+            std::pair<KeyState, KeyState> handleEvents() override;
             void stop() override;
+            void init_key_bindings();
+
 
             void initTextures(std::string name, unsigned char const *sheet, unsigned int size);
             void initMusic(std::string name, unsigned char const *music, unsigned int size);

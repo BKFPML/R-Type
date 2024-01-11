@@ -23,7 +23,7 @@ namespace rtype {
             virtual void stopMusic(std::string music) = 0;
             virtual void clear() = 0;
             virtual void display() = 0;
-            virtual KeyState handleEvents() = 0;
+            virtual std::pair<KeyState, KeyState> handleEvents() = 0;
             virtual void stop() = 0;
     };
 }
