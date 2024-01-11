@@ -43,6 +43,7 @@ namespace rtype
             void handleKeys();
             void handleInput();
             void resetKeyBindings();
+            void drawEntities();
 
         private:
             bool _isRunning;
