@@ -113,6 +113,9 @@ template&lt;typename ... T&gt; </td></tr>
 <tr class="memitem:a2140693763d02e20d8550bd42f5ff39d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">getEntities</a> ()</td></tr>
 <tr class="memdesc:a2140693763d02e20d8550bd42f5ff39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the entities in the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>.  <a href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">More...</a><br /></td></tr>
 <tr class="separator:a2140693763d02e20d8550bd42f5ff39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58da96890cf3a3b38455e19c1536af97"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a58da96890cf3a3b38455e19c1536af97">getDrawableEntities</a> ()</td></tr>
+<tr class="memdesc:a58da96890cf3a3b38455e19c1536af97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the entities that are drawable.  <a href="classECS.html#a58da96890cf3a3b38455e19c1536af97">More...</a><br /></td></tr>
+<tr class="separator:a58da96890cf3a3b38455e19c1536af97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f78a9213243d2060a456a3c2ec53953"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
 <tr class="memitem:a5f78a9213243d2060a456a3c2ec53953"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classECS.html#a5f78a9213243d2060a456a3c2ec53953">registerSystem</a> (Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a5f78a9213243d2060a456a3c2ec53953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a new system.  <a href="classECS.html#a5f78a9213243d2060a456a3c2ec53953">More...</a><br /></td></tr>
@@ -121,6 +124,10 @@ template&lt;typename ... T&gt; </td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a9adf308675731fc4b241974364509540">updateSystems</a> ()</td></tr>
 <tr class="memdesc:a9adf308675731fc4b241974364509540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all the registered systems. <br /></td></tr>
 <tr class="separator:a9adf308675731fc4b241974364509540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ff77d2ea94fa3a80b91fac6288d295"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Func &gt; </td></tr>
+<tr class="memitem:ab2ff77d2ea94fa3a80b91fac6288d295"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classECS.html#ab2ff77d2ea94fa3a80b91fac6288d295">updateComponent</a> (Entity entity, Func updater)</td></tr>
+<tr class="memdesc:ab2ff77d2ea94fa3a80b91fac6288d295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a component, if it exists.  <a href="classECS.html#ab2ff77d2ea94fa3a80b91fac6288d295">More...</a><br /></td></tr>
+<tr class="separator:ab2ff77d2ea94fa3a80b91fac6288d295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The Entity Component System manager class. </p>
@@ -246,6 +253,34 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>T* A pointer to the component </dd></dl>
+
+</div>
+</div>
+<a id="a58da96890cf3a3b38455e19c1536af97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58da96890cf3a3b38455e19c1536af97">&#9670;&nbsp;</a></span>getDrawableEntities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;Entity&gt; ECS::getDrawableEntities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all the entities that are drawable. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Entity&gt; A vector of all the entities </dd></dl>
 
 </div>
 </div>
@@ -433,6 +468,60 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entity</td><td>The entity to remove the component from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2ff77d2ea94fa3a80b91fac6288d295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ff77d2ea94fa3a80b91fac6288d295">&#9670;&nbsp;</a></span>updateComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Func &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ECS::updateComponent </td>
+          <td>(</td>
+          <td class="paramtype">Entity&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&#160;</td>
+          <td class="paramname"><em>updater</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates a component, if it exists. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The system type </td></tr>
+    <tr><td class="paramname">Func</td><td>The function type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to update </td></tr>
+    <tr><td class="paramname">updater</td><td>The function to call on the component. eg: { position.x += 1; position.y *= 2;} </td></tr>
   </table>
   </dd>
 </dl>
