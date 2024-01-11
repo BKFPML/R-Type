@@ -56,10 +56,8 @@ struct Rotation {
  * @param hp Health points
  */
 struct Health {
-    int hp, immuneFrames;
-    Health(int hp) : hp(hp) {
-        immuneFrames = 0;
-    }
+    int hp;
+    Health(int hp) : hp(hp) {}
 };
 
 /**
@@ -96,6 +94,16 @@ struct Status {
 struct Damage {
     int damage;
     Damage(int damage) : damage(damage) {}
+};
+
+struct Immunity {
+    int frames;
+    Immunity(int frames) : frames(frames) {}
+};
+
+struct Player{
+    int id;
+    Player(int id) : id(id) {}
 };
 
 // *Graphical components
