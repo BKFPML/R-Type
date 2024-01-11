@@ -213,6 +213,28 @@ class MovementSystem : public ISystem {
 };
 
 /**
+ * @brief The immunity system. Updates the immunity frames of entities
+ * 
+ */
+class ImmunitySystem : public ISystem {
+    public:
+        void update(ECS& ecs) override
+        {
+            for (auto entity: ecs.getEntities()) {
+                if (ecs.hasComponent<Immunity>(entity)) {
+                    auto immunity = ecs.getComponent<Immunity>(entity);
+                    if (immunity->frames > 0) {
+                        immunity->frames--;
+                    }
+                    if (immunity->frames == 0) {
+                        ecs.removeComponent<Immunity>(entity);
+                    }
+                }
+            }
+        }
+};
+
+/**
  * @brief The damage system. Updates the health of entities based on the damage they take
  * 
  */
@@ -224,11 +246,14 @@ class DamageSystem : public ISystem {
                 if ((ecs.hasComponent<Health>(entity)) && (ecs.hasComponent<Damage>(entity))) {
                     auto health = ecs.getComponent<Health>(entity);
                     auto damage = ecs.getComponent<Damage>(entity);
-                    health->hp -= damage->damage;
-                    damage->damage = 0;
+                    if (!ecs.hasComponent<Immunity>(entity))
+                    {
+                        health->hp -= damage->damage;
+                        ecs.addComponent<Immunity>(entity, {60});
+                        ecs.removeComponent<Damage>(entity);
+                    }
                 }
             }
-            // TODO Implement immunity
         }
 };
 
