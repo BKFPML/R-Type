@@ -1,9 +1,8 @@
-/*
-** EPITECH PROJECT, 2023
-** R-Type [WSL: Ubuntu]
-** File description:
-** rendering.cpp
-*/
+/**
+ * @file rendering.cpp
+ * @brief contains the entity rendering functions
+ * @date 11-01-2024
+ */
 
 #include "../includes/client.hpp"
 
