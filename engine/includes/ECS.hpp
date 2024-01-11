@@ -160,6 +160,22 @@ class ECS {
             system->update(*this);
         }
     }
+
+    /**
+     * @brief Updates a component, if it exists
+     * 
+     * @tparam T The system type
+     * @tparam Func The function type
+     * @param entity The entity to update
+     * @param updater The function to call on the component. eg: { position.x += 1; position.y *= 2;}
+     */
+    template<typename T, typename Func>
+    void updateComponent(Entity entity, Func updater) {
+        T* component = getComponent<T>(entity);
+        if (component) {
+            updater(*component);
+        }
+    }
 };
 
 /**
@@ -201,20 +217,3 @@ class DamageSystem : public ISystem {
         }
 };
 
-/**
- * @brief Graphical system. Updates the graphical representation of entities
- * 
- */
-class GraphicalSystem : public ISystem {
-    public:
-        void update(ECS& ecs) override
-        {
-            for (auto entity: ecs.getEntities()) {
-                if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Rotation>(entity))) {
-                    auto position = ecs.getComponent<Position>(entity);
-                    auto rotation = ecs.getComponent<Rotation>(entity);
-                    // TODO Implement graphical system
-                }
-            }
-        }
-};

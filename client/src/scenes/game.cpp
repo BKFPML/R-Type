@@ -13,12 +13,11 @@
 void rtype::Client::drawGame()
 {
     _graphical->clear();
-
     drawParallax();
+    ECS::Entity player = _players[0];
+    _ecs.updateComponent<Position>(player, [](Position& pos) { pos.x += 1;});
 
-    //! TEMP
     _graphical->drawSprite("player_red", _ecs.getComponent<Position>(_players[0])->x, _ecs.getComponent<Position>(_players[0])->y, 3, 180, 34, 34);
-
     _graphical->display();
 }
 
