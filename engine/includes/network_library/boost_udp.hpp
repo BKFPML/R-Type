@@ -101,7 +101,7 @@ public:
     */
     class UDPReceiver : public IReceiver {
     public:
-        UDPReceiver(int port, std::string ip) : _udp_port(port), _ip(ip) {}
+        UDPReceiver(int port, std::string ip) : _udp_port(port), _ip(ip), _isRunning(true) {}
 
         /**
          * @brief Receive a message with UDP
@@ -117,21 +117,15 @@ public:
             boost::asio::ip::udp::socket socket(io_context, receiver_endpoint);
             boost::system::error_code error;
 
-            while (true) {
+            while (_isRunning) {
+                std::cout << "Waiting for message" << std::endl;
                 size_t len = socket.receive_from(boost::asio::buffer(recv_buffer), receiver_endpoint, 0, error);
                 if (error && error != boost::asio::error::message_size)
                     throw boost::system::system_error(error);
                 std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
                 std::cout << "Message received: " << message << std::endl;
-                if (split(message, " ").front() == "quit" && split(message, " ").back() == _ip + ":" + std::to_string(_udp_port)) {
-                    std::cout << "Quit received" << std::endl;
-                    break;
-                }
                 received_data.push_back(message);
             }
-
-
-
         }
 
         std::string getLocalIPAddress() {
@@ -214,6 +208,15 @@ public:
         }
 
         /**
+         * @brief set the running object
+         *
+         * @param running
+         */
+        void set_running(bool running) override {
+            _isRunning = running;
+        }
+        
+        /**
          * @brief Clear the received data object
          * 
          */
@@ -247,6 +250,7 @@ public:
         }
 
     private:
+        bool _isRunning;
         int _udp_port;
         std::string _ip;
         std::vector<std::string> received_data;
