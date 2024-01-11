@@ -44,6 +44,7 @@ namespace rtype
             void drawEnd();
             void handleInput();
             void resetKeyBindings();
+            void drawEntities();
 
         private:
             bool _isRunning;
