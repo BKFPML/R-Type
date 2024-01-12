@@ -347,7 +347,7 @@ void rtype::Client::performAction(Action action) {
                 }
             }
             break;
-        case DELETE:
+        case DEL:
             if (_keys.backspace && !_previousKeys.backspace) {
                 for (int i = 0; i < 2; i++) {
                     if (_input_frames_state.at(i).first && _input_frames_state.at(i).second.size() > 0) {
@@ -933,7 +933,7 @@ KeyBinding connectionKeyBindings() {
         EMPTY,      //enterAction
         GOBACK,      //escapeAction
         EMPTY,      //tabAction
-        DELETE,      //backspaceAction
+        DEL,      //backspaceAction
         A,  //aAction
         B,      //bAction
         C,      //cAction
@@ -994,7 +994,7 @@ KeyBinding settingsKeyBindings() {
         EMPTY,      //enterAction
         GOBACK,      //escapeAction
         EMPTY,      //tabAction
-        DELETE,      //backspaceAction
+        DEL,      //backspaceAction
         A,  //aAction
         B,      //bAction
         C,      //cAction

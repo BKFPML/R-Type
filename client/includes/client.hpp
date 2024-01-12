@@ -54,8 +54,8 @@ namespace rtype
             int fps;
             ECS _ecs;
             std::unique_ptr<IGraphical> _graphical;
-            std::chrono::_V2::system_clock::time_point _start;
-            std::chrono::_V2::system_clock::time_point _drawClock;
+            std::chrono::system_clock::time_point _start;
+            std::chrono::system_clock::time_point _drawClock;
             std::vector<ECS::Entity> _players;
             std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _currentScene;

@@ -5,6 +5,7 @@
  */
 
 #include "../includes/server.hpp"
+#include "levels.hpp"
 
 /**
  * @brief Check for new connections
@@ -156,11 +157,51 @@ int Server::run()
 int main()
 {
 
-    Server server = Server(0, "0.0.0.0");
-    std::string ip = server.getLocalIPAddress();
-    server = Server(13152, ip);
-    if (server.run() == 84)
-        return 84;
-    server.~Server();
+    // Server server = Server(0, "0.0.0.0");
+    // std::string ip = server.getLocalIPAddress();
+    // server = Server(13152, ip);
+    // if (server.run() == 84)
+    //     return 84;
+    // server.~Server();
+    std::shared_ptr<ECS> ecs = std::make_shared<ECS>();
+    ecs->registerComponent<Position>();
+    ecs->registerComponent<Rotation>();
+    ecs->registerComponent<Velocity>();
+    ecs->registerComponent<Health>();
+    ecs->registerComponent<Player>();
+    ecs->registerComponent<Npc>();
+
+    ecs = Levels::loadLevel("server/levels/config_files/level_1.conf", ecs);
+    
+    std::cout << "Entities: " << std::endl;
+    std::vector<ECS::Entity> entities = ecs->getEntities();
+
+    if (entities.empty()) {
+        std::cout << "No entities found." << std::endl;
+    } else {
+        std::cout << "Number of entities: " << entities.size() << std::endl;
+    }
+    for (auto& entity : entities) {
+        std::cout << "Entity: " << entity << std::endl;
+        if (ecs->hasComponent<Health>(entity)) {
+            std::cout << "Health: " << ecs->getComponent<Health>(entity)->hp << std::endl;
+        }
+        if (ecs->hasComponent<Rotation>(entity)) {
+            std::cout << "Rotation: " << ecs->getComponent<Rotation>(entity)->angle << std::endl;
+        }
+        if (ecs->hasComponent<Position>(entity)) {
+            std::cout << "Position: " << ecs->getComponent<Position>(entity)->x << ", " << ecs->getComponent<Position>(entity)->y << std::endl;
+        }
+        if (ecs->hasComponent<Velocity>(entity)) {
+            std::cout << "Velocity: " << ecs->getComponent<Velocity>(entity)->x << ", " << ecs->getComponent<Velocity>(entity)->y << ", " << ecs->getComponent<Velocity>(entity)->magnitude << std::endl;
+        }
+        if (ecs->hasComponent<Player>(entity)) {
+            std::cout << "Player: " << std::endl;
+        }
+        if (ecs->hasComponent<Npc>(entity)) {
+            std::cout << "NPC: " << std::endl;
+        }
+    }
+    
     return 0;
 }

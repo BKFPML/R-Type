@@ -25,7 +25,7 @@ enum Action{
     SHOOT,
     EXIT,
     GOBACK,
-    DELETE,
+    DEL,
     SPACE,
     A,
     B,

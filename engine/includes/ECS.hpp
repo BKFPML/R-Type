@@ -37,6 +37,7 @@ class ECS {
         std::vector<std::unique_ptr<ISystem>> _systems;
         Entity _nextEntityID = 0;
 
+
     public:
 
         /**
@@ -131,8 +132,8 @@ class ECS {
          */
         std::vector<Entity> getEntities() {
             std::vector<Entity> entities;
-            for (auto& component : _components[0]) {
-                entities.push_back(component.first);
+            for (Entity i = 0; i < _nextEntityID; i++) {
+                entities.push_back(i);
             }
             return entities;
         }
@@ -143,13 +144,14 @@ class ECS {
          * @return std::vector<Entity> A vector of all the entities
          */
         std::vector<Entity> getDrawableEntities() {
-            std::vector<Entity> entities;
-            for (auto& component : _components[0]) {
-                if (hasComponent<Position>(component.first) && hasComponent<Sprite>(component.first)) {
-                    entities.push_back(component.first);
+            std::vector<Entity> entities = getEntities();
+            std::vector<Entity> drawableEntities;
+            for (int i = 0; i < entities.size(); i++) {
+                if (hasComponent<Position>(entities[i]) && hasComponent<Sprite>(entities[i])) {
+                    drawableEntities.push_back(entities[i]);
                 }
             }
-            return entities;
+            return drawableEntities;
         }
 
         /**
@@ -256,4 +258,3 @@ class DamageSystem : public ISystem {
             }
         }
 };
-
