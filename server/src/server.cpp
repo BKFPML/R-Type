@@ -94,34 +94,9 @@ void Server::parse_data_received(Parser parser)
     for (const auto& data : received_data) {
         check_new_connections(data);
         check_new_deconnections(data);
-        std::unordered_map<std::string, std::string> parsedMessage = parser.parseMessage(data);
 
     }
     server_receive.clear_received_data();
-}
-
-/**
- * @brief Get the Local IP Address object
- * 
- * @return std::string 
- */
-std::string Server::getLocalIPAddress()
-{
-    try {
-        boost::asio::io_service netService;
-        boost::asio::ip::udp::resolver resolver(netService);
-        boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "google.com", "");
-        boost::asio::ip::udp::resolver::iterator endpoints = resolver.resolve(query);
-        boost::asio::ip::udp::endpoint ep = *endpoints;
-        boost::asio::ip::udp::socket socket(netService);
-        socket.connect(ep);
-        boost::asio::ip::address addr = socket.local_endpoint().address();
-        return addr.to_string();
-    } catch (std::exception& e) {
-        std::cerr << e.what() << std::endl;
-    }
-
-    return "";
 }
 
 /**
@@ -156,19 +131,7 @@ int Server::run()
  */
 int main()
 {
-    std::shared_ptr<ECS> ecs = std::make_shared<ECS>();
-    ecs->registerComponent<Position>();
-    ecs->registerComponent<Rotation>();
-    ecs->registerComponent<Velocity>();
-    ecs->registerComponent<Health>();
-    ecs->registerComponent<Player>();
-    ecs->registerComponent<Npc>();
-
-    ecs = Levels::loadLevel("server/levels/config_files/level_1.conf", ecs);
-
-    Server server = Server(0, "0.0.0.0");
-    std::string ip = server.getLocalIPAddress();
-    server = Server(13152, ip);
+    Server server(13152);
     if (server.run() == 84)
         return 84;
     server.~Server();

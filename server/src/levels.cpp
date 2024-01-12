@@ -30,14 +30,34 @@ void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::str
  * @param ecs 
  */
 void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    if (params.find("X") != params.end() && params.find("Y") != params.end()) {
-        float x = std::stof(params.at("X"));
-        float y = std::stof(params.at("Y"));
+    if (params.find("x") != params.end() && params.find("y") != params.end()) {
+        float x = std::stof(params.at("x"));
+        float y = std::stof(params.at("y"));
         ecs->addComponent(entity, Position{x, y});
     } else {
         std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;
     }
 }
+
+/**
+ * @brief Create a Sprite Component object
+ * 
+ * @param entity 
+ * @param params 
+ * @param ecs 
+ */
+void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+    if (params.find("texture") != params.end() && params.find("width") != params.end() && params.find("height") != params.end(), params.find("scale") != params.end()) {
+        std::string texture = params.at("texture");
+        int width = std::stoi(params.at("width"));
+        int height = std::stoi(params.at("height"));
+        float scale = std::stof(params.at("scale"));
+        ecs->addComponent(entity, Sprite{texture, width, height, scale});
+    } else {
+        std::cerr << "Sprite component requires 'Texture', 'Width' and 'Height' parameters." << std::endl;
+    }
+}
+
 
 /**
  * @brief Create a Velocity Component object
@@ -162,5 +182,6 @@ std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unord
     {"Velocity", createVelocityComponent},
     {"Rotation", createRotationComponent},
     {"Health", createHealthComponent},
-    {"Npc", createNpcComponent}
+    {"Npc", createNpcComponent},
+    {"Sprite", createSpriteComponent}
 };
