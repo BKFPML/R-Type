@@ -9,13 +9,14 @@ var searchData=
   ['server_2ehpp_98',['server.hpp',['../server_8hpp.html',1,'']]],
   ['set_5frunning_99',['set_running',['../classUDPBoostNetwork_1_1UDPReceiver.html#a0ad2e4a0281b83e453b110533aa3174d',1,'UDPBoostNetwork::UDPReceiver']]],
   ['settings_2ecpp_100',['settings.cpp',['../settings_8cpp.html',1,'']]],
-  ['sfml_101',['SFML',['../classrtype_1_1SFML.html',1,'rtype::SFML'],['../classrtype_1_1SFML.html#ae32646bf27139dfa6765c522163007ae',1,'rtype::SFML::SFML()']]],
-  ['sfml_2ecpp_102',['sfml.cpp',['../sfml_8cpp.html',1,'']]],
-  ['sfml_2ehpp_103',['sfml.hpp',['../sfml_8hpp.html',1,'']]],
-  ['split_104',['split',['../classServer.html#a6d0e8be8f18db3c7332fb055c43362d9',1,'Server::split()'],['../classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be',1,'UDPBoostNetwork::UDPReceiver::split()']]],
-  ['sprite_105',['Sprite',['../structSprite.html',1,'']]],
-  ['status_106',['Status',['../structStatus.html',1,'']]],
-  ['statustype_107',['StatusType',['../components_8hpp.html#a90549f45cfc442187c1d769596107d3e',1,'components.hpp']]],
-  ['stop_108',['stop',['../classrtype_1_1SFML.html#aa401f3dab1239f28abc5b84f99b208c6',1,'rtype::SFML']]],
-  ['stopmusic_109',['stopMusic',['../classrtype_1_1SFML.html#ab6bfe44332eee7f3f95cd4d87bc29453',1,'rtype::SFML']]]
+  ['setvolume_101',['setVolume',['../classrtype_1_1SFML.html#a6e6d8719a46774595bb1444d26995f82',1,'rtype::SFML']]],
+  ['sfml_102',['SFML',['../classrtype_1_1SFML.html',1,'rtype::SFML'],['../classrtype_1_1SFML.html#ae32646bf27139dfa6765c522163007ae',1,'rtype::SFML::SFML()']]],
+  ['sfml_2ecpp_103',['sfml.cpp',['../sfml_8cpp.html',1,'']]],
+  ['sfml_2ehpp_104',['sfml.hpp',['../sfml_8hpp.html',1,'']]],
+  ['split_105',['split',['../classServer.html#a6d0e8be8f18db3c7332fb055c43362d9',1,'Server::split()'],['../classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be',1,'UDPBoostNetwork::UDPReceiver::split()']]],
+  ['sprite_106',['Sprite',['../structSprite.html',1,'']]],
+  ['status_107',['Status',['../structStatus.html',1,'']]],
+  ['statustype_108',['StatusType',['../components_8hpp.html#a90549f45cfc442187c1d769596107d3e',1,'components.hpp']]],
+  ['stop_109',['stop',['../classrtype_1_1SFML.html#aa401f3dab1239f28abc5b84f99b208c6',1,'rtype::SFML']]],
+  ['stopmusic_110',['stopMusic',['../classrtype_1_1SFML.html#ab6bfe44332eee7f3f95cd4d87bc29453',1,'rtype::SFML']]]
 ];
