@@ -15,6 +15,8 @@
 
 class Levels {
     public:
-        static void loadLevel(const std::string& levelConfig, ECS& ecs);
-        static std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, ECS&)>> componentFactories;
+        static std::shared_ptr<ECS> loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs);
+        static std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, std::shared_ptr<ECS>&)>> componentFactories;
+
+        std::vector<ECS::Entity> temp;
 };
