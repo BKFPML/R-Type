@@ -144,7 +144,8 @@ struct Graphical {
  */
 struct Sprite {
     std::string texture;
-    Sprite(std::string texture) : texture(texture) {}
+    int width, height;
+    Sprite(std::string texture, int width, int height) : texture(texture), width(width), height(height) {} 
 };
 
 /**

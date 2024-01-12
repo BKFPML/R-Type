@@ -16,6 +16,10 @@ void rtype::Client::drawEntities()
     for (auto& entity : entities) {
         Position *pos = _ecs.getComponent<Position>(entity);
         Sprite *sprite = _ecs.getComponent<Sprite>(entity);
-        _graphical->drawSprite(sprite->texture, pos->x, pos->y, 3, 180, 34, 34); // TODO: derive the sprite size from the texture
+        if (_ecs.hasComponent<Rotation>(entity)) {
+            Rotation *rot = _ecs.getComponent<Rotation>(entity);
+            _graphical->drawSprite(sprite->texture, pos->x, pos->y, 3, rot->angle, sprite->width, sprite->height);
+        } else
+           _graphical->drawSprite(sprite->texture, pos->x, pos->y, 3, 0, sprite->width, sprite->height);
     }
 }
