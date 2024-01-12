@@ -32,6 +32,88 @@ bool check_ip_format(std::string ip) {
     return true;
 }
 
+void rtype::Client::rebind(int setting, std::string key)
+{
+    Action action;
+    switch (setting) {
+        case 2:
+            action = MOVE_UP;
+            break;
+        case 3:
+            action = MOVE_DOWN;
+            break;
+        case 4:
+            action = MOVE_LEFT;
+            break;
+        case 5:
+            action = MOVE_RIGHT;
+            break;
+        case 6:
+            action = SHOOT;
+            break;
+    }
+    if(key == "a") {_keyBindings.aAction = action;}
+    else if(key == "b") {_keyBindings.bAction = action;}
+    else if(key == "c") {_keyBindings.cAction = action;}
+    else if(key == "d") {_keyBindings.dAction = action;}
+    else if(key == "e") {_keyBindings.eAction = action;}
+    else if(key == "f") {_keyBindings.fAction = action;}
+    else if(key == "g") {_keyBindings.gAction = action;}
+    else if(key == "h") {_keyBindings.hAction = action;}
+    else if(key == "i") {_keyBindings.iAction = action;}
+    else if(key == "j") {_keyBindings.jAction = action;}
+    else if(key == "k") {_keyBindings.kAction = action;}
+    else if(key == "l") {_keyBindings.lAction = action;}
+    else if(key == "m") {_keyBindings.mAction = action;}
+    else if(key == "n") {_keyBindings.nAction = action;}
+    else if(key == "o") {_keyBindings.oAction = action;}
+    else if(key == "p") {_keyBindings.pAction = action;}
+    else if(key == "q") {_keyBindings.qAction = action;}
+    else if(key == "r") {_keyBindings.rAction = action;}
+    else if(key == "s") {_keyBindings.sAction = action;}
+    else if(key == "t") {_keyBindings.tAction = action;}
+    else if(key == "u") {_keyBindings.uAction = action;}
+    else if(key == "v") {_keyBindings.vAction = action;}
+    else if(key == "w") {_keyBindings.wAction = action;}
+    else if(key == "x") {_keyBindings.xAction = action;}
+    else if(key == "y") {_keyBindings.yAction = action;}
+    else if(key == "z") {_keyBindings.zAction = action;}
+    else if(key == "UP") {_keyBindings.upAction = action;}
+    else if(key == "DOWN") {_keyBindings.downAction = action;}
+    else if(key == "LEFT") {_keyBindings.leftAction = action;}
+    else if(key == "RIGHT") {_keyBindings.rightAction = action;}
+    else if(key == " ") {_keyBindings.spaceAction = action;}
+}
+
+void rtype::Client::doMovement(Action direction)
+{
+    ECS::Entity player = _players[0];
+    switch (direction) {
+        case MOVE_UP:
+            _ecs.updateComponent<Position>(player, [](Position& pos) {
+                pos.y -= 1;
+            });
+            break;
+        case MOVE_DOWN:
+            _ecs.updateComponent<Position>(player, [](Position& pos) {
+                pos.y += 1;
+            });
+            break;
+        case MOVE_LEFT:
+            _ecs.updateComponent<Position>(player, [](Position& pos) {
+                pos.x -= 1;
+            });
+            break;
+        case MOVE_RIGHT:
+            _ecs.updateComponent<Position>(player, [](Position& pos) {
+                pos.x += 1;
+            });
+            break;
+        default:
+            break;
+    }
+}
+
 /**
  * @brief perform the set actions
  * 
@@ -40,6 +122,18 @@ bool check_ip_format(std::string ip) {
 void rtype::Client::performAction(Action action) {
     switch (action) {
         case EMPTY:
+            break;
+        case MOVE_UP:
+            doMovement(MOVE_UP);
+            break;
+        case MOVE_DOWN:
+            doMovement(MOVE_DOWN);
+            break;
+        case MOVE_LEFT:
+            doMovement(MOVE_LEFT);
+            break;
+        case MOVE_RIGHT:
+            doMovement(MOVE_RIGHT);
             break;
         case CLICK_PRESS:
             if (_keys.mouse.left && !_previousKeys.mouse.left) {
@@ -160,7 +254,6 @@ void rtype::Client::performAction(Action action) {
                         _input_frames_state.at(6).first = false;
                     }
 
-
                 }
             }
             if (_keys.mouse.left) {
@@ -174,23 +267,12 @@ void rtype::Client::performAction(Action action) {
             }
             if (_keys.mouse.right) std::cout << "Right click pressed" << std::endl;
             break;
-        case MOVE_UP:
-            std::cout << "Move up" << std::endl;
-            break;
-        case MOVE_DOWN:
-            std::cout << "Move down" << std::endl;
-            break;
-        case MOVE_LEFT:
-            std::cout << "Move left" << std::endl;
-            break;
-        case MOVE_RIGHT:
-            std::cout << "Move right" << std::endl;
-            break;
         case UP:
             if (_keys.up && !_previousKeys.up) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "UP";
+                        rebind(i, "UP");
                     }
                 }
             }
@@ -200,6 +282,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "DOWN";
+                        rebind(i, "DOWN");
                     }
                 }
             }
@@ -209,6 +292,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "LEFT";
+                        rebind(i, "LEFT");
                     }
                 }
             }
@@ -218,6 +302,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "RIGHT";
+                        rebind(i, "RIGHT");
                     }
                 }
             }
@@ -230,7 +315,8 @@ void rtype::Client::performAction(Action action) {
             if (_keys.space && !_previousKeys.space) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first && _input_frames_state.at(i).second.size() < 1) {
-                        _input_frames_state.at(i).second += " ";
+                        _input_frames_state.at(i).second = " ";
+                        rebind(i, " ");
                     }
                 }
             }
@@ -288,11 +374,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "a";
-                    }
-                }
-                for (int i = 2; i < 7; i++) {
-                    if (_input_frames_state.at(i).first) {
-                        _input_frames_state.at(i).second = "a";
+                        rebind(i, "a");
                     }
                 }
             }
@@ -305,6 +387,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "b";
+                        rebind(i, "b");
                     }
                 }
 
@@ -318,6 +401,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "c";
+                        rebind(i, "c");
                     }
                 }
             }
@@ -330,6 +414,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "d";
+                        rebind(i, "d");
                     }
                 }
             }
@@ -342,6 +427,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "e";
+                        rebind(i, "e");
                     }
                 }
             }
@@ -354,6 +440,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "f";
+                        rebind(i, "f");
                     }
                 }
             }
@@ -366,6 +453,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "g";
+                        rebind(i, "g");
                     }
                 }
             }
@@ -378,6 +466,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "h";
+                        rebind(i, "h");
                     }
                 }
             }
@@ -390,6 +479,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "i";
+                        rebind(i, "i");
                     }
                 }
             }
@@ -402,6 +492,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "j";
+                        rebind(i, "j");
                     }
                 }
             }
@@ -414,6 +505,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "k";
+                        rebind(i, "k");
                     }
                 }
             }
@@ -426,6 +518,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "l";
+                        rebind(i, "l");
                     }
                 }
             }
@@ -438,6 +531,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "m";
+                        rebind(i, "m");
                     }
                 }
             }
@@ -450,6 +544,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "n";
+                        rebind(i, "n");
                     }
                 }
             }
@@ -462,6 +557,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "o";
+                        rebind(i, "o");
                     }
                 }
             }
@@ -474,6 +570,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "p";
+                        rebind(i, "p");
                     }
                 }
             }
@@ -486,6 +583,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "q";
+                        rebind(i, "q");
                     }
                 }
             }
@@ -498,6 +596,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "r";
+                        rebind(i, "r");
                     }
                 }
             }
@@ -510,6 +609,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "s";
+                        rebind(i, "s");
                     }
                 }
             }
@@ -522,6 +622,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "t";
+                        rebind(i, "t");
                     }
                 }
             }
@@ -534,6 +635,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "u";
+                        rebind(i, "u");
                     }
                 }
             }
@@ -546,6 +648,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "v";
+                        rebind(i, "v");
                     }
                 }
             }
@@ -558,6 +661,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "w";
+                        rebind(i, "w");
                     }
                 }
             }
@@ -570,6 +674,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "x";
+                        rebind(i, "x");
                     }
                 }
             }
@@ -582,6 +687,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "y";
+                        rebind(i, "y");
                     }
                 }
             }
@@ -594,6 +700,7 @@ void rtype::Client::performAction(Action action) {
                 for (int i = 2; i < 7; i++) {
                     if (_input_frames_state.at(i).first) {
                         _input_frames_state.at(i).second = "z";
+                        rebind(i, "z");
                     }
                 }
             }
@@ -746,10 +853,10 @@ KeyBinding defaultKeyBindings() {
         EXIT,      //escapeAction
         EMPTY,      //tabAction
         EMPTY,      //backspaceAction
-        MOVE_LEFT,  //aAction
+        EMPTY,      //aAction
         EMPTY,      //bAction
         EMPTY,      //cAction
-        MOVE_RIGHT, //dAction
+        EMPTY,      //dAction
         EMPTY,      //eAction
         EMPTY,      //fAction
         EMPTY,      //gAction
@@ -764,11 +871,11 @@ KeyBinding defaultKeyBindings() {
         EMPTY,      //pAction
         EMPTY,      //qAction
         EMPTY,      //rAction
-        MOVE_DOWN,  //sAction
+        EMPTY,      //sAction
         EMPTY,      //tAction
         EMPTY,      //uAction
         EMPTY,      //vAction
-        MOVE_UP,    //wAction
+        EMPTY,      //wAction
         EMPTY,      //xAction
         EMPTY,      //yAction
         EMPTY,      //zAction
