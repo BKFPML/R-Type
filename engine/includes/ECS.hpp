@@ -37,7 +37,6 @@ class ECS {
         std::vector<std::unique_ptr<ISystem>> _systems;
         Entity _nextEntityID = 0;
 
-
     public:
 
         /**

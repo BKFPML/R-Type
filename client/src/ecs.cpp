@@ -32,5 +32,5 @@ void rtype::Client::initPlayer()
     _ecs.addComponent<Health>(_players[0], 100);
     _ecs.addComponent<Velocity>(_players[0], {1, 1, 2});
     std::string texture = "player_red";
-    _ecs.addComponent<Sprite>(_players[0], texture);
+    _ecs.addComponent<Sprite>(_players[0], {texture, 34, 34});
 }
