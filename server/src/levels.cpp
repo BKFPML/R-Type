@@ -6,7 +6,6 @@
 
 #include "levels.hpp"
 #include <iostream>
-#include <nlohmann/json.hpp>
 #include <fstream>
 
 using json = nlohmann::json;
@@ -155,6 +154,26 @@ void Levels::loadLevel(const std::string& levelConfig, ECS& ecs) {
         std::cerr << "Error loading level: " << e.what() << std::endl;
     }
     std::cout << "Level loading completed." << std::endl;
+    std::cout << "Entities: " << std::endl;
+    std::vector<ECS::Entity> entities = ecs.getEntities();
+
+    if (entities.empty()) {
+        std::cout << "No entities found." << std::endl;
+    } else {
+        std::cout << "Number of entities: " << entities.size() << std::endl;
+    }
+    for (auto& entity : entities) {
+        std::cout << "Entity: " << entity << std::endl;
+        if (ecs.hasComponent<Health>(entity)) {
+            std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
+        }
+        if (ecs.hasComponent<Rotation>(entity)) {
+            std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
+        }
+        if (ecs.hasComponent<Position>(entity)) {
+            std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << ", " << ecs.getComponent<Position>(entity)->y << std::endl;
+        }
+    }
 }
 
 std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, ECS&)>> Levels::componentFactories = {
