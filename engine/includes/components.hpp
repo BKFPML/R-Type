@@ -114,6 +114,10 @@ struct Player{
     Player(int id) : id(id) {}
 };
 
+struct Npc {
+    //TODO
+};
+
 // *Graphical components
 
 /**
