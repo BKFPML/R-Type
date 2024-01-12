@@ -63,7 +63,6 @@ void Server::check_new_deconnections(std::string data)
  * @param token 
  * @return std::vector<std::string> 
  */
-
 std::vector<std::string> Server::split(const std::string& str, const std::string& delim)
 {
     std::vector<std::string> tokens;
@@ -100,6 +99,7 @@ void Server::parse_data_received(Parser parser)
     }
     server_receive.clear_received_data();
 }
+
 /**
  * @brief Get the Local IP Address object
  * 
@@ -157,7 +157,7 @@ int Server::run()
 int main()
 {
 
-    // Server server = Server();
+    // Server server = Server(0, "0.0.0.0");
     // std::string ip = server.getLocalIPAddress();
     // server = Server(13152, ip);
     // if (server.run() == 84)

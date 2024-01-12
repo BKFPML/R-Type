@@ -11,14 +11,12 @@
 #include "../../engine/includes/network_library/boost_udp.hpp"
 #include "../includes/parser.hpp"
 
-#define UDP_SERVER_PORT 13152
-
 /**
  * @brief Server class
  */
 class Server {
     public:
-        Server(int port = UDP_SERVER_PORT, std::string ip = IPADDRESS) : server_receive(port, ip) {}
+        Server(int port, std::string ip) : server_receive(port, ip) {}
         ~Server() = default;
 
         int run();

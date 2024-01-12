@@ -96,6 +96,24 @@ struct Damage {
     Damage(int damage) : damage(damage) {}
 };
 
+/**
+ * @brief Immunity component
+ * @param frames Number of frames of immunity
+ */
+struct Immunity {
+    int frames;
+    Immunity(int frames) : frames(frames) {}
+};
+
+/**
+ * @brief Player component
+ * @param id ID of the player
+ */
+struct Player{
+    int id;
+    Player(int id) : id(id) {}
+};
+
 struct Npc {
     //TODO
 };

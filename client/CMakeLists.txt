@@ -1,6 +1,6 @@
 # Project Files
-file(GLOB CLIENT_FILES "src/*.cpp")
-file(GLOB EXTERNAL_FILES "external/*.cpp")
+file(GLOB_RECURSE CLIENT_FILES "src/*.cpp")
+file(GLOB_RECURSE EXTERNAL_FILES "external/*.cpp")
 include_directories("./includes")
 
 add_executable(r-type_client ${CLIENT_FILES} ${EXTERNAL_FILES})
@@ -23,7 +23,7 @@ function(embed_file input_file output_header)
 endfunction()
 
 # Find all asset files
-file(GLOB ASSET_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../assets/background/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/sprites/*.gif")
+file(GLOB_RECURSE ASSET_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../assets/background/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/menu/*.png" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/sprites/*.gif" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/fonts/*.otf" "${CMAKE_CURRENT_SOURCE_DIR}/../assets/sounds/*.ogg")
 
 # Create a directory for generated headers
 set(GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated_assets")

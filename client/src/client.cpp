@@ -7,17 +7,31 @@
 #include "client.hpp"
 
 /**
- * @brief Construct a new rtype::Client::Client object
+ * @brief Constructs a new rtype::Client::Client object
  */
-rtype::Client::Client()
-: _running(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>())
+rtype::Client::Client(std::string ip, int port)
+: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50)
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+
+    for (int i = 0; i < 7; i++)
+        _input_frames_state.push_back(std::make_pair(false, ""));
+    _input_frames_state.at(2).second = "UP";
+    _input_frames_state.at(3).second = "DOWN";
+    _input_frames_state.at(4).second = "LEFT";
+    _input_frames_state.at(5).second = "RIGHT";
+    _input_frames_state.at(6).second = " ";
 }
 
 /**
- * @brief Destroy the rtype::Client::Client object
+ * @brief Destroys the rtype::Client::Client object
  */
 rtype::Client::~Client()
 {
@@ -25,58 +39,35 @@ rtype::Client::~Client()
 }
 
 /**
- * @brief Initialize the ECS
- *
- * @return ECS
- */
-ECS rtype::Client::initECS()
-{
-    ECS ecs;
-    ecs.registerComponent<Position>();
-    ecs.registerComponent<Health>();
-    ecs.registerComponent<Velocity>();
-    return ecs;
-}
-
-/**
- * @brief Initialize the player and add it to the ECS
- *
- */
-void rtype::Client::initPlayer()
-{
-    _players.push_back(_ecs.createEntity());
-    _ecs.addComponent<Position>(_players[0], {100, 100});
-    _ecs.addComponent<Health>(_players[0], 100);
-    _ecs.addComponent<Velocity>(_players[0], {1, 1, 2});
-}
-
-/**
- * @brief Run the game loop
+ * @brief Runs the game loop
  *
  * @param sender Network::ISender to send data to the server
  * @param receive Network::Receive to receive data from the server
  * @param port int port to use for the client
  */
-void rtype::Client::gameLoop(ISender& sender, IReceiver& receive, int port)
+void rtype::Client::gameLoop(IReceiver& receive)
 {
-    while (_running) {
-        _graphical->handleEvents(sender);
+    resetKeyBindings();
+    _graphical->playMusic("mainTheme", true);
+
+    while (_isRunning) {
+        std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
+        _keys = keyState.first;
+        _previousKeys = keyState.second;
 
         auto now = std::chrono::system_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count();
 
         if (elapsed > 1000) {
             _start = now;
-            // std::string data = std::to_string(_players[0].getComponent<Position>().x) + " "
-            //                  + std::to_string(_players[0].getComponent<Position>().y) + " "
-            //                  + std::to_string(port);
             std::string data = std::to_string(_ecs.getComponent<Position>(_players[0])->x) + " "
-                             + std::to_string(_ecs.getComponent<Position>(_players[0])->y) + " "
-                             + std::to_string(port);
+                             + std::to_string(_ecs.getComponent<Position>(_players[0])->y);
 
             sender.send(data);
         }
-
-        _graphical->drawWindow();
+        handleInput();
+        sceneManager();
     }
+    _graphical->stopMusic("mainTheme");
+    receive.set_running(false);
 }
