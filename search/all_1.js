@@ -18,5 +18,6 @@ var searchData=
   ['createplayercomponent_18',['createPlayerComponent',['../levels_8cpp.html#a0ba7cf6e6bbcaa8b8591c2a0ac8ba857',1,'levels.cpp']]],
   ['createpositioncomponent_19',['createPositionComponent',['../levels_8cpp.html#ab84ba00ecd26cefaa1a2ef4b33e3b41b',1,'levels.cpp']]],
   ['createrotationcomponent_20',['createRotationComponent',['../levels_8cpp.html#a3063e60cf12b48c04848e885dd055ff2',1,'levels.cpp']]],
-  ['createvelocitycomponent_21',['createVelocityComponent',['../levels_8cpp.html#aae7bd712a1a12d7125abf17bee2dd20e',1,'levels.cpp']]]
+  ['createspritecomponent_21',['createSpriteComponent',['../levels_8cpp.html#a76f5a3a461e49c56ffe3d7eecb0cb6ce',1,'levels.cpp']]],
+  ['createvelocitycomponent_22',['createVelocityComponent',['../levels_8cpp.html#aae7bd712a1a12d7125abf17bee2dd20e',1,'levels.cpp']]]
 ];

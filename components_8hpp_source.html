@@ -156,15 +156,16 @@ $(function() {
 <div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="structSprite.html">  145</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSprite.html">Sprite</a> {</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    std::string texture;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">int</span> width, height;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <a class="code" href="structSprite.html">Sprite</a>(std::string texture, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height) : texture(texture), width(width), height(height) {} </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;};</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="structText.html">  157</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structText.html">Text</a> {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    std::string text;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    std::string font;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keywordtype">int</span> size;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <a class="code" href="structText.html">Text</a>(std::string text, std::string font, <span class="keywordtype">int</span> size) : text(text), font(font), size(size) {}</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;};</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">float</span> scale;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="structSprite.html">Sprite</a>(std::string texture, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keywordtype">float</span> scale) : texture(texture), width(width), height(height), scale(scale) {}</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;};</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="structText.html">  158</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structText.html">Text</a> {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    std::string text;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    std::string font;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">int</span> size;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="structText.html">Text</a>(std::string text, std::string font, <span class="keywordtype">int</span> size) : text(text), font(font), size(size) {}</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;};</div>
 <div class="ttc" id="acomponents_8hpp_html_a6e59176e002c5ff36fde8bdd0cfef506"><div class="ttname"><a href="components_8hpp.html#a6e59176e002c5ff36fde8bdd0cfef506">GraphicalType</a></div><div class="ttdeci">GraphicalType</div><div class="ttdoc">Enum that defines the type of graphical entity Used with the GraphicalType component.</div><div class="ttdef"><b>Definition:</b> components.hpp:127</div></div>
 <div class="ttc" id="acomponents_8hpp_html_a90549f45cfc442187c1d769596107d3e"><div class="ttname"><a href="components_8hpp.html#a90549f45cfc442187c1d769596107d3e">StatusType</a></div><div class="ttdeci">StatusType</div><div class="ttdoc">Enum that defines the status of an entity Used with the Status component.</div><div class="ttdef"><b>Definition:</b> components.hpp:76</div></div>
 <div class="ttc" id="astructAttack_html"><div class="ttname"><a href="structAttack.html">Attack</a></div><div class="ttdoc">Attack component.</div><div class="ttdef"><b>Definition:</b> components.hpp:67</div></div>
@@ -178,7 +179,7 @@ $(function() {
 <div class="ttc" id="astructRotation_html"><div class="ttname"><a href="structRotation.html">Rotation</a></div><div class="ttdoc">Rotation component.</div><div class="ttdef"><b>Definition:</b> components.hpp:49</div></div>
 <div class="ttc" id="astructSprite_html"><div class="ttname"><a href="structSprite.html">Sprite</a></div><div class="ttdoc">Sprite component.</div><div class="ttdef"><b>Definition:</b> components.hpp:145</div></div>
 <div class="ttc" id="astructStatus_html"><div class="ttname"><a href="structStatus.html">Status</a></div><div class="ttdoc">Status component.</div><div class="ttdef"><b>Definition:</b> components.hpp:85</div></div>
-<div class="ttc" id="astructText_html"><div class="ttname"><a href="structText.html">Text</a></div><div class="ttdoc">Text component.</div><div class="ttdef"><b>Definition:</b> components.hpp:157</div></div>
+<div class="ttc" id="astructText_html"><div class="ttname"><a href="structText.html">Text</a></div><div class="ttdoc">Text component.</div><div class="ttdef"><b>Definition:</b> components.hpp:158</div></div>
 <div class="ttc" id="astructVelocity_html"><div class="ttname"><a href="structVelocity.html">Velocity</a></div><div class="ttdoc">Velocity component, normalized.</div><div class="ttdef"><b>Definition:</b> components.hpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
