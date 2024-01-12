@@ -32,57 +32,66 @@ bool check_ip_format(std::string ip) {
     return true;
 }
 
+void rtype::Client::unbind(Action action) {
+    _gameKeyBindings.removeAction(action);
+}
+
 void rtype::Client::rebind(int setting, std::string key)
 {
     Action action;
     switch (setting) {
         case 2:
+            unbind(MOVE_UP);
             action = MOVE_UP;
             break;
         case 3:
+            unbind(MOVE_DOWN);
             action = MOVE_DOWN;
             break;
         case 4:
+            unbind(MOVE_LEFT);
             action = MOVE_LEFT;
             break;
         case 5:
+            unbind(MOVE_RIGHT);
             action = MOVE_RIGHT;
             break;
         case 6:
+            unbind(SHOOT);
             action = SHOOT;
             break;
     }
-    if(key == "a") {_keyBindings.aAction = action;}
-    else if(key == "b") {_keyBindings.bAction = action;}
-    else if(key == "c") {_keyBindings.cAction = action;}
-    else if(key == "d") {_keyBindings.dAction = action;}
-    else if(key == "e") {_keyBindings.eAction = action;}
-    else if(key == "f") {_keyBindings.fAction = action;}
-    else if(key == "g") {_keyBindings.gAction = action;}
-    else if(key == "h") {_keyBindings.hAction = action;}
-    else if(key == "i") {_keyBindings.iAction = action;}
-    else if(key == "j") {_keyBindings.jAction = action;}
-    else if(key == "k") {_keyBindings.kAction = action;}
-    else if(key == "l") {_keyBindings.lAction = action;}
-    else if(key == "m") {_keyBindings.mAction = action;}
-    else if(key == "n") {_keyBindings.nAction = action;}
-    else if(key == "o") {_keyBindings.oAction = action;}
-    else if(key == "p") {_keyBindings.pAction = action;}
-    else if(key == "q") {_keyBindings.qAction = action;}
-    else if(key == "r") {_keyBindings.rAction = action;}
-    else if(key == "s") {_keyBindings.sAction = action;}
-    else if(key == "t") {_keyBindings.tAction = action;}
-    else if(key == "u") {_keyBindings.uAction = action;}
-    else if(key == "v") {_keyBindings.vAction = action;}
-    else if(key == "w") {_keyBindings.wAction = action;}
-    else if(key == "x") {_keyBindings.xAction = action;}
-    else if(key == "y") {_keyBindings.yAction = action;}
-    else if(key == "z") {_keyBindings.zAction = action;}
-    else if(key == "UP") {_keyBindings.upAction = action;}
-    else if(key == "DOWN") {_keyBindings.downAction = action;}
-    else if(key == "LEFT") {_keyBindings.leftAction = action;}
-    else if(key == "RIGHT") {_keyBindings.rightAction = action;}
-    else if(key == " ") {_keyBindings.spaceAction = action;}
+    if(key == "a") {_gameKeyBindings.aAction = action;}
+    else if(key == "b") {_gameKeyBindings.bAction = action;}
+    else if(key == "c") {_gameKeyBindings.cAction = action;}
+    else if(key == "d") {_gameKeyBindings.dAction = action;}
+    else if(key == "e") {_gameKeyBindings.eAction = action;}
+    else if(key == "f") {_gameKeyBindings.fAction = action;}
+    else if(key == "g") {_gameKeyBindings.gAction = action;}
+    else if(key == "h") {_gameKeyBindings.hAction = action;}
+    else if(key == "i") {_gameKeyBindings.iAction = action;}
+    else if(key == "j") {_gameKeyBindings.jAction = action;}
+    else if(key == "k") {_gameKeyBindings.kAction = action;}
+    else if(key == "l") {_gameKeyBindings.lAction = action;}
+    else if(key == "m") {_gameKeyBindings.mAction = action;}
+    else if(key == "n") {_gameKeyBindings.nAction = action;}
+    else if(key == "o") {_gameKeyBindings.oAction = action;}
+    else if(key == "p") {_gameKeyBindings.pAction = action;}
+    else if(key == "q") {_gameKeyBindings.qAction = action;}
+    else if(key == "r") {_gameKeyBindings.rAction = action;}
+    else if(key == "s") {_gameKeyBindings.sAction = action;}
+    else if(key == "t") {_gameKeyBindings.tAction = action;}
+    else if(key == "u") {_gameKeyBindings.uAction = action;}
+    else if(key == "v") {_gameKeyBindings.vAction = action;}
+    else if(key == "w") {_gameKeyBindings.wAction = action;}
+    else if(key == "x") {_gameKeyBindings.xAction = action;}
+    else if(key == "y") {_gameKeyBindings.yAction = action;}
+    else if(key == "z") {_gameKeyBindings.zAction = action;}
+    else if(key == "UP") {_gameKeyBindings.upAction = action;}
+    else if(key == "DOWN") {_gameKeyBindings.downAction = action;}
+    else if(key == "LEFT") {_gameKeyBindings.leftAction = action;}
+    else if(key == "RIGHT") {_gameKeyBindings.rightAction = action;}
+    else if(key == " ") {_gameKeyBindings.spaceAction = action;}
 }
 
 void rtype::Client::doMovement(Action direction)
@@ -90,24 +99,32 @@ void rtype::Client::doMovement(Action direction)
     ECS::Entity player = _players[0];
     switch (direction) {
         case MOVE_UP:
-            _ecs.updateComponent<Position>(player, [](Position& pos) {
-                pos.y -= 1;
-            });
+            if (_ecs.getComponent<Position>(player)->y > 90) {
+                _ecs.updateComponent<Position>(player, [](Position& pos) {
+                    pos.y -= 1;
+                });
+            }
             break;
         case MOVE_DOWN:
-            _ecs.updateComponent<Position>(player, [](Position& pos) {
-                pos.y += 1;
-            });
+            if (_ecs.getComponent<Position>(player)->y < 1080) {
+                _ecs.updateComponent<Position>(player, [](Position& pos) {
+                    pos.y += 1;
+                });
+            }
             break;
         case MOVE_LEFT:
-            _ecs.updateComponent<Position>(player, [](Position& pos) {
-                pos.x -= 1;
-            });
+            if (_ecs.getComponent<Position>(player)->x > 84) {
+                _ecs.updateComponent<Position>(player, [](Position& pos) {
+                    pos.x -= 1;
+                });
+            }
             break;
         case MOVE_RIGHT:
-            _ecs.updateComponent<Position>(player, [](Position& pos) {
-                pos.x += 1;
-            });
+            if (_ecs.getComponent<Position>(player)->x < 1920) {
+                _ecs.updateComponent<Position>(player, [](Position& pos) {
+                    pos.x += 1;
+                });
+            }
             break;
         default:
             break;
@@ -353,6 +370,9 @@ void rtype::Client::performAction(Action action) {
                     _currentScene = CONNECTION;
                     sender.send("quit " + _received_ip + ":" + std::to_string(_received_port));
                     sender = UDPBoostNetwork::UDPSender(0, "1.1.1.1");
+                }
+                else if (_currentScene == GAME) {
+                    _currentScene = SELECT_GAME;
                 }
             }
             break;
@@ -841,16 +861,16 @@ KeyBinding defaultKeyBindings() {
     return {
         CLICK_PRESS,      // lClickPressAction
         CLICK_PRESS,      // rClickPressAction
-        MOVE_UP,    // upAction
-        MOVE_DOWN,  // downAction
-        MOVE_LEFT,  // leftAction
-        MOVE_RIGHT, // rightAction
-        SHOOT,      // spaceAction
+        EMPTY,    // upAction
+        EMPTY,  // downAction
+        EMPTY,  // leftAction
+        EMPTY, // rightAction
+        EMPTY,      // spaceAction
         EMPTY,      //shiftAction
         EMPTY,      //ctrlAction
         EMPTY,      //altAction
-        SHOOT,      //enterAction
-        EXIT,      //escapeAction
+        EMPTY,      //enterAction
+        GOBACK,      //escapeAction
         EMPTY,      //tabAction
         EMPTY,      //backspaceAction
         EMPTY,      //aAction
@@ -1035,6 +1055,8 @@ void rtype::Client::handleInput() {
         keyBindings = connectionKeyBindings();
     else if (_currentScene == SETTINGS)
         keyBindings = settingsKeyBindings();
+    else if (_currentScene == GAME)
+        keyBindings = _gameKeyBindings;
     else
         keyBindings = _keyBindings;
 

@@ -15,7 +15,6 @@ void rtype::Client::drawSettings()
     _graphical->clear();
     _graphical->drawSprite("spaceGarage", 0, 0, 1, 0, 0, 0);
     _graphical->drawText("Settings", 760, 100, 50);
-    _graphical->drawText("Forwards", 350, 300, 30);
     for (int i = 2; i < 7; i++) {
         if (_input_frames_state.at(i).first == true) {
             _graphical->drawSprite("letter_box", 660, 140 + i * 100, 0.6, 0, 90, 4);
@@ -26,7 +25,8 @@ void rtype::Client::drawSettings()
             _graphical->drawText(_input_frames_state.at(i).second, 675, 100 + i * 100, 30);
     }
 
-    _graphical->drawText("Backwards", 350, 400, 30);
+    _graphical->drawText("Up", 350, 300, 30);
+    _graphical->drawText("Down", 350, 400, 30);
     _graphical->drawText("Left", 350, 500, 30);
     _graphical->drawText("Right", 350, 600, 30);
     _graphical->drawText("Shoot", 350, 700, 30);

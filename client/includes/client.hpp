@@ -47,6 +47,7 @@ namespace rtype
             void drawEntities();
             void doMovement(Action direction);
             void rebind(int setting, std::string key);
+            void unbind(Action action);
 
         private:
             bool _isRunning;
@@ -59,6 +60,7 @@ namespace rtype
             std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _currentScene;
             KeyBinding _keyBindings;
+            KeyBinding _gameKeyBindings;
             KeyState _keys;
             KeyState _previousKeys;
             std::vector<std::pair<bool, std::string>> _input_frames_state;

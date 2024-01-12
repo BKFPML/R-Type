@@ -23,11 +23,19 @@ rtype::Client::Client(std::string ip, int port)
 
     for (int i = 0; i < 7; i++)
         _input_frames_state.push_back(std::make_pair(false, ""));
+
     _input_frames_state.at(2).second = "UP";
     _input_frames_state.at(3).second = "DOWN";
     _input_frames_state.at(4).second = "LEFT";
     _input_frames_state.at(5).second = "RIGHT";
     _input_frames_state.at(6).second = " ";
+    resetKeyBindings();
+    _gameKeyBindings = _keyBindings;
+    _gameKeyBindings.upAction = MOVE_UP;
+    _gameKeyBindings.downAction = MOVE_DOWN;
+    _gameKeyBindings.leftAction = MOVE_LEFT;
+    _gameKeyBindings.rightAction = MOVE_RIGHT;
+    _gameKeyBindings.spaceAction = SHOOT;
 }
 
 /**
@@ -47,7 +55,6 @@ rtype::Client::~Client()
  */
 void rtype::Client::gameLoop(IReceiver& receive)
 {
-    resetKeyBindings();
     _graphical->playMusic("mainTheme", true);
 
     while (_isRunning) {
