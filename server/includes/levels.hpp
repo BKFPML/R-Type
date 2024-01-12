@@ -7,7 +7,7 @@
 #pragma once
 
 #include "../../engine/includes/ECS.hpp"
-#include "../../engine/includes/components.hpp"
+
 #include "parser.hpp"
 #include <fstream>
 #include <functional>
