@@ -33,7 +33,7 @@ namespace rtype
             ECS initECS();
             void initPlayer();
             void gameLoop(IReceiver& receive);
-            void performAction(Action action);
+            void performAction(Action action, bool performAction);
             void sceneManager();
             void drawMainMenu();
             void drawConnection();
@@ -56,6 +56,7 @@ namespace rtype
             std::unique_ptr<IGraphical> _graphical;
             std::chrono::system_clock::time_point _start;
             std::chrono::system_clock::time_point _drawClock;
+            std::chrono::system_clock::time_point _start_bind;
             std::vector<ECS::Entity> _players;
             std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _currentScene;

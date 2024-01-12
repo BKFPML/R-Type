@@ -10,7 +10,7 @@
  * @brief Constructs a new rtype::Client::Client object
  */
 rtype::Client::Client(std::string ip, int port)
-: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50)
+: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50), _start_bind(std::chrono::system_clock::now())
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
@@ -58,21 +58,18 @@ void rtype::Client::gameLoop(IReceiver& receive)
     _graphical->playMusic("mainTheme", true);
 
     while (_isRunning) {
+        auto now = std::chrono::system_clock::now();
         std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
         _keys = keyState.first;
         _previousKeys = keyState.second;
-
-        auto now = std::chrono::system_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count();
-
-        if (elapsed > 1000) {
+        handleInput();
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 1000) {
             _start = now;
             std::string data = std::to_string(_ecs.getComponent<Position>(_players[0])->x) + " "
                              + std::to_string(_ecs.getComponent<Position>(_players[0])->y);
 
             sender.send(data);
         }
-        handleInput();
         sceneManager();
     }
     _graphical->stopMusic("mainTheme");

@@ -101,28 +101,28 @@ void rtype::Client::doMovement(Action direction)
         case MOVE_UP:
             if (_ecs.getComponent<Position>(player)->y > 90) {
                 _ecs.updateComponent<Position>(player, [](Position& pos) {
-                    pos.y -= 1;
+                    pos.y -= 5;
                 });
             }
             break;
         case MOVE_DOWN:
             if (_ecs.getComponent<Position>(player)->y < 1080) {
                 _ecs.updateComponent<Position>(player, [](Position& pos) {
-                    pos.y += 1;
+                    pos.y += 5;
                 });
             }
             break;
         case MOVE_LEFT:
             if (_ecs.getComponent<Position>(player)->x > 84) {
                 _ecs.updateComponent<Position>(player, [](Position& pos) {
-                    pos.x -= 1;
+                    pos.x -= 5;
                 });
             }
             break;
         case MOVE_RIGHT:
             if (_ecs.getComponent<Position>(player)->x < 1920) {
                 _ecs.updateComponent<Position>(player, [](Position& pos) {
-                    pos.x += 1;
+                    pos.x += 5;
                 });
             }
             break;
@@ -136,21 +136,29 @@ void rtype::Client::doMovement(Action direction)
  * 
  * @param action 
  */
-void rtype::Client::performAction(Action action) {
+void rtype::Client::performAction(Action action, bool game_bind_pressed) {
     switch (action) {
         case EMPTY:
             break;
         case MOVE_UP:
-            doMovement(MOVE_UP);
+            if (game_bind_pressed) {
+                doMovement(MOVE_UP);
+            }
             break;
         case MOVE_DOWN:
-            doMovement(MOVE_DOWN);
+            if (game_bind_pressed) {
+                doMovement(MOVE_DOWN);
+            }
             break;
         case MOVE_LEFT:
-            doMovement(MOVE_LEFT);
+            if (game_bind_pressed) {
+                doMovement(MOVE_LEFT);
+            }
             break;
         case MOVE_RIGHT:
-            doMovement(MOVE_RIGHT);
+            if (game_bind_pressed) {
+                doMovement(MOVE_RIGHT);
+            }
             break;
         case CLICK_PRESS:
             if (_keys.mouse.left && !_previousKeys.mouse.left) {
@@ -326,7 +334,9 @@ void rtype::Client::performAction(Action action) {
             break;
 
         case SHOOT:
-            std::cout << "Shoot" << std::endl;
+            if (game_bind_pressed) {
+                std::cout << "Shoot" << std::endl;
+            }
             break;
         case SPACE:
             if (_keys.space && !_previousKeys.space) {
@@ -1059,56 +1069,60 @@ void rtype::Client::handleInput() {
         keyBindings = _gameKeyBindings;
     else
         keyBindings = _keyBindings;
+    
+    auto now = std::chrono::system_clock::now();
+    bool isTimeToPerformAction = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start_bind).count() > 10;
 
-    if (keys.mouse.left) performAction(keyBindings.lClickPressAction);
-    if (keys.mouse.right) performAction(keyBindings.rClickPressAction);
-    if (keys.up) performAction(keyBindings.upAction);
-    if (keys.down) performAction(keyBindings.downAction);
-    if (keys.left) performAction(keyBindings.leftAction);
-    if (keys.right) performAction(keyBindings.rightAction);
-    if (keys.space) performAction(keyBindings.spaceAction);
-    if (keys.shift) performAction(keyBindings.shiftAction);
-    if (keys.ctrl) performAction(keyBindings.ctrlAction);
-    if (keys.alt) performAction(keyBindings.altAction);
-    if (keys.enter) performAction(keyBindings.enterAction);
-    if (keys.escape) performAction(keyBindings.escapeAction);
-    if (keys.tab) performAction(keyBindings.tabAction);
-    if (keys.backspace) performAction(keyBindings.backspaceAction);
-    if (keys.a) performAction(keyBindings.aAction);
-    if (keys.b) performAction(keyBindings.bAction);
-    if (keys.c) performAction(keyBindings.cAction);
-    if (keys.d) performAction(keyBindings.dAction);
-    if (keys.e) performAction(keyBindings.eAction);
-    if (keys.f) performAction(keyBindings.fAction);
-    if (keys.g) performAction(keyBindings.gAction);
-    if (keys.h) performAction(keyBindings.hAction);
-    if (keys.i) performAction(keyBindings.iAction);
-    if (keys.j) performAction(keyBindings.jAction);
-    if (keys.k) performAction(keyBindings.kAction);
-    if (keys.l) performAction(keyBindings.lAction);
-    if (keys.m) performAction(keyBindings.mAction);
-    if (keys.n) performAction(keyBindings.nAction);
-    if (keys.o) performAction(keyBindings.oAction);
-    if (keys.p) performAction(keyBindings.pAction);
-    if (keys.q) performAction(keyBindings.qAction);
-    if (keys.r) performAction(keyBindings.rAction);
-    if (keys.s) performAction(keyBindings.sAction);
-    if (keys.t) performAction(keyBindings.tAction);
-    if (keys.u) performAction(keyBindings.uAction);
-    if (keys.v) performAction(keyBindings.vAction);
-    if (keys.w) performAction(keyBindings.wAction);
-    if (keys.x) performAction(keyBindings.xAction);
-    if (keys.y) performAction(keyBindings.yAction);
-    if (keys.z) performAction(keyBindings.zAction);
-    if (keys.dot) performAction(keyBindings.dotAction);
-    if (keys.zero) performAction(keyBindings.zeroAction);
-    if (keys.one) performAction(keyBindings.oneAction);
-    if (keys.two) performAction(keyBindings.twoAction);
-    if (keys.three) performAction(keyBindings.threeAction);
-    if (keys.four) performAction(keyBindings.fourAction);
-    if (keys.five) performAction(keyBindings.fiveAction);
-    if (keys.six) performAction(keyBindings.sixAction);
-    if (keys.seven) performAction(keyBindings.sevenAction);
-    if (keys.eight) performAction(keyBindings.eightAction);
-    if (keys.nine) performAction(keyBindings.nineAction);
+    if (keys.mouse.left) performAction(keyBindings.lClickPressAction, isTimeToPerformAction);
+    if (keys.mouse.right) performAction(keyBindings.rClickPressAction, isTimeToPerformAction);
+    if (keys.up) performAction(keyBindings.upAction, isTimeToPerformAction);
+    if (keys.down) performAction(keyBindings.downAction, isTimeToPerformAction);
+    if (keys.left) performAction(keyBindings.leftAction, isTimeToPerformAction);
+    if (keys.right) performAction(keyBindings.rightAction, isTimeToPerformAction);
+    if (keys.space) performAction(keyBindings.spaceAction, isTimeToPerformAction);
+    if (keys.shift) performAction(keyBindings.shiftAction, isTimeToPerformAction);
+    if (keys.ctrl) performAction(keyBindings.ctrlAction, isTimeToPerformAction);
+    if (keys.alt) performAction(keyBindings.altAction, isTimeToPerformAction);
+    if (keys.enter) performAction(keyBindings.enterAction, isTimeToPerformAction);
+    if (keys.escape) performAction(keyBindings.escapeAction, isTimeToPerformAction);
+    if (keys.tab) performAction(keyBindings.tabAction, isTimeToPerformAction);
+    if (keys.backspace) performAction(keyBindings.backspaceAction, isTimeToPerformAction);
+    if (keys.a) performAction(keyBindings.aAction, isTimeToPerformAction);
+    if (keys.b) performAction(keyBindings.bAction, isTimeToPerformAction);
+    if (keys.c) performAction(keyBindings.cAction, isTimeToPerformAction);
+    if (keys.d) performAction(keyBindings.dAction, isTimeToPerformAction);
+    if (keys.e) performAction(keyBindings.eAction, isTimeToPerformAction);
+    if (keys.f) performAction(keyBindings.fAction, isTimeToPerformAction);
+    if (keys.g) performAction(keyBindings.gAction, isTimeToPerformAction);
+    if (keys.h) performAction(keyBindings.hAction, isTimeToPerformAction);
+    if (keys.i) performAction(keyBindings.iAction, isTimeToPerformAction);
+    if (keys.j) performAction(keyBindings.jAction, isTimeToPerformAction);
+    if (keys.k) performAction(keyBindings.kAction, isTimeToPerformAction);
+    if (keys.l) performAction(keyBindings.lAction, isTimeToPerformAction);
+    if (keys.m) performAction(keyBindings.mAction, isTimeToPerformAction);
+    if (keys.n) performAction(keyBindings.nAction, isTimeToPerformAction);
+    if (keys.o) performAction(keyBindings.oAction, isTimeToPerformAction);
+    if (keys.p) performAction(keyBindings.pAction, isTimeToPerformAction);
+    if (keys.q) performAction(keyBindings.qAction, isTimeToPerformAction);
+    if (keys.r) performAction(keyBindings.rAction, isTimeToPerformAction);
+    if (keys.s) performAction(keyBindings.sAction, isTimeToPerformAction);
+    if (keys.t) performAction(keyBindings.tAction, isTimeToPerformAction);
+    if (keys.u) performAction(keyBindings.uAction, isTimeToPerformAction);
+    if (keys.v) performAction(keyBindings.vAction, isTimeToPerformAction);
+    if (keys.w) performAction(keyBindings.wAction, isTimeToPerformAction);
+    if (keys.x) performAction(keyBindings.xAction, isTimeToPerformAction);
+    if (keys.y) performAction(keyBindings.yAction, isTimeToPerformAction);
+    if (keys.z) performAction(keyBindings.zAction, isTimeToPerformAction);
+    if (keys.dot) performAction(keyBindings.dotAction, isTimeToPerformAction);
+    if (keys.zero) performAction(keyBindings.zeroAction, isTimeToPerformAction);
+    if (keys.one) performAction(keyBindings.oneAction, isTimeToPerformAction);
+    if (keys.two) performAction(keyBindings.twoAction, isTimeToPerformAction);
+    if (keys.three) performAction(keyBindings.threeAction, isTimeToPerformAction);
+    if (keys.four) performAction(keyBindings.fourAction, isTimeToPerformAction);
+    if (keys.five) performAction(keyBindings.fiveAction, isTimeToPerformAction);
+    if (keys.six) performAction(keyBindings.sixAction, isTimeToPerformAction);
+    if (keys.seven) performAction(keyBindings.sevenAction, isTimeToPerformAction);
+    if (keys.eight) performAction(keyBindings.eightAction, isTimeToPerformAction);
+    if (keys.nine) performAction(keyBindings.nineAction, isTimeToPerformAction);
+    if (isTimeToPerformAction) _start_bind = std::chrono::system_clock::now();
 }
