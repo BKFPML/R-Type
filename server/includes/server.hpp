@@ -10,13 +10,22 @@
 #include <chrono>
 #include "../../engine/includes/network_library/boost_udp.hpp"
 #include "../includes/parser.hpp"
+#include "../../engine/includes/ECS.hpp"
 
 /**
  * @brief Server class
  */
 class Server {
     public:
-        Server(int port, std::string ip) : server_receive(port, ip) {}
+        Server(int port) : server_receive(port), _ecs(ECS()) {
+            _ecs.registerComponent<Position>();
+            _ecs.registerComponent<Rotation>();
+            _ecs.registerComponent<Velocity>();
+            _ecs.registerComponent<Health>();
+            _ecs.registerComponent<Player>();
+            _ecs.registerComponent<Npc>();
+            _ecs.registerComponent<Sprite>();
+        }
         ~Server() = default;
 
         int run();
@@ -29,4 +38,5 @@ class Server {
     private:
         UDPBoostNetwork::UDPReceiver server_receive;
         std::vector<UDPBoostNetwork::UDPSender> clients_send;
+        ECS _ecs;
 };
