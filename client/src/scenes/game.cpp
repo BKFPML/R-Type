@@ -25,31 +25,31 @@ void rtype::Client::drawGame()
  */
 void rtype::Client::drawParallax()
 {
-    _parallaxPos[0].first -= 1;
-    _parallaxPos[1].first -= 1;
-    _parallaxPos[2].first -= 2;
-    _parallaxPos[3].first -= 2;
-    _parallaxPos[4].first -= 3;
-    _parallaxPos[5].first -= 3;
+    _parallaxPos.at(0).first -= 1;
+    _parallaxPos.at(1).first -= 1;
+    _parallaxPos.at(2).first -= 2;
+    _parallaxPos.at(3).first -= 2;
+    _parallaxPos.at(4).first -= 3;
+    _parallaxPos.at(5).first -= 3;
 
-    if (_parallaxPos[0].first <= -WINDOW_WIDTH)
-        _parallaxPos[0].first = WINDOW_WIDTH;
-    if (_parallaxPos[1].first <= -WINDOW_WIDTH)
-        _parallaxPos[1].first = WINDOW_WIDTH;
-    if (_parallaxPos[2].first <= -WINDOW_WIDTH)
-        _parallaxPos[2].first = WINDOW_WIDTH;
-    if (_parallaxPos[3].first <= -WINDOW_WIDTH)
-        _parallaxPos[3].first = WINDOW_WIDTH;
-    if (_parallaxPos[4].first <= -WINDOW_WIDTH)
-        _parallaxPos[4].first = WINDOW_WIDTH;
-    if (_parallaxPos[5].first <= -WINDOW_WIDTH)
-        _parallaxPos[5].first = WINDOW_WIDTH;
+    if (_parallaxPos.at(0).first <= -WINDOW_WIDTH)
+        _parallaxPos.at(0).first = WINDOW_WIDTH;
+    if (_parallaxPos.at(1).first <= -WINDOW_WIDTH)
+        _parallaxPos.at(1).first = WINDOW_WIDTH;
+    if (_parallaxPos.at(2).first <= -WINDOW_WIDTH)
+        _parallaxPos.at(2).first = WINDOW_WIDTH;
+    if (_parallaxPos.at(3).first <= -WINDOW_WIDTH)
+        _parallaxPos.at(3).first = WINDOW_WIDTH;
+    if (_parallaxPos.at(4).first <= -WINDOW_WIDTH)
+        _parallaxPos.at(4).first = WINDOW_WIDTH;
+    if (_parallaxPos.at(5).first <= -WINDOW_WIDTH)
+        _parallaxPos.at(5).first = WINDOW_WIDTH;
         
 
-    _graphical->drawSprite("parallax100", _parallaxPos[0].first, _parallaxPos[0].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax100", _parallaxPos[1].first, _parallaxPos[1].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax80", _parallaxPos[2].first, _parallaxPos[2].second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax80", _parallaxPos[3].first, _parallaxPos[3].second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax60", _parallaxPos[4].first, _parallaxPos[4].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax60", _parallaxPos[5].first, _parallaxPos[5].second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax100", _parallaxPos.at(0).first, _parallaxPos.at(0).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax100", _parallaxPos.at(1).first, _parallaxPos.at(1).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax80", _parallaxPos.at(2).first, _parallaxPos.at(2).second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax80", _parallaxPos.at(3).first, _parallaxPos.at(3).second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax60", _parallaxPos.at(4).first, _parallaxPos.at(4).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax60", _parallaxPos.at(5).first, _parallaxPos.at(5).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
 }

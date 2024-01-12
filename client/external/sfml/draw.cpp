@@ -72,3 +72,15 @@ void rtype::SFML::stopMusic(std::string music)
         }
     }
 }
+
+/**
+ * @brief Sets the volume of the music
+ * 
+ * @param volume int volume of the music
+ */
+void rtype::SFML::setVolume(int volume)
+{
+    for (auto& m : musics) {
+        m.second->setVolume(volume);
+    }
+}
