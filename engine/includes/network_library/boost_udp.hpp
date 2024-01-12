@@ -43,6 +43,11 @@ public:
 
         }
 
+        /**
+         * @brief Get the port object
+         * 
+         * @return int 
+         */
         std::string getLocalIPAddress() {
             try {
                 boost::asio::io_service netService;
@@ -117,18 +122,21 @@ public:
             boost::asio::ip::udp::socket socket(io_context, receiver_endpoint);
 
             asyncReceive(socket, recv_buffer);
-            
+
             while (_isRunning) {
                 io_context.poll();  // Process asynchronous operations without blocking
             }
 
             if (socket.is_open()) {
                 socket.close();
-    }
+            }
         }
-
         
-
+        /**
+         * @brief Get the ip object
+         * 
+         * @return int 
+         */
         std::string getLocalIPAddress() {
             try {
                 boost::asio::io_service netService;
@@ -257,7 +265,12 @@ public:
         std::vector<std::string> received_data;
         boost::asio::ip::udp::endpoint receiver_endpoint;  // Declaration here
 
-
+        /**
+         * @brief Asynchronous receive
+         * 
+         * @param socket 
+         * @param recv_buffer 
+         */
         void asyncReceive(boost::asio::ip::udp::socket& socket, boost::array<char, 1024>& recv_buffer) {
             std::cout << "Listening on port: " << _udp_port << std::endl;
             if (!_isRunning) {

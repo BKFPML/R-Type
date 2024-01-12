@@ -33,7 +33,7 @@ namespace rtype
             ECS initECS();
             void initPlayer();
             void gameLoop(IReceiver& receive);
-            void performAction(Action action);
+            void performAction(Action action, bool performAction);
             void sceneManager();
             void drawMainMenu();
             void drawConnection();
@@ -47,18 +47,21 @@ namespace rtype
             void drawEntities();
             void doMovement(Action direction);
             void rebind(int setting, std::string key);
+            void unbind(Action action);
 
         private:
             bool _isRunning;
             int fps;
             ECS _ecs;
             std::unique_ptr<IGraphical> _graphical;
-            std::chrono::_V2::system_clock::time_point _start;
-            std::chrono::_V2::system_clock::time_point _drawClock;
+            std::chrono::system_clock::time_point _start;
+            std::chrono::system_clock::time_point _drawClock;
+            std::chrono::system_clock::time_point _start_bind;
             std::vector<ECS::Entity> _players;
             std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _currentScene;
             KeyBinding _keyBindings;
+            KeyBinding _gameKeyBindings;
             KeyState _keys;
             KeyState _previousKeys;
             std::vector<std::pair<bool, std::string>> _input_frames_state;

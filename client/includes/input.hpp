@@ -25,7 +25,7 @@ enum Action{
     SHOOT,
     EXIT,
     GOBACK,
-    DELETE,
+    DEL,
     SPACE,
     A,
     B,
@@ -122,6 +122,71 @@ struct KeyBinding {
     Action sevenAction;
     Action eightAction;
     Action nineAction;
+
+    void removeAction(Action& actionToRemove) {
+        if (upAction == actionToRemove)
+            upAction = EMPTY;
+        if (downAction == actionToRemove)
+            downAction = EMPTY;
+        if (leftAction == actionToRemove)
+            leftAction = EMPTY;
+        if (rightAction == actionToRemove)
+            rightAction = EMPTY;
+        if (spaceAction == actionToRemove)
+            spaceAction = EMPTY;
+        if (aAction == actionToRemove)
+            aAction = EMPTY;
+        if (bAction == actionToRemove)
+            bAction = EMPTY;
+        if (cAction == actionToRemove)
+            cAction = EMPTY;
+        if (dAction == actionToRemove)
+            dAction = EMPTY;
+        if (eAction == actionToRemove)
+            eAction = EMPTY;
+        if (fAction == actionToRemove)
+            fAction = EMPTY;
+        if (gAction == actionToRemove)
+            gAction = EMPTY;
+        if (hAction == actionToRemove)
+            hAction = EMPTY;
+        if (iAction == actionToRemove)
+            iAction = EMPTY;
+        if (jAction == actionToRemove)
+            jAction = EMPTY;
+        if (kAction == actionToRemove)
+            kAction = EMPTY;
+        if (lAction == actionToRemove)
+            lAction = EMPTY;
+        if (mAction == actionToRemove)
+            mAction = EMPTY;
+        if (nAction == actionToRemove)
+            nAction = EMPTY;
+        if (oAction == actionToRemove)
+            oAction = EMPTY;
+        if (pAction == actionToRemove)
+            pAction = EMPTY;
+        if (qAction == actionToRemove)
+            qAction = EMPTY;
+        if (rAction == actionToRemove)
+            rAction = EMPTY;
+        if (sAction == actionToRemove)
+            sAction = EMPTY;
+        if (tAction == actionToRemove)
+            tAction = EMPTY;
+        if (uAction == actionToRemove)
+            uAction = EMPTY;
+        if (vAction == actionToRemove)
+            vAction = EMPTY;
+        if (wAction == actionToRemove)
+            wAction = EMPTY;
+        if (xAction == actionToRemove)
+            xAction = EMPTY;
+        if (yAction == actionToRemove)
+            yAction = EMPTY;
+        if (zAction == actionToRemove)
+            zAction = EMPTY;
+    }
 };
 
 struct MouseState {
