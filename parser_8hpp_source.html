@@ -121,12 +121,17 @@ $(function() {
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classParser.html">   58</a></span>&#160;<span class="keyword">class </span><a class="code" href="classParser.html">Parser</a> {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classParser.html">Parser</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::unordered_map&lt;std::string, std::string&gt; parseMessage(<span class="keyword">const</span> std::string&amp; message);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
-<div class="ttc" id="aclassParser_html"><div class="ttname"><a href="classParser.html">Parser</a></div><div class="ttdef"><b>Definition:</b> parser.hpp:58</div></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classParser.html">   64</a></span>&#160;<span class="keyword">class </span><a class="code" href="classParser.html">Parser</a> {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="classParser.html">Parser</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::unordered_map&lt;std::string, std::string&gt; <a class="code" href="classParser.html#af13b10be4a6f2a581ad1fb6c90414dee">parseMessage</a>(<span class="keyword">const</span> std::string&amp; message);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    std::string <a class="code" href="classParser.html#a7d5217b408bbc4b71aedc2b5749ee2fc">getPrimValue</a>(<span class="keyword">const</span> std::unordered_map&lt;std::string, std::string&gt;&amp; data, <span class="keyword">const</span> std::string&amp; key);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::string <a class="code" href="classParser.html#aa0d06aba053f57bcb1d52c4f37cff21c">getNestValue</a>(<span class="keyword">const</span> std::unordered_map&lt;std::string, std::string&gt;&amp; data, <span class="keyword">const</span> std::string&amp; key, <span class="keyword">const</span> std::string&amp; nestKey);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="ttc" id="aclassParser_html"><div class="ttname"><a href="classParser.html">Parser</a></div><div class="ttdoc">Parser class.</div><div class="ttdef"><b>Definition:</b> parser.hpp:64</div></div>
+<div class="ttc" id="aclassParser_html_a7d5217b408bbc4b71aedc2b5749ee2fc"><div class="ttname"><a href="classParser.html#a7d5217b408bbc4b71aedc2b5749ee2fc">Parser::getPrimValue</a></div><div class="ttdeci">std::string getPrimValue(const std::unordered_map&lt; std::string, std::string &gt; &amp;data, const std::string &amp;key)</div><div class="ttdoc">Extract value from a primitive pair.</div><div class="ttdef"><b>Definition:</b> parser.cpp:46</div></div>
+<div class="ttc" id="aclassParser_html_aa0d06aba053f57bcb1d52c4f37cff21c"><div class="ttname"><a href="classParser.html#aa0d06aba053f57bcb1d52c4f37cff21c">Parser::getNestValue</a></div><div class="ttdeci">std::string getNestValue(const std::unordered_map&lt; std::string, std::string &gt; &amp;data, const std::string &amp;key, const std::string &amp;nestKey)</div><div class="ttdoc">Extract value from a nested pair.</div><div class="ttdef"><b>Definition:</b> parser.cpp:64</div></div>
+<div class="ttc" id="aclassParser_html_af13b10be4a6f2a581ad1fb6c90414dee"><div class="ttname"><a href="classParser.html#af13b10be4a6f2a581ad1fb6c90414dee">Parser::parseMessage</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; parseMessage(const std::string &amp;message)</div><div class="ttdoc">Main function of the parser for single messages.</div><div class="ttdef"><b>Definition:</b> parser.cpp:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

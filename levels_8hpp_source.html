@@ -79,14 +79,16 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classLevels.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLevels.html">Levels</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">static</span> std::shared_ptr&lt;ECS&gt; loadLevel(<span class="keyword">const</span> std::string&amp; levelConfig, std::shared_ptr&lt;ECS&gt; ecs);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">static</span> std::unordered_map&lt;std::string, std::function&lt;void(ECS::Entity, <span class="keyword">const</span> std::unordered_map&lt;std::string, std::string&gt;&amp;, std::shared_ptr&lt;ECS&gt;&amp;)&gt;&gt; componentFactories;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        std::vector&lt;ECS::Entity&gt; temp;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
-<div class="ttc" id="aclassLevels_html"><div class="ttname"><a href="classLevels.html">Levels</a></div><div class="ttdef"><b>Definition:</b> levels.hpp:16</div></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classLevels.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLevels.html">Levels</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">static</span> std::shared_ptr&lt;ECS&gt; <a class="code" href="classLevels.html#ac05d7565b21a63818b488e3dffdd772a">loadLevel</a>(<span class="keyword">const</span> std::string&amp; levelConfig, std::shared_ptr&lt;ECS&gt; ecs);</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classLevels.html#aff299d6d1ce2b5b15e5afe242e129ef2">   23</a></span>&#160;        <span class="keyword">static</span> std::unordered_map&lt;std::string, std::function&lt;void(ECS::Entity, <span class="keyword">const</span> std::unordered_map&lt;std::string, std::string&gt;&amp;, std::shared_ptr&lt;ECS&gt;&amp;)&gt;&gt; <a class="code" href="classLevels.html#aff299d6d1ce2b5b15e5afe242e129ef2">componentFactories</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        std::vector&lt;ECS::Entity&gt; temp;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
+<div class="ttc" id="aclassLevels_html"><div class="ttname"><a href="classLevels.html">Levels</a></div><div class="ttdoc">The Levels class is used to load levels from JSON files.</div><div class="ttdef"><b>Definition:</b> levels.hpp:20</div></div>
+<div class="ttc" id="aclassLevels_html_ac05d7565b21a63818b488e3dffdd772a"><div class="ttname"><a href="classLevels.html#ac05d7565b21a63818b488e3dffdd772a">Levels::loadLevel</a></div><div class="ttdeci">static std::shared_ptr&lt; ECS &gt; loadLevel(const std::string &amp;levelConfig, std::shared_ptr&lt; ECS &gt; ecs)</div><div class="ttdoc">Loads a level from a JSON file.</div><div class="ttdef"><b>Definition:</b> levels.cpp:142</div></div>
+<div class="ttc" id="aclassLevels_html_aff299d6d1ce2b5b15e5afe242e129ef2"><div class="ttname"><a href="classLevels.html#aff299d6d1ce2b5b15e5afe242e129ef2">Levels::componentFactories</a></div><div class="ttdeci">static std::unordered_map&lt; std::string, std::function&lt; void(ECS::Entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;, std::shared_ptr&lt; ECS &gt; &amp;)&gt; &gt; componentFactories</div><div class="ttdoc">Component factories.</div><div class="ttdef"><b>Definition:</b> levels.hpp:23</div></div>
 <div class="ttc" id="aparser_8hpp_html"><div class="ttname"><a href="parser_8hpp.html">parser.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

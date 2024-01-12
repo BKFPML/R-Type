@@ -68,13 +68,138 @@ $(function() {
 <div class="title">Parser Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classParser.html" title="Parser class.">Parser</a> class.  
+ <a href="classParser.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="parser_8hpp_source.html">parser.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af13b10be4a6f2a581ad1fb6c90414dee"><td class="memItemLeft" align="right" valign="top"><a id="af13b10be4a6f2a581ad1fb6c90414dee"></a>
-std::unordered_map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>parseMessage</b> (const std::string &amp;message)</td></tr>
+<tr class="memitem:af13b10be4a6f2a581ad1fb6c90414dee"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#af13b10be4a6f2a581ad1fb6c90414dee">parseMessage</a> (const std::string &amp;message)</td></tr>
+<tr class="memdesc:af13b10be4a6f2a581ad1fb6c90414dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function of the parser for single messages.  <a href="classParser.html#af13b10be4a6f2a581ad1fb6c90414dee">More...</a><br /></td></tr>
 <tr class="separator:af13b10be4a6f2a581ad1fb6c90414dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d5217b408bbc4b71aedc2b5749ee2fc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a7d5217b408bbc4b71aedc2b5749ee2fc">getPrimValue</a> (const std::unordered_map&lt; std::string, std::string &gt; &amp;data, const std::string &amp;key)</td></tr>
+<tr class="memdesc:a7d5217b408bbc4b71aedc2b5749ee2fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract value from a primitive pair.  <a href="classParser.html#a7d5217b408bbc4b71aedc2b5749ee2fc">More...</a><br /></td></tr>
+<tr class="separator:a7d5217b408bbc4b71aedc2b5749ee2fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d06aba053f57bcb1d52c4f37cff21c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#aa0d06aba053f57bcb1d52c4f37cff21c">getNestValue</a> (const std::unordered_map&lt; std::string, std::string &gt; &amp;data, const std::string &amp;key, const std::string &amp;nestKey)</td></tr>
+<tr class="memdesc:aa0d06aba053f57bcb1d52c4f37cff21c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract value from a nested pair.  <a href="classParser.html#aa0d06aba053f57bcb1d52c4f37cff21c">More...</a><br /></td></tr>
+<tr class="separator:aa0d06aba053f57bcb1d52c4f37cff21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classParser.html" title="Parser class.">Parser</a> class. </p>
+<p>This class is used to parse the message received from the client </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa0d06aba053f57bcb1d52c4f37cff21c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d06aba053f57bcb1d52c4f37cff21c">&#9670;&nbsp;</a></span>getNestValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Parser::getNestValue </td>
+          <td>(</td>
+          <td class="paramtype">const std::unordered_map&lt; std::string, std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>nestKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extract value from a nested pair. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td></td></tr>
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">nestKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
+
+</div>
+</div>
+<a id="a7d5217b408bbc4b71aedc2b5749ee2fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d5217b408bbc4b71aedc2b5749ee2fc">&#9670;&nbsp;</a></span>getPrimValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Parser::getPrimValue </td>
+          <td>(</td>
+          <td class="paramtype">const std::unordered_map&lt; std::string, std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extract value from a primitive pair. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td></td></tr>
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
+
+</div>
+</div>
+<a id="af13b10be4a6f2a581ad1fb6c90414dee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af13b10be4a6f2a581ad1fb6c90414dee">&#9670;&nbsp;</a></span>parseMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt; std::string, std::string &gt; Parser::parseMessage </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Main function of the parser for single messages. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::unordered_map&lt;std::string, std::string&gt; </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>server/includes/<a class="el" href="parser_8hpp_source.html">parser.hpp</a></li>
 <li>server/src/<a class="el" href="parser_8cpp.html">parser.cpp</a></li>

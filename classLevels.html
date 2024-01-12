@@ -70,11 +70,16 @@ $(function() {
 <div class="title">Levels Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="classLevels.html" title="The Levels class is used to load levels from JSON files.">Levels</a> class is used to load levels from JSON files.  
+ <a href="classLevels.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="levels_8hpp_source.html">levels.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac05d7565b21a63818b488e3dffdd772a"><td class="memItemLeft" align="right" valign="top"><a id="ac05d7565b21a63818b488e3dffdd772a"></a>
-static std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>loadLevel</b> (const std::string &amp;levelConfig, std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt; ecs)</td></tr>
+<tr class="memitem:ac05d7565b21a63818b488e3dffdd772a"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevels.html#ac05d7565b21a63818b488e3dffdd772a">loadLevel</a> (const std::string &amp;levelConfig, std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt; ecs)</td></tr>
+<tr class="memdesc:ac05d7565b21a63818b488e3dffdd772a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a level from a JSON file.  <a href="classLevels.html#ac05d7565b21a63818b488e3dffdd772a">More...</a><br /></td></tr>
 <tr class="separator:ac05d7565b21a63818b488e3dffdd772a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -85,9 +90,59 @@ std::vector&lt; ECS::Entity &gt;&#160;</td><td class="memItemRight" valign="bott
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:aff299d6d1ce2b5b15e5afe242e129ef2"><td class="memItemLeft" align="right" valign="top">static std::unordered_map&lt; std::string, std::function&lt; void(ECS::Entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;, std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt; &amp;)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>componentFactories</b></td></tr>
+<tr class="memitem:aff299d6d1ce2b5b15e5afe242e129ef2"><td class="memItemLeft" align="right" valign="top">static std::unordered_map&lt; std::string, std::function&lt; void(ECS::Entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;, std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt; &amp;)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevels.html#aff299d6d1ce2b5b15e5afe242e129ef2">componentFactories</a></td></tr>
+<tr class="memdesc:aff299d6d1ce2b5b15e5afe242e129ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component factories.  <a href="classLevels.html#aff299d6d1ce2b5b15e5afe242e129ef2">More...</a><br /></td></tr>
 <tr class="separator:aff299d6d1ce2b5b15e5afe242e129ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classLevels.html" title="The Levels class is used to load levels from JSON files.">Levels</a> class is used to load levels from JSON files. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac05d7565b21a63818b488e3dffdd772a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac05d7565b21a63818b488e3dffdd772a">&#9670;&nbsp;</a></span>loadLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt; Levels::loadLevel </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>levelConfig</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classECS.html">ECS</a> &gt;&#160;</td>
+          <td class="paramname"><em>ecs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Loads a level from a JSON file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">levelConfig</td><td></td></tr>
+    <tr><td class="paramname">ecs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::shared_ptr&lt;ECS&gt; </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="aff299d6d1ce2b5b15e5afe242e129ef2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff299d6d1ce2b5b15e5afe242e129ef2">&#9670;&nbsp;</a></span>componentFactories</h2>
@@ -109,14 +164,23 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    {<span class="stringliteral">&quot;Player&quot;</span>, createPlayerComponent},</div>
-<div class="line">    {<span class="stringliteral">&quot;Position&quot;</span>, createPositionComponent},</div>
-<div class="line">    {<span class="stringliteral">&quot;Velocity&quot;</span>, createVelocityComponent},</div>
-<div class="line">    {<span class="stringliteral">&quot;Rotation&quot;</span>, createRotationComponent},</div>
-<div class="line">    {<span class="stringliteral">&quot;Health&quot;</span>, createHealthComponent},</div>
-<div class="line">    {<span class="stringliteral">&quot;Npc&quot;</span>, createNpcComponent}</div>
+<div class="line">    {<span class="stringliteral">&quot;Player&quot;</span>, <a class="code" href="levels_8cpp.html#a0ba7cf6e6bbcaa8b8591c2a0ac8ba857">createPlayerComponent</a>},</div>
+<div class="line">    {<span class="stringliteral">&quot;Position&quot;</span>, <a class="code" href="levels_8cpp.html#ab84ba00ecd26cefaa1a2ef4b33e3b41b">createPositionComponent</a>},</div>
+<div class="line">    {<span class="stringliteral">&quot;Velocity&quot;</span>, <a class="code" href="levels_8cpp.html#aae7bd712a1a12d7125abf17bee2dd20e">createVelocityComponent</a>},</div>
+<div class="line">    {<span class="stringliteral">&quot;Rotation&quot;</span>, <a class="code" href="levels_8cpp.html#a3063e60cf12b48c04848e885dd055ff2">createRotationComponent</a>},</div>
+<div class="line">    {<span class="stringliteral">&quot;Health&quot;</span>, <a class="code" href="levels_8cpp.html#ac655ade6d104254da8e455ae395cafdd">createHealthComponent</a>},</div>
+<div class="line">    {<span class="stringliteral">&quot;Npc&quot;</span>, <a class="code" href="levels_8cpp.html#a0fe1963a5383418d44a9de1fc9df3bd2">createNpcComponent</a>}</div>
 <div class="line">}</div>
+<div class="ttc" id="alevels_8cpp_html_a0ba7cf6e6bbcaa8b8591c2a0ac8ba857"><div class="ttname"><a href="levels_8cpp.html#a0ba7cf6e6bbcaa8b8591c2a0ac8ba857">createPlayerComponent</a></div><div class="ttdeci">void createPlayerComponent(ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params, std::shared_ptr&lt; ECS &gt; &amp;ecs)</div><div class="ttdoc">Create a Player Component object.</div><div class="ttdef"><b>Definition:</b> levels.cpp:20</div></div>
+<div class="ttc" id="alevels_8cpp_html_a0fe1963a5383418d44a9de1fc9df3bd2"><div class="ttname"><a href="levels_8cpp.html#a0fe1963a5383418d44a9de1fc9df3bd2">createNpcComponent</a></div><div class="ttdeci">void createNpcComponent(ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params, std::shared_ptr&lt; ECS &gt; &amp;ecs)</div><div class="ttdoc">Create a Npc Component object.</div><div class="ttdef"><b>Definition:</b> levels.cpp:87</div></div>
+<div class="ttc" id="alevels_8cpp_html_a3063e60cf12b48c04848e885dd055ff2"><div class="ttname"><a href="levels_8cpp.html#a3063e60cf12b48c04848e885dd055ff2">createRotationComponent</a></div><div class="ttdeci">void createRotationComponent(ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params, std::shared_ptr&lt; ECS &gt; &amp;ecs)</div><div class="ttdoc">Create a Rotation Component object.</div><div class="ttdef"><b>Definition:</b> levels.cpp:63</div></div>
+<div class="ttc" id="alevels_8cpp_html_aae7bd712a1a12d7125abf17bee2dd20e"><div class="ttname"><a href="levels_8cpp.html#aae7bd712a1a12d7125abf17bee2dd20e">createVelocityComponent</a></div><div class="ttdeci">void createVelocityComponent(ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params, std::shared_ptr&lt; ECS &gt; &amp;ecs)</div><div class="ttdoc">Create a Velocity Component object.</div><div class="ttdef"><b>Definition:</b> levels.cpp:49</div></div>
+<div class="ttc" id="alevels_8cpp_html_ab84ba00ecd26cefaa1a2ef4b33e3b41b"><div class="ttname"><a href="levels_8cpp.html#ab84ba00ecd26cefaa1a2ef4b33e3b41b">createPositionComponent</a></div><div class="ttdeci">void createPositionComponent(ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params, std::shared_ptr&lt; ECS &gt; &amp;ecs)</div><div class="ttdoc">Create a Position Component object.</div><div class="ttdef"><b>Definition:</b> levels.cpp:32</div></div>
+<div class="ttc" id="alevels_8cpp_html_ac655ade6d104254da8e455ae395cafdd"><div class="ttname"><a href="levels_8cpp.html#ac655ade6d104254da8e455ae395cafdd">createHealthComponent</a></div><div class="ttdeci">void createHealthComponent(ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params, std::shared_ptr&lt; ECS &gt; &amp;ecs)</div><div class="ttdoc">Create a Health Component object.</div><div class="ttdef"><b>Definition:</b> levels.cpp:75</div></div>
 </div><!-- fragment -->
+<p>Component factories. </p>
+<dl class="section note"><dt>Note</dt><dd>This is a map of component types to functions that create the component </dd></dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
