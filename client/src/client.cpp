@@ -10,7 +10,7 @@
  * @brief Constructs a new rtype::Client::Client object
  */
 rtype::Client::Client(std::string ip, int port)
-: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1")
+: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50)
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
@@ -21,9 +21,13 @@ rtype::Client::Client(std::string ip, int port)
     _parallaxPos.push_back(std::make_pair(0, 0));
     _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
 
-    for (int i = 0; i < 6; i++)
-        _input_frames_state.push_back(false);
-
+    for (int i = 0; i < 7; i++)
+        _input_frames_state.push_back(std::make_pair(false, ""));
+    _input_frames_state.at(2).second = "UP";
+    _input_frames_state.at(3).second = "DOWN";
+    _input_frames_state.at(4).second = "LEFT";
+    _input_frames_state.at(5).second = "RIGHT";
+    _input_frames_state.at(6).second = " ";
 }
 
 /**

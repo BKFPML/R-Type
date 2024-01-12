@@ -59,12 +59,11 @@ namespace rtype
             KeyBinding _keyBindings;
             KeyState _keys;
             KeyState _previousKeys;
-            std::string _ip;
-            std::string _username;
-            std::vector<bool> _input_frames_state;
+            std::vector<std::pair<bool, std::string>> _input_frames_state;
             UDPBoostNetwork::UDPSender sender;
             std::string _received_ip;
             int _received_port;
+            int soundVolume;
 
     };
 }

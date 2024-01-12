@@ -32,6 +32,7 @@ namespace rtype
             void drawText(std::string text, int x, int y, int size) override;
             void playMusic(std::string music, bool loop) override;
             void stopMusic(std::string music) override;
+            void setVolume(int volume) override;
             void clear() override;
             void display() override;
             std::pair<KeyState, KeyState> handleEvents() override;

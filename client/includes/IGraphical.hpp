@@ -21,6 +21,7 @@ namespace rtype {
             virtual void drawText(std::string text, int x, int y, int size) = 0;
             virtual void playMusic(std::string music, bool loop) = 0;
             virtual void stopMusic(std::string music) = 0;
+            virtual void setVolume(int volume) = 0;
             virtual void clear() = 0;
             virtual void display() = 0;
             virtual std::pair<KeyState, KeyState> handleEvents() = 0;
