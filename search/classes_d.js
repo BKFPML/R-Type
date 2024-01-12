@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['udpboostnetwork_146',['UDPBoostNetwork',['../classUDPBoostNetwork.html',1,'']]],
-  ['udpreceiver_147',['UDPReceiver',['../classUDPBoostNetwork_1_1UDPReceiver.html',1,'UDPBoostNetwork']]],
-  ['udpsender_148',['UDPSender',['../classUDPBoostNetwork_1_1UDPSender.html',1,'UDPBoostNetwork']]]
+  ['server_146',['Server',['../classServer.html',1,'']]],
+  ['sfml_147',['SFML',['../classrtype_1_1SFML.html',1,'rtype']]],
+  ['sprite_148',['Sprite',['../structSprite.html',1,'']]],
+  ['status_149',['Status',['../structStatus.html',1,'']]]
 ];
