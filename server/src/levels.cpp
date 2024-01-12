@@ -10,11 +10,25 @@
 
 using json = nlohmann::json;
 
+/**
+ * @brief Create a Player Component object
+ * 
+ * @param entity 
+ * @param params 
+ * @param ecs 
+ */
 void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    //TODO
-    std::cout << "Player creation component" << std::endl;
+    int id = std::stoi(params.at("Player"));
+    ecs->addComponent(entity, Player{id});
 }
 
+/**
+ * @brief Create a Position Component object
+ * 
+ * @param entity 
+ * @param params 
+ * @param ecs 
+ */
 void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("X") != params.end() && params.find("Y") != params.end()) {
         float x = std::stof(params.at("X"));
@@ -25,6 +39,13 @@ void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::s
     }
 }
 
+/**
+ * @brief Create a Velocity Component object
+ * 
+ * @param entity 
+ * @param params 
+ * @param ecs 
+ */
 void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     float x = std::stof(params.at("x"));
     float y = std::stof(params.at("y"));
@@ -32,22 +53,48 @@ void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::s
     ecs->addComponent(entity, Velocity{x, y, speed});
 }
 
+/**
+ * @brief Create a Rotation Component object
+ * 
+ * @param entity 
+ * @param params 
+ * @param ecs 
+ */
 void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     float angle = std::stof(params.at("Rotation"));
     ecs->addComponent(entity, Rotation{angle});
 }
 
+/**
+ * @brief Create a Health Component object
+ * 
+ * @param entity 
+ * @param params 
+ * @param ecs 
+ */
 void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     int hp = std::stoi(params.at("Health"));
     ecs->addComponent(entity, Health{hp});
 }
 
+/**
+ * @brief Create a Npc Component object
+ * 
+ * @param entity 
+ * @param params 
+ * @param ecs 
+ */
 void createNpcComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     //TODO
     std::cout << "NPC creation component" << std::endl;
 }
 
-// Function to load JSON data from file
+/**
+ * @brief Loads a JSON file
+ * 
+ * @param filename 
+ * @return nlohmann::json 
+ */
 nlohmann::json loadJsonData(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -58,7 +105,13 @@ nlohmann::json loadJsonData(const std::string& filename) {
     return jsonArray;
 }
 
-// Function to process each JSON object and create components
+/**
+ * @brief Processes a JSON object and creates the corresponding entity and components
+ * 
+ * @param jsonObj 
+ * @param ecs 
+ * @return std::shared_ptr<ECS> 
+ */
 std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::shared_ptr<ECS> ecs) {
     auto entity = ecs->createEntity();
     for (const auto& element : jsonObj.items()) {
@@ -79,7 +132,13 @@ std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::share
     return (ecs);
 }
 
-// Original loadLevel function, now refactored
+/**
+ * @brief Loads a level from a JSON file
+ * 
+ * @param levelConfig 
+ * @param ecs 
+ * @return std::shared_ptr<ECS> 
+ */
 std::shared_ptr<ECS> Levels::loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs) {
     try {
         auto jsonArray = loadJsonData(levelConfig);
@@ -92,6 +151,11 @@ std::shared_ptr<ECS> Levels::loadLevel(const std::string& levelConfig, std::shar
     return (ecs);
 }
 
+/**
+ * @brief Component factories
+ * 
+ * @note This is a map of component types to functions that create the component
+ */
 std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, std::shared_ptr<ECS>&)>> Levels::componentFactories = {
     {"Player", createPlayerComponent},
     {"Position", createPositionComponent},
