@@ -45,6 +45,8 @@ namespace rtype
             void handleInput();
             void resetKeyBindings();
             void drawEntities();
+            void doMovement(Action direction);
+            void rebind(int setting, std::string key);
 
         private:
             bool _isRunning;
@@ -64,6 +66,5 @@ namespace rtype
             std::string _received_ip;
             int _received_port;
             int soundVolume;
-
     };
 }
