@@ -7,5 +7,5 @@ var searchData=
   ['getcomponent_206',['getComponent',['../classECS.html#a9528399640fc20d2042127473249e77a',1,'ECS']]],
   ['getdrawableentities_207',['getDrawableEntities',['../classECS.html#a58da96890cf3a3b38455e19c1536af97',1,'ECS']]],
   ['getentities_208',['getEntities',['../classECS.html#a2140693763d02e20d8550bd42f5ff39d',1,'ECS']]],
-  ['getlocalipaddress_209',['getLocalIPAddress',['../classServer.html#a767e18ce61447d9b6822442396612264',1,'Server']]]
+  ['getlocalipaddress_209',['getLocalIPAddress',['../classServer.html#a767e18ce61447d9b6822442396612264',1,'Server::getLocalIPAddress()'],['../classUDPBoostNetwork_1_1UDPSender.html#a1d2953dfe354baae292c9deb220d37e0',1,'UDPBoostNetwork::UDPSender::getLocalIPAddress()'],['../classUDPBoostNetwork_1_1UDPReceiver.html#a90568c446a88d09875bf7b9dcdfe0d10',1,'UDPBoostNetwork::UDPReceiver::getLocalIPAddress()']]]
 ];

@@ -93,9 +93,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aa4115ac4fa9797f619826d69ab85c977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">gameLoop</a> (<a class="el" href="classIReceiver.html">IReceiver</a> &amp;receive)</td></tr>
 <tr class="memdesc:aa4115ac4fa9797f619826d69ab85c977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the game loop.  <a href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">More...</a><br /></td></tr>
 <tr class="separator:aa4115ac4fa9797f619826d69ab85c977"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f6a60cb2231ecb5d98cb3f35a7f7d8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a1f6a60cb2231ecb5d98cb3f35a7f7d8b">performAction</a> (Action action)</td></tr>
-<tr class="memdesc:a1f6a60cb2231ecb5d98cb3f35a7f7d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">perform the set actions  <a href="classrtype_1_1Client.html#a1f6a60cb2231ecb5d98cb3f35a7f7d8b">More...</a><br /></td></tr>
-<tr class="separator:a1f6a60cb2231ecb5d98cb3f35a7f7d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fcb3bc6119cf2e5d51db7aca7b2a3c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a0fcb3bc6119cf2e5d51db7aca7b2a3c6">performAction</a> (Action action, bool performAction)</td></tr>
+<tr class="memdesc:a0fcb3bc6119cf2e5d51db7aca7b2a3c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">perform the set actions  <a href="classrtype_1_1Client.html#a0fcb3bc6119cf2e5d51db7aca7b2a3c6">More...</a><br /></td></tr>
+<tr class="separator:a0fcb3bc6119cf2e5d51db7aca7b2a3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad99c9c0edb773722fcd3bf96f3c3bcc4"><td class="memItemLeft" align="right" valign="top"><a id="ad99c9c0edb773722fcd3bf96f3c3bcc4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ad99c9c0edb773722fcd3bf96f3c3bcc4">sceneManager</a> ()</td></tr>
 <tr class="memdesc:ad99c9c0edb773722fcd3bf96f3c3bcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages the rendering of the different scenes based on the current game state. <br /></td></tr>
@@ -146,6 +146,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>doMovement</b> (Actio
 <tr class="memitem:ad084b64d945f10baeafa2557c575cb9e"><td class="memItemLeft" align="right" valign="top"><a id="ad084b64d945f10baeafa2557c575cb9e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>rebind</b> (int setting, std::string key)</td></tr>
 <tr class="separator:ad084b64d945f10baeafa2557c575cb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0adc7b65996c5db8391838aab11c74ab"><td class="memItemLeft" align="right" valign="top"><a id="a0adc7b65996c5db8391838aab11c74ab"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unbind</b> (Action action)</td></tr>
+<tr class="separator:a0adc7b65996c5db8391838aab11c74ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa4115ac4fa9797f619826d69ab85c977"></a>
@@ -196,8 +199,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rebind</b> (int setti
 
 </div>
 </div>
-<a id="a1f6a60cb2231ecb5d98cb3f35a7f7d8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f6a60cb2231ecb5d98cb3f35a7f7d8b">&#9670;&nbsp;</a></span>performAction()</h2>
+<a id="a0fcb3bc6119cf2e5d51db7aca7b2a3c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fcb3bc6119cf2e5d51db7aca7b2a3c6">&#9670;&nbsp;</a></span>performAction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,8 +209,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rebind</b> (int setti
           <td class="memname">void rtype::Client::performAction </td>
           <td>(</td>
           <td class="paramtype">Action&#160;</td>
-          <td class="paramname"><em>action</em></td><td>)</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>game_bind_pressed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
