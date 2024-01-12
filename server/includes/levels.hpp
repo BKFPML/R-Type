@@ -13,6 +13,10 @@
 #include <functional>
 #include <unordered_map>
 
+/**
+ * @brief The Levels class is used to load levels from JSON files
+ * 
+ */
 class Levels {
     public:
         static std::shared_ptr<ECS> loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs);
