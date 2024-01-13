@@ -8,9 +8,11 @@
 
 //* Textures
 #include "player_red.h"
+#include "r_typesheet42.h"
 #include "parallax100.h"
 #include "parallax80.h"
 #include "parallax60.h"
+#include "sky.h"
 #include "outerSpace.h"
 #include "spaceGarage.h"
 #include "connection.h"
@@ -77,6 +79,7 @@ void rtype::SFML::loadAssets()
     initTextures("parallax100", parallax100, parallax100_len);
     initTextures("parallax80", parallax80, parallax80_len);
     initTextures("parallax60", parallax60, parallax60_len);
+    initTextures("sky", sky, sky_len);
     initTextures("player_red", player_red, player_red_len);
     initTextures("connection", connection, connection_len);
     initTextures("input_frame", input_frame, input_frame_len);
@@ -85,6 +88,7 @@ void rtype::SFML::loadAssets()
     initTextures("letter_box", letter_box, letter_box_len);
     initTextures("fps_30_60", fps_30_60, fps_30_60_len);
     initTextures("fps_120", fps_120, fps_120_len);
+    initTextures("r_typesheet42", r_typesheet42, r_typesheet42_len);
 
     if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;

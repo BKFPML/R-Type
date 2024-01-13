@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <cmath>
 #include "./input.hpp"
 #include "../external/sfml/sfml.hpp"
 #include "../../../engine/includes/ECS.hpp"
@@ -40,6 +41,7 @@ namespace rtype
             void drawConnection();
             void drawGame();
             void drawParallax();
+            void drawSky();
             void drawSettings();
             void drawEnd();
             void drawWaitingRoom();
@@ -49,8 +51,10 @@ namespace rtype
             void doMovement(Action direction);
             void rebind(int setting, std::string key);
             void unbind(Action action);
+            void doShooting();
             void parse_data_received(IReceiver& receive);
             int nbPlayersInRoom();
+            void launchSinglePlayer();
             std::string ecsToJsonString ();
             std::vector<std::string> split(const std::string& str, const std::string& delim);
 
@@ -62,8 +66,9 @@ namespace rtype
             std::chrono::system_clock::time_point _start;
             std::chrono::system_clock::time_point _drawClock;
             std::chrono::system_clock::time_point _start_bind;
-            ECS::Entity _players;
+            ECS::Entity _player;
             std::vector<std::pair<int, int>> _parallaxPos;
+            std::vector<std::pair<int, int>> _skyPos;
             ClientScene _currentScene;
             KeyBinding _keyBindings;
             KeyBinding _gameKeyBindings;
@@ -76,5 +81,6 @@ namespace rtype
             int soundVolume;
             int level_selected;
             int id;
+            bool _singlePlayer;
     };
 }
