@@ -52,6 +52,7 @@ namespace rtype
             void doShooting();
             void parse_data_received(IReceiver& receive);
             int nbPlayersInRoom();
+            void launchSinglePlayer();
             std::string ecsToJsonString ();
             std::vector<std::string> split(const std::string& str, const std::string& delim);
 
@@ -77,5 +78,6 @@ namespace rtype
             int soundVolume;
             int level_selected;
             int id;
+            bool _singlePlayer;
     };
 }

@@ -130,12 +130,16 @@ void rtype::Client::doMovement(Action direction)
     }
 }
 
+/**
+ * @brief tell the server we just shot
+ * 
+ */
 void rtype::Client::doShooting()
 {
-    ECS::Entity bullet = _ecs.createEntity();
-    _ecs.addComponent<Position>(bullet, {_ecs.getComponent<Position>(_player)->x + 20, _ecs.getComponent<Position>(_player)->y});
-    std::string texture = "r_typesheet42";
-    _ecs.addComponent<Sprite>(bullet, {texture, 34, 34, 0, 0, 1});
+    Position *pos = _ecs.getComponent<Position>(_player);
+    Velocity *vel = _ecs.getComponent<Velocity>(_player);
+    Sprite *sprite = _ecs.getComponent<Sprite>(_player);
+    sender.send("new bullet " + std::to_string(pos->x) + " " + std::to_string(pos->y) + " " + std::to_string(vel->x) + " " + std::to_string(vel->y) + " " + sprite->texture + " " + std::to_string(sprite->width) + " " + std::to_string(sprite->height) + " " + std::to_string(sprite->startX) + " " + std::to_string(sprite->startY) + " " + std::to_string(sprite->scale));
 }
 
 /**
@@ -170,6 +174,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
         case SHOOT:
             if (game_bind_pressed) {
                 doShooting();
+
             }
             break;
         case CLICK_PRESS:
@@ -181,6 +186,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                     if (_keys.mouse.x >= 773 && _keys.mouse.x <= 1146 && _keys.mouse.y >= 498 && _keys.mouse.y <= 534) {
                         _graphical->stopMusic("menu");
                         _currentScene = GAME;
+                        launchSinglePlayer();
                     } else if (_keys.mouse.x >= 789 && _keys.mouse.x <= 1134 && _keys.mouse.y >= 599 && _keys.mouse.y <= 635) {
                         _graphical->stopMusic("menu");
                         _currentScene = CONNECTION;
