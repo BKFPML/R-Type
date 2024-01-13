@@ -46,10 +46,10 @@ void rtype::Client::drawParallax()
         _parallaxPos.at(5).first = WINDOW_WIDTH;
         
 
-    _graphical->drawSprite("parallax100", _parallaxPos.at(0).first, _parallaxPos.at(0).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax100", _parallaxPos.at(1).first, _parallaxPos.at(1).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax80", _parallaxPos.at(2).first, _parallaxPos.at(2).second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax80", _parallaxPos.at(3).first, _parallaxPos.at(3).second, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax60", _parallaxPos.at(4).first, _parallaxPos.at(4).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
-    _graphical->drawSprite("parallax60", _parallaxPos.at(5).first, _parallaxPos.at(5).second, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax100", _parallaxPos.at(0).first, _parallaxPos.at(0).second, 0, 0, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax100", _parallaxPos.at(1).first, _parallaxPos.at(1).second, 0, 0, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax80", _parallaxPos.at(2).first, _parallaxPos.at(2).second, 0, 0, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax80", _parallaxPos.at(3).first, _parallaxPos.at(3).second, 0, 0, 1, 1, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax60", _parallaxPos.at(4).first, _parallaxPos.at(4).second, 0, 0, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
+    _graphical->drawSprite("parallax60", _parallaxPos.at(5).first, _parallaxPos.at(5).second, 0, 0, 1, 180, WINDOW_WIDTH, WINDOW_HEIGHT);
 }
