@@ -10,23 +10,37 @@
 #include <chrono>
 #include "../../engine/includes/network_library/boost_udp.hpp"
 #include "../includes/parser.hpp"
+#include "../../engine/includes/ECS.hpp"
 
 /**
  * @brief Server class
  */
 class Server {
     public:
-        Server(int port, std::string ip) : server_receive(port, ip) {}
+        Server(int port) : server_receive(port), _ecs(ECS()) {
+            _ecs.registerComponent<Position>();
+            _ecs.registerComponent<Rotation>();
+            _ecs.registerComponent<Velocity>();
+            _ecs.registerComponent<Health>();
+            _ecs.registerComponent<Player>();
+            _ecs.registerComponent<Npc>();
+            _ecs.registerComponent<Sprite>();
+        }
         ~Server() = default;
 
         int run();
-        void check_new_connections(std::string data);
-        void check_new_deconnections(std::string data);
-        void parse_data_received(Parser parser);
+        void init_entity(std::string data);
+        void delete_entity(std::string data);
+        int find_free_id_player();
+        void init_player(std::vector<std::string> data);
+        void parse_data_received();
         std::vector<std::string> split(const std::string& str, const std::string& delim);
-        std::string getLocalIPAddress();
 
     private:
         UDPBoostNetwork::UDPReceiver server_receive;
         std::vector<UDPBoostNetwork::UDPSender> clients_send;
+        std::vector<int> clients_send_id;
+        ECS _ecs;
+        Parser parser;
+
 };

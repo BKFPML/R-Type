@@ -7,6 +7,7 @@
 #include "../includes/server.hpp"
 #include "levels.hpp"
 
+
 /**
  * @brief Check for new connections
  * 
@@ -14,46 +15,65 @@
  * @param client_boost_receive 
  * @return std::vector<Network::Sender> 
  */
-void Server::check_new_connections(std::string data)
+void Server::init_entity(std::string data)
 {
     if (split(data, " ").front() == "new") {
-        std::cout << "New connection: " << data << std::endl;
-        std::cout << "Set port to: " << split(data, " ").back() << std::endl;
-        for (auto& client : clients_send) {
-            client.send("new " + split(data, " ").back());
-        }
-        std::string ip = split(data, " ").back();
-        std::cout << "Port " << std::stoi(split(ip, ":").back()) << ",IP "<< split(ip, ":").front() << std::endl;
-        clients_send.push_back(UDPBoostNetwork::UDPSender(std::stoi(split(ip, ":").back()), split(ip, ":").front()));
-
-        for (int i = 0; i < clients_send.size() - 1; i++) {
-            clients_send.back().send("new " + clients_send[i].get_ip() + ":" + std::to_string(clients_send[i].get_port()));
-        }
+        std::vector<std::string> data_split = split(data, " ");
+        init_player(data_split);
     }
 }
-
 /**
- * @brief Check for new connections
+ * @brief delete entity
  * 
- * @param clients 
- * @param client_boost_receive 
- * @return std::vector<Network::Sender> 
+ * @param data 
  */
-void Server::check_new_deconnections(std::string data)
+void Server::delete_entity(std::string data)
 {
-    if (split(data, " ").front() == "quit") {
-        for (int i = 0; i < clients_send.size(); i++) {
-            if (clients_send[i].get_port() == std::stoi(split(split(data, " ").back(), ":").back()) && clients_send[i].get_ip() == split(split(data, " ").back(), ":").front()) {
-                std::cout << "Client: " << split(data, " ").back() << " erased" << std::endl;
-                for (auto& client : clients_send) {
-                    client.send("quit " + split(data, " ").back());
+    if (split(data, " ").front() == "delete") {
+        std::vector<std::string> data_split = split(data, " ");
+        if (data_split.at(1) == "player") {
+            int playerIdToDelete = std::stoi(data_split.at(2));
+
+            for (auto& id : clients_send_id) {
+                if (id == playerIdToDelete) {
+                    clients_send.erase(clients_send.begin() + id);
+                    clients_send_id.erase(clients_send_id.begin() + id);
+                    break;
                 }
-                clients_send.erase(clients_send.begin() + i);
-                break;
             }
+            for (auto& client : clients_send) {
+                client.send("delete player " + std::to_string(playerIdToDelete));
+            }
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Player>(entity)) {
+                    if (_ecs.getComponent<Player>(entity)->id == playerIdToDelete) {
+                        _ecs.removeEntity(entity);
+                        break;
+                    }
+                }
+            }
+            if (playerIdToDelete == 0 && clients_send_id.size() > 0) {
+                for (auto& client : clients_send) {
+                    client.send("delete player " + std::to_string(clients_send_id.at(0)));
+                }
+                for (auto& entity : _ecs.getEntities()) {
+                    if (_ecs.hasComponent<Player>(entity)) {
+                        if (_ecs.getComponent<Player>(entity)->id == clients_send_id.at(0)) {
+                            clients_send.front().send("new player 0 " + _ecs.getComponent<Player>(entity)->name + " you");
+                        } else {
+                            clients_send.front().send("new player 0 " + _ecs.getComponent<Player>(entity)->name);
+                        }
+                    }
+                }
+                clients_send_id.at(0) = 0;
+            }
+
+
+
+            
+
         }
     }
-
 }
 
 /**
@@ -87,41 +107,50 @@ std::vector<std::string> Server::split(const std::string& str, const std::string
  * @param clients 
  * @param client_boost_receive 
  */
-void Server::parse_data_received(Parser parser)
+void Server::parse_data_received()
 {
     const std::vector<std::string>& received_data = server_receive.get_received_data();
 
     for (const auto& data : received_data) {
-        check_new_connections(data);
-        check_new_deconnections(data);
-        std::unordered_map<std::string, std::string> parsedMessage = parser.parseMessage(data);
-
+        init_entity(data);
+        delete_entity(data);
+        if (split(data, " ").front() == "start") {
+            std::vector<std::string> data_split = split(data, " ");
+            for (auto& client : clients_send) {
+                client.send("start " + data_split.at(1));
+            }
+        }
     }
     server_receive.clear_received_data();
 }
 
-/**
- * @brief Get the Local IP Address object
- * 
- * @return std::string 
- */
-std::string Server::getLocalIPAddress()
+void print_all_ecs_entity(ECS& ecs)
 {
-    try {
-        boost::asio::io_service netService;
-        boost::asio::ip::udp::resolver resolver(netService);
-        boost::asio::ip::udp::resolver::query query(boost::asio::ip::udp::v4(), "google.com", "");
-        boost::asio::ip::udp::resolver::iterator endpoints = resolver.resolve(query);
-        boost::asio::ip::udp::endpoint ep = *endpoints;
-        boost::asio::ip::udp::socket socket(netService);
-        socket.connect(ep);
-        boost::asio::ip::address addr = socket.local_endpoint().address();
-        return addr.to_string();
-    } catch (std::exception& e) {
-        std::cerr << e.what() << std::endl;
-    }
+    std::cout << "--- ECS ---" << std::endl;
+    for (auto& entity : ecs.getEntities()) {
+        std::cout << "Entity: " << entity << std::endl;
+        if (ecs.hasComponent<Position>(entity)) {
+            std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
+        }
+        if (ecs.hasComponent<Rotation>(entity)) {
+            std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
+        }
+        if (ecs.hasComponent<Velocity>(entity)) {
+            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << " " << ecs.getComponent<Velocity>(entity)->magnitude << std::endl;
+        }
+        if (ecs.hasComponent<Health>(entity)) {
+            std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
+        }
+        if (ecs.hasComponent<Player>(entity)) {
+            std::cout << "Player: " << ecs.getComponent<Player>(entity)->id << " " << ecs.getComponent<Player>(entity)->name << std::endl;
+        }
+        if (ecs.hasComponent<Sprite>(entity)) {
+            std::cout << "Sprite: " << ecs.getComponent<Sprite>(entity)->texture << " " << ecs.getComponent<Sprite>(entity)->width << " " << ecs.getComponent<Sprite>(entity)->height << " " << ecs.getComponent<Sprite>(entity)->scale << std::endl;
+        }
 
-    return "";
+        std::cout << std::endl;
+    }
+    std::cout << "-----------" << std::endl;
 }
 
 /**
@@ -132,18 +161,14 @@ std::string Server::getLocalIPAddress()
 int Server::run()
 {
     std::thread r([&]{ server_receive.receive();});
-    auto start_time = std::chrono::high_resolution_clock::now();
-    Parser parser;
-
+    auto now = std::chrono::system_clock::now();
     while (true)
     {
-        parse_data_received(parser);
-        if (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - start_time).count() > 3) {
-            for (auto& client : clients_send) {
-                client.send("hello from the server");
-            }
-            start_time = std::chrono::high_resolution_clock::now();
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 1000) {
+            now = std::chrono::system_clock::now();
+            print_all_ecs_entity(_ecs);
         }
+        parse_data_received();
     }
     r.join();
     return 0;
@@ -156,52 +181,10 @@ int Server::run()
  */
 int main()
 {
+    Server server(13152);
+    if (server.run() == 84)
+        return 84;
+    server.~Server();
 
-    // Server server = Server(0, "0.0.0.0");
-    // std::string ip = server.getLocalIPAddress();
-    // server = Server(13152, ip);
-    // if (server.run() == 84)
-    //     return 84;
-    // server.~Server();
-    std::shared_ptr<ECS> ecs = std::make_shared<ECS>();
-    ecs->registerComponent<Position>();
-    ecs->registerComponent<Rotation>();
-    ecs->registerComponent<Velocity>();
-    ecs->registerComponent<Health>();
-    ecs->registerComponent<Player>();
-    ecs->registerComponent<Npc>();
-
-    ecs = Levels::loadLevel("server/levels/config_files/level_1.conf", ecs);
-    
-    std::cout << "Entities: " << std::endl;
-    std::vector<ECS::Entity> entities = ecs->getEntities();
-
-    if (entities.empty()) {
-        std::cout << "No entities found." << std::endl;
-    } else {
-        std::cout << "Number of entities: " << entities.size() << std::endl;
-    }
-    for (auto& entity : entities) {
-        std::cout << "Entity: " << entity << std::endl;
-        if (ecs->hasComponent<Health>(entity)) {
-            std::cout << "Health: " << ecs->getComponent<Health>(entity)->hp << std::endl;
-        }
-        if (ecs->hasComponent<Rotation>(entity)) {
-            std::cout << "Rotation: " << ecs->getComponent<Rotation>(entity)->angle << std::endl;
-        }
-        if (ecs->hasComponent<Position>(entity)) {
-            std::cout << "Position: " << ecs->getComponent<Position>(entity)->x << ", " << ecs->getComponent<Position>(entity)->y << std::endl;
-        }
-        if (ecs->hasComponent<Velocity>(entity)) {
-            std::cout << "Velocity: " << ecs->getComponent<Velocity>(entity)->x << ", " << ecs->getComponent<Velocity>(entity)->y << ", " << ecs->getComponent<Velocity>(entity)->magnitude << std::endl;
-        }
-        if (ecs->hasComponent<Player>(entity)) {
-            std::cout << "Player: " << std::endl;
-        }
-        if (ecs->hasComponent<Npc>(entity)) {
-            std::cout << "NPC: " << std::endl;
-        }
-    }
-    
     return 0;
 }

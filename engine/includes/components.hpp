@@ -111,7 +111,8 @@ struct Immunity {
  */
 struct Player{
     int id;
-    Player(int id) : id(id) {}
+    std::string name;
+    Player(int id, std::string name) : id(id), name(name) {}
 };
 
 struct Npc {
@@ -139,13 +140,24 @@ struct Graphical {
 };
 
 /**
- * @brief Sprite component
- * @param texture Texture of the sprite
+ * @brief Sprite component, stores sprites and related data
+ * 
  */
 struct Sprite {
     std::string texture;
-    int width, height;
-    Sprite(std::string texture, int width, int height) : texture(texture), width(width), height(height) {} 
+    int width, height, startX, startY;
+    float scale;
+    /**
+     * @brief Construct a new Sprite object
+     * 
+     * @param texture Texture of the sprite 
+     * @param width Width of the sprite 
+     * @param height Height of the sprite 
+     * @param startX X position of the texture in the sprite sheet 
+     * @param startY Y position of the texture in the sprite sheet 
+     * @param scale Scale of the sprite 
+     */
+    Sprite(std::string texture, int width, int height, int startX, int startY, float scale) : texture(texture), width(width), height(height), startX(startX), startY(startY), scale(scale) {}
 };
 
 /**

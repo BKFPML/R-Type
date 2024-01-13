@@ -138,6 +138,17 @@ class ECS {
         }
 
         /**
+         * @brief Removes an entity from the ECS
+         *
+         * @param entity The entity to remove
+         */
+        void removeEntity(Entity entity) {
+            for (auto& component : _components) {
+                component.erase(entity);
+            }
+        }
+        
+        /**
          * @brief Gets all the entities that are drawable
          *
          * @return std::vector<Entity> A vector of all the entities

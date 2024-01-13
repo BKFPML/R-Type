@@ -55,8 +55,16 @@
 #include <string>
 #include <unordered_map>
 
+/**
+ * @brief Parser class
+ * 
+ * This class is used to parse the message received from the client
+ * 
+ */
 class Parser {
 public:
     Parser();
     std::unordered_map<std::string, std::string> parseMessage(const std::string& message);
+    std::string getPrimValue(const std::unordered_map<std::string, std::string>& data, const std::string& key);
+    std::string getNestValue(const std::unordered_map<std::string, std::string>& data, const std::string& key, const std::string& nestKey);
 };
