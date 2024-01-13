@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <cmath>
 #include "./input.hpp"
 #include "../external/sfml/sfml.hpp"
 #include "../../../engine/includes/ECS.hpp"
@@ -40,6 +41,7 @@ namespace rtype
             void drawConnection();
             void drawGame();
             void drawParallax();
+            void drawSky();
             void drawSettings();
             void drawEnd();
             void drawWaitingRoom();
@@ -64,6 +66,7 @@ namespace rtype
             std::chrono::system_clock::time_point _start_bind;
             ECS::Entity _players;
             std::vector<std::pair<int, int>> _parallaxPos;
+            std::vector<std::pair<int, int>> _skyPos;
             ClientScene _currentScene;
             KeyBinding _keyBindings;
             KeyBinding _gameKeyBindings;
