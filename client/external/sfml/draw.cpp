@@ -5,6 +5,7 @@
  */
 
 #include "sfml.hpp"
+#include <iostream>
 
 /**
  * @brief Draws a sprite on the SFML window

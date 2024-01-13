@@ -98,29 +98,29 @@ void rtype::Client::doMovement(Action direction)
 {
     switch (direction) {
         case MOVE_UP:
-            if (_ecs.getComponent<Position>(_players)->y > 90) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->y > 90) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.y -= 5;
                 });
             }
             break;
         case MOVE_DOWN:
-            if (_ecs.getComponent<Position>(_players)->y < 1080) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->y < 1080) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.y += 5;
                 });
             }
             break;
         case MOVE_LEFT:
-            if (_ecs.getComponent<Position>(_players)->x > 84) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->x > 84) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.x -= 5;
                 });
             }
             break;
         case MOVE_RIGHT:
-            if (_ecs.getComponent<Position>(_players)->x < 1920) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->x < 1920) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.x += 5;
                 });
             }
@@ -128,6 +128,18 @@ void rtype::Client::doMovement(Action direction)
         default:
             break;
     }
+}
+
+/**
+ * @brief tell the server we just shot
+ * 
+ */
+void rtype::Client::doShooting()
+{
+    Position *pos = _ecs.getComponent<Position>(_player);
+    Velocity *vel = _ecs.getComponent<Velocity>(_player);
+    Sprite *sprite = _ecs.getComponent<Sprite>(_player);
+    sender.send("new bullet " + std::to_string(pos->x) + " " + std::to_string(pos->y) + " " + std::to_string(vel->x) + " " + std::to_string(vel->y) + " " + sprite->texture + " " + std::to_string(sprite->width) + " " + std::to_string(sprite->height) + " " + std::to_string(sprite->startX) + " " + std::to_string(sprite->startY) + " " + std::to_string(sprite->scale));
 }
 
 /**
@@ -159,6 +171,12 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                 doMovement(MOVE_RIGHT);
             }
             break;
+        case SHOOT:
+            if (game_bind_pressed) {
+                doShooting();
+
+            }
+            break;
         case CLICK_PRESS:
             if (_keys.mouse.left && !_previousKeys.mouse.left) {
                 _graphical->playMusic("click", false);
@@ -168,6 +186,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                     if (_keys.mouse.x >= 773 && _keys.mouse.x <= 1146 && _keys.mouse.y >= 498 && _keys.mouse.y <= 534) {
                         _graphical->stopMusic("menu");
                         _currentScene = GAME;
+                        launchSinglePlayer();
                     } else if (_keys.mouse.x >= 789 && _keys.mouse.x <= 1134 && _keys.mouse.y >= 599 && _keys.mouse.y <= 635) {
                         _graphical->stopMusic("menu");
                         _currentScene = CONNECTION;
@@ -335,11 +354,6 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
             }
             break;
 
-        case SHOOT:
-            if (game_bind_pressed) {
-                std::cout << "Shoot" << std::endl;
-            }
-            break;
         case SPACE:
             if (_keys.space && !_previousKeys.space) {
                 for (int i = 2; i < 7; i++) {
@@ -382,7 +396,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                     _currentScene = MAIN_MENU;
                 } else if (_currentScene == WAITING_ROOM) {
                     _currentScene = CONNECTION;
-                    sender.send("delete player " + std::to_string(_ecs.getComponent<Player>(_players)->id));
+                    sender.send("delete player " + std::to_string(_ecs.getComponent<Player>(_player)->id));
                     sender = UDPBoostNetwork::UDPSender(0, "1.1.1.1");
                 }
             }

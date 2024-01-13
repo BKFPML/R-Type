@@ -20,6 +20,8 @@ rtype::Client::Client(std::string ip, int port)
     _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
     _parallaxPos.push_back(std::make_pair(0, 0));
     _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _skyPos.push_back(std::make_pair(0, 973));
+    _skyPos.push_back(std::make_pair(WINDOW_WIDTH, 973));
 
     for (int i = 0; i < 7; i++)
         _input_frames_state.push_back(std::make_pair(false, ""));

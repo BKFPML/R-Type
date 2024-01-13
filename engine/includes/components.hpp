@@ -123,7 +123,7 @@ enum BulletTeam {
 struct Bullet {
     int id;
     BulletTeam team;
-    Bullet(int id, BulletTeam team, BulletType bulletType) : id(id), team(team), bulletType(bulletType) {}
+    Bullet(int id, BulletTeam team) : id(id), team(team) {}
 };
 
 struct Npc {

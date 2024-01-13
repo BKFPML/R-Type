@@ -20,6 +20,14 @@ void Server::init_entity(std::string data)
     if (split(data, " ").front() == "new") {
         std::vector<std::string> data_split = split(data, " ");
         init_player(data_split);
+        if (data_split.at(1) == "bullet") {
+            _ecs.createEntity();
+            _ecs.addComponent<Player>(_ecs.getEntities().back(), {std::stoi(data_split.at(2)), ""});
+            _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(2)), std::stof(data_split.at(3))});
+            _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {std::stof(data_split.at(4)), std::stof(data_split.at(5)), std::stof(data_split.at(6))});
+            std::string texture = "bullet";
+            _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 16, 16, 0, 0, 1});
+        }
     }
 }
 /**
@@ -138,6 +146,7 @@ void Server::parse_data_received()
                 }
             }
         }
+
     }
     server_receive.clear_received_data();
 }

@@ -15,8 +15,9 @@ ECS rtype::Client::initECS()
 {
     ECS ecs;
     ecs.registerComponent<Position>();
-    ecs.registerComponent<Health>();
     ecs.registerComponent<Velocity>();
+    ecs.registerComponent<Rotation>();
+    ecs.registerComponent<Health>();
     ecs.registerComponent<Sprite>();
     ecs.registerComponent<Player>();
     ecs.registerComponent<Rotation>();
@@ -39,11 +40,10 @@ void rtype::Client::initPlayer(std::vector<std::string> data_split)
         _ecs.addComponent<Player>(_ecs.getEntities().back(), {stoi(data_split.at(2)), data_split.at(3)});
         _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {180});
         if (data_split.size() > 4) {
-            _players = _ecs.getEntities().back();
+            _player = _ecs.getEntities().back();
             id = stoi(data_split.at(2));
         }
     }
-
 }
 
 /**
@@ -78,4 +78,17 @@ int rtype::Client::nbPlayersInRoom()
         }
     }
     return nb;
+}
+
+void rtype::Client::launchSinglePlayer()
+{
+    _player = _ecs.createEntity();
+    _ecs.addComponent<Position>(_ecs.getEntities().back(), {100, 100});
+    _ecs.addComponent<Health>(_ecs.getEntities().back(), 100);
+    _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {1, 1, 2});
+    std::string texture = "player_red";
+    _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 34, 34, 0, 0, 3});
+    _ecs.addComponent<Player>(_ecs.getEntities().back(), {0, "player"});
+    _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {180});
+    _singlePlayer = true;
 }
