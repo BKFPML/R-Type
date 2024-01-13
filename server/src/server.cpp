@@ -123,16 +123,20 @@ void Server::parse_data_received()
             }
         } else {
             std::unordered_map<std::string, std::string> data_parsed = parser.parseMessage(data);
-            for (auto& data: data_parsed) {
-                std::cout << data.first << " " << data.second << std::endl;
+            int id_player = std::stoi(parser.getNestValue(data_parsed, "Player", "id"));
+            for (int i = 0; i < clients_send_id.size(); i++) {
+                if (clients_send_id.at(i) != id_player) {
+                    clients_send.at(i).send(data);
+                }
             }
-            std::cout << data_parsed["Player"] << std::endl;
-            std::cout << data_parsed["Position"] << std::endl;
-            std::cout << parser.getNestValue(data_parsed, "Player", "id") << std::endl;
-            std::cout << parser.getNestValue(data_parsed, "Player", "name") << std::endl;
-            std::cout << parser.getNestValue(data_parsed, "Position", "x") << std::endl;
-            std::cout << parser.getNestValue(data_parsed, "Position", "y") << std::endl;
-
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Player>(entity)) {
+                    if (_ecs.getComponent<Player>(entity)->id == id_player) {
+                        _ecs.getComponent<Position>(entity)->x = std::stoi(parser.getNestValue(data_parsed, "Position", "x"));
+                        _ecs.getComponent<Position>(entity)->y = std::stoi(parser.getNestValue(data_parsed, "Position", "y"));
+                    }
+                }
+            }
         }
     }
     server_receive.clear_received_data();

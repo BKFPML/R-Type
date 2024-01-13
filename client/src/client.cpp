@@ -84,13 +84,25 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
             std::vector<std::string> data_split = split(d, " ");
             initPlayer(data_split);
         }
-        if (split(d, " ").front() == "delete") {
+        else if (split(d, " ").front() == "delete") {
             std::vector<std::string> data_split = split(d, " ");
             deletePlayer(data_split);
         }
-        if (split(d, " ").front() == "start") {
+        else if (split(d, " ").front() == "start") {
             std::vector<std::string> data_split = split(d, " ");
             _currentScene = GAME;
+        } else {
+            std::unordered_map<std::string, std::string> json = _parser.parseMessage(d);
+            int id_player = std::stoi(_parser.getNestValue(json, "Player", "id"));
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Player>(entity)) {
+                    if (_ecs.getComponent<Player>(entity)->id == id_player) {
+                        _ecs.getComponent<Position>(entity)->x = std::stoi(_parser.getNestValue(json, "Position", "x"));
+                        _ecs.getComponent<Position>(entity)->y = std::stoi(_parser.getNestValue(json, "Position", "y"));
+                    }
+                }
+            }
+
         }
     }
     receive.clear_received_data();
