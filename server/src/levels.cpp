@@ -11,6 +11,18 @@
 using json = nlohmann::json;
 
 /**
+ * @brief Create a Spawn Time Component object
+ * 
+ * @param entity
+ * @param params
+ * @param ecs
+ */
+void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+    float time = std::stof(params.at("SpawnTime"));
+    ecs->addComponent(entity, SpawnTime{time});
+}
+
+/**
  * @brief Create a Player Component object
  * 
  * @param entity 
@@ -20,6 +32,15 @@ using json = nlohmann::json;
 void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     int id = std::stoi(params.at("Player"));
     ecs->addComponent(entity, Player{id});
+}
+
+/**
+ * @brief Create an enemy component
+ * 
+ */
+void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+    std::string name = params.at("Enemy");
+    ecs->addComponent(entity, Enemy{name});
 }
 
 /**
@@ -98,18 +119,6 @@ void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::str
 }
 
 /**
- * @brief Create a Npc Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
- */
-void createNpcComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    //TODO
-    std::cout << "NPC creation component" << std::endl;
-}
-
-/**
  * @brief Loads a JSON file
  * 
  * @param filename 
@@ -182,6 +191,7 @@ std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unord
     {"Velocity", createVelocityComponent},
     {"Rotation", createRotationComponent},
     {"Health", createHealthComponent},
-    {"Npc", createNpcComponent},
-    {"Sprite", createSpriteComponent}
+    {"Sprite", createSpriteComponent},
+    {"Enemy", createEnemyComponent},
+    {"SpawnTime", createSpawnTimeComponent}
 };
