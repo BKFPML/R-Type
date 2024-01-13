@@ -196,53 +196,10 @@ int Server::run()
  */
 int main()
 {
-    // Server server(13152);
-    // if (server.run() == 84)
-    //     return 84;
-    // server.~Server();
-
-    std::shared_ptr<ECS> ecs = std::make_shared<ECS>();
-    ecs->registerComponent<Position>();
-    ecs->registerComponent<Rotation>();
-    ecs->registerComponent<Velocity>();
-    ecs->registerComponent<Health>();
-    ecs->registerComponent<Player>();
-    ecs->registerComponent<Enemy>();
-
-    ecs = Levels::loadLevel("server/levels/config_files/level_1.conf", ecs);
-
-    auto entities = ecs->getEntities();
-    for (auto& entity : entities) {
-        std::cout << "Entity: " << entity << std::endl;
-        if (ecs->hasComponent<Position>(entity)) {
-            auto position = ecs->getComponent<Position>(entity);
-            std::cout << "Position: " << position->x << ", " << position->y << std::endl;
-        }
-        if (ecs->hasComponent<Rotation>(entity)) {
-            auto rotation = ecs->getComponent<Rotation>(entity);
-            std::cout << "Rotation: " << rotation->angle << std::endl;
-        }
-        if (ecs->hasComponent<Velocity>(entity)) {
-            auto velocity = ecs->getComponent<Velocity>(entity);
-            std::cout << "Velocity: " << velocity->x << ", " << velocity->y << ", " << velocity->magnitude << std::endl;
-        }
-        if (ecs->hasComponent<Health>(entity)) {
-            auto health = ecs->getComponent<Health>(entity);
-            std::cout << "Health: " << health->hp << std::endl;
-        }
-        if (ecs->hasComponent<Player>(entity)) {
-            auto player = ecs->getComponent<Player>(entity);
-            std::cout << "Player" << player->id << std::endl;
-        }
-        if (ecs->hasComponent<Enemy>(entity)) {
-            auto enemy = ecs->getComponent<Enemy>(entity);
-            std::cout << "Enemy" << enemy->name << std::endl;
-        }
-        if (ecs->hasComponent<SpawnTime>(entity)) {
-            auto spawnTime = ecs->getComponent<SpawnTime>(entity);
-            std::cout << "SpawnTime: " << spawnTime->time << std::endl;
-        }
-    }
+    Server server(13152);
+    if (server.run() == 84)
+        return 84;
+    server.~Server();
 
     return 0;
 }
