@@ -17,7 +17,6 @@
 void rtype::SFML::drawSprite(std::string sprite, int x, int y, int startX, int startY, float scale = 1.0, int rotation = 0, int sizeX = 0, int sizeY = 0)
 {
     for (auto& s : sprites) {
-        std::cout << "Drawing sprite: " << s.first << std::endl;
         if (s.first == sprite) {
             s.second->setPosition(x, y);
             s.second->setScale(scale, scale);
