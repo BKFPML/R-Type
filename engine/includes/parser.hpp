@@ -117,7 +117,7 @@ public:
      * @param nestKey 
      * @return std::string 
      */
-    std::string getNestValue(const std::unordered_map<std::string, std::string>& data, const std::string& key, const std::string& nestKey) {
+    std::string getNestValue(const std::unordered_map<std::string, std::string>& data, const std::string key, const std::string nestKey) {
         auto it = data.find(key);
         if (it != data.end()) {
             try {
@@ -143,12 +143,12 @@ public:
             // Example for a Position component
             if (ecs.hasComponent<Position>(entity)) {
                 Position* position = ecs.getComponent<Position>(entity);
-                entityJson["Position"] = {{"x", position->x}, {"y", position->y}};
+                entityJson["Position"] = {{"x", std::to_string(position->x)}, {"y", std::to_string(position->y)}};
             }
 
             if (ecs.hasComponent<Player>(entity)) {
                 Player* player = ecs.getComponent<Player>(entity);
-                entityJson["Player"] = {{"id", player->id}, {"name", player->name}};
+                entityJson["Player"] = {{"id", std::to_string(player->id)}, {"name", player->name}};
             }
 
             allEntitiesJson.push_back(entityJson);
@@ -167,8 +167,8 @@ public:
                 Position* position = ecs.getComponent<Position>(entity);
                 if (player->id == id) {
                     json entityJson;
-                    entityJson["Player"] = {{"id", player->id}, {"name", player->name}};
-                    entityJson["Position"] = {{"x", position->x}, {"y", position->y}};
+                    entityJson["Player"] = {{"id", std::to_string(player->id)}, {"name", player->name}};
+                    entityJson["Position"] = {{"x", std::to_string(position->x)}, {"y", std::to_string(position->y)}};
                     allEntitiesJson.push_back(entityJson);
                 }
             }

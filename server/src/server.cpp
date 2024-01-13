@@ -112,13 +112,27 @@ void Server::parse_data_received()
     const std::vector<std::string>& received_data = server_receive.get_received_data();
 
     for (const auto& data : received_data) {
-        init_entity(data);
-        delete_entity(data);
-        if (split(data, " ").front() == "start") {
+        if (split(data, " ").front() == "new")
+            init_entity(data);
+        else if (split(data, " ").front() == "delete")
+            delete_entity(data);
+        else if (split(data, " ").front() == "start") {
             std::vector<std::string> data_split = split(data, " ");
             for (auto& client : clients_send) {
                 client.send("start " + data_split.at(1));
             }
+        } else {
+            std::unordered_map<std::string, std::string> data_parsed = parser.parseMessage(data);
+            for (auto& data: data_parsed) {
+                std::cout << data.first << " " << data.second << std::endl;
+            }
+            std::cout << data_parsed["Player"] << std::endl;
+            std::cout << data_parsed["Position"] << std::endl;
+            std::cout << parser.getNestValue(data_parsed, "Player", "id") << std::endl;
+            std::cout << parser.getNestValue(data_parsed, "Player", "name") << std::endl;
+            std::cout << parser.getNestValue(data_parsed, "Position", "x") << std::endl;
+            std::cout << parser.getNestValue(data_parsed, "Position", "y") << std::endl;
+
         }
     }
     server_receive.clear_received_data();
