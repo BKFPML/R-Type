@@ -13,15 +13,10 @@
  */
 int main() {
     try {
-        UDPBoostNetwork::UDPReceiver receiver(0, "0.0.0.0");
-        int port;
-
         srand(time(NULL));
-        port = rand() % 30000 + 1000;
-        std::string ip_receive = receiver.getLocalIPAddress();
-        receiver = UDPBoostNetwork::UDPReceiver(port, ip_receive);
-
-        rtype::Client client(ip_receive, port);
+        int port = rand() % 30000 + 1000;
+        UDPBoostNetwork::UDPReceiver receiver(port);
+        rtype::Client client(receiver.getLocalIPAddress() ,port);
         std::thread r([&] { receiver.receive(); });
 
         client.gameLoop(receiver);

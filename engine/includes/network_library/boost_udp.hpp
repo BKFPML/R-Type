@@ -106,7 +106,6 @@ public:
     */
     class UDPReceiver : public IReceiver {
     public:
-        UDPReceiver(int port, std::string ip) : _udp_port(port), _ip(ip), _isRunning(true) {}
         UDPReceiver(int port) : _udp_port(port), _ip(getLocalIPAddress()), _isRunning(true) {}
 
         /**

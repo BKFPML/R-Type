@@ -23,20 +23,20 @@ void rtype::Client::drawWaitingRoom()
             _graphical->drawText(_ecs.getComponent<Player>(entity)->name, 260, 400 + _ecs.getComponent<Player>(entity)->id * 100, 30);
         }
     }
-    if (_ecs.getComponent<Player>(_players)->id == 0) {
-        _graphical->drawText("Difficulty", 1200, 300, 30);
-        if (level_selected == 0)
-            _graphical->drawSprite("letter_box", 1256, 440, 0.6, 0, 90, 4);
-        else if (level_selected == 1)
-            _graphical->drawSprite("letter_box", 1256, 540, 0.6, 0, 90, 4);
-        else if (level_selected == 2)
-            _graphical->drawSprite("letter_box", 1256, 640, 0.6, 0, 90, 4);
-        _graphical->drawText("Easy", 1260, 400, 30);
-        _graphical->drawText("Medium", 1260, 500, 30);
-        _graphical->drawText("Hard", 1260, 600, 30);
-    }
-    if (_ecs.getComponent<Player>(_players)->id == 0 && nbPlayersInRoom() > 1)
-        _graphical->drawText("Start", 860, 800, 30);
+    // if (_ecs.getComponent<Player>(_players)->id == 0) {
+    //     _graphical->drawText("Difficulty", 1200, 300, 30);
+    //     if (level_selected == 0)
+    //         _graphical->drawSprite("letter_box", 1256, 440, 0.6, 0, 90, 4);
+    //     else if (level_selected == 1)
+    //         _graphical->drawSprite("letter_box", 1256, 540, 0.6, 0, 90, 4);
+    //     else if (level_selected == 2)
+    //         _graphical->drawSprite("letter_box", 1256, 640, 0.6, 0, 90, 4);
+    //     _graphical->drawText("Easy", 1260, 400, 30);
+    //     _graphical->drawText("Medium", 1260, 500, 30);
+    //     _graphical->drawText("Hard", 1260, 600, 30);
+    // }
+    // if (_ecs.getComponent<Player>(_players)->id == 0 && nbPlayersInRoom() > 1)
+    //     _graphical->drawText("Start", 860, 800, 30);
     // else if (_ecs.getComponent<Player>(_players)->id == 0 && nbPlayersInRoom() == 1)
     //     _graphical->drawText("Waiting for players", 660, 800, 30);
     // else if (_ecs.getComponent<Player>(_players)->id != 0)

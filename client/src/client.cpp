@@ -25,7 +25,7 @@ rtype::Client::Client(std::string ip, int port)
         _input_frames_state.push_back(std::make_pair(false, ""));
 
     _input_frames_state.at(0).second = "durbaon";
-    _input_frames_state.at(1).second = "192.168.178.166";
+    _input_frames_state.at(1).second = "192.168.0.138";
     _input_frames_state.at(2).second = "UP";
     _input_frames_state.at(3).second = "DOWN";
     _input_frames_state.at(4).second = "LEFT";
@@ -111,6 +111,11 @@ void rtype::Client::gameLoop(IReceiver& receive)
         _keys = keyState.first;
         _previousKeys = keyState.second;
         handleInput();
+        for (auto &c: _ecs.getEntities()) {
+            if (_ecs.hasComponent<Player>(c) && _ecs.hasComponent<Position>(c)) {
+                std::cout << "Player: " << _ecs.getComponent<Player>(c)->id << "name: " << _ecs.getComponent<Player>(c)->name << std::endl;
+            }
+        }
         if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 100 && _currentScene == GAME) {
             _start = now;
             sender.send(ecsToJsonString());
