@@ -11,6 +11,7 @@
 #include "./input.hpp"
 #include "../external/sfml/sfml.hpp"
 #include "../../../engine/includes/ECS.hpp"
+#include "../../../engine/includes/parser.hpp"
 #include "../../../engine/includes/network_library/boost_udp.hpp"
 #include "./IGraphical.hpp"
 
@@ -76,5 +77,6 @@ namespace rtype
             int soundVolume;
             int level_selected;
             int id;
+            Parser _parser;
     };
 }

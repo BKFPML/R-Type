@@ -10,7 +10,7 @@
  * @brief Constructs a new rtype::Client::Client object
  */
 rtype::Client::Client(std::string ip, int port)
-: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50), _start_bind(std::chrono::system_clock::now()), level_selected(-1)
+: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50), _start_bind(std::chrono::system_clock::now()), level_selected(-1), _parser()
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
@@ -71,6 +71,8 @@ rtype::Client::~Client()
 
 std::string rtype::Client::ecsToJsonString () {
     std::string json = "[";
+
+    json += "]";
     return json;
 }
 
@@ -111,14 +113,11 @@ void rtype::Client::gameLoop(IReceiver& receive)
         _keys = keyState.first;
         _previousKeys = keyState.second;
         handleInput();
-        for (auto &c: _ecs.getEntities()) {
-            if (_ecs.hasComponent<Player>(c) && _ecs.hasComponent<Position>(c)) {
-                std::cout << "Player: " << _ecs.getComponent<Player>(c)->id << "name: " << _ecs.getComponent<Player>(c)->name << std::endl;
-            }
-        }
         if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 100 && _currentScene == GAME) {
             _start = now;
-            sender.send(ecsToJsonString());
+
+            sender.send(_parser.playerToJson(_ecs, id));
+
         }
         sceneManager();
     }
