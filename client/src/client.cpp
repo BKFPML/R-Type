@@ -123,5 +123,4 @@ void rtype::Client::gameLoop(IReceiver& receive)
         sceneManager();
     }
     _graphical->stopMusic("mainTheme");
-    receive.set_running(false);
 }
