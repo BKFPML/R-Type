@@ -17,7 +17,7 @@
 enum ClientScene {
     MAIN_MENU,
     CONNECTION,
-    SELECT_GAME,
+    WAITING_ROOM,
     GAME,
     SETTINGS,
     GAME_OVER
@@ -31,7 +31,8 @@ namespace rtype
             ~Client();
 
             ECS initECS();
-            void initPlayer();
+            void initPlayer(std::vector<std::string> data_split);
+            void deletePlayer(std::vector<std::string> data_split);
             void gameLoop(IReceiver& receive);
             void performAction(Action action, bool performAction);
             void sceneManager();
@@ -40,14 +41,18 @@ namespace rtype
             void drawGame();
             void drawParallax();
             void drawSettings();
-            void drawSelectGame();
             void drawEnd();
+            void drawWaitingRoom();
             void handleInput();
             void resetKeyBindings();
             void drawEntities();
             void doMovement(Action direction);
             void rebind(int setting, std::string key);
             void unbind(Action action);
+            void parse_data_received(IReceiver& receive);
+            int nbPlayersInRoom();
+            std::string ecsToJsonString ();
+            std::vector<std::string> split(const std::string& str, const std::string& delim);
 
         private:
             bool _isRunning;
@@ -57,7 +62,7 @@ namespace rtype
             std::chrono::system_clock::time_point _start;
             std::chrono::system_clock::time_point _drawClock;
             std::chrono::system_clock::time_point _start_bind;
-            std::vector<ECS::Entity> _players;
+            ECS::Entity _players;
             std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _currentScene;
             KeyBinding _keyBindings;
@@ -69,5 +74,7 @@ namespace rtype
             std::string _received_ip;
             int _received_port;
             int soundVolume;
+            int level_selected;
+            int id;
     };
 }
