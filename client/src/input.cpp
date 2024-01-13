@@ -131,6 +131,15 @@ void rtype::Client::doMovement(Action direction)
     }
 }
 
+void rtype::Client::doShooting()
+{
+    ECS::Entity player = _players[0];
+    ECS::Entity bullet = _ecs.createEntity();
+    _ecs.addComponent<Position>(bullet, {_ecs.getComponent<Position>(player)->x + 20, _ecs.getComponent<Position>(player)->y});
+    std::string texture = "r_typesheet42";
+    _ecs.addComponent<Sprite>(bullet, {texture, 34, 34});
+}
+
 /**
  * @brief perform the set actions
  * 
@@ -158,6 +167,11 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
         case MOVE_RIGHT:
             if (game_bind_pressed) {
                 doMovement(MOVE_RIGHT);
+            }
+            break;
+        case SHOOT:
+            if (game_bind_pressed) {
+                doShooting();
             }
             break;
         case CLICK_PRESS:
@@ -333,11 +347,6 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
             }
             break;
 
-        case SHOOT:
-            if (game_bind_pressed) {
-                std::cout << "Shoot" << std::endl;
-            }
-            break;
         case SPACE:
             if (_keys.space && !_previousKeys.space) {
                 for (int i = 2; i < 7; i++) {

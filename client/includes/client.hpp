@@ -48,6 +48,7 @@ namespace rtype
             void doMovement(Action direction);
             void rebind(int setting, std::string key);
             void unbind(Action action);
+            void doShooting();
 
         private:
             bool _isRunning;
