@@ -12,7 +12,7 @@ var searchData=
   ['sfml_2ecpp_124',['sfml.cpp',['../sfml_8cpp.html',1,'']]],
   ['sfml_2ehpp_125',['sfml.hpp',['../sfml_8hpp.html',1,'']]],
   ['split_126',['split',['../classServer.html#a6d0e8be8f18db3c7332fb055c43362d9',1,'Server::split()'],['../classrtype_1_1Client.html#af17c650537b30658d4c14fa9e4e5cc55',1,'rtype::Client::split()'],['../classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be',1,'UDPBoostNetwork::UDPReceiver::split()']]],
-  ['sprite_127',['Sprite',['../structSprite.html',1,'']]],
+  ['sprite_127',['Sprite',['../structSprite.html',1,'Sprite'],['../structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0',1,'Sprite::Sprite()']]],
   ['status_128',['Status',['../structStatus.html',1,'']]],
   ['statustype_129',['StatusType',['../components_8hpp.html#a90549f45cfc442187c1d769596107d3e',1,'components.hpp']]],
   ['stop_130',['stop',['../classrtype_1_1SFML.html#aa401f3dab1239f28abc5b84f99b208c6',1,'rtype::SFML']]],

@@ -10,7 +10,7 @@ var searchData=
   ['drawmainmenu_223',['drawMainMenu',['../classrtype_1_1Client.html#a0471b6b294260b4f65f7ae90addcd532',1,'rtype::Client']]],
   ['drawparallax_224',['drawParallax',['../classrtype_1_1Client.html#afbb7616f666dea0ad63e02f8f1d9fc12',1,'rtype::Client']]],
   ['drawsettings_225',['drawSettings',['../classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de',1,'rtype::Client']]],
-  ['drawsprite_226',['drawSprite',['../classrtype_1_1SFML.html#a672a5a5aa4eb27bc77337ad87b027832',1,'rtype::SFML']]],
+  ['drawsprite_226',['drawSprite',['../classrtype_1_1SFML.html#ad3c80b2509fdc2fd4128496eacc5d0ff',1,'rtype::SFML']]],
   ['drawtext_227',['drawText',['../classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b',1,'rtype::SFML']]],
   ['drawwaitingroom_228',['drawWaitingRoom',['../classrtype_1_1Client.html#adefe86c06b4dfcc19f600a090eb5f90f',1,'rtype::Client']]]
 ];

@@ -96,9 +96,9 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#a39a1f179984c8605525a3a85c18ef36d">loadAssets</a> () override</td></tr>
 <tr class="memdesc:a39a1f179984c8605525a3a85c18ef36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the textures for the client's sprites. <br /></td></tr>
 <tr class="separator:a39a1f179984c8605525a3a85c18ef36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a672a5a5aa4eb27bc77337ad87b027832"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#a672a5a5aa4eb27bc77337ad87b027832">drawSprite</a> (std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) override</td></tr>
-<tr class="memdesc:a672a5a5aa4eb27bc77337ad87b027832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a sprite on the <a class="el" href="classrtype_1_1SFML.html">SFML</a> window.  <a href="classrtype_1_1SFML.html#a672a5a5aa4eb27bc77337ad87b027832">More...</a><br /></td></tr>
-<tr class="separator:a672a5a5aa4eb27bc77337ad87b027832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c80b2509fdc2fd4128496eacc5d0ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#ad3c80b2509fdc2fd4128496eacc5d0ff">drawSprite</a> (std::string sprite, int x, int y, int startX, int startY, float scale, int rotation, int size_x, int size_y) override</td></tr>
+<tr class="memdesc:ad3c80b2509fdc2fd4128496eacc5d0ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a sprite on the <a class="el" href="classrtype_1_1SFML.html">SFML</a> window.  <a href="classrtype_1_1SFML.html#ad3c80b2509fdc2fd4128496eacc5d0ff">More...</a><br /></td></tr>
+<tr class="separator:ad3c80b2509fdc2fd4128496eacc5d0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2cc2bbcdd72d5b0551e173778fcf67b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b">drawText</a> (std::string text, int x, int y, int size) override</td></tr>
 <tr class="memdesc:af2cc2bbcdd72d5b0551e173778fcf67b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws text on the <a class="el" href="classrtype_1_1SFML.html">SFML</a> window.  <a href="classrtype_1_1SFML.html#af2cc2bbcdd72d5b0551e173778fcf67b">More...</a><br /></td></tr>
 <tr class="separator:af2cc2bbcdd72d5b0551e173778fcf67b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,8 +141,8 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get
 <tr class="separator:aa10889a2c8de1abead80f40246ccd6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a672a5a5aa4eb27bc77337ad87b027832"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a672a5a5aa4eb27bc77337ad87b027832">&#9670;&nbsp;</a></span>drawSprite()</h2>
+<a id="ad3c80b2509fdc2fd4128496eacc5d0ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3c80b2509fdc2fd4128496eacc5d0ff">&#9670;&nbsp;</a></span>drawSprite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,6 +171,18 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>scale</em> = <code>1.0</code>, </td>
         </tr>
@@ -184,13 +196,13 @@ sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size_x</em> = <code>0</code>, </td>
+          <td class="paramname"><em>sizeX</em> = <code>0</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size_y</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>sizeY</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

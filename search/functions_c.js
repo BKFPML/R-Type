@@ -5,6 +5,7 @@ var searchData=
   ['setvolume_270',['setVolume',['../classrtype_1_1SFML.html#a6e6d8719a46774595bb1444d26995f82',1,'rtype::SFML']]],
   ['sfml_271',['SFML',['../classrtype_1_1SFML.html#ae32646bf27139dfa6765c522163007ae',1,'rtype::SFML']]],
   ['split_272',['split',['../classServer.html#a6d0e8be8f18db3c7332fb055c43362d9',1,'Server::split()'],['../classrtype_1_1Client.html#af17c650537b30658d4c14fa9e4e5cc55',1,'rtype::Client::split()'],['../classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be',1,'UDPBoostNetwork::UDPReceiver::split()']]],
-  ['stop_273',['stop',['../classrtype_1_1SFML.html#aa401f3dab1239f28abc5b84f99b208c6',1,'rtype::SFML']]],
-  ['stopmusic_274',['stopMusic',['../classrtype_1_1SFML.html#ab6bfe44332eee7f3f95cd4d87bc29453',1,'rtype::SFML']]]
+  ['sprite_273',['Sprite',['../structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0',1,'Sprite']]],
+  ['stop_274',['stop',['../classrtype_1_1SFML.html#aa401f3dab1239f28abc5b84f99b208c6',1,'rtype::SFML']]],
+  ['stopmusic_275',['stopMusic',['../classrtype_1_1SFML.html#ab6bfe44332eee7f3f95cd4d87bc29453',1,'rtype::SFML']]]
 ];
