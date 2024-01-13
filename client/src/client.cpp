@@ -69,13 +69,6 @@ rtype::Client::~Client()
 }
 
 
-std::string rtype::Client::ecsToJsonString () {
-    std::string json = "[";
-
-    json += "]";
-    return json;
-}
-
 void rtype::Client::parse_data_received(IReceiver& receive) {
     std::vector<std::string> data = receive.get_received_data();
     for (auto& d : data) {
@@ -93,6 +86,9 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
             _currentScene = GAME;
         } else {
             std::unordered_map<std::string, std::string> json = _parser.parseMessage(d);
+            for (auto&data : json) {
+                std::cout << data.first << " " << data.second << std::endl;
+            }
             int id_player = std::stoi(_parser.getNestValue(json, "Player", "id"));
             for (auto& entity : _ecs.getEntities()) {
                 if (_ecs.hasComponent<Player>(entity)) {
@@ -102,7 +98,6 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
                     }
                 }
             }
-
         }
     }
     receive.clear_received_data();

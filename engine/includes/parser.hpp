@@ -176,4 +176,24 @@ public:
 
         return allEntitiesJson.dump();
     }
+
+    std::string bulletToJson(ECS& ecs, int id)
+    {
+        json allEntitiesJson;
+
+        for (auto& entity : ecs.getEntities()) {
+            if (ecs.hasComponent<Bullet>(entity)) {
+                Bullet* bullet = ecs.getComponent<Bullet>(entity);
+                Position* position = ecs.getComponent<Position>(entity);
+                if (bullet->id == id) {
+                    json entityJson;
+                    entityJson["Bullet"] = {{"id", std::to_string(bullet->id)}};
+                    entityJson["Position"] = {{"x", std::to_string(position->x)}, {"y", std::to_string(position->y)}};
+                    allEntitiesJson.push_back(entityJson);
+                }
+            }
+        }
+
+        return allEntitiesJson.dump();
+    }
 };

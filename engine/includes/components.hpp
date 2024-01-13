@@ -115,6 +115,17 @@ struct Player{
     Player(int id, std::string name) : id(id), name(name) {}
 };
 
+enum BulletTeam {
+    ALLY,
+    ENEMY
+};
+
+struct Bullet {
+    int id;
+    BulletTeam team;
+    Bullet(int id, BulletTeam team, BulletType bulletType) : id(id), team(team), bulletType(bulletType) {}
+};
+
 struct Npc {
     //TODO
 };

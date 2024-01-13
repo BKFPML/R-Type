@@ -182,9 +182,17 @@ int Server::run()
     auto now = std::chrono::system_clock::now();
     while (true)
     {
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 1000) {
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 50) {
             now = std::chrono::system_clock::now();
             print_all_ecs_entity(_ecs);
+            _ecs.updateSystems();
+            for (auto& client : clients_send) {
+                for (auto& entity : _ecs.getEntities()) {
+                    if (_ecs.hasComponent<Bullet>(entity)) {
+                        parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id);
+                    }
+                }
+            }
         }
         parse_data_received();
     }
