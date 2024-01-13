@@ -32,6 +32,7 @@ namespace rtype
 
             ECS initECS();
             void initPlayer(std::vector<std::string> data_split);
+            void deletePlayer(std::vector<std::string> data_split);
             void gameLoop(IReceiver& receive);
             void performAction(Action action, bool performAction);
             void sceneManager();
@@ -72,5 +73,6 @@ namespace rtype
             std::string _received_ip;
             int _received_port;
             int soundVolume;
+            int level_selected;
     };
 }

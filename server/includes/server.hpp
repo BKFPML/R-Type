@@ -29,8 +29,8 @@ class Server {
         ~Server() = default;
 
         int run();
-        void init_new_entity(std::string data);
-        void check_new_deconnections(std::string data);
+        void init_entity(std::string data);
+        void delete_entity(std::string data);
         int find_free_id_player();
         void init_player(std::vector<std::string> data);
         void parse_data_received();
@@ -39,6 +39,7 @@ class Server {
     private:
         UDPBoostNetwork::UDPReceiver server_receive;
         std::vector<UDPBoostNetwork::UDPSender> clients_send;
+        std::vector<int> clients_send_id;
         ECS _ecs;
         Parser parser;
 

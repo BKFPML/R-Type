@@ -273,13 +273,14 @@ public:
          * @param recv_buffer 
          */
         void asyncReceive(boost::asio::ip::udp::socket& socket, boost::array<char, 1024>& recv_buffer) {
-            std::cout << "Listening on port: " << _udp_port << std::endl;
+            std::cout << "async Listening on port: " << _udp_port << std::endl;
             if (!_isRunning) {
                 if (socket.is_open()) {
                     socket.close();
                 }
                 return;
             }
+            std::cout << "async Listening on port: " << _udp_port << std::endl;
             socket.async_receive_from(
                 boost::asio::buffer(recv_buffer),
                 receiver_endpoint,
@@ -300,17 +301,17 @@ public:
          * @param recv_buffer 
          */
         void handleReceive(const boost::system::error_code& error, std::size_t len, boost::asio::ip::udp::socket& socket, boost::array<char, 1024>& recv_buffer) {
+            std::cout << "Received: " << len << " bytes" << std::endl;
             if (error && error != boost::asio::error::message_size)
                 throw boost::system::system_error(error);
-
-            std::cout << _isRunning << 2 << std::endl;   
+            std::cout << "Received: " << len << " bytes" << std::endl;
             if (!_isRunning) {
                 if (socket.is_open()) {
                     socket.close();
                 }
                 return;
             }
-            std::cout << _isRunning << 3 << std::endl;
+            std::cout << "Received: " << len << " bytes" << std::endl;
             std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
             std::cout << "Message received: " << message << std::endl;
             received_data.push_back(message);

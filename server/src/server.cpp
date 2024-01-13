@@ -15,36 +15,64 @@
  * @param client_boost_receive 
  * @return std::vector<Network::Sender> 
  */
-void Server::init_new_entity(std::string data)
+void Server::init_entity(std::string data)
 {
     if (split(data, " ").front() == "new") {
         std::vector<std::string> data_split = split(data, " ");
         init_player(data_split);
     }
 }
-
 /**
- * @brief Check for new connections
+ * @brief delete entity
  * 
- * @param clients 
- * @param client_boost_receive 
- * @return std::vector<Network::Sender> 
+ * @param data 
  */
-void Server::check_new_deconnections(std::string data)
+void Server::delete_entity(std::string data)
 {
-    if (split(data, " ").front() == "quit") {
-        for (int i = 0; i < clients_send.size(); i++) {
-            if (clients_send[i].get_port() == std::stoi(split(split(data, " ").back(), ":").back()) && clients_send[i].get_ip() == split(split(data, " ").back(), ":").front()) {
-                std::cout << "Client: " << split(data, " ").back() << " erased" << std::endl;
-                for (auto& client : clients_send) {
-                    client.send("quit " + split(data, " ").back());
+    if (split(data, " ").front() == "delete") {
+        std::vector<std::string> data_split = split(data, " ");
+        if (data_split.at(1) == "player") {
+            int playerIdToDelete = std::stoi(data_split.at(2));
+
+            for (auto& id : clients_send_id) {
+                if (id == playerIdToDelete) {
+                    clients_send.erase(clients_send.begin() + id);
+                    clients_send_id.erase(clients_send_id.begin() + id);
+                    break;
                 }
-                clients_send.erase(clients_send.begin() + i);
-                break;
             }
+            for (auto& client : clients_send) {
+                client.send("delete player " + std::to_string(playerIdToDelete));
+            }
+            if (playerIdToDelete == 0 && clients_send_id.size() > 0) {
+                for (auto& client : clients_send) {
+                    client.send("delete player " + std::to_string(clients_send_id.at(0)));
+                }
+                for (auto& entity : _ecs.getEntities()) {
+                    if (_ecs.hasComponent<Player>(entity)) {
+                        if (_ecs.getComponent<Player>(entity)->id == clients_send_id.at(0)) {
+                            clients_send.front().send("new player 0 " + _ecs.getComponent<Player>(entity)->name + " you");
+                        } else {
+                            clients_send.front().send("new player 0 " + _ecs.getComponent<Player>(entity)->name);
+                        }
+                    }
+                }
+                clients_send_id.at(0) = 0;
+            }
+
+
+
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Player>(entity)) {
+                    if (_ecs.getComponent<Player>(entity)->id == playerIdToDelete) {
+                        _ecs.removeEntity(entity);
+                        break;
+                    }
+                }
+            }
+
         }
     }
-
 }
 
 /**
@@ -83,8 +111,8 @@ void Server::parse_data_received()
     const std::vector<std::string>& received_data = server_receive.get_received_data();
 
     for (const auto& data : received_data) {
-        init_new_entity(data);
-        check_new_deconnections(data);
+        init_entity(data);
+        delete_entity(data);
 
     }
     server_receive.clear_received_data();
@@ -95,12 +123,25 @@ void print_all_ecs_entity(ECS& ecs)
     std::cout << "--- ECS ---" << std::endl;
     for (auto& entity : ecs.getEntities()) {
         std::cout << "Entity: " << entity << std::endl;
-        std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
-        std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
-        std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << std::endl;
-        std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
-        std::cout << "Player: " << ecs.getComponent<Player>(entity)->id << " " << ecs.getComponent<Player>(entity)->name << std::endl;
-        std::cout << "Sprite: " << ecs.getComponent<Sprite>(entity)->texture << " " << ecs.getComponent<Sprite>(entity)->width << " " << ecs.getComponent<Sprite>(entity)->height << " " << ecs.getComponent<Sprite>(entity)->scale << std::endl;
+        if (ecs.hasComponent<Position>(entity)) {
+            std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
+        }
+        if (ecs.hasComponent<Rotation>(entity)) {
+            std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
+        }
+        if (ecs.hasComponent<Velocity>(entity)) {
+            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << " " << ecs.getComponent<Velocity>(entity)->magnitude << std::endl;
+        }
+        if (ecs.hasComponent<Health>(entity)) {
+            std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
+        }
+        if (ecs.hasComponent<Player>(entity)) {
+            std::cout << "Player: " << ecs.getComponent<Player>(entity)->id << " " << ecs.getComponent<Player>(entity)->name << std::endl;
+        }
+        if (ecs.hasComponent<Sprite>(entity)) {
+            std::cout << "Sprite: " << ecs.getComponent<Sprite>(entity)->texture << " " << ecs.getComponent<Sprite>(entity)->width << " " << ecs.getComponent<Sprite>(entity)->height << " " << ecs.getComponent<Sprite>(entity)->scale << std::endl;
+        }
+
         std::cout << std::endl;
     }
     std::cout << "-----------" << std::endl;

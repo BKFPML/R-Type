@@ -132,8 +132,8 @@ void rtype::Client::doMovement(Action direction)
 
 /**
  * @brief perform the set actions
- * 
- * @param action 
+ *
+ * @param action
  */
 void rtype::Client::performAction(Action action, bool game_bind_pressed) {
     switch (action) {
@@ -182,6 +182,15 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                         _graphical->stop();
                     }
                 }
+                if (_currentScene == WAITING_ROOM) {
+                    if (_keys.mouse.x >= 1256 && _keys.mouse.x <= 1377 && _keys.mouse.y >= 400 && _keys.mouse.y <= 432) {
+                        level_selected = 0;
+                    } else if (_keys.mouse.x >= 1256 && _keys.mouse.x <= 1443 && _keys.mouse.y >= 500 && _keys.mouse.y <= 532) {
+                        level_selected = 1;
+                    } else if (_keys.mouse.x >= 1256 && _keys.mouse.x <= 1383 && _keys.mouse.y >= 600 && _keys.mouse.y <= 632) {
+                        level_selected = 2;
+                    }
+                }
                 if (_currentScene == CONNECTION) {
                     if (_keys.mouse.x >= 642 && _keys.mouse.x <= 1505 && _keys.mouse.y >= 582 && _keys.mouse.y <= 668) {
                         _input_frames_state.at(1).first = true;
@@ -196,12 +205,10 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                         sender.send("new player " + _input_frames_state.at(0).second + " " + _received_ip + ":" + std::to_string(_received_port));
                         _currentScene = WAITING_ROOM;
                     }
-
                      else {
                         _input_frames_state.at(0).first = false;
                         _input_frames_state.at(1).first = false;
                     }
-                    
                 }
                 if (_currentScene == SETTINGS) {
                     if (_keys.mouse.x >= 914 && _keys.mouse.x <= 1040 && _keys.mouse.y >= 799 && _keys.mouse.y <= 833) {
@@ -373,7 +380,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                     _currentScene = MAIN_MENU;
                 } else if (_currentScene == WAITING_ROOM) {
                     _currentScene = CONNECTION;
-                    sender.send("quit " + _received_ip + ":" + std::to_string(_received_port));
+                    sender.send("delete player " + std::to_string(_ecs.getComponent<Player>(_players)->id));
                     sender = UDPBoostNetwork::UDPSender(0, "1.1.1.1");
                 }
             }
@@ -384,8 +391,6 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                 _isRunning = false;
                 _graphical->stop();
                 sender.send("quit " + _received_ip + ":" + std::to_string(_received_port));
-                
-
             }
             break;
         case A:
@@ -856,7 +861,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
 
 /**
  * @brief returns default keybinds
- * 
+ *
  * @return KeyBinding keybinds
  */
 KeyBinding defaultKeyBindings() {
@@ -917,7 +922,7 @@ KeyBinding defaultKeyBindings() {
 
 /**
  * @brief returns connection keybinds
- * 
+ *
  * @return KeyBinding keybinds
  */
 KeyBinding connectionKeyBindings() {
@@ -1061,7 +1066,7 @@ void rtype::Client::handleInput() {
         keyBindings = _gameKeyBindings;
     else
         keyBindings = _keyBindings;
-    
+
     auto now = std::chrono::system_clock::now();
     bool isTimeToPerformAction = std::chrono::duration_cast<std::chrono::milliseconds>(now - _start_bind).count() > 10;
 

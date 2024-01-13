@@ -46,6 +46,25 @@ void rtype::Client::initPlayer(std::vector<std::string> data_split)
 }
 
 /**
+ * @brief delete entity player
+ *
+ */
+void rtype::Client::deletePlayer(std::vector<std::string> data)
+{
+    if (data.at(1) == "player") {
+        int playerIdToDelete = std::stoi(data.at(2));
+        for (auto& entity : _ecs.getEntities()) {
+            if (_ecs.hasComponent<Player>(entity)) {
+                if (_ecs.getComponent<Player>(entity)->id == playerIdToDelete) {
+                    _ecs.removeEntity(entity);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+/**
  * @brief nb of players
  *
  */
