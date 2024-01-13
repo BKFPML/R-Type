@@ -44,6 +44,14 @@ void Server::delete_entity(std::string data)
             for (auto& client : clients_send) {
                 client.send("delete player " + std::to_string(playerIdToDelete));
             }
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Player>(entity)) {
+                    if (_ecs.getComponent<Player>(entity)->id == playerIdToDelete) {
+                        _ecs.removeEntity(entity);
+                        break;
+                    }
+                }
+            }
             if (playerIdToDelete == 0 && clients_send_id.size() > 0) {
                 for (auto& client : clients_send) {
                     client.send("delete player " + std::to_string(clients_send_id.at(0)));
@@ -62,14 +70,7 @@ void Server::delete_entity(std::string data)
 
 
 
-            for (auto& entity : _ecs.getEntities()) {
-                if (_ecs.hasComponent<Player>(entity)) {
-                    if (_ecs.getComponent<Player>(entity)->id == playerIdToDelete) {
-                        _ecs.removeEntity(entity);
-                        break;
-                    }
-                }
-            }
+            
 
         }
     }
