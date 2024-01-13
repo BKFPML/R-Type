@@ -120,7 +120,8 @@ struct Immunity {
  */
 struct Player{
     int id;
-    Player(int id) : id(id) {}
+    std::string name;
+    Player(int id, std::string name) : id(id), name(name) {}
 };
 
 /**
