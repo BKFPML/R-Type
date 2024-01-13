@@ -163,7 +163,7 @@ void print_all_ecs_entity(ECS& ecs)
             std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
         }
         if (ecs.hasComponent<Velocity>(entity)) {
-            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << " " << ecs.getComponent<Velocity>(entity)->magnitude << std::endl;
+            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << std::endl;
         }
         if (ecs.hasComponent<Health>(entity)) {
             std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;

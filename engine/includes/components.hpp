@@ -27,18 +27,7 @@ struct Position {
  */
 struct Velocity {
     float x, y;
-    float magnitude;
-    // Constructor
-    Velocity(float x, float y, float magnitude) : x(x), y(y), magnitude(magnitude) {
-        normalize();
-    }
-    // Method to normalize the vector
-    void normalize() {
-        float len = std::sqrt(x * x + y * y);
-        if (len != 0) {
-            x /= len;
-            y /= len;
-        }
+    Velocity(float x, float y) : x(x), y(y) {
     }
 };
 
