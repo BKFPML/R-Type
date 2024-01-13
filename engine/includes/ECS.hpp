@@ -164,6 +164,17 @@ class ECS {
             return drawableEntities;
         }
 
+        std::vector<Entity> getEnemies() {
+            std::vector<Entity> entities = getEntities();
+            std::vector<Entity> enemies;
+            for (int i = 0; i < entities.size(); i++) {
+                if (hasComponent<Enemy>(entities[i])) {
+                    enemies.push_back(entities[i]);
+                }
+            }
+            return enemies;
+        }
+
         /**
          * @brief Registers a new system
          *

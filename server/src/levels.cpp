@@ -11,6 +11,22 @@
 using json = nlohmann::json;
 
 /**
+ * @brief Create a Spawn Time Component object
+ * 
+ * @param entity
+ * @param params
+ * @param ecs
+ */
+void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+    if (params.find("time") != params.end()) {
+        float time = std::stof(params.at("time"));
+        ecs->addComponent(entity, SpawnTime{time});
+    } else {
+        std::cerr << "SpawnTime component requires 'Time' parameter." << std::endl;
+    }
+}
+
+/**
  * @brief Create a Player Component object
  * 
  * @param entity 
@@ -24,6 +40,19 @@ void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::str
         ecs->addComponent(entity, Player{id, name});
     } else {
         std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;
+    }
+}
+
+/**
+ * @brief Create an enemy component
+ * 
+ */
+void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+    if (params.find("name") != params.end()) {
+        std::string name = params.at("name");
+        ecs->addComponent(entity, Enemy{name});
+    } else {
+        std::cerr << "Enemy component requires 'Name' parameter." << std::endl;
     }
 }
 
@@ -117,18 +146,6 @@ void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::str
 }
 
 /**
- * @brief Create a Npc Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
- */
-void createNpcComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    //TODO
-    std::cout << "NPC creation component" << std::endl;
-}
-
-/**
  * @brief Loads a JSON file
  * 
  * @param filename 
@@ -201,6 +218,7 @@ std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unord
     {"Velocity", createVelocityComponent},
     {"Rotation", createRotationComponent},
     {"Health", createHealthComponent},
-    {"Npc", createNpcComponent},
-    {"Sprite", createSpriteComponent}
+    {"Sprite", createSpriteComponent},
+    {"Enemy", createEnemyComponent},
+    {"SpawnTime", createSpawnTimeComponent}
 };
