@@ -69,9 +69,7 @@ rtype::Client::~Client()
 }
 
 void rtype::Client::parse_data_received(IReceiver& receive) {
-    std::cout << "Parsing data received" << std::endl;
     std::vector<std::string> data = receive.get_received_data();
-    std::cout << "Received data: " << std::endl;
     for (auto& d : data) {
         std::cout << "Received: " << d << std::endl;
         if (split(d, " ").front() == "new") {
