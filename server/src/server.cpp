@@ -24,7 +24,7 @@ void Server::init_entity(std::string data)
             _ecs.createEntity();
             _ecs.addComponent<Player>(_ecs.getEntities().back(), {std::stoi(data_split.at(2)), ""});
             _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(2)), std::stof(data_split.at(3))});
-            _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {std::stof(data_split.at(4)), std::stof(data_split.at(5)), std::stof(data_split.at(6))});
+            _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {std::stof(data_split.at(4)), std::stof(data_split.at(5))});
             std::string texture = "bullet";
             _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 16, 16, 0, 0, 1});
         }
@@ -163,7 +163,7 @@ void print_all_ecs_entity(ECS& ecs)
             std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
         }
         if (ecs.hasComponent<Velocity>(entity)) {
-            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << " " << ecs.getComponent<Velocity>(entity)->magnitude << std::endl;
+            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << std::endl;
         }
         if (ecs.hasComponent<Health>(entity)) {
             std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
