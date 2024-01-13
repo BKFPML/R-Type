@@ -10,6 +10,15 @@
 #include <string>
 
 /**
+ * @brief Spawn Time component
+ * @param time Time of the spawn
+ */
+struct SpawnTime {
+    float time;
+    SpawnTime(float time) : time(time) {}
+};
+
+/**
  * @brief Position component
  * @param x X position
  * @param y Y position
@@ -114,8 +123,13 @@ struct Player{
     Player(int id, std::string name) : id(id), name(name) {}
 };
 
-struct Npc {
-    //TODO
+/**
+ * @brief Enemy component
+ * @param name Name of the enemy
+ */
+struct Enemy {
+    std::string name;
+    Enemy(std::string name) : name(name) {}
 };
 
 // *Graphical components
