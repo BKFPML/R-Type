@@ -68,6 +68,12 @@ rtype::Client::~Client()
     std::cout << "Goodbye" << std::endl;
 }
 
+
+std::string rtype::Client::ecsToJsonString () {
+    std::string json = "[";
+    return json;
+}
+
 void rtype::Client::parse_data_received(IReceiver& receive) {
     std::vector<std::string> data = receive.get_received_data();
     for (auto& d : data) {
@@ -105,8 +111,9 @@ void rtype::Client::gameLoop(IReceiver& receive)
         _keys = keyState.first;
         _previousKeys = keyState.second;
         handleInput();
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 1000) {
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 100 && _currentScene == GAME) {
             _start = now;
+            sender.send(ecsToJsonString());
         }
         sceneManager();
     }

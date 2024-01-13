@@ -51,6 +51,7 @@ namespace rtype
             void unbind(Action action);
             void parse_data_received(IReceiver& receive);
             int nbPlayersInRoom();
+            std::string ecsToJsonString ();
             std::vector<std::string> split(const std::string& str, const std::string& delim);
 
         private:
