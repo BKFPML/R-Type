@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['text_171',['Text',['../structText.html',1,'']]]
+  ['udpboostnetwork_175',['UDPBoostNetwork',['../classUDPBoostNetwork.html',1,'']]],
+  ['udpreceiver_176',['UDPReceiver',['../classUDPBoostNetwork_1_1UDPReceiver.html',1,'UDPBoostNetwork']]],
+  ['udpsender_177',['UDPSender',['../classUDPBoostNetwork_1_1UDPSender.html',1,'UDPBoostNetwork']]]
 ];

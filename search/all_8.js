@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['keybinding_79',['KeyBinding',['../structKeyBinding.html',1,'']]],
-  ['keystate_80',['KeyState',['../structKeyState.html',1,'']]]
+  ['keybinding_81',['KeyBinding',['../structKeyBinding.html',1,'']]],
+  ['keystate_82',['KeyState',['../structKeyState.html',1,'']]]
 ];

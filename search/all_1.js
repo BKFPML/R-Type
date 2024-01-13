@@ -10,12 +10,13 @@ var searchData=
   ['componentfactories_10',['componentFactories',['../classLevels.html#aff299d6d1ce2b5b15e5afe242e129ef2',1,'Levels']]],
   ['components_2ehpp_11',['components.hpp',['../components_8hpp.html',1,'']]],
   ['connection_2ecpp_12',['connection.cpp',['../connection_8cpp.html',1,'']]],
-  ['createentity_13',['createEntity',['../classECS.html#a41b876f3725cbb04aac3f2edd95522c6',1,'ECS']]],
-  ['createhealthcomponent_14',['createHealthComponent',['../levels_8cpp.html#ac655ade6d104254da8e455ae395cafdd',1,'levels.cpp']]],
-  ['createnpccomponent_15',['createNpcComponent',['../levels_8cpp.html#a0fe1963a5383418d44a9de1fc9df3bd2',1,'levels.cpp']]],
+  ['createenemycomponent_13',['createEnemyComponent',['../levels_8cpp.html#a79f2152d48230b9ae67717c2b77cd000',1,'levels.cpp']]],
+  ['createentity_14',['createEntity',['../classECS.html#a41b876f3725cbb04aac3f2edd95522c6',1,'ECS']]],
+  ['createhealthcomponent_15',['createHealthComponent',['../levels_8cpp.html#ac655ade6d104254da8e455ae395cafdd',1,'levels.cpp']]],
   ['createplayercomponent_16',['createPlayerComponent',['../levels_8cpp.html#a0ba7cf6e6bbcaa8b8591c2a0ac8ba857',1,'levels.cpp']]],
   ['createpositioncomponent_17',['createPositionComponent',['../levels_8cpp.html#ab84ba00ecd26cefaa1a2ef4b33e3b41b',1,'levels.cpp']]],
   ['createrotationcomponent_18',['createRotationComponent',['../levels_8cpp.html#a3063e60cf12b48c04848e885dd055ff2',1,'levels.cpp']]],
-  ['createspritecomponent_19',['createSpriteComponent',['../levels_8cpp.html#a76f5a3a461e49c56ffe3d7eecb0cb6ce',1,'levels.cpp']]],
-  ['createvelocitycomponent_20',['createVelocityComponent',['../levels_8cpp.html#aae7bd712a1a12d7125abf17bee2dd20e',1,'levels.cpp']]]
+  ['createspawntimecomponent_19',['createSpawnTimeComponent',['../levels_8cpp.html#a108c67e6ca84398466b406fc2c1e85d6',1,'levels.cpp']]],
+  ['createspritecomponent_20',['createSpriteComponent',['../levels_8cpp.html#a76f5a3a461e49c56ffe3d7eecb0cb6ce',1,'levels.cpp']]],
+  ['createvelocitycomponent_21',['createVelocityComponent',['../levels_8cpp.html#aae7bd712a1a12d7125abf17bee2dd20e',1,'levels.cpp']]]
 ];
