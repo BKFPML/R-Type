@@ -189,6 +189,8 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                         level_selected = 1;
                     } else if (_keys.mouse.x >= 1256 && _keys.mouse.x <= 1383 && _keys.mouse.y >= 600 && _keys.mouse.y <= 632) {
                         level_selected = 2;
+                    } else if (_keys.mouse.x >= 850 && _keys.mouse.x <= 1000 && _keys.mouse.y >= 795 && _keys.mouse.y <= 835 && level_selected != -1 && nbPlayersInRoom() > 1) {
+                        sender.send("start " + std::to_string(level_selected));
                     }
                 }
                 if (_currentScene == CONNECTION) {

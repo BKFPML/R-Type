@@ -113,7 +113,12 @@ void Server::parse_data_received()
     for (const auto& data : received_data) {
         init_entity(data);
         delete_entity(data);
-
+        if (split(data, " ").front() == "start") {
+            std::vector<std::string> data_split = split(data, " ");
+            for (auto& client : clients_send) {
+                client.send("start " + data_split.at(1));
+            }
+        }
     }
     server_receive.clear_received_data();
 }

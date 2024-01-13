@@ -82,6 +82,10 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
             std::vector<std::string> data_split = split(d, " ");
             deletePlayer(data_split);
         }
+        if (split(d, " ").front() == "start") {
+            std::vector<std::string> data_split = split(d, " ");
+            _currentScene = GAME;
+        }
     }
     receive.clear_received_data();
 }
