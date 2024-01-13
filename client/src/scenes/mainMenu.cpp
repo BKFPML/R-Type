@@ -13,8 +13,8 @@
 void rtype::Client::drawMainMenu()
 {
     _graphical->clear();
-    _graphical->drawSprite("outerSpace", 0, 0, 1, 0, 0, 0);
-    _graphical->drawSprite("logo", 500, 200, 2, 0, 0, 0);
+    _graphical->drawSprite("outerSpace", 0, 0, 0, 0, 1, 0, 0, 0);
+    _graphical->drawSprite("logo", 500, 200, 0, 0, 2, 0, 0, 0);
     _graphical->drawText("Singleplayer", 780, 500, 30);
     _graphical->drawText("Multiplayer", 800, 600, 30);
     _graphical->drawText("Settings", 840, 700, 30);

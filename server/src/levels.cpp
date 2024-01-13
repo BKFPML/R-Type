@@ -51,14 +51,16 @@ void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::s
  * @param ecs 
  */
 void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    if (params.find("texture") != params.end() && params.find("width") != params.end() && params.find("height") != params.end(), params.find("scale") != params.end()) {
+    if (params.find("texture") != params.end() && params.find("width") != params.end() && params.find("height") != params.end() && params.find("startX") != params.end() && params.find("startY") != params.end() && params.find("scale") != params.end()) {
         std::string texture = params.at("texture");
         int width = std::stoi(params.at("width"));
         int height = std::stoi(params.at("height"));
+        int startX = std::stoi(params.at("startX"));
+        int startY = std::stoi(params.at("startY"));
         float scale = std::stof(params.at("scale"));
-        ecs->addComponent(entity, Sprite{texture, width, height, scale});
+        ecs->addComponent(entity, Sprite{texture, width, height, startX, startY, scale});
     } else {
-        std::cerr << "Sprite component requires 'Texture', 'Width' and 'Height' parameters." << std::endl;
+        std::cerr << "Sprite component requires 'Texture', 'StartX', 'StartY', 'Width' and 'Height' parameters." << std::endl;
     }
 }
 
