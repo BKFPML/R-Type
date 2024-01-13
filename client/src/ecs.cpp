@@ -35,7 +35,7 @@ void rtype::Client::initPlayer(std::vector<std::string> data_split)
         _ecs.addComponent<Health>(_ecs.getEntities().back(), 100);
         _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {1, 1, 2});
         std::string texture = "player_red";
-        _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 34, 34, 3});
+        _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 34, 34, 0, 0, 3});
         _ecs.addComponent<Player>(_ecs.getEntities().back(), {stoi(data_split.at(2)), data_split.at(3)});
         _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {180});
         if (data_split.size() > 4) {
