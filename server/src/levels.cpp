@@ -18,8 +18,12 @@ using json = nlohmann::json;
  * @param ecs
  */
 void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    float time = std::stof(params.at("SpawnTime"));
-    ecs->addComponent(entity, SpawnTime{time});
+    if (params.find("time") != params.end()) {
+        float time = std::stof(params.at("time"));
+        ecs->addComponent(entity, SpawnTime{time});
+    } else {
+        std::cerr << "SpawnTime component requires 'Time' parameter." << std::endl;
+    }
 }
 
 /**
@@ -44,8 +48,12 @@ void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::str
  * 
  */
 void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    std::string name = params.at("Enemy");
-    ecs->addComponent(entity, Enemy{name});
+    if (params.find("name") != params.end()) {
+        std::string name = params.at("name");
+        ecs->addComponent(entity, Enemy{name});
+    } else {
+        std::cerr << "Enemy component requires 'Name' parameter." << std::endl;
+    }
 }
 
 /**

@@ -147,6 +147,12 @@ void print_all_ecs_entity(ECS& ecs)
         if (ecs.hasComponent<Sprite>(entity)) {
             std::cout << "Sprite: " << ecs.getComponent<Sprite>(entity)->texture << " " << ecs.getComponent<Sprite>(entity)->width << " " << ecs.getComponent<Sprite>(entity)->height << " " << ecs.getComponent<Sprite>(entity)->scale << std::endl;
         }
+        if (ecs.hasComponent<Enemy>(entity)) {
+            std::cout << "Enemy: " << ecs.getComponent<Enemy>(entity)->name << std::endl;
+        }
+        if (ecs.hasComponent<SpawnTime>(entity)) {
+            std::cout << "SpawnTime: " << ecs.getComponent<SpawnTime>(entity)->time << std::endl;
+        }
 
         std::cout << std::endl;
     }
@@ -225,7 +231,7 @@ int main()
         }
         if (ecs->hasComponent<SpawnTime>(entity)) {
             auto spawnTime = ecs->getComponent<SpawnTime>(entity);
-            std::cout << "SpawnTime" << spawnTime->time << std::endl;
+            std::cout << "SpawnTime: " << spawnTime->time << std::endl;
         }
     }
 
