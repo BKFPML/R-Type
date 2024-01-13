@@ -18,8 +18,8 @@ void rtype::Client::drawEntities()
         Sprite *sprite = _ecs.getComponent<Sprite>(entity);
         if (_ecs.hasComponent<Rotation>(entity)) {
             Rotation *rot = _ecs.getComponent<Rotation>(entity);
-            _graphical->drawSprite(sprite->texture, pos->x, pos->y, sprite->scale, rot->angle, sprite->width, sprite->height);
+            _graphical->drawSprite(sprite->texture, pos->x, pos->y, sprite->startX, sprite->startY, sprite->scale, rot->angle, sprite->width, sprite->height);
         } else
-           _graphical->drawSprite(sprite->texture, pos->x, pos->y, sprite->scale, 0, sprite->width, sprite->height);
+           _graphical->drawSprite(sprite->texture, pos->x, pos->y, sprite->startX, sprite->startY, sprite->scale, 0, sprite->width, sprite->height);
     }
 }

@@ -81,5 +81,6 @@ namespace rtype
             int _received_port;
             int soundVolume;
             int level_selected;
+            int id;
     };
 }
