@@ -5,6 +5,7 @@
  */
 
 #include "sfml.hpp"
+#include <iostream>
 
 /**
  * @brief Draws a sprite on the SFML window
@@ -16,6 +17,7 @@
 void rtype::SFML::drawSprite(std::string sprite, int x, int y, float scale = 1.0, int rotation = 0, int size_x = 0, int size_y = 0)
 {
     for (auto& s : sprites) {
+        std::cout << "Drawing sprite: " << s.first << std::endl;
         if (s.first == sprite) {
             s.second->setPosition(x, y);
             s.second->setScale(scale, scale);

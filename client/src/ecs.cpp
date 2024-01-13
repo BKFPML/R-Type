@@ -15,8 +15,9 @@ ECS rtype::Client::initECS()
 {
     ECS ecs;
     ecs.registerComponent<Position>();
-    ecs.registerComponent<Health>();
     ecs.registerComponent<Velocity>();
+    ecs.registerComponent<Rotation>();
+    ecs.registerComponent<Health>();
     ecs.registerComponent<Sprite>();
     return ecs;
 }
@@ -31,6 +32,7 @@ void rtype::Client::initPlayer()
     _ecs.addComponent<Position>(_players[0], {100, 100});
     _ecs.addComponent<Health>(_players[0], 100);
     _ecs.addComponent<Velocity>(_players[0], {1, 1, 2});
-    std::string texture = "player_red";
+    std::string texture = "r_typesheet42";
     _ecs.addComponent<Sprite>(_players[0], {texture, 34, 34});
+    _ecs.addComponent<Rotation>(_players[0], 180);
 }

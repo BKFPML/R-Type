@@ -8,6 +8,7 @@
 
 //* Textures
 #include "player_red.h"
+#include "r_typesheet42.h"
 #include "parallax100.h"
 #include "parallax80.h"
 #include "parallax60.h"
@@ -85,6 +86,7 @@ void rtype::SFML::loadAssets()
     initTextures("letter_box", letter_box, letter_box_len);
     initTextures("fps_30_60", fps_30_60, fps_30_60_len);
     initTextures("fps_120", fps_120, fps_120_len);
+    initTextures("r_typesheet42", r_typesheet42, r_typesheet42_len);
 
     if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;
