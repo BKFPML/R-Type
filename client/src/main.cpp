@@ -24,7 +24,6 @@ int main() {
         rtype::Client client(ip_receive, port);
         std::thread r([&] { receiver.receive(); });
 
-        client.initPlayer();
         client.gameLoop(receiver);
 
         r.join();

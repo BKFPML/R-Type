@@ -23,7 +23,9 @@ rtype::Client::Client(std::string ip, int port)
 
     for (int i = 0; i < 7; i++)
         _input_frames_state.push_back(std::make_pair(false, ""));
-
+    
+    _input_frames_state.at(0).second = "durbaon";
+    _input_frames_state.at(1).second = "192.168.178.166";
     _input_frames_state.at(2).second = "UP";
     _input_frames_state.at(3).second = "DOWN";
     _input_frames_state.at(4).second = "LEFT";
@@ -36,6 +38,29 @@ rtype::Client::Client(std::string ip, int port)
     _gameKeyBindings.leftAction = MOVE_LEFT;
     _gameKeyBindings.rightAction = MOVE_RIGHT;
     _gameKeyBindings.spaceAction = SHOOT;
+
+
+
+}
+
+/**
+ * @brief splits a string into a vector of strings based on a delimiter
+ * 
+*/
+std::vector<std::string> rtype::Client::split(const std::string& str, const std::string& delim)
+{
+    std::vector<std::string> tokens;
+    size_t prev = 0, pos = 0;
+    do {
+        pos = str.find(delim, prev);
+        if (pos == std::string::npos)
+            pos = str.length();
+        std::string token = str.substr(prev, pos-prev);
+        if (!token.empty())
+            tokens.push_back(token);
+        prev = pos + delim.length();
+    } while (pos < str.length() && prev < str.length());
+    return tokens;
 }
 
 /**
@@ -46,6 +71,17 @@ rtype::Client::~Client()
     std::cout << "Goodbye" << std::endl;
 }
 
+void rtype::Client::parse_data_received(IReceiver& receive) {
+    std::vector<std::string> data = receive.get_received_data();
+    for (auto& d : data) {
+        std::cout << "Received: " << d << std::endl;
+        if (split(d, " ").front() == "new") {
+            std::vector<std::string> data_split = split(d, " ");
+            initPlayer(data_split);
+        }
+    }
+    receive.clear_received_data();
+}
 /**
  * @brief Runs the game loop
  *
@@ -58,17 +94,15 @@ void rtype::Client::gameLoop(IReceiver& receive)
     _graphical->playMusic("mainTheme", true);
 
     while (_isRunning) {
+    
         auto now = std::chrono::system_clock::now();
+        parse_data_received(receive);
         std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
         _keys = keyState.first;
         _previousKeys = keyState.second;
         handleInput();
         if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 1000) {
             _start = now;
-            std::string data = std::to_string(_ecs.getComponent<Position>(_players[0])->x) + " "
-                             + std::to_string(_ecs.getComponent<Position>(_players[0])->y);
-
-            sender.send(data);
         }
         sceneManager();
     }

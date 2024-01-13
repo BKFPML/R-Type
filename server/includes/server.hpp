@@ -29,14 +29,17 @@ class Server {
         ~Server() = default;
 
         int run();
-        void check_new_connections(std::string data);
+        void init_new_entity(std::string data);
         void check_new_deconnections(std::string data);
-        void parse_data_received(Parser parser);
+        int find_free_id_player();
+        void init_player(std::vector<std::string> data);
+        void parse_data_received();
         std::vector<std::string> split(const std::string& str, const std::string& delim);
-        std::string getLocalIPAddress();
 
     private:
         UDPBoostNetwork::UDPReceiver server_receive;
         std::vector<UDPBoostNetwork::UDPSender> clients_send;
         ECS _ecs;
+        Parser parser;
+
 };

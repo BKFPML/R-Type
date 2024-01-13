@@ -7,6 +7,7 @@
 #include "../includes/server.hpp"
 #include "levels.hpp"
 
+
 /**
  * @brief Check for new connections
  * 
@@ -14,21 +15,11 @@
  * @param client_boost_receive 
  * @return std::vector<Network::Sender> 
  */
-void Server::check_new_connections(std::string data)
+void Server::init_new_entity(std::string data)
 {
     if (split(data, " ").front() == "new") {
-        std::cout << "New connection: " << data << std::endl;
-        std::cout << "Set port to: " << split(data, " ").back() << std::endl;
-        for (auto& client : clients_send) {
-            client.send("new " + split(data, " ").back());
-        }
-        std::string ip = split(data, " ").back();
-        std::cout << "Port " << std::stoi(split(ip, ":").back()) << ",IP "<< split(ip, ":").front() << std::endl;
-        clients_send.push_back(UDPBoostNetwork::UDPSender(std::stoi(split(ip, ":").back()), split(ip, ":").front()));
-
-        for (int i = 0; i < clients_send.size() - 1; i++) {
-            clients_send.back().send("new " + clients_send[i].get_ip() + ":" + std::to_string(clients_send[i].get_port()));
-        }
+        std::vector<std::string> data_split = split(data, " ");
+        init_player(data_split);
     }
 }
 
@@ -87,16 +78,32 @@ std::vector<std::string> Server::split(const std::string& str, const std::string
  * @param clients 
  * @param client_boost_receive 
  */
-void Server::parse_data_received(Parser parser)
+void Server::parse_data_received()
 {
     const std::vector<std::string>& received_data = server_receive.get_received_data();
 
     for (const auto& data : received_data) {
-        check_new_connections(data);
+        init_new_entity(data);
         check_new_deconnections(data);
 
     }
     server_receive.clear_received_data();
+}
+
+void print_all_ecs_entity(ECS& ecs)
+{
+    std::cout << "--- ECS ---" << std::endl;
+    for (auto& entity : ecs.getEntities()) {
+        std::cout << "Entity: " << entity << std::endl;
+        std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
+        std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
+        std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << std::endl;
+        std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
+        std::cout << "Player: " << ecs.getComponent<Player>(entity)->id << " " << ecs.getComponent<Player>(entity)->name << std::endl;
+        std::cout << "Sprite: " << ecs.getComponent<Sprite>(entity)->texture << " " << ecs.getComponent<Sprite>(entity)->width << " " << ecs.getComponent<Sprite>(entity)->height << " " << ecs.getComponent<Sprite>(entity)->scale << std::endl;
+        std::cout << std::endl;
+    }
+    std::cout << "-----------" << std::endl;
 }
 
 /**
@@ -107,18 +114,14 @@ void Server::parse_data_received(Parser parser)
 int Server::run()
 {
     std::thread r([&]{ server_receive.receive();});
-    auto start_time = std::chrono::high_resolution_clock::now();
-    Parser parser;
-
+    auto now = std::chrono::system_clock::now();
     while (true)
     {
-        parse_data_received(parser);
-        if (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - start_time).count() > 3) {
-            for (auto& client : clients_send) {
-                client.send("hello from the server");
-            }
-            start_time = std::chrono::high_resolution_clock::now();
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 1000) {
+            now = std::chrono::system_clock::now();
+            print_all_ecs_entity(_ecs);
         }
+        parse_data_received();
     }
     r.join();
     return 0;

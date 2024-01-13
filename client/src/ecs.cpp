@@ -18,6 +18,8 @@ ECS rtype::Client::initECS()
     ecs.registerComponent<Health>();
     ecs.registerComponent<Velocity>();
     ecs.registerComponent<Sprite>();
+    ecs.registerComponent<Player>();
+    ecs.registerComponent<Rotation>();
     return ecs;
 }
 
@@ -25,12 +27,35 @@ ECS rtype::Client::initECS()
  * @brief Initialises the player and add it to the ECS
  *
  */
-void rtype::Client::initPlayer()
+void rtype::Client::initPlayer(std::vector<std::string> data_split)
 {
-    _players.push_back(_ecs.createEntity());
-    _ecs.addComponent<Position>(_players[0], {100, 100});
-    _ecs.addComponent<Health>(_players[0], 100);
-    _ecs.addComponent<Velocity>(_players[0], {1, 1, 2});
-    std::string texture = "player_red";
-    _ecs.addComponent<Sprite>(_players[0], {texture, 34, 34, 1});
+    if (data_split.at(1) == "player") {
+        _ecs.createEntity();
+        _ecs.addComponent<Position>(_ecs.getEntities().back(), {100, 100});
+        _ecs.addComponent<Health>(_ecs.getEntities().back(), 100);
+        _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {1, 1, 2});
+        std::string texture = "player_red";
+        _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 34, 34, 3});
+        _ecs.addComponent<Player>(_ecs.getEntities().back(), {stoi(data_split.at(2)), data_split.at(3)});
+        _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {180});
+        if (data_split.size() > 4) {
+            _players = _ecs.getEntities().back();
+        }
+    }
+
+}
+
+/**
+ * @brief nb of players
+ *
+ */
+int rtype::Client::nbPlayersInRoom()
+{
+    int nb = 0;
+    for (auto& entity : _ecs.getEntities()) {
+        if (_ecs.hasComponent<Player>(entity)) {
+            nb++;
+        }
+    }
+    return nb;
 }
