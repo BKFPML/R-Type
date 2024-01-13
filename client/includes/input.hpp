@@ -1,5 +1,5 @@
 /**
- * @file actions.hpp
+ * @file input.hpp
  * @brief contains the structures for the actions, keybindings and states
  * @date 09-01-2024
  */
@@ -7,8 +7,7 @@
 #pragma once
 
 /**
- * @brief 
- * these actions describe the state of the abstracted actions
+ * @brief these actions describe the state of the abstracted actions
  */
 enum Action{
     EMPTY,
@@ -67,8 +66,7 @@ enum Action{
 };
 
 /**
- * @brief 
- * this struct contains the keybindings for the actions
+ * @brief this struct contains the keybindings for the actions
  */
 struct KeyBinding {
     Action lClickPressAction;
@@ -189,6 +187,9 @@ struct KeyBinding {
     }
 };
 
+/**
+ * @brief Possible states of the mouse
+ */
 struct MouseState {
     int x;
     int y;

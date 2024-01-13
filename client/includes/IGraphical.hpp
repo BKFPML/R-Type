@@ -12,6 +12,9 @@
 #include "./input.hpp"
 
 namespace rtype {
+    /**
+     * @brief Interface for the graphical library
+     */
     class IGraphical {
         public:
             virtual ~IGraphical() = default;
