@@ -8,7 +8,7 @@
 #include <vector>
 
 /**
- * @brief Virtual receive class
+ * @brief Interface for a receiver
 */
 class IReceiver {
 public:
@@ -24,7 +24,7 @@ public:
 };
 
 /**
- * @brief Virtual send class
+ * @brief Interface for a sender
 */
 class ISender {
 public:

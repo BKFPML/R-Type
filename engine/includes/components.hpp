@@ -28,7 +28,6 @@ struct Position {
 struct Velocity {
     float x, y;
     float magnitude;
-    // Constructor
     Velocity(float x, float y, float magnitude) : x(x), y(y), magnitude(magnitude) {
         normalize();
     }
@@ -122,8 +121,7 @@ struct Npc {
 // *Graphical components
 
 /**
- * @brief Enum that defines the type of graphical entity
- * Used with the GraphicalType component
+ * @brief Enum that defines the type of graphical entity used with the GraphicalType component
  */
 enum class GraphicalType {
     Sprite,
@@ -141,7 +139,6 @@ struct Graphical {
 
 /**
  * @brief Sprite component, stores sprites and related data
- * 
  */
 struct Sprite {
     std::string texture;
@@ -149,13 +146,13 @@ struct Sprite {
     float scale;
     /**
      * @brief Construct a new Sprite object
-     * 
-     * @param texture Texture of the sprite 
-     * @param width Width of the sprite 
-     * @param height Height of the sprite 
-     * @param startX X position of the texture in the sprite sheet 
-     * @param startY Y position of the texture in the sprite sheet 
-     * @param scale Scale of the sprite 
+     *
+     * @param texture Texture of the sprite
+     * @param width Width of the sprite
+     * @param height Height of the sprite
+     * @param startX X position of the texture in the sprite sheet
+     * @param startY Y position of the texture in the sprite sheet
+     * @param scale Scale of the sprite
      */
     Sprite(std::string texture, int width, int height, int startX, int startY, float scale) : texture(texture), width(width), height(height), startX(startX), startY(startY), scale(scale) {}
 };

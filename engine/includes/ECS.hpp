@@ -17,7 +17,6 @@ class ECS;
 
 /**
  * @brief The interface for a system
- * 
  */
 class ISystem {
     public:
@@ -147,7 +146,7 @@ class ECS {
                 component.erase(entity);
             }
         }
-        
+
         /**
          * @brief Gets all the entities that are drawable
          *
@@ -190,7 +189,7 @@ class ECS {
 
     /**
      * @brief Updates a component, if it exists
-     * 
+     *
      * @tparam T The system type
      * @tparam Func The function type
      * @param entity The entity to update
@@ -207,7 +206,6 @@ class ECS {
 
 /**
  * @brief The movement system. Updates the position of based on their velocity
- * 
  */
 class MovementSystem : public ISystem {
     public:
@@ -226,7 +224,6 @@ class MovementSystem : public ISystem {
 
 /**
  * @brief The immunity system. Updates the immunity frames of entities
- * 
  */
 class ImmunitySystem : public ISystem {
     public:
@@ -248,7 +245,6 @@ class ImmunitySystem : public ISystem {
 
 /**
  * @brief The damage system. Updates the health of entities based on the damage they take
- * 
  */
 class DamageSystem : public ISystem {
     public:
