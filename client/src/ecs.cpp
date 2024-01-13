@@ -40,7 +40,7 @@ void rtype::Client::initPlayer(std::vector<std::string> data_split)
         _ecs.addComponent<Player>(_ecs.getEntities().back(), {stoi(data_split.at(2)), data_split.at(3)});
         _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {180});
         if (data_split.size() > 4) {
-            _players = _ecs.getEntities().back();
+            _player = _ecs.getEntities().back();
             id = stoi(data_split.at(2));
         }
     }

@@ -63,7 +63,7 @@ namespace rtype
             std::chrono::system_clock::time_point _start;
             std::chrono::system_clock::time_point _drawClock;
             std::chrono::system_clock::time_point _start_bind;
-            ECS::Entity _players;
+            ECS::Entity _player;
             std::vector<std::pair<int, int>> _parallaxPos;
             ClientScene _currentScene;
             KeyBinding _keyBindings;

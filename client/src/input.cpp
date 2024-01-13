@@ -98,29 +98,29 @@ void rtype::Client::doMovement(Action direction)
 {
     switch (direction) {
         case MOVE_UP:
-            if (_ecs.getComponent<Position>(_players)->y > 90) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->y > 90) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.y -= 5;
                 });
             }
             break;
         case MOVE_DOWN:
-            if (_ecs.getComponent<Position>(_players)->y < 1080) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->y < 1080) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.y += 5;
                 });
             }
             break;
         case MOVE_LEFT:
-            if (_ecs.getComponent<Position>(_players)->x > 84) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->x > 84) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.x -= 5;
                 });
             }
             break;
         case MOVE_RIGHT:
-            if (_ecs.getComponent<Position>(_players)->x < 1920) {
-                _ecs.updateComponent<Position>(_players, [](Position& pos) {
+            if (_ecs.getComponent<Position>(_player)->x < 1920) {
+                _ecs.updateComponent<Position>(_player, [](Position& pos) {
                     pos.x += 5;
                 });
             }
@@ -132,11 +132,10 @@ void rtype::Client::doMovement(Action direction)
 
 void rtype::Client::doShooting()
 {
-    ECS::Entity player = _players[0];
     ECS::Entity bullet = _ecs.createEntity();
-    _ecs.addComponent<Position>(bullet, {_ecs.getComponent<Position>(player)->x + 20, _ecs.getComponent<Position>(player)->y});
+    _ecs.addComponent<Position>(bullet, {_ecs.getComponent<Position>(_player)->x + 20, _ecs.getComponent<Position>(_player)->y});
     std::string texture = "r_typesheet42";
-    _ecs.addComponent<Sprite>(bullet, {texture, 34, 34});
+    _ecs.addComponent<Sprite>(bullet, {texture, 34, 34, 0, 0, 1});
 }
 
 /**
@@ -391,7 +390,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                     _currentScene = MAIN_MENU;
                 } else if (_currentScene == WAITING_ROOM) {
                     _currentScene = CONNECTION;
-                    sender.send("delete player " + std::to_string(_ecs.getComponent<Player>(_players)->id));
+                    sender.send("delete player " + std::to_string(_ecs.getComponent<Player>(_player)->id));
                     sender = UDPBoostNetwork::UDPSender(0, "1.1.1.1");
                 }
             }
