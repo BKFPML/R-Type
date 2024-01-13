@@ -13,7 +13,7 @@
 void rtype::Client::drawSelectGame()
 {
     _graphical->clear();
-    _graphical->drawSprite("outerSpace", 0, 0, 1, 0, 0, 0);
+    _graphical->drawSprite("outerSpace", 0, 0, 0, 0, 1, 0, 0, 0);
     _graphical->drawText("Connected to server " + _input_frames_state.at(1).second, 50, 50, 16);
     _graphical->drawText("username " + _input_frames_state.at(0).second, 50, 100, 16);
     _graphical->drawText("Select Mode", 770, 400, 30);

@@ -28,7 +28,7 @@ namespace rtype
             ~SFML();
 
             void loadAssets() override;
-            void drawSprite(std::string sprite, int x, int y, float scale, int rotation, int size_x, int size_y) override;
+            void drawSprite(std::string sprite, int x, int y, int startX, int startY, float scale, int rotation, int size_x, int size_y) override;
             void drawText(std::string text, int x, int y, int size) override;
             void playMusic(std::string music, bool loop) override;
             void stopMusic(std::string music) override;

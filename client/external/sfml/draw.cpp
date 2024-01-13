@@ -13,7 +13,7 @@
  * @param x int x position of the sprite
  * @param y int y position of the sprite
  */
-void rtype::SFML::drawSprite(std::string sprite, int x, int y, float scale = 1.0, int rotation = 0, int size_x = 0, int size_y = 0)
+void rtype::SFML::drawSprite(std::string sprite, int x, int y, int startX, int startY, float scale = 1.0, int rotation = 0, int size_x = 0, int size_y = 0)
 {
     for (auto& s : sprites) {
         if (s.first == sprite) {
@@ -21,7 +21,7 @@ void rtype::SFML::drawSprite(std::string sprite, int x, int y, float scale = 1.0
             s.second->setScale(scale, scale);
             s.second->setRotation(rotation);
             if (size_x != 0 && size_y != 0)
-                s.second->setTextureRect(sf::IntRect(0, 0, size_x, size_y));
+                s.second->setTextureRect(sf::IntRect(startX, startY, startX + size_x, startY + size_y));
             _window.draw(*s.second);
         }
     }
