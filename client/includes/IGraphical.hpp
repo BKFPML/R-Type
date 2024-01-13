@@ -17,7 +17,7 @@ namespace rtype {
             virtual ~IGraphical() = default;
 
             virtual void loadAssets() = 0;
-            virtual void drawSprite(std::string sprite, int x, int y, int startX, int startY, float scale, int rotation, int size_x, int size_y) = 0;
+            virtual void drawSprite(std::string sprite, int x, int y, int startX, int startY, float scale, int rotation, int sizeX, int sizeY) = 0;
             virtual void drawText(std::string text, int x, int y, int size) = 0;
             virtual void playMusic(std::string music, bool loop) = 0;
             virtual void stopMusic(std::string music) = 0;
