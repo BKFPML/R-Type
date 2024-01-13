@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['main_245',['main',['../server_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;server.cpp'],['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]]
+  ['loadassets_251',['loadAssets',['../classrtype_1_1SFML.html#a39a1f179984c8605525a3a85c18ef36d',1,'rtype::SFML']]],
+  ['loadjsondata_252',['loadJsonData',['../levels_8cpp.html#a587c0d3e456e44c160c8dbbf14bb895c',1,'levels.cpp']]],
+  ['loadlevel_253',['loadLevel',['../classLevels.html#ac05d7565b21a63818b488e3dffdd772a',1,'Levels']]]
 ];

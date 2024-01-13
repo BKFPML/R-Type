@@ -113,6 +113,9 @@ template&lt;typename ... T&gt; </td></tr>
 <tr class="memitem:a2140693763d02e20d8550bd42f5ff39d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">getEntities</a> ()</td></tr>
 <tr class="memdesc:a2140693763d02e20d8550bd42f5ff39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the entities in the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>.  <a href="classECS.html#a2140693763d02e20d8550bd42f5ff39d">More...</a><br /></td></tr>
 <tr class="separator:a2140693763d02e20d8550bd42f5ff39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3185922d90a0f054841088bbc37c875f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a3185922d90a0f054841088bbc37c875f">removeEntity</a> (Entity entity)</td></tr>
+<tr class="memdesc:a3185922d90a0f054841088bbc37c875f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an entity from the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>.  <a href="classECS.html#a3185922d90a0f054841088bbc37c875f">More...</a><br /></td></tr>
+<tr class="separator:a3185922d90a0f054841088bbc37c875f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58da96890cf3a3b38455e19c1536af97"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a58da96890cf3a3b38455e19c1536af97">getDrawableEntities</a> ()</td></tr>
 <tr class="memdesc:a58da96890cf3a3b38455e19c1536af97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the entities that are drawable.  <a href="classECS.html#a58da96890cf3a3b38455e19c1536af97">More...</a><br /></td></tr>
 <tr class="separator:a58da96890cf3a3b38455e19c1536af97"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -468,6 +471,40 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entity</td><td>The entity to remove the component from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3185922d90a0f054841088bbc37c875f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3185922d90a0f054841088bbc37c875f">&#9670;&nbsp;</a></span>removeEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ECS::removeEntity </td>
+          <td>(</td>
+          <td class="paramtype">Entity&#160;</td>
+          <td class="paramname"><em>entity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes an entity from the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to remove </td></tr>
   </table>
   </dd>
 </dl>

@@ -82,33 +82,63 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a30362b937b125d27916cf595bfc4c1a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a30362b937b125d27916cf595bfc4c1a7">run</a> ()</td></tr>
 <tr class="memdesc:a30362b937b125d27916cf595bfc4c1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classServer.html" title="Server class.">Server</a> run Function.  <a href="classServer.html#a30362b937b125d27916cf595bfc4c1a7">More...</a><br /></td></tr>
 <tr class="separator:a30362b937b125d27916cf595bfc4c1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ae004eb328cebc8acced9951c4b432e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a8ae004eb328cebc8acced9951c4b432e">check_new_connections</a> (std::string data)</td></tr>
-<tr class="memdesc:a8ae004eb328cebc8acced9951c4b432e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for new connections.  <a href="classServer.html#a8ae004eb328cebc8acced9951c4b432e">More...</a><br /></td></tr>
-<tr class="separator:a8ae004eb328cebc8acced9951c4b432e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a745edf2f97dc254965a4d9fb9ed02e0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a745edf2f97dc254965a4d9fb9ed02e0a">check_new_deconnections</a> (std::string data)</td></tr>
-<tr class="memdesc:a745edf2f97dc254965a4d9fb9ed02e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for new connections.  <a href="classServer.html#a745edf2f97dc254965a4d9fb9ed02e0a">More...</a><br /></td></tr>
-<tr class="separator:a745edf2f97dc254965a4d9fb9ed02e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07ff8dcc7dc8549e0e2d8772290a4cd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a07ff8dcc7dc8549e0e2d8772290a4cd2">parse_data_received</a> (<a class="el" href="classParser.html">Parser</a> parser)</td></tr>
-<tr class="memdesc:a07ff8dcc7dc8549e0e2d8772290a4cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse data received.  <a href="classServer.html#a07ff8dcc7dc8549e0e2d8772290a4cd2">More...</a><br /></td></tr>
-<tr class="separator:a07ff8dcc7dc8549e0e2d8772290a4cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d1b29e88a2cbd39fc4b0eb44a41e826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a4d1b29e88a2cbd39fc4b0eb44a41e826">init_entity</a> (std::string data)</td></tr>
+<tr class="memdesc:a4d1b29e88a2cbd39fc4b0eb44a41e826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for new connections.  <a href="classServer.html#a4d1b29e88a2cbd39fc4b0eb44a41e826">More...</a><br /></td></tr>
+<tr class="separator:a4d1b29e88a2cbd39fc4b0eb44a41e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d82d0279d8491dd7077c02780832e73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a2d82d0279d8491dd7077c02780832e73">delete_entity</a> (std::string data)</td></tr>
+<tr class="memdesc:a2d82d0279d8491dd7077c02780832e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete entity  <a href="classServer.html#a2d82d0279d8491dd7077c02780832e73">More...</a><br /></td></tr>
+<tr class="separator:a2d82d0279d8491dd7077c02780832e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83b006bcd10734aff11cc6dfcd5d2650"><td class="memItemLeft" align="right" valign="top"><a id="a83b006bcd10734aff11cc6dfcd5d2650"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a83b006bcd10734aff11cc6dfcd5d2650">find_free_id_player</a> ()</td></tr>
+<tr class="memdesc:a83b006bcd10734aff11cc6dfcd5d2650"><td class="mdescLeft">&#160;</td><td class="mdescRight">function to find a free id for a player <br /></td></tr>
+<tr class="separator:a83b006bcd10734aff11cc6dfcd5d2650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d916035e72ad1b989d46a91abad52a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a0d916035e72ad1b989d46a91abad52a7">init_player</a> (std::vector&lt; std::string &gt; data)</td></tr>
+<tr class="memdesc:a0d916035e72ad1b989d46a91abad52a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">function to init a player  <a href="classServer.html#a0d916035e72ad1b989d46a91abad52a7">More...</a><br /></td></tr>
+<tr class="separator:a0d916035e72ad1b989d46a91abad52a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbe2b015f821ee44fe68ef66c9158ce0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#adbe2b015f821ee44fe68ef66c9158ce0">parse_data_received</a> ()</td></tr>
+<tr class="memdesc:adbe2b015f821ee44fe68ef66c9158ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse data received.  <a href="classServer.html#adbe2b015f821ee44fe68ef66c9158ce0">More...</a><br /></td></tr>
+<tr class="separator:adbe2b015f821ee44fe68ef66c9158ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d0e8be8f18db3c7332fb055c43362d9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a6d0e8be8f18db3c7332fb055c43362d9">split</a> (const std::string &amp;str, const std::string &amp;delim)</td></tr>
 <tr class="memdesc:a6d0e8be8f18db3c7332fb055c43362d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a string.  <a href="classServer.html#a6d0e8be8f18db3c7332fb055c43362d9">More...</a><br /></td></tr>
 <tr class="separator:a6d0e8be8f18db3c7332fb055c43362d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a767e18ce61447d9b6822442396612264"><td class="memItemLeft" align="right" valign="top"><a id="a767e18ce61447d9b6822442396612264"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLocalIPAddress</b> ()</td></tr>
-<tr class="separator:a767e18ce61447d9b6822442396612264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classServer.html" title="Server class.">Server</a> class. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8ae004eb328cebc8acced9951c4b432e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ae004eb328cebc8acced9951c4b432e">&#9670;&nbsp;</a></span>check_new_connections()</h2>
+<a id="a2d82d0279d8491dd7077c02780832e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d82d0279d8491dd7077c02780832e73">&#9670;&nbsp;</a></span>delete_entity()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Server::check_new_connections </td>
+          <td class="memname">void Server::delete_entity </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>delete entity </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4d1b29e88a2cbd39fc4b0eb44a41e826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d1b29e88a2cbd39fc4b0eb44a41e826">&#9670;&nbsp;</a></span>init_entity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::init_entity </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -129,36 +159,34 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLocalIPAddr
 
 </div>
 </div>
-<a id="a745edf2f97dc254965a4d9fb9ed02e0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a745edf2f97dc254965a4d9fb9ed02e0a">&#9670;&nbsp;</a></span>check_new_deconnections()</h2>
+<a id="a0d916035e72ad1b989d46a91abad52a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d916035e72ad1b989d46a91abad52a7">&#9670;&nbsp;</a></span>init_player()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Server::check_new_deconnections </td>
+          <td class="memname">void Server::init_player </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
+          <td class="paramtype">std::vector&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>data_split</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check for new connections. </p>
+<p>function to init a player </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">clients</td><td></td></tr>
-    <tr><td class="paramname">client_boost_receive</td><td></td></tr>
+    <tr><td class="paramname">data</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Network::Sender&gt; </dd></dl>
 
 </div>
 </div>
-<a id="a07ff8dcc7dc8549e0e2d8772290a4cd2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07ff8dcc7dc8549e0e2d8772290a4cd2">&#9670;&nbsp;</a></span>parse_data_received()</h2>
+<a id="adbe2b015f821ee44fe68ef66c9158ce0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbe2b015f821ee44fe68ef66c9158ce0">&#9670;&nbsp;</a></span>parse_data_received()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,8 +194,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLocalIPAddr
         <tr>
           <td class="memname">void Server::parse_data_received </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classParser.html">Parser</a>&#160;</td>
-          <td class="paramname"><em>parser</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -244,6 +271,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLocalIPAddr
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>server/includes/<a class="el" href="server_8hpp_source.html">server.hpp</a></li>
+<li>server/src/<a class="el" href="init__entity_8cpp.html">init_entity.cpp</a></li>
 <li>server/src/<a class="el" href="server_8cpp.html">server.cpp</a></li>
 </ul>
 </div><!-- contents -->

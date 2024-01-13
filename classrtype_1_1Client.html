@@ -86,10 +86,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6f243757ed056372217fd14056d477e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classECS.html">ECS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">initECS</a> ()</td></tr>
 <tr class="memdesc:a6f243757ed056372217fd14056d477e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>.  <a href="classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3">More...</a><br /></td></tr>
 <tr class="separator:a6f243757ed056372217fd14056d477e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad552ba9ba48613ba1d918b4726764c4a"><td class="memItemLeft" align="right" valign="top"><a id="ad552ba9ba48613ba1d918b4726764c4a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ad552ba9ba48613ba1d918b4726764c4a">initPlayer</a> ()</td></tr>
-<tr class="memdesc:ad552ba9ba48613ba1d918b4726764c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the player and add it to the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. <br /></td></tr>
-<tr class="separator:ad552ba9ba48613ba1d918b4726764c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32f0d14205f5c1f729607c88d18be810"><td class="memItemLeft" align="right" valign="top"><a id="a32f0d14205f5c1f729607c88d18be810"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a32f0d14205f5c1f729607c88d18be810">initPlayer</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
+<tr class="memdesc:a32f0d14205f5c1f729607c88d18be810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the player and add it to the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. <br /></td></tr>
+<tr class="separator:a32f0d14205f5c1f729607c88d18be810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a594077d66e533e3937c5ec79d40e5a4d"><td class="memItemLeft" align="right" valign="top"><a id="a594077d66e533e3937c5ec79d40e5a4d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a594077d66e533e3937c5ec79d40e5a4d">deletePlayer</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
+<tr class="memdesc:a594077d66e533e3937c5ec79d40e5a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete entity player <br /></td></tr>
+<tr class="separator:a594077d66e533e3937c5ec79d40e5a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4115ac4fa9797f619826d69ab85c977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">gameLoop</a> (<a class="el" href="classIReceiver.html">IReceiver</a> &amp;receive)</td></tr>
 <tr class="memdesc:aa4115ac4fa9797f619826d69ab85c977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the game loop.  <a href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">More...</a><br /></td></tr>
 <tr class="separator:aa4115ac4fa9797f619826d69ab85c977"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,14 +124,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a6815f9325f09ebe089c913156297f9de">drawSettings</a> ()</td></tr>
 <tr class="memdesc:a6815f9325f09ebe089c913156297f9de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the settings. <br /></td></tr>
 <tr class="separator:a6815f9325f09ebe089c913156297f9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eaf6741b5b5724079457b1997b64c24"><td class="memItemLeft" align="right" valign="top"><a id="a6eaf6741b5b5724079457b1997b64c24"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a6eaf6741b5b5724079457b1997b64c24">drawSelectGame</a> ()</td></tr>
-<tr class="memdesc:a6eaf6741b5b5724079457b1997b64c24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the select game scene. <br /></td></tr>
-<tr class="separator:a6eaf6741b5b5724079457b1997b64c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6b137d57812453d3c1cbab422c1f3a5"><td class="memItemLeft" align="right" valign="top"><a id="ae6b137d57812453d3c1cbab422c1f3a5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ae6b137d57812453d3c1cbab422c1f3a5">drawEnd</a> ()</td></tr>
 <tr class="memdesc:ae6b137d57812453d3c1cbab422c1f3a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the game over screen. <br /></td></tr>
 <tr class="separator:ae6b137d57812453d3c1cbab422c1f3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adefe86c06b4dfcc19f600a090eb5f90f"><td class="memItemLeft" align="right" valign="top"><a id="adefe86c06b4dfcc19f600a090eb5f90f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#adefe86c06b4dfcc19f600a090eb5f90f">drawWaitingRoom</a> ()</td></tr>
+<tr class="memdesc:adefe86c06b4dfcc19f600a090eb5f90f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the waiting room. <br /></td></tr>
+<tr class="separator:adefe86c06b4dfcc19f600a090eb5f90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5a815d673d86db80c8abbc47957e31f"><td class="memItemLeft" align="right" valign="top"><a id="af5a815d673d86db80c8abbc47957e31f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#af5a815d673d86db80c8abbc47957e31f">handleInput</a> ()</td></tr>
 <tr class="memdesc:af5a815d673d86db80c8abbc47957e31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">maps the keys to the actions <br /></td></tr>
@@ -149,6 +153,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>rebind</b> (int setti
 <tr class="memitem:a0adc7b65996c5db8391838aab11c74ab"><td class="memItemLeft" align="right" valign="top"><a id="a0adc7b65996c5db8391838aab11c74ab"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>unbind</b> (Action action)</td></tr>
 <tr class="separator:a0adc7b65996c5db8391838aab11c74ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7a54eababcae53a0890dde3cde60d7e"><td class="memItemLeft" align="right" valign="top"><a id="ad7a54eababcae53a0890dde3cde60d7e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>parse_data_received</b> (<a class="el" href="classIReceiver.html">IReceiver</a> &amp;receive)</td></tr>
+<tr class="separator:ad7a54eababcae53a0890dde3cde60d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af315fa1b510cade6099f69cc986cd6c8"><td class="memItemLeft" align="right" valign="top"><a id="af315fa1b510cade6099f69cc986cd6c8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#af315fa1b510cade6099f69cc986cd6c8">nbPlayersInRoom</a> ()</td></tr>
+<tr class="memdesc:af315fa1b510cade6099f69cc986cd6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">nb of players <br /></td></tr>
+<tr class="separator:af315fa1b510cade6099f69cc986cd6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49bea43fd3f684f944975b233f7a107a"><td class="memItemLeft" align="right" valign="top"><a id="a49bea43fd3f684f944975b233f7a107a"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>ecsToJsonString</b> ()</td></tr>
+<tr class="separator:a49bea43fd3f684f944975b233f7a107a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af17c650537b30658d4c14fa9e4e5cc55"><td class="memItemLeft" align="right" valign="top"><a id="af17c650537b30658d4c14fa9e4e5cc55"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#af17c650537b30658d4c14fa9e4e5cc55">split</a> (const std::string &amp;str, const std::string &amp;delim)</td></tr>
+<tr class="memdesc:af17c650537b30658d4c14fa9e4e5cc55"><td class="mdescLeft">&#160;</td><td class="mdescRight">splits a string into a vector of strings based on a delimiter <br /></td></tr>
+<tr class="separator:af17c650537b30658d4c14fa9e4e5cc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa4115ac4fa9797f619826d69ab85c977"></a>
@@ -246,8 +264,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unbind</b> (Action ac
 <li>client/src/scenes/<a class="el" href="gameOver_8cpp.html">gameOver.cpp</a></li>
 <li>client/src/scenes/<a class="el" href="mainMenu_8cpp.html">mainMenu.cpp</a></li>
 <li>client/src/scenes/<a class="el" href="sceneManager_8cpp.html">sceneManager.cpp</a></li>
-<li>client/src/scenes/<a class="el" href="selectgame_8cpp.html">selectgame.cpp</a></li>
 <li>client/src/scenes/<a class="el" href="settings_8cpp.html">settings.cpp</a></li>
+<li>client/src/scenes/<a class="el" href="waiting__room_8cpp.html">waiting_room.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
