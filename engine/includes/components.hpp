@@ -110,9 +110,9 @@ enum BulletTeam {
 };
 
 struct Bullet {
-    int id;
+    size_t id;
     BulletTeam team;
-    Bullet(int id, BulletTeam team) : id(id), team(team) {}
+    Bullet(size_t id, BulletTeam team) : id(id), team(team) {}
 };
 
 struct Npc {
