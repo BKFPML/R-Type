@@ -58,7 +58,7 @@ void rtype::Client::drawParallax()
 void rtype::Client::drawSky()
 {
     static float movement = 0.0f;
-    movement += 0.03f;
+    movement += 0.02f;
 
     _skyPos.at(0).first -= 5;
     _skyPos.at(1).first -= 5;
