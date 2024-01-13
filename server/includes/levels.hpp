@@ -1,6 +1,6 @@
 /**
  * @file levels.hpp
- * @brief 
+ * @brief The Levels class is used to load levels from JSON files
  * @date 08-01-2024
  */
 
@@ -15,7 +15,6 @@
 
 /**
  * @brief The Levels class is used to load levels from JSON files
- * 
  */
 class Levels {
     public:
