@@ -18,8 +18,13 @@ using json = nlohmann::json;
  * @param ecs 
  */
 void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    int id = std::stoi(params.at("Player"));
-    ecs->addComponent(entity, Player{id});
+    if (params.find("id") != params.end() && params.find("name") != params.end()) {
+        int id = std::stoi(params.at("id"));
+        std::string name = params.at("name");
+        ecs->addComponent(entity, Player{id, name});
+    } else {
+        std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;
+    }
 }
 
 /**
@@ -67,10 +72,14 @@ void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::str
  * @param ecs 
  */
 void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    float x = std::stof(params.at("x"));
-    float y = std::stof(params.at("y"));
-    float speed = std::stof(params.at("speed"));
-    ecs->addComponent(entity, Velocity{x, y, speed});
+    if (params.find("x") != params.end() && params.find("y") != params.end() && params.find("speed") != params.end()) {
+        float x = std::stof(params.at("x"));
+        float y = std::stof(params.at("y"));
+        float speed = std::stof(params.at("speed"));
+        ecs->addComponent(entity, Velocity{x, y, speed});
+    } else {
+        std::cerr << "Velocity component requires 'X', 'Y' and 'Speed' parameters." << std::endl;
+    }
 }
 
 /**
@@ -81,8 +90,12 @@ void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::s
  * @param ecs 
  */
 void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    float angle = std::stof(params.at("Rotation"));
-    ecs->addComponent(entity, Rotation{angle});
+    if (params.find("angle") != params.end()) {
+        float angle = std::stof(params.at("angle"));
+        ecs->addComponent(entity, Rotation{angle});
+    } else {
+        std::cerr << "Rotation component requires 'Angle' parameter." << std::endl;
+    }
 }
 
 /**
@@ -93,8 +106,12 @@ void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::s
  * @param ecs 
  */
 void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    int hp = std::stoi(params.at("Health"));
-    ecs->addComponent(entity, Health{hp});
+    if (params.find("hp") != params.end()) {
+        int hp = std::stoi(params.at("hp"));
+        ecs->addComponent(entity, Health{hp});
+    } else {
+        std::cerr << "Health component requires 'HP' parameter." << std::endl;
+    }
 }
 
 /**

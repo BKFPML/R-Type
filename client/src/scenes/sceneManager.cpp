@@ -20,8 +20,8 @@ void rtype::Client::sceneManager()
             case CONNECTION:
                 drawConnection();
                 break;
-            case SELECT_GAME:
-                drawSelectGame();
+            case WAITING_ROOM:
+                drawWaitingRoom();
                 break;
             case GAME:
                 drawGame();
