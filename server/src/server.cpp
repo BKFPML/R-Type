@@ -128,7 +128,7 @@ void Server::parse_data_received()
             for (auto& client : clients_send) {
                 client.send("start " + data_split.at(1));
             }
-            loadLevel("server/levels/config_files/level_1.conf");
+            loadLevel("levels/config_files/level_1.conf");
         } else {
             std::unordered_map<std::string, std::string> data_parsed = parser.parseMessage(data);
             int id_player = std::stoi(parser.getNestValue(data_parsed, "Player", "id"));
