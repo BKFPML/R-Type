@@ -26,6 +26,7 @@
 #include "fps_30_60.h"
 #include "fps_120.h"
 #include "bullet.h"
+#include "healthPack.h"
 
 //* Fonts
 #include "rTypeFont.h"
@@ -95,6 +96,7 @@ void rtype::SFML::loadAssets()
     initTextures("r_typesheet9", r_typesheet9, r_typesheet9_len);
     initTextures("r_typesheet42", r_typesheet42, r_typesheet42_len);
     initTextures("bullet", bullet, bullet_len);
+    initTextures("healthPack", healthPack, healthPack_len);
 
     if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;
@@ -105,5 +107,4 @@ void rtype::SFML::loadAssets()
     initMusic("mainTheme", mainTheme, mainTheme_len);
     initMusic("stageOne", stageOne, stageOne_len);
     initMusic("click", click, click_len);
-
 }
