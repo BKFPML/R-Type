@@ -29,19 +29,21 @@ echo "Creating build directory..."
 mkdir -p build
 cd build
 
-echo "Configuring and building project..."
-cmake -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake ..
-cmake --build .
-
+echo "Configuring and building project in Release mode..."
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake ..
+cmake --build . --config Release
 
 # Assuming vcpkg installs SFML to this path
-SFML_DLL_PATH="./client/Debug/"
+SFML_DLL_PATH="./client/Release/"
 
 # echo "Copying SFML DLLs..."
-cp ./client/Debug/*.dll ../ || echo "Failed to copy SFML DLLs."
+cp ./client/Release/*.dll ../ || echo "Failed to copy SFML DLLs."
 
 echo "Moving executables..."
-mv server/Debug/$SERVER_NAME.exe ../
-mv client/Debug/$CLIENT_NAME.exe ../
+cp server/Release/$SERVER_NAME.exe ../
+cp client/Release/$CLIENT_NAME.exe ../
+
+echo copy levels to build dir
+cp -r ../levels/ ./server/Release/
 
 echo "Build script completed."

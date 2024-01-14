@@ -1,0 +1,57 @@
+/**
+ * @page how_to_add_component How To Add a New Component
+ *
+ * To integrate a new component into the level parsing system, follow these steps:
+ *
+ * 1. **Define the Component:**
+ *    - First, define your new component class in the ECS system.
+ *    - For example, if creating a `Speed` component:
+ *      @code
+ *      struct Speed {
+ *          float value;
+ *      };
+ *      @endcode
+ *
+ * 2. **Register the Component in ECS:**
+ *    - In the ECS initialization, register the new component.
+ *      @code
+ *      _ecs.registerComponent<Speed>();
+ *      @endcode
+ *
+ * 3. **Create a Component Factory Function:**
+ *    - Define a function in the `Server` class to create and add this component to an entity.
+ *    - The function should parse the necessary parameters from a JSON object and add the component to the entity.
+ *      @code
+ *      void Server::createSpeedComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
+ *          if (params.find("value") != params.end()) {
+ *              float value = std::stof(params.at("value"));
+ *              _ecs.addComponent(entity, Speed{value});
+ *          } else {
+ *              std::cerr << "Speed component requires 'Value' parameter." << std::endl;
+ *          }
+ *      }
+ *      @endcode
+ *
+ * 4. **Update the Component Factory Map:**
+ *    - Add the new component factory function to the `_componentFactories` map in the `Server` class.
+ *      @code
+ *      _componentFactories["Speed"] = [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createSpeedComponent(entity, params); };
+ *      @endcode
+ *
+ * 5. **Update the JSON Level Configuration:**
+ *    - Add the new component to the level configuration JSON file with the required parameters.
+ *      @code
+ *      {
+ *          "Speed": {
+ *              "value": "5.0"
+ *          },
+ *          ... // other components
+ *      }
+ *      @endcode
+ *
+ * 6. **Testing and Validation:**
+ *    - After implementing the new component, test it by loading a level configuration file containing the new component.
+ *    - Verify that the component behaves as expected within the game environment.
+ *
+ * Following these steps will ensure that the new component is fully integrated into the level parsing system and is functional within the game's ECS framework.
+ */

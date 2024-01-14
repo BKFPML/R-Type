@@ -10,6 +10,24 @@
 #include <string>
 
 /**
+ * @brief HealthPack Component
+ * @param hp Health points
+ */
+struct HealthPack {
+    int hp;
+    HealthPack(int hp) : hp(hp) {}
+};
+
+/**
+ * @brief Spawn Time component
+ * @param time Time of the spawn
+ */
+struct SpawnTime {
+    float time;
+    SpawnTime(float time) : time(time) {}
+};
+
+/**
  * @brief Position component
  * @param x X position
  * @param y Y position
@@ -27,18 +45,7 @@ struct Position {
  */
 struct Velocity {
     float x, y;
-    float magnitude;
-    // Constructor
-    Velocity(float x, float y, float magnitude) : x(x), y(y), magnitude(magnitude) {
-        normalize();
-    }
-    // Method to normalize the vector
-    void normalize() {
-        float len = std::sqrt(x * x + y * y);
-        if (len != 0) {
-            x /= len;
-            y /= len;
-        }
+    Velocity(float x, float y) : x(x), y(y) {
     }
 };
 
@@ -96,15 +103,100 @@ struct Damage {
     Damage(int damage) : damage(damage) {}
 };
 
+/**
+ * @brief Immunity component
+ * @param frames Number of frames of immunity
+ */
+struct Immunity {
+    int frames;
+    Immunity(int frames) : frames(frames) {}
+};
+
+/**
+ * @brief Freeze component
+ * @param frames Number of frames of freeze
+ */
+struct Freeze {
+    int frames;
+    Freeze(int frames) : frames(frames) {}
+};
+
+/**
+ * @brief Player component
+ * @param id ID of the player
+ */
+struct Player{
+    int id;
+    std::string name;
+    Player(int id, std::string name) : id(id), name(name) {}
+};
+
+/**
+ * @brief Types of different bullets
+ *
+ * ALLY: Bullet shot by a player
+ * ENEMY: Bullet shot by an enemy
+ * DESTROYED: Bullet that has been destroyed
+ */
+enum BulletTeam {
+    ALLY,
+    ENEMY,
+    DESTROYED
+};
+
+/**
+ * @brief Bullet component
+ *
+ * @param id ID of the bullet
+ * @param team BulletTeam (ALLY, ENEMY or DESTROYED)
+ */
+struct Bullet {
+    size_t id;
+    BulletTeam team;
+    Bullet(size_t id, BulletTeam team) : id(id), team(team) {}
+};
+
+/**
+ * @brief Enemy component
+ * @param name Name of the enemy
+ * @param id ID of the enemy
+ */
+struct Enemy {
+    std::string name;
+    size_t id;
+    Enemy(std::string name, size_t id) : name(name), id(id) {}
+};
+
 // *Graphical components
 
 /**
- * @brief Enum that defines the type of graphical entity
- * Used with the GraphicalType component
+ * @brief Enum that defines the type of graphical entity used with the GraphicalType component
  */
 enum class GraphicalType {
     Sprite,
     Text
+};
+
+/**
+ * @brief Enum that defines the type of collision used with the Collision component
+ *
+ * ATTACK: The entity is an attack
+ * DEFEND: The entity is a defense
+ * HEALTH_PACK: The entity is a health pack
+ */
+enum CollisionType {
+    ATTACK,
+    DEFEND,
+    HEALTH_PACK
+};
+
+/**
+ * @brief Collision component
+ * @param type CollisionType (ATTACK, DEFEND or HEALTH_PACK)
+ */
+struct Collision {
+    CollisionType type;
+    Collision(CollisionType type) : type(type) {}
 };
 
 /**
@@ -117,12 +209,23 @@ struct Graphical {
 };
 
 /**
- * @brief Sprite component
- * @param texture Texture of the sprite
+ * @brief Sprite component, stores sprites and related data
  */
 struct Sprite {
     std::string texture;
-    Sprite(std::string texture) : texture(texture) {}
+    int width, height, startX, startY;
+    float scale;
+    /**
+     * @brief Construct a new Sprite object
+     *
+     * @param texture Texture of the sprite
+     * @param width Width of the sprite
+     * @param height Height of the sprite
+     * @param startX X position of the texture in the sprite sheet
+     * @param startY Y position of the texture in the sprite sheet
+     * @param scale Scale of the sprite
+     */
+    Sprite(std::string texture, int width, int height, int startX, int startY, float scale) : texture(texture), width(width), height(height), startX(startX), startY(startY), scale(scale) {}
 };
 
 /**

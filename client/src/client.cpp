@@ -7,185 +7,160 @@
 #include "client.hpp"
 
 /**
- * @brief Construct a new rtype::Client::Client object
+ * @brief Constructs a new rtype::Client::Client object
  */
-rtype::Client::Client()
+rtype::Client::Client(std::string ip, int port)
+: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50), _start_bind(std::chrono::system_clock::now()), level_selected(-1), _parser()
 {
     std::cout << "This is the R-Type Client" << std::endl;
-    loadTextures();
+    srand(std::time(0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _parallaxPos.push_back(std::make_pair(0, 0));
+    _parallaxPos.push_back(std::make_pair(WINDOW_WIDTH, 0));
+    _skyPos.push_back(std::make_pair(0, 973));
+    _skyPos.push_back(std::make_pair(WINDOW_WIDTH, 973));
+
+    for (int i = 0; i < 7; i++)
+        _input_frames_state.push_back(std::make_pair(false, ""));
+
+    _input_frames_state.at(0).second = "";
+    _input_frames_state.at(1).second = "";
+    _input_frames_state.at(2).second = "UP";
+    _input_frames_state.at(3).second = "DOWN";
+    _input_frames_state.at(4).second = "LEFT";
+    _input_frames_state.at(5).second = "RIGHT";
+    _input_frames_state.at(6).second = " ";
+    resetKeyBindings();
+    _gameKeyBindings = _keyBindings;
+    _gameKeyBindings.upAction = MOVE_UP;
+    _gameKeyBindings.downAction = MOVE_DOWN;
+    _gameKeyBindings.leftAction = MOVE_LEFT;
+    _gameKeyBindings.rightAction = MOVE_RIGHT;
+    _gameKeyBindings.spaceAction = SHOOT;
 }
 
 /**
- * @brief Destroy the rtype::Client::Client object
+ * @brief splits a string into a vector of strings based on a delimiter
+ *
+*/
+std::vector<std::string> rtype::Client::split(const std::string& str, const std::string& delim)
+{
+    std::vector<std::string> tokens;
+    size_t prev = 0, pos = 0;
+    do {
+        pos = str.find(delim, prev);
+        if (pos == std::string::npos)
+            pos = str.length();
+        std::string token = str.substr(prev, pos-prev);
+        if (!token.empty())
+            tokens.push_back(token);
+        prev = pos + delim.length();
+    } while (pos < str.length() && prev < str.length());
+    return tokens;
+}
+
+/**
+ * @brief Destroys the rtype::Client::Client object
  */
 rtype::Client::~Client()
 {
     std::cout << "Goodbye" << std::endl;
 }
 
-/**
- * @brief Load the textures for the client's sprites
- */
-void rtype::Client::loadTextures()
-{
-    if (!parallaxTexture1.loadFromFile("assets/background/Parallax100.png"))
-        std::cerr << "Error loading parallax1.png" << std::endl;
-    if (!parallaxTexture2.loadFromFile("assets/background/Parallax80.png"))
-        std::cerr << "Error loading parallax2.png" << std::endl;
-    if (!parallaxTexture3.loadFromFile("assets/background/Parallax60.png"))
-        std::cerr << "Error loading parallax3.png" << std::endl;
-    if (!playerTexture.loadFromFile("assets/sprites/r-typesheet5.gif"))
-        std::cerr << "Error loading r-typesheet5.gif" << std::endl;
-    planeSprite.setTexture(playerTexture);
-    playersSprites.push_back(planeSprite);
-    parallaxSprite1.setTexture(parallaxTexture1);
-    parallaxSprite1b.setTexture(parallaxTexture1);
-    parallaxSprite2.setTexture(parallaxTexture2);
-    parallaxSprite2b.setTexture(parallaxTexture2);
-    parallaxSprite3.setTexture(parallaxTexture3);
-    parallaxSprite3b.setTexture(parallaxTexture3);
 
-    parallaxSprite1.setPosition(0, 0);
-    parallaxSprite1b.setPosition(WINDOW_WIDTH, 0);
-    parallaxSprite2.setPosition(0, 0);
-    parallaxSprite2b.setPosition(WINDOW_WIDTH, 0);
-    parallaxSprite3.setPosition(0, 0);
-    parallaxSprite3b.setPosition(WINDOW_WIDTH, 0);
+void rtype::Client::parse_data_received(IReceiver& receive) {
+    try {
+        std::vector<std::string> data = receive.get_received_data();
+
+        for (auto& u : data) {
+            try {
+                for (auto& d : split(u, ";")) {
+                    // std::cout << d << std::endl;
+                    if (split(d, " ").front() == "new") {
+                        // std::cout << "New: " << d << std::endl;
+                        std::vector<std::string> data_split = split(d, " ");
+                        initPlayer(data_split);
+                        initBullet(data_split);
+                        initEnemy(data_split);
+                    }
+                    else if (split(d, " ").front() == "delete") {
+                        std::vector<std::string> data_split = split(d, " ");
+                        deletePlayer(data_split);
+                        deleteBullet(data_split);
+                        deleteEnemy(data_split);
+                    }
+                    else if (split(d, " ").front() == "start") {
+                        std::vector<std::string> data_split = split(d, " ");
+                        _currentScene = GAME;
+                    } else if (d.at(0) == '[') {
+                        try {
+                            auto json = _parser.parseMessage(d);
+                            if (json.empty())
+                                continue;
+                            updatePlayer(json);
+                            updateBullet(json);
+                            updateEnemy(json);
+                        } catch (const std::exception& e) {
+                            std::cerr << d << std::endl;
+                            std::cerr << "Error parsing message: " << e.what() << std::endl;
+                        }
+                    }
+                }
+            } catch (const std::exception& e) {
+                std::cerr << u << std::endl;
+                std::cerr << "Error split message: " << e.what() << std::endl;
+            }
+        }
+        receive.clear_received_data();
+    } catch (const std::exception& e) {
+        std::cerr << "Error loop message: " << e.what() << std::endl;
+    }
 }
-
 /**
- * @brief Draw the background parallax effect
+ * @brief Runs the game loop
  *
- * @param window sf::RenderWindow to draw the parallax effect on
- */
-void rtype::Client::drawParallax(sf::RenderWindow &window)
-{
-    float parallaxSpeed1 = 0.5f;
-    float parallaxSpeed2 = 0.6f;
-    float parallaxSpeed3 = 0.7f;
-
-    parallaxSprite1.move(-parallaxSpeed1, 0);
-    parallaxSprite1b.move(-parallaxSpeed1, 0);
-    parallaxSprite2.move(-parallaxSpeed2, 0);
-    parallaxSprite2b.move(-parallaxSpeed2, 0);
-    parallaxSprite3.move(-parallaxSpeed3, 0);
-    parallaxSprite3b.move(-parallaxSpeed3, 0);
-
-    if (parallaxSprite1.getPosition().x < -parallaxSprite1.getLocalBounds().width)
-        parallaxSprite1.setPosition(WINDOW_WIDTH, 0);
-    if (parallaxSprite1b.getPosition().x < -parallaxSprite1b.getLocalBounds().width)
-        parallaxSprite1b.setPosition(WINDOW_WIDTH, 0);
-    if (parallaxSprite2.getPosition().x < -parallaxSprite2.getLocalBounds().width)
-        parallaxSprite2.setPosition(WINDOW_WIDTH, 0);
-    if (parallaxSprite2b.getPosition().x < -parallaxSprite2b.getLocalBounds().width)
-        parallaxSprite2b.setPosition(WINDOW_WIDTH, 0);
-    if (parallaxSprite3.getPosition().x < -parallaxSprite3.getLocalBounds().width)
-        parallaxSprite3.setPosition(WINDOW_WIDTH, 0);
-    if (parallaxSprite3b.getPosition().x < -parallaxSprite3b.getLocalBounds().width)
-        parallaxSprite3b.setPosition(WINDOW_WIDTH, 0);
-
-    window.draw(parallaxSprite1);
-    window.draw(parallaxSprite1b);
-    window.draw(parallaxSprite2);
-    window.draw(parallaxSprite2b);
-    window.draw(parallaxSprite3);
-    window.draw(parallaxSprite3b);
-}
-
-/**
- * @brief Initialize the ECS
- * 
- * @return ECS 
- */
-ECS rtype::Client::initECS()
-{
-    ECS ecs;
-    ecs.registerComponent<Position>();
-    ecs.registerComponent<Health>();
-    ecs.registerComponent<Velocity>();
-    return ecs;
-}
-
-/**
- * @brief Run the client
- * 
- * @param sender Network::Sender to send data to the server
+ * @param sender Network::ISender to send data to the server
  * @param receive Network::Receive to receive data from the server
  * @param port int port to use for the client
  */
-void rtype::Client::run(Network::Sender sender, Network::Receive& receive, int port)
+void rtype::Client::gameLoop(IReceiver& receive)
 {
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME);
-    
-    ECS ecs = initECS();
-    std::vector<ECS::Entity> players;
-    players.push_back(ecs.createEntity()); 
-    ecs.addComponent<Position>(players[0], {100, 100});
-    ecs.addComponent<Health>(players[0], 100);
-    ecs.addComponent<Velocity>(players[0], {1, 1, 2});
-    srand(time(0));
-    
+    _graphical->playMusic("mainTheme", true);
+    _ecs.registerSystem<CollisionSystem>();
 
-    playersSprites[0].setPosition(rand() % 300 + 200, rand() % 500 + 200);
-    playersSprites[0].setScale(5, 5);
-    playersSprites[0].setTextureRect(sf::IntRect(0, 0, 34, 34));
-    playersSprites[0].setRotation(180);
-
-    while (window.isOpen())
-    {
-        if (receive.getReceivedIPs().size() > 0) {
-            std::cout << "Received IPs: " << std::endl;
-            for (const auto& ip : receive.getReceivedIPs()) {
-                std::cout << ip << std::endl;
-                players.push_back(ecs.createEntity());
-                ecs.addComponent<Position>(players[-1], {100, 100});
-                ecs.addComponent<Health>(players[-1], 100);
-                ecs.addComponent<Velocity>(players[-1], {1, 1, 2});
-                playersSprites.push_back(planeSprite);
-                playersSprites.back().setPosition(500 + rand()%200, 800 - rand()%300);
-                playersSprites.back().setScale(5, 5);
-                playersSprites.back().setTextureRect(sf::IntRect(0, 0, 34, 34));
-                playersSprites.back().setRotation(180);
+    while (_isRunning) {
+        try {
+            auto now = std::chrono::system_clock::now();
+            parse_data_received(receive);
+            std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
+            _keys = keyState.first;
+            _previousKeys = keyState.second;
+            handleInput();
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 5 && _currentScene == GAME) {
+                // for (auto& entity : _ecs.getEntities()) {
+                //     std::cout << "Entity: " << entity << std::endl;
+                //     if (_ecs.hasComponent<Bullet>(entity)) {
+                //         std::cout << "Bullet: " << _ecs.getComponent<Bullet>(entity)->id << " " << _ecs.getComponent<Bullet>(entity)->team << std::endl;
+                //     }
+                //     if (_ecs.hasComponent<Player>(entity)) {
+                //         std::cout << "Player: " << _ecs.getComponent<Player>(entity)->id << " " << _ecs.getComponent<Player>(entity)->name << std::endl;
+                //     }
+                //     if (_ecs.hasComponent<Position>(entity)) {
+                //         std::cout << "Position: " << _ecs.getComponent<Position>(entity)->x << " " << _ecs.getComponent<Position>(entity)->y << std::endl;
+                //     }
+                //     std::cout << std::endl;
+                // }
+                _start = now;
+                sender.send(_parser.playerToJson(_ecs, id));
             }
-            receive.clearReceivedIPs();
+            _ecs.updateSystems();
+            sceneManager();
+        } catch (const std::exception& e) {
+            std::cerr << "Error processing message: " << e.what() << std::endl;
         }
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
-                sender.send("bullet-x:100-y:100-vx:1-vy:1");
-            }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
-                playersSprites[0].move(0, -10);
-            }
-                
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
-                playersSprites[0].move(-10, 0);
-            }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down) {
-                playersSprites[0].move(0, 10);
-            }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
-                playersSprites[0].move(10, 0);
-            }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-            }
-            if (event.type == sf::Event::Closed)
-                window.close();
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-                window.close();
-        }
-        for (auto& player: playersSprites) {
-            player.move(0.1, 0);
-        }
-        sender.send(std::to_string(playersSprites[0].getPosition().x) + " " + std::to_string(playersSprites[0].getPosition().y) + " " + std::to_string(port));
-        window.clear(sf::Color::Black);
-        drawParallax(window);
-        std::cout << "Players: " << playersSprites.size() << std::endl;
-        for (auto& player: playersSprites) {
-            std::cout << "Player: " << player.getPosition().x << " " << player.getPosition().y << std::endl;
-            window.draw(player);
-        }
-        window.display();
     }
+    _graphical->stopMusic("mainTheme");
 }
