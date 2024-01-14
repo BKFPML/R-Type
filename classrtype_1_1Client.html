@@ -95,6 +95,12 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a32f0d14205f5c1f729607c88d18be810">initPlayer</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
 <tr class="memdesc:a32f0d14205f5c1f729607c88d18be810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the player and add it to the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. <br /></td></tr>
 <tr class="separator:a32f0d14205f5c1f729607c88d18be810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac49d1718377e92576823690e0222276a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ac49d1718377e92576823690e0222276a">initBullet</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
+<tr class="memdesc:ac49d1718377e92576823690e0222276a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the bullets.  <a href="classrtype_1_1Client.html#ac49d1718377e92576823690e0222276a">More...</a><br /></td></tr>
+<tr class="separator:ac49d1718377e92576823690e0222276a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fd4f3875c2198adf685b89a0740bd06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a1fd4f3875c2198adf685b89a0740bd06">initEnemy</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
+<tr class="memdesc:a1fd4f3875c2198adf685b89a0740bd06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises enemies and add them to the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>.  <a href="classrtype_1_1Client.html#a1fd4f3875c2198adf685b89a0740bd06">More...</a><br /></td></tr>
+<tr class="separator:a1fd4f3875c2198adf685b89a0740bd06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a594077d66e533e3937c5ec79d40e5a4d"><td class="memItemLeft" align="right" valign="top"><a id="a594077d66e533e3937c5ec79d40e5a4d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a594077d66e533e3937c5ec79d40e5a4d">deletePlayer</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
 <tr class="memdesc:a594077d66e533e3937c5ec79d40e5a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete entity player <br /></td></tr>
@@ -103,12 +109,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a5c73041e9fa337bfc7c5705b985e350e">deleteBullet</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
 <tr class="memdesc:a5c73041e9fa337bfc7c5705b985e350e"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete entity bullet <br /></td></tr>
 <tr class="separator:a5c73041e9fa337bfc7c5705b985e350e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1c416757ba3e93c9b9216a154137fcc"><td class="memItemLeft" align="right" valign="top"><a id="af1c416757ba3e93c9b9216a154137fcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#af1c416757ba3e93c9b9216a154137fcc">deleteEnemy</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
+<tr class="memdesc:af1c416757ba3e93c9b9216a154137fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete entity enemy <br /></td></tr>
+<tr class="separator:af1c416757ba3e93c9b9216a154137fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b2026aa150f6e753fcc1ffa7a7ef54b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a4b2026aa150f6e753fcc1ffa7a7ef54b">updatePlayer</a> (std::unordered_map&lt; std::string, std::string &gt; data_split)</td></tr>
 <tr class="memdesc:a4b2026aa150f6e753fcc1ffa7a7ef54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">update entity player  <a href="classrtype_1_1Client.html#a4b2026aa150f6e753fcc1ffa7a7ef54b">More...</a><br /></td></tr>
 <tr class="separator:a4b2026aa150f6e753fcc1ffa7a7ef54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa659249b0762e63c3ef1df7a0c0ae1a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#aa659249b0762e63c3ef1df7a0c0ae1a3">updateBullet</a> (std::unordered_map&lt; std::string, std::string &gt; data_split)</td></tr>
 <tr class="memdesc:aa659249b0762e63c3ef1df7a0c0ae1a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">update entity bullet  <a href="classrtype_1_1Client.html#aa659249b0762e63c3ef1df7a0c0ae1a3">More...</a><br /></td></tr>
 <tr class="separator:aa659249b0762e63c3ef1df7a0c0ae1a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1dbdb092ec0ac0070e158cc66a3bfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#ace1dbdb092ec0ac0070e158cc66a3bfd">updateEnemy</a> (std::unordered_map&lt; std::string, std::string &gt; data_split)</td></tr>
+<tr class="memdesc:ace1dbdb092ec0ac0070e158cc66a3bfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">update entity enemy  <a href="classrtype_1_1Client.html#ace1dbdb092ec0ac0070e158cc66a3bfd">More...</a><br /></td></tr>
+<tr class="separator:ace1dbdb092ec0ac0070e158cc66a3bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4115ac4fa9797f619826d69ab85c977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">gameLoop</a> (<a class="el" href="classIReceiver.html">IReceiver</a> &amp;receive)</td></tr>
 <tr class="memdesc:aa4115ac4fa9797f619826d69ab85c977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the game loop.  <a href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">More...</a><br /></td></tr>
 <tr class="separator:aa4115ac4fa9797f619826d69ab85c977"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,6 +238,27 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 
 </div>
 </div>
+<a id="ac49d1718377e92576823690e0222276a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac49d1718377e92576823690e0222276a">&#9670;&nbsp;</a></span>initBullet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Client::initBullet </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>data_split</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialises the bullets. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
 <a id="a6f243757ed056372217fd14056d477e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f243757ed056372217fd14056d477e3">&#9670;&nbsp;</a></span>initECS()</h2>
 
@@ -242,6 +276,27 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 
 <p>Initialises the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1fd4f3875c2198adf685b89a0740bd06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fd4f3875c2198adf685b89a0740bd06">&#9670;&nbsp;</a></span>initEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Client::initEnemy </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialises enemies and add them to the <a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -304,6 +359,27 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ace1dbdb092ec0ac0070e158cc66a3bfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1dbdb092ec0ac0070e158cc66a3bfd">&#9670;&nbsp;</a></span>updateEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Client::updateEnemy </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; std::string, std::string &gt;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>update entity enemy </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
