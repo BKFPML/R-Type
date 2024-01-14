@@ -22,6 +22,7 @@ ECS rtype::Client::initECS()
     ecs.registerComponent<Player>();
     ecs.registerComponent<Rotation>();
     ecs.registerComponent<Bullet>();
+    ecs.registerComponent<Collision>();
     return ecs;
 }
 
@@ -157,6 +158,7 @@ void rtype::Client::launchSinglePlayer()
     _ecs.addComponent<Position>(_ecs.getEntities().back(), {100, 100});
     _ecs.addComponent<Health>(_ecs.getEntities().back(), 100);
     _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {0, 0});
+    // _ecs.addComponent<Collision>(_ecs.getEntities().back());
     std::string texture = "player_red";
     _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 34, 34, 0, 0, 3});
     _ecs.addComponent<Player>(_ecs.getEntities().back(), {0, "player"});
