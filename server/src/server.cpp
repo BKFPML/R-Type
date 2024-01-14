@@ -19,15 +19,18 @@ void Server::init_entity(std::string data)
 {
     if (split(data, " ").front() == "new") {
         std::vector<std::string> data_split = split(data, " ");
+        std::cout << "new entity " << data_split.at(1) << std::endl;
         init_player(data_split);
         if (data_split.at(1) == "bullet") {
-            std::cout << "new bullet" << std::endl;
             _ecs.createEntity();
             _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {_ecs.getEntities().back() , ALLY});
+            std::cout << "new bullet " << _ecs.getEntities().back() << std::endl;
             _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(2)), std::stof(data_split.at(3))});
             _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {std::stof(data_split.at(4)), std::stof(data_split.at(5))});
             _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {data_split.at(6), std::stoi(data_split.at(7)), std::stoi(data_split.at(8)), std::stoi(data_split.at(9)), std::stoi(data_split.at(10)), std::stof(data_split.at(11))});
-
+            for (auto& client : clients_send) {
+                client.send("new bullet " + std::to_string(_ecs.getComponent<Bullet>(_ecs.getEntities().back())->id) + " " + std::to_string(_ecs.getComponent<Position>(_ecs.getEntities().back())->x) + " " + std::to_string(_ecs.getComponent<Position>(_ecs.getEntities().back())->y) + " " + _ecs.getComponent<Sprite>(_ecs.getEntities().back())->texture + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->width) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->height) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->scale));
+            }
         }
     }
 }
@@ -201,10 +204,11 @@ int Server::run()
     auto now = std::chrono::system_clock::now();
     while (true)
     {
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 50) {
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 20) {
             now = std::chrono::system_clock::now();
             // print_all_ecs_entity(_ecs);
             _ecs.updateSystems();
+            std::string bullet;
             for (auto& client : clients_send) {
                 for (auto& entity : _ecs.getEntities()) {
                     if (_ecs.hasComponent<Bullet>(entity)) {
@@ -213,12 +217,13 @@ int Server::run()
                                 client.send("delete bullet " + std::to_string(_ecs.getComponent<Bullet>(entity)->id));
                             _ecs.removeEntity(entity);
                         } else {
-                            for (auto& client : clients_send)
-                                client.send(parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id));
+                            bullet += parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id, false) + ";";
                         }
                     }
                 }
             }
+            for (auto& client : clients_send)
+                client.send(bullet);
         }
         parse_data_received();
     }
