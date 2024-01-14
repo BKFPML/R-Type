@@ -336,7 +336,22 @@ private:
             pos1->x + sprite1->width * sprite1->scale > pos2->x &&
             pos1->y < pos2->y + sprite2->height * sprite2->scale &&
             pos1->y + sprite1->height * sprite1->scale > pos2->y) {
-                std::cout << "Collision detected between entity " << entity1 << " and entity " << entity2 << std::endl;
+                handleCollision(ecs, entity1, entity2);
+        }
+    }
+    void handleCollision(ECS& ecs, ECS::Entity entity1, ECS::Entity entity2) {
+        if (ecs.hasComponent<Attack>(entity1) && ecs.hasComponent<Health>(entity2)) {
+            Attack ATK = ecs.getComponent<Attack>(entity1)->damage;
+            Health HP = ecs.getComponent<Health>(entity2)->hp;
+            ecs.updateComponent<Health>(entity2, [&ATK](Health& health) {
+                health.hp -= ATK.damage;
+            });
+            ecs.removeComponent<Attack>(entity1);
+            if (ecs.hasComponent<Bullet>(entity1)) {
+                ecs.updateComponent<Bullet>(entity1, [](Bullet& bullet) {
+                    bullet.team = DESTROYED;
+                });
+            }
         }
     }
 };
