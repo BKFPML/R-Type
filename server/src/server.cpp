@@ -239,7 +239,7 @@ int Server::run()
                             client.send("delete enemy " + std::to_string(entity));
                         _ecs.removeEntity(entity);
                     }
-                    else if (std::chrono::duration_cast<std::chrono::seconds>(now - _start_wave).count() > _ecs.getComponent<SpawnTime>(entity)->time) {
+                    else if (std::chrono::duration_cast<std::chrono::seconds>(now - _start_wave).count() + 1 > _ecs.getComponent<SpawnTime>(entity)->time) {
                         i += 1;
                         bullet += parser.enemyToJson(_ecs, entity, false) + ";";
                     }
@@ -258,6 +258,19 @@ int Server::run()
                 for (auto& client : clients_send) {
                     std::cout << "Send: " << bullet << std::endl;
                     client.send(bullet);
+                }
+            }
+        }
+        for (auto& entity : _ecs.getEntities()) {
+            if (_ecs.hasComponent<Enemy>(entity)) {
+                if (_ecs.hasComponent<Freeze>(entity)) {
+                    auto now = std::chrono::system_clock::now();
+                    if (std::chrono::duration_cast<std::chrono::seconds>(now - _start_wave).count() > _ecs.getComponent<SpawnTime>(entity)->time) {
+                        _ecs.removeComponent<Freeze>(entity);
+                        for (auto& client : clients_send) {
+                            client.send("new enemy " + std::to_string(entity) + std::to_string(_ecs.getComponent<Position>(entity)->x) + " " + std::to_string(_ecs.getComponent<Position>(entity)->y) + " " + _ecs.getComponent<Sprite>(entity)->texture + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->width) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->height) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->scale));
+                        }
+                    }
                 }
             }
         }
