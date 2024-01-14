@@ -74,35 +74,44 @@ rtype::Client::~Client()
 void rtype::Client::parse_data_received(IReceiver& receive) {
     try {
         std::vector<std::string> data = receive.get_received_data();
-        for (auto& d : data) {
+
+        for (auto& u : data) {
             try {
-                // std::cout << "Received: " << d << std::endl;
-                if (split(d, " ").front() == "new") {
-                    std::vector<std::string> data_split = split(d, " ");
-                    initPlayer(data_split);
-                }
-                else if (split(d, " ").front() == "delete") {
-                    std::vector<std::string> data_split = split(d, " ");
-                    deletePlayer(data_split);
-                    deleteBullet(data_split);
-                }
-                else if (split(d, " ").front() == "start") {
-                    std::vector<std::string> data_split = split(d, " ");
-                    _currentScene = GAME;
-                } else {
-                    try {
-                        auto json = _parser.parseMessage(d);
-                        if (json.empty())
-                            continue;
-                        updatePlayer(json);
-                        updateBullet(json);
-                    } catch (const std::exception& e) {
-                        std::cerr << d << std::endl;
-                        std::cerr << "Error parsing message: " << e.what() << std::endl;
+                for (auto& d : split(u, ";")) {
+                    std::cout << "Received: " << d << std::endl;
+                    if (split(d, " ").front() == "new") {
+                        std::vector<std::string> data_split = split(d, " ");
+                        initPlayer(data_split);
+                        if (data_split.at(1) == "bullet") {
+                            _ecs.createEntity();
+                            _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {size_t(std::stoi(data_split.at(2))), ALLY});
+                            _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(3)), std::stof(data_split.at(4))});
+                            _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {data_split.at(5), std::stoi(data_split.at(6)), std::stoi(data_split.at(7)), std::stoi(data_split.at(8)), std::stoi(data_split.at(9)), std::stof(data_split.at(10))});
+                        }
+                    }
+                    else if (split(d, " ").front() == "delete") {
+                        std::vector<std::string> data_split = split(d, " ");
+                        deletePlayer(data_split);
+                        deleteBullet(data_split);
+                    }
+                    else if (split(d, " ").front() == "start") {
+                        std::vector<std::string> data_split = split(d, " ");
+                        _currentScene = GAME;
+                    } else if (d.at(0) == '[') {
+                        try {
+                            auto json = _parser.parseMessage(d);
+                            if (json.empty())
+                                continue;
+                            updatePlayer(json);
+                            updateBullet(json);
+                        } catch (const std::exception& e) {
+                            std::cerr << d << std::endl;
+                            std::cerr << "Error parsing message: " << e.what() << std::endl;
+                        }
                     }
                 }
             } catch (const std::exception& e) {
-                std::cerr << d << std::endl;
+                std::cerr << u << std::endl;
                 std::cerr << "Error split message: " << e.what() << std::endl;
             }
         }
@@ -131,7 +140,20 @@ void rtype::Client::gameLoop(IReceiver& receive)
             _keys = keyState.first;
             _previousKeys = keyState.second;
             handleInput();
-            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 10 && _currentScene == GAME) {
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 5 && _currentScene == GAME) {
+                for (auto& entity : _ecs.getEntities()) {
+                    std::cout << "Entity: " << entity << std::endl;
+                    if (_ecs.hasComponent<Bullet>(entity)) {
+                        std::cout << "Bullet: " << _ecs.getComponent<Bullet>(entity)->id << " " << _ecs.getComponent<Bullet>(entity)->team << std::endl;
+                    }
+                    if (_ecs.hasComponent<Player>(entity)) {
+                        std::cout << "Player: " << _ecs.getComponent<Player>(entity)->id << " " << _ecs.getComponent<Player>(entity)->name << std::endl;
+                    }
+                    if (_ecs.hasComponent<Position>(entity)) {
+                        std::cout << "Position: " << _ecs.getComponent<Position>(entity)->x << " " << _ecs.getComponent<Position>(entity)->y << std::endl;
+                    }
+                    std::cout << std::endl;
+                }
                 _start = now;
                 sender.send(_parser.playerToJson(_ecs, id));
             }
@@ -141,7 +163,5 @@ void rtype::Client::gameLoop(IReceiver& receive)
             std::cerr << "Error processing message: " << e.what() << std::endl;
         }
     }
-
-    receive.set_running(false);
     _graphical->stopMusic("mainTheme");
 }
