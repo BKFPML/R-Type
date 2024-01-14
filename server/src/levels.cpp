@@ -66,6 +66,7 @@ void Server::createPositionComponent(ECS::Entity entity, const std::unordered_ma
     if (params.find("x") != params.end() && params.find("y") != params.end()) {
         float x = std::stof(params.at("x"));
         float y = std::stof(params.at("y"));
+        std::cout << "Creating position component for entity " << entity << " with x: " << x << " and y: " << y << std::endl;
         _ecs.addComponent(entity, Position{x, y});
     } else {
         std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;

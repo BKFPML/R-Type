@@ -43,4 +43,7 @@ echo "Moving executables..."
 cp server/Release/$SERVER_NAME.exe ../
 cp client/Release/$CLIENT_NAME.exe ../
 
+echo copy levels to build dir
+cp -r ../levels/ ./server/Release/
+
 echo "Build script completed."

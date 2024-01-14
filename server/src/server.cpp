@@ -133,11 +133,11 @@ void Server::parse_data_received()
             }
             int lvl = std::stoi(data_split.at(1));
             if (lvl == 0)
-                loadLevel("server/levels/config_files/level_1.conf");
+                loadLevel("levels/config_files/level_1.conf");
             else if (lvl == 1)
-                loadLevel("server/levels/config_files/level_2.conf");
+                loadLevel("levels/config_files/level_2.conf");
             else if (lvl == 2)
-                loadLevel("server/levels/config_files/level_3.conf");
+                loadLevel("levels/config_files/level_3.conf");
         } else {
             std::unordered_map<std::string, std::string> data_parsed = parser.parseMessage(data);
             int id_player = std::stoi(parser.getNestValue(data_parsed, "Player", "id"));
