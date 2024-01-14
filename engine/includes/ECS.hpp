@@ -336,6 +336,7 @@ private:
             pos1->x + sprite1->width * sprite1->scale > pos2->x &&
             pos1->y < pos2->y + sprite2->height * sprite2->scale &&
             pos1->y + sprite1->height * sprite1->scale > pos2->y) {
+                std::cout << "Collision detected" << std::endl;
                 handleCollision(ecs, entity1, entity2);
         }
     }
@@ -343,9 +344,15 @@ private:
         if (ecs.hasComponent<Attack>(entity1) && ecs.hasComponent<Health>(entity2)) {
             Attack ATK = ecs.getComponent<Attack>(entity1)->damage;
             Health HP = ecs.getComponent<Health>(entity2)->hp;
+            std::cout << "Attack: " << std::to_string(ATK.damage) << std::endl;
+            std::cout << "Health: " << std::to_string(HP.hp) << std::endl;
+            std::cout << "Health: " << std::to_string(ecs.getComponent<Health>(entity2)->hp) << std::endl;
             ecs.updateComponent<Health>(entity2, [&ATK](Health& health) {
-                health.hp -= ATK.damage;
+                health.hp -= 20;
             });
+            std::cout << "Health: " << std::to_string(ecs.getComponent<Health>(entity2)->hp) << std::endl;
+
+
             ecs.removeComponent<Attack>(entity1);
             if (ecs.hasComponent<Bullet>(entity1)) {
                 ecs.updateComponent<Bullet>(entity1, [](Bullet& bullet) {
