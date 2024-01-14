@@ -1,6 +1,6 @@
 /**
  * @file init_entity.cpp
- * @brief 
+ * @brief Delcaration of the init_entity class methods
  * @date 12-01-2024
  */
 
@@ -8,7 +8,6 @@
 
 /**
  * @brief function to find a free id for a player
- *
  */
 int Server::find_free_id_player()
 {
@@ -50,7 +49,7 @@ void Server::init_player(std::vector<std::string> data_split)
         _ecs.createEntity();
         _ecs.addComponent<Position>(_ecs.getEntities().back(), Position(300, 300 + clients_send.size() * 100));
         _ecs.addComponent<Rotation>(_ecs.getEntities().back(), Rotation(180));
-        _ecs.addComponent<Velocity>(_ecs.getEntities().back(), Velocity(0, 0, 0));
+        _ecs.addComponent<Velocity>(_ecs.getEntities().back(), Velocity(0, 0));
         _ecs.addComponent<Health>(_ecs.getEntities().back(), Health(100));
         _ecs.addComponent<Player>(_ecs.getEntities().back(), Player(id_new_player, data_split.at(2)));
         _ecs.addComponent<Sprite>(_ecs.getEntities().back(), Sprite("player_red", 34, 34, 0, 0, 5));

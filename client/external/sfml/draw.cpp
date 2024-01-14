@@ -5,6 +5,7 @@
  */
 
 #include "sfml.hpp"
+#include <iostream>
 
 /**
  * @brief Draws a sprite on the SFML window
@@ -21,7 +22,7 @@ void rtype::SFML::drawSprite(std::string sprite, int x, int y, int startX, int s
             s.second->setScale(scale, scale);
             s.second->setRotation(rotation);
             if (sizeX != 0 && sizeY != 0)
-                s.second->setTextureRect(sf::IntRect(startX, startY, startX + sizeX, startY + sizeY));
+                s.second->setTextureRect(sf::IntRect(startX, startY, sizeX, sizeY));
             _window.draw(*s.second);
         }
     }

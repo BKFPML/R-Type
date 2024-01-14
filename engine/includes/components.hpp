@@ -10,6 +10,15 @@
 #include <string>
 
 /**
+ * @brief Spawn Time component
+ * @param time Time of the spawn
+ */
+struct SpawnTime {
+    float time;
+    SpawnTime(float time) : time(time) {}
+};
+
+/**
  * @brief Position component
  * @param x X position
  * @param y Y position
@@ -27,17 +36,7 @@ struct Position {
  */
 struct Velocity {
     float x, y;
-    float magnitude;
-    Velocity(float x, float y, float magnitude) : x(x), y(y), magnitude(magnitude) {
-        normalize();
-    }
-    // Method to normalize the vector
-    void normalize() {
-        float len = std::sqrt(x * x + y * y);
-        if (len != 0) {
-            x /= len;
-            y /= len;
-        }
+    Velocity(float x, float y) : x(x), y(y) {
     }
 };
 
@@ -114,8 +113,27 @@ struct Player{
     Player(int id, std::string name) : id(id), name(name) {}
 };
 
+enum BulletTeam {
+    ALLY,
+    ENEMY
+};
+
+struct Bullet {
+    size_t id;
+    BulletTeam team;
+    Bullet(size_t id, BulletTeam team) : id(id), team(team) {}
+};
+
 struct Npc {
     //TODO
+};
+/**
+ * @brief Enemy component
+ * @param name Name of the enemy
+ */
+struct Enemy {
+    std::string name;
+    Enemy(std::string name) : name(name) {}
 };
 
 // *Graphical components

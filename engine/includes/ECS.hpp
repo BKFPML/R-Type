@@ -163,6 +163,17 @@ class ECS {
             return drawableEntities;
         }
 
+        std::vector<Entity> getEnemies() {
+            std::vector<Entity> entities = getEntities();
+            std::vector<Entity> enemies;
+            for (int i = 0; i < entities.size(); i++) {
+                if (hasComponent<Enemy>(entities[i])) {
+                    enemies.push_back(entities[i]);
+                }
+            }
+            return enemies;
+        }
+
         /**
          * @brief Registers a new system
          *
@@ -215,8 +226,8 @@ class MovementSystem : public ISystem {
                 if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Velocity>(entity))) {
                     auto position = ecs.getComponent<Position>(entity);
                     auto velocity = ecs.getComponent<Velocity>(entity);
-                    position->x += velocity->x * velocity->magnitude;
-                    position->y += velocity->y * velocity->magnitude;
+                    position->x += velocity->x;
+                    position->y += velocity->y;
                 }
             }
         }

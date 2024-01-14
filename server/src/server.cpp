@@ -5,27 +5,39 @@
  */
 
 #include "../includes/server.hpp"
-#include "levels.hpp"
+#include "../includes/levels.hpp"
 
 
 /**
  * @brief Check for new connections
- * 
- * @param clients 
- * @param client_boost_receive 
- * @return std::vector<Network::Sender> 
+ *
+ * @param clients
+ * @param client_boost_receive
+ * @return std::vector<Network::Sender>
  */
 void Server::init_entity(std::string data)
 {
     if (split(data, " ").front() == "new") {
         std::vector<std::string> data_split = split(data, " ");
+        std::cout << "new entity " << data_split.at(1) << std::endl;
         init_player(data_split);
+        if (data_split.at(1) == "bullet") {
+            _ecs.createEntity();
+            _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {_ecs.getEntities().back() , ALLY});
+            std::cout << "new bullet " << _ecs.getEntities().back() << std::endl;
+            _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(2)), std::stof(data_split.at(3))});
+            _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {std::stof(data_split.at(4)), std::stof(data_split.at(5))});
+            _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {data_split.at(6), std::stoi(data_split.at(7)), std::stoi(data_split.at(8)), std::stoi(data_split.at(9)), std::stoi(data_split.at(10)), std::stof(data_split.at(11))});
+            for (auto& client : clients_send) {
+                client.send("new bullet " + std::to_string(_ecs.getComponent<Bullet>(_ecs.getEntities().back())->id) + " " + std::to_string(_ecs.getComponent<Position>(_ecs.getEntities().back())->x) + " " + std::to_string(_ecs.getComponent<Position>(_ecs.getEntities().back())->y) + " " + _ecs.getComponent<Sprite>(_ecs.getEntities().back())->texture + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->width) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->height) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->scale));
+            }
+        }
     }
 }
 /**
  * @brief delete entity
- * 
- * @param data 
+ *
+ * @param data
  */
 void Server::delete_entity(std::string data)
 {
@@ -67,21 +79,16 @@ void Server::delete_entity(std::string data)
                 }
                 clients_send_id.at(0) = 0;
             }
-
-
-
-            
-
         }
     }
 }
 
 /**
  * @brief Split a string
- * 
- * @param str 
- * @param token 
- * @return std::vector<std::string> 
+ *
+ * @param str
+ * @param token
+ * @return std::vector<std::string>
  */
 std::vector<std::string> Server::split(const std::string& str, const std::string& delim)
 {
@@ -103,32 +110,62 @@ std::vector<std::string> Server::split(const std::string& str, const std::string
 
 /**
  * @brief Parse data received
- * 
- * @param clients 
- * @param client_boost_receive 
+ *
+ * @param clients
+ * @param client_boost_receive
  */
 void Server::parse_data_received()
 {
     const std::vector<std::string>& received_data = server_receive.get_received_data();
 
     for (const auto& data : received_data) {
-        init_entity(data);
-        delete_entity(data);
-        if (split(data, " ").front() == "start") {
+        std::cout << "Received: " << data << std::endl;
+        if (split(data, " ").front() == "new")
+            init_entity(data);
+        else if (split(data, " ").front() == "delete")
+            delete_entity(data);
+        else if (split(data, " ").front() == "start") {
             std::vector<std::string> data_split = split(data, " ");
+            game_launch = true;
             for (auto& client : clients_send) {
                 client.send("start " + data_split.at(1));
             }
+        } else {
+            std::unordered_map<std::string, std::string> data_parsed = parser.parseMessage(data);
+            int id_player = std::stoi(parser.getNestValue(data_parsed, "Player", "id"));
+            for (int i = 0; i < clients_send_id.size(); i++) {
+                if (clients_send_id.at(i) != id_player) {
+                    std::cout << "Send " << data << std::endl;
+                    clients_send[i].send(data);
+                }
+            }
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Player>(entity)) {
+                    if (_ecs.getComponent<Player>(entity)->id == id_player) {
+                        _ecs.getComponent<Position>(entity)->x = std::stoi(parser.getNestValue(data_parsed, "Position", "x"));
+                        _ecs.getComponent<Position>(entity)->y = std::stoi(parser.getNestValue(data_parsed, "Position", "y"));
+                    }
+                }
+            }
         }
+
     }
     server_receive.clear_received_data();
 }
 
+/**
+ * @brief Print all ECS entity (temporary function)
+ *
+ * @param ecs
+ */
 void print_all_ecs_entity(ECS& ecs)
 {
     std::cout << "--- ECS ---" << std::endl;
     for (auto& entity : ecs.getEntities()) {
         std::cout << "Entity: " << entity << std::endl;
+        if (ecs.hasComponent<Bullet>(entity)) {
+            std::cout << "Bullet: " << ecs.getComponent<Bullet>(entity)->id << " " << ecs.getComponent<Bullet>(entity)->team << std::endl;
+        }
         if (ecs.hasComponent<Position>(entity)) {
             std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
         }
@@ -136,7 +173,7 @@ void print_all_ecs_entity(ECS& ecs)
             std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
         }
         if (ecs.hasComponent<Velocity>(entity)) {
-            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << " " << ecs.getComponent<Velocity>(entity)->magnitude << std::endl;
+            std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << std::endl;
         }
         if (ecs.hasComponent<Health>(entity)) {
             std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
@@ -146,6 +183,12 @@ void print_all_ecs_entity(ECS& ecs)
         }
         if (ecs.hasComponent<Sprite>(entity)) {
             std::cout << "Sprite: " << ecs.getComponent<Sprite>(entity)->texture << " " << ecs.getComponent<Sprite>(entity)->width << " " << ecs.getComponent<Sprite>(entity)->height << " " << ecs.getComponent<Sprite>(entity)->scale << std::endl;
+        }
+        if (ecs.hasComponent<Enemy>(entity)) {
+            std::cout << "Enemy: " << ecs.getComponent<Enemy>(entity)->name << std::endl;
+        }
+        if (ecs.hasComponent<SpawnTime>(entity)) {
+            std::cout << "SpawnTime: " << ecs.getComponent<SpawnTime>(entity)->time << std::endl;
         }
 
         std::cout << std::endl;
@@ -164,9 +207,30 @@ int Server::run()
     auto now = std::chrono::system_clock::now();
     while (true)
     {
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 1000) {
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 20 && game_launch) {
             now = std::chrono::system_clock::now();
-            print_all_ecs_entity(_ecs);
+            // print_all_ecs_entity(_ecs);
+            _ecs.updateSystems();
+            std::string bullet;
+            for (auto& client : clients_send) {
+                for (auto& entity : _ecs.getEntities()) {
+                    if (_ecs.hasComponent<Bullet>(entity)) {
+                        if (_ecs.getComponent<Position>(entity)->x < -50 || _ecs.getComponent<Position>(entity)->x > 2050 || _ecs.getComponent<Position>(entity)->y < -50 || _ecs.getComponent<Position>(entity)->y > 1250) {
+                            for (auto& client : clients_send)
+                                client.send("delete bullet " + std::to_string(_ecs.getComponent<Bullet>(entity)->id));
+                            _ecs.removeEntity(entity);
+                        } else {
+                            bullet += parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id, false) + ";";
+                        }
+                    }
+                }
+            }
+            if (bullet != "") {
+                for (auto& client : clients_send) {
+                    std::cout << "Send: " << bullet << std::endl;
+                    client.send(bullet);
+                }
+            }
         }
         parse_data_received();
     }

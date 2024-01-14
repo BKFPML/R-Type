@@ -9,7 +9,7 @@
 #include <iostream>
 #include <chrono>
 #include "../../engine/includes/network_library/boost_udp.hpp"
-#include "../includes/parser.hpp"
+#include "../../engine/includes/parser.hpp"
 #include "../../engine/includes/ECS.hpp"
 
 /**
@@ -23,8 +23,11 @@ class Server {
             _ecs.registerComponent<Velocity>();
             _ecs.registerComponent<Health>();
             _ecs.registerComponent<Player>();
-            _ecs.registerComponent<Npc>();
+            _ecs.registerComponent<Enemy>();
             _ecs.registerComponent<Sprite>();
+            _ecs.registerComponent<Bullet>();
+            _ecs.registerSystem<MovementSystem>();
+            game_launch = false;
         }
         ~Server() = default;
 
@@ -42,5 +45,6 @@ class Server {
         std::vector<int> clients_send_id;
         ECS _ecs;
         Parser parser;
+        bool game_launch;
 
 };
