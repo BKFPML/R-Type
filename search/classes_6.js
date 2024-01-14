@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['igraphical_168',['IGraphical',['../classrtype_1_1IGraphical.html',1,'rtype']]],
-  ['immunity_169',['Immunity',['../structImmunity.html',1,'']]],
-  ['immunitysystem_170',['ImmunitySystem',['../classImmunitySystem.html',1,'']]],
-  ['ireceiver_171',['IReceiver',['../classIReceiver.html',1,'']]],
-  ['isender_172',['ISender',['../classISender.html',1,'']]],
-  ['isystem_173',['ISystem',['../classISystem.html',1,'']]]
+  ['health_176',['Health',['../structHealth.html',1,'']]]
 ];

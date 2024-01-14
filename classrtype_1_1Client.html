@@ -99,6 +99,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a594077d66e533e3937c5ec79d40e5a4d">deletePlayer</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
 <tr class="memdesc:a594077d66e533e3937c5ec79d40e5a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete entity player <br /></td></tr>
 <tr class="separator:a594077d66e533e3937c5ec79d40e5a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c73041e9fa337bfc7c5705b985e350e"><td class="memItemLeft" align="right" valign="top"><a id="a5c73041e9fa337bfc7c5705b985e350e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a5c73041e9fa337bfc7c5705b985e350e">deleteBullet</a> (std::vector&lt; std::string &gt; data_split)</td></tr>
+<tr class="memdesc:a5c73041e9fa337bfc7c5705b985e350e"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete entity bullet <br /></td></tr>
+<tr class="separator:a5c73041e9fa337bfc7c5705b985e350e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b2026aa150f6e753fcc1ffa7a7ef54b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#a4b2026aa150f6e753fcc1ffa7a7ef54b">updatePlayer</a> (std::unordered_map&lt; std::string, std::string &gt; data_split)</td></tr>
+<tr class="memdesc:a4b2026aa150f6e753fcc1ffa7a7ef54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">update entity player  <a href="classrtype_1_1Client.html#a4b2026aa150f6e753fcc1ffa7a7ef54b">More...</a><br /></td></tr>
+<tr class="separator:a4b2026aa150f6e753fcc1ffa7a7ef54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa659249b0762e63c3ef1df7a0c0ae1a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#aa659249b0762e63c3ef1df7a0c0ae1a3">updateBullet</a> (std::unordered_map&lt; std::string, std::string &gt; data_split)</td></tr>
+<tr class="memdesc:aa659249b0762e63c3ef1df7a0c0ae1a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">update entity bullet  <a href="classrtype_1_1Client.html#aa659249b0762e63c3ef1df7a0c0ae1a3">More...</a><br /></td></tr>
+<tr class="separator:aa659249b0762e63c3ef1df7a0c0ae1a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4115ac4fa9797f619826d69ab85c977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">gameLoop</a> (<a class="el" href="classIReceiver.html">IReceiver</a> &amp;receive)</td></tr>
 <tr class="memdesc:aa4115ac4fa9797f619826d69ab85c977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the game loop.  <a href="classrtype_1_1Client.html#aa4115ac4fa9797f619826d69ab85c977">More...</a><br /></td></tr>
 <tr class="separator:aa4115ac4fa9797f619826d69ab85c977"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,6 +275,58 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">action</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa659249b0762e63c3ef1df7a0c0ae1a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa659249b0762e63c3ef1df7a0c0ae1a3">&#9670;&nbsp;</a></span>updateBullet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Client::updateBullet </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; std::string, std::string &gt;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>update entity bullet </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4b2026aa150f6e753fcc1ffa7a7ef54b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b2026aa150f6e753fcc1ffa7a7ef54b">&#9670;&nbsp;</a></span>updatePlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Client::updatePlayer </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; std::string, std::string &gt;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>update entity player </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td></td></tr>
   </table>
   </dd>
 </dl>

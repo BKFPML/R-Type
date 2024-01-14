@@ -73,11 +73,11 @@ $(function() {
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../../engine/includes/ECS.hpp&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="parser_8hpp.html">parser.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../../engine/includes/parser.hpp&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classLevels.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLevels.html">Levels</a> {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">public</span>:</div>
@@ -87,9 +87,8 @@ $(function() {
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        std::vector&lt;ECS::Entity&gt; temp;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
 <div class="ttc" id="aclassLevels_html"><div class="ttname"><a href="classLevels.html">Levels</a></div><div class="ttdoc">The Levels class is used to load levels from JSON files.</div><div class="ttdef"><b>Definition:</b> levels.hpp:19</div></div>
-<div class="ttc" id="aclassLevels_html_ac05d7565b21a63818b488e3dffdd772a"><div class="ttname"><a href="classLevels.html#ac05d7565b21a63818b488e3dffdd772a">Levels::loadLevel</a></div><div class="ttdeci">static std::shared_ptr&lt; ECS &gt; loadLevel(const std::string &amp;levelConfig, std::shared_ptr&lt; ECS &gt; ecs)</div><div class="ttdoc">Loads a level from a JSON file.</div><div class="ttdef"><b>Definition:</b> levels.cpp:198</div></div>
+<div class="ttc" id="aclassLevels_html_ac05d7565b21a63818b488e3dffdd772a"><div class="ttname"><a href="classLevels.html#ac05d7565b21a63818b488e3dffdd772a">Levels::loadLevel</a></div><div class="ttdeci">static std::shared_ptr&lt; ECS &gt; loadLevel(const std::string &amp;levelConfig, std::shared_ptr&lt; ECS &gt; ecs)</div><div class="ttdoc">Loads a level from a JSON file.</div><div class="ttdef"><b>Definition:</b> levels.cpp:196</div></div>
 <div class="ttc" id="aclassLevels_html_aff299d6d1ce2b5b15e5afe242e129ef2"><div class="ttname"><a href="classLevels.html#aff299d6d1ce2b5b15e5afe242e129ef2">Levels::componentFactories</a></div><div class="ttdeci">static std::unordered_map&lt; std::string, std::function&lt; void(ECS::Entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;, std::shared_ptr&lt; ECS &gt; &amp;)&gt; &gt; componentFactories</div><div class="ttdoc">Component factories.</div><div class="ttdef"><b>Definition:</b> levels.hpp:22</div></div>
-<div class="ttc" id="aparser_8hpp_html"><div class="ttname"><a href="parser_8hpp.html">parser.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['loadassets_278',['loadAssets',['../classrtype_1_1SFML.html#a39a1f179984c8605525a3a85c18ef36d',1,'rtype::SFML']]],
-  ['loadjsondata_279',['loadJsonData',['../levels_8cpp.html#a587c0d3e456e44c160c8dbbf14bb895c',1,'levels.cpp']]],
-  ['loadlevel_280',['loadLevel',['../classLevels.html#ac05d7565b21a63818b488e3dffdd772a',1,'Levels']]]
+  ['handleevents_279',['handleEvents',['../classrtype_1_1SFML.html#a658dc24e3c58e1b7938f18ab0df5c24e',1,'rtype::SFML']]],
+  ['handleinput_280',['handleInput',['../classrtype_1_1Client.html#af5a815d673d86db80c8abbc47957e31f',1,'rtype::Client']]],
+  ['hascomponent_281',['hasComponent',['../classECS.html#ad353dd9a1d3c7a8e96bf181be7428589',1,'ECS']]]
 ];

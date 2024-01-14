@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ecs_164',['ECS',['../classECS.html',1,'']]],
-  ['enemy_165',['Enemy',['../structEnemy.html',1,'']]]
+  ['damage_171',['Damage',['../structDamage.html',1,'']]],
+  ['damagesystem_172',['DamageSystem',['../classDamageSystem.html',1,'']]]
 ];

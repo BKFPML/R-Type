@@ -213,8 +213,8 @@ $(function() {
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keywordflow">if</span> ((ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structPosition.html">Position</a>&gt;(entity)) &amp;&amp; (ecs.<a class="code" href="classECS.html#ad353dd9a1d3c7a8e96bf181be7428589">hasComponent</a>&lt;<a class="code" href="structVelocity.html">Velocity</a>&gt;(entity))) {</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                    <span class="keyword">auto</span> position = ecs.<a class="code" href="classECS.html#a9528399640fc20d2042127473249e77a">getComponent</a>&lt;<a class="code" href="structPosition.html">Position</a>&gt;(entity);</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    <span class="keyword">auto</span> velocity = ecs.<a class="code" href="classECS.html#a9528399640fc20d2042127473249e77a">getComponent</a>&lt;<a class="code" href="structVelocity.html">Velocity</a>&gt;(entity);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                    position-&gt;x += velocity-&gt;x * velocity-&gt;magnitude;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    position-&gt;y += velocity-&gt;y * velocity-&gt;magnitude;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                    position-&gt;x += velocity-&gt;x;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    position-&gt;y += velocity-&gt;y;</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                }</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            }</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        }</div>
@@ -274,9 +274,9 @@ $(function() {
 <div class="ttc" id="aclassImmunitySystem_html"><div class="ttname"><a href="classImmunitySystem.html">ImmunitySystem</a></div><div class="ttdoc">The immunity system. Updates the immunity frames of entities.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:239</div></div>
 <div class="ttc" id="aclassMovementSystem_html"><div class="ttname"><a href="classMovementSystem.html">MovementSystem</a></div><div class="ttdoc">The movement system. Updates the position of based on their velocity.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:221</div></div>
 <div class="ttc" id="acomponents_8hpp_html"><div class="ttname"><a href="components_8hpp.html">components.hpp</a></div><div class="ttdoc">Declaration of the components used in the ECS.</div></div>
-<div class="ttc" id="astructDamage_html"><div class="ttname"><a href="structDamage.html">Damage</a></div><div class="ttdoc">Damage component.</div><div class="ttdef"><b>Definition:</b> components.hpp:102</div></div>
-<div class="ttc" id="astructHealth_html"><div class="ttname"><a href="structHealth.html">Health</a></div><div class="ttdoc">Health component.</div><div class="ttdef"><b>Definition:</b> components.hpp:66</div></div>
-<div class="ttc" id="astructImmunity_html"><div class="ttname"><a href="structImmunity.html">Immunity</a></div><div class="ttdoc">Immunity component.</div><div class="ttdef"><b>Definition:</b> components.hpp:111</div></div>
+<div class="ttc" id="astructDamage_html"><div class="ttname"><a href="structDamage.html">Damage</a></div><div class="ttdoc">Damage component.</div><div class="ttdef"><b>Definition:</b> components.hpp:92</div></div>
+<div class="ttc" id="astructHealth_html"><div class="ttname"><a href="structHealth.html">Health</a></div><div class="ttdoc">Health component.</div><div class="ttdef"><b>Definition:</b> components.hpp:56</div></div>
+<div class="ttc" id="astructImmunity_html"><div class="ttname"><a href="structImmunity.html">Immunity</a></div><div class="ttdoc">Immunity component.</div><div class="ttdef"><b>Definition:</b> components.hpp:101</div></div>
 <div class="ttc" id="astructPosition_html"><div class="ttname"><a href="structPosition.html">Position</a></div><div class="ttdoc">Position component.</div><div class="ttdef"><b>Definition:</b> components.hpp:26</div></div>
 <div class="ttc" id="astructVelocity_html"><div class="ttname"><a href="structVelocity.html">Velocity</a></div><div class="ttdoc">Velocity component, normalized.</div><div class="ttdef"><b>Definition:</b> components.hpp:37</div></div>
 </div><!-- fragment --></div><!-- contents -->
