@@ -35,3 +35,8 @@ cmake --build .
 
 cp ./server/${SERVER_NAME} ../
 cp ./client/${CLIENT_NAME} ../
+
+echo copy levels to build dir
+cp -r ../levels/ ./server/Release/
+
+echo "Build script completed."
