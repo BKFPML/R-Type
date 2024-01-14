@@ -27,6 +27,7 @@ class Server {
             _ecs.registerComponent<Sprite>();
             _ecs.registerComponent<Bullet>();
             _ecs.registerSystem<MovementSystem>();
+            game_launch = false;
         }
         ~Server() = default;
 
@@ -44,5 +45,6 @@ class Server {
         std::vector<int> clients_send_id;
         ECS _ecs;
         Parser parser;
+        bool game_launch;
 
 };

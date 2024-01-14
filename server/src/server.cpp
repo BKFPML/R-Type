@@ -119,12 +119,14 @@ void Server::parse_data_received()
     const std::vector<std::string>& received_data = server_receive.get_received_data();
 
     for (const auto& data : received_data) {
+        std::cout << "Received: " << data << std::endl;
         if (split(data, " ").front() == "new")
             init_entity(data);
         else if (split(data, " ").front() == "delete")
             delete_entity(data);
         else if (split(data, " ").front() == "start") {
             std::vector<std::string> data_split = split(data, " ");
+            game_launch = true;
             for (auto& client : clients_send) {
                 client.send("start " + data_split.at(1));
             }
@@ -133,7 +135,8 @@ void Server::parse_data_received()
             int id_player = std::stoi(parser.getNestValue(data_parsed, "Player", "id"));
             for (int i = 0; i < clients_send_id.size(); i++) {
                 if (clients_send_id.at(i) != id_player) {
-                    clients_send.at(i).send(data);
+                    std::cout << "Send " << data << std::endl;
+                    clients_send[i].send(data);
                 }
             }
             for (auto& entity : _ecs.getEntities()) {
@@ -204,7 +207,7 @@ int Server::run()
     auto now = std::chrono::system_clock::now();
     while (true)
     {
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 20) {
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 20 && game_launch) {
             now = std::chrono::system_clock::now();
             // print_all_ecs_entity(_ecs);
             _ecs.updateSystems();
@@ -222,8 +225,12 @@ int Server::run()
                     }
                 }
             }
-            for (auto& client : clients_send)
-                client.send(bullet);
+            if (bullet != "") {
+                for (auto& client : clients_send) {
+                    std::cout << "Send: " << bullet << std::endl;
+                    client.send(bullet);
+                }
+            }
         }
         parse_data_received();
     }
