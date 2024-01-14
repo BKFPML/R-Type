@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['graphical_183',['Graphical',['../structGraphical.html',1,'']]]
+  ['freeze_184',['Freeze',['../structFreeze.html',1,'']]]
 ];
