@@ -10,6 +10,7 @@
 #include "player_red.h"
 #include "r_typesheet8.h"
 #include "r_typesheet9.h"
+#include "r_typesheet38.h"
 #include "r_typesheet42.h"
 #include "parallax100.h"
 #include "parallax80.h"
@@ -95,6 +96,7 @@ void rtype::SFML::loadAssets()
     initTextures("fps_120", fps_120, fps_120_len);
     initTextures("r_typesheet8", r_typesheet8, r_typesheet8_len);
     initTextures("r_typesheet9", r_typesheet9, r_typesheet9_len);
+    initTextures("r_typesheet38", r_typesheet38, r_typesheet38_len);
     initTextures("r_typesheet42", r_typesheet42, r_typesheet42_len);
     initTextures("bullet", bullet, bullet_len);
     initTextures("healthPack", healthPack, healthPack_len);
