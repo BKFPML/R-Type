@@ -31,6 +31,8 @@ class Server {
             _ecs.registerComponent<Sprite>();
             _ecs.registerComponent<Bullet>();
             _ecs.registerComponent<SpawnTime>();
+            _ecs.registerComponent<HealthPack>();
+            _ecs.registerComponent<Collision>();
             _ecs.registerSystem<MovementSystem>();
 
             _componentFactories = {
@@ -41,7 +43,9 @@ class Server {
                 {"Health", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createHealthComponent(entity, params); }},
                 {"Sprite", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createSpriteComponent(entity, params); }},
                 {"Enemy", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createEnemyComponent(entity, params); }},
-                {"SpawnTime", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createSpawnTimeComponent(entity, params); }}
+                {"SpawnTime", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createSpawnTimeComponent(entity, params); }},
+                {"Collision", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createCollisionComponent(entity, params); }},
+                {"HealthPack", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createHealthPackComponent(entity, params); }}
             };
         }
         ~Server() = default;
@@ -59,7 +63,8 @@ class Server {
 
         //* Levels
         void loadLevel(const std::string& levelConfig);
-        void processJsonObject(const nlohmann::json& jsonObj);        void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void processJsonObject(const nlohmann::json& jsonObj);
+        void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
         void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
         void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
         void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
@@ -67,6 +72,8 @@ class Server {
         void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
         void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
         void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createCollisionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createHealthPackComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
 
     private:
         UDPBoostNetwork::UDPReceiver server_receive;
@@ -82,5 +89,4 @@ class Server {
         */
         std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&)>> _componentFactories;
         bool game_launch;
-
 };
