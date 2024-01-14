@@ -11,6 +11,48 @@
 using json = nlohmann::json;
 
 /**
+ * @brief Create a Health Pack Component object
+ *
+ * @param entity
+ * @param params
+ */
+void Server::createHealthPackComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
+    if (params.find("hp") != params.end()) {
+        int hp = std::stoi(params.at("hp"));
+        _ecs.addComponent(entity, HealthPack{hp});
+    } else {
+        std::cerr << "HealthPack component requires 'HP' parameter." << std::endl;
+    }
+}
+
+/**
+ * @brief Create a Collision Component object
+ *
+ * @param entity
+ * @param params
+ */
+void Server::createCollisionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
+    if (params.find("type") != params.end()) {
+        std::string type = params.at("type");
+        CollisionType colType;
+        if (type == "attack") {
+            colType = CollisionType::ATTACK;
+        } else if (type == "defend") {
+            colType = CollisionType::DEFEND;
+        } else if (type == "health_pack") {
+            std::cout << "Found a health pack" << std::endl;
+            colType = CollisionType::HEALTH_PACK;
+        } else {
+            std::cerr << "Invalid collision type: " << type << std::endl;
+            return;
+        }
+        _ecs.addComponent(entity, type);
+    } else {
+        std::cerr << "Collision component requires 'Type' parameter." << std::endl;
+    }
+}
+
+/**
  * @brief Create a Spawn Time Component object
  *
  * @param entity

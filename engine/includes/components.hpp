@@ -10,6 +10,15 @@
 #include <string>
 
 /**
+ * @brief HealthPack Component
+ * @param hp Health points
+ */
+struct HealthPack {
+    int hp;
+    HealthPack(int hp) : hp(hp) {}
+};
+
+/**
  * @brief Spawn Time component
  * @param time Time of the spawn
  */
@@ -103,6 +112,10 @@ struct Immunity {
     Immunity(int frames) : frames(frames) {}
 };
 
+/**
+ * @brief Freeze component
+ * @param frames Number of frames of freeze
+ */
 struct Freeze {
     int frames;
     Freeze(int frames) : frames(frames) {}
@@ -118,21 +131,31 @@ struct Player{
     Player(int id, std::string name) : id(id), name(name) {}
 };
 
+/**
+ * @brief Types of different bullets
+ *
+ * ALLY: Bullet shot by a player
+ * ENEMY: Bullet shot by an enemy
+ * DESTROYED: Bullet that has been destroyed
+ */
 enum BulletTeam {
     ALLY,
     ENEMY,
     DESTROYED
 };
 
+/**
+ * @brief Bullet component
+ *
+ * @param id ID of the bullet
+ * @param team BulletTeam (ALLY, ENEMY or DESTROYED)
+ */
 struct Bullet {
     size_t id;
     BulletTeam team;
     Bullet(size_t id, BulletTeam team) : id(id), team(team) {}
 };
 
-struct Npc {
-    //TODO
-};
 /**
  * @brief Enemy component
  * @param name Name of the enemy
@@ -154,11 +177,23 @@ enum class GraphicalType {
     Text
 };
 
+/**
+ * @brief Enum that defines the type of collision used with the Collision component
+ *
+ * ATTACK: The entity is an attack
+ * DEFEND: The entity is a defense
+ * HEALTH_PACK: The entity is a health pack
+ */
 enum CollisionType {
     ATTACK,
-    DEFEND
+    DEFEND,
+    HEALTH_PACK
 };
 
+/**
+ * @brief Collision component
+ * @param type CollisionType (ATTACK, DEFEND or HEALTH_PACK)
+ */
 struct Collision {
     CollisionType type;
     Collision(CollisionType type) : type(type) {}

@@ -21,7 +21,7 @@ void Server::init_entity(std::string data)
         if (data_split.at(1) == "bullet") {
             _ecs.createEntity();
             _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {_ecs.getEntities().back() , ALLY});
-            std::cout << "new bullet " << _ecs.getEntities().back() << std::endl;
+            // std::cout << "new bullet " << _ecs.getEntities().back() << std::endl;
             _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(2)), std::stof(data_split.at(3))});
             _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {std::stof(data_split.at(4)), std::stof(data_split.at(5))});
             _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {data_split.at(6), std::stoi(data_split.at(7)), std::stoi(data_split.at(8)), std::stoi(data_split.at(9)), std::stoi(data_split.at(10)), std::stof(data_split.at(11))});
@@ -143,7 +143,7 @@ void Server::parse_data_received()
             int id_player = std::stoi(parser.getNestValue(data_parsed, "Player", "id"));
             for (int i = 0; i < clients_send_id.size(); i++) {
                 if (clients_send_id.at(i) != id_player) {
-                    std::cout << "Send " << data << std::endl;
+                    // std::cout << "Send " << data << std::endl;
                     clients_send[i].send(data);
                 }
             }
@@ -203,6 +203,9 @@ void print_all_ecs_entity(ECS& ecs)
         }
         if (ecs.hasComponent<SpawnTime>(entity)) {
             std::cout << "SpawnTime: " << ecs.getComponent<SpawnTime>(entity)->time << std::endl;
+        }
+        if (ecs.hasComponent<HealthPack>(entity)) {
+            std::cout << "HealthPack: " << ecs.getComponent<HealthPack>(entity)->hp << std::endl;
         }
 
         std::cout << std::endl;
