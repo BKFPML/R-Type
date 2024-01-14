@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-TYPE: server/includes/levels.hpp File Reference</title>
+<title>R-TYPE: server/includes/enemies.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,32 +66,35 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">levels.hpp File Reference</div>  </div>
+<div class="title">enemies.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="classLevels.html" title="The Levels class is used to load levels from JSON files.">Levels</a> class is used to load levels from JSON files.  
+<p>Header file for enemies.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="ECS_8hpp_source.html">../../engine/includes/ECS.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="parser_8hpp_source.html">../../engine/includes/parser.hpp</a>&quot;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
-<code>#include &lt;unordered_map&gt;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;<a class="el" href="components_8hpp_source.html">../../engine/includes/components.hpp</a>&quot;</code><br />
 </div>
-<p><a href="levels_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="enemies_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevels.html">Levels</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classLevels.html" title="The Levels class is used to load levels from JSON files.">Levels</a> class is used to load levels from JSON files.  <a href="classLevels.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAttributes.html">Attributes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structAttributes.html" title="Attributes of an enemy.">Attributes</a> of an enemy.  <a href="structAttributes.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a1ab6d00360914be2558ecea2a09df4da"><td class="memItemLeft" align="right" valign="top"><a id="a1ab6d00360914be2558ecea2a09df4da"></a>
+std::map&lt; std::string, <a class="el" href="structAttributes.html">Attributes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createEnemyTypes</b> ()</td></tr>
+<tr class="separator:a1ab6d00360914be2558ecea2a09df4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="classLevels.html" title="The Levels class is used to load levels from JSON files.">Levels</a> class is used to load levels from JSON files. </p>
-<dl class="section date"><dt>Date</dt><dd>08-01-2024 </dd></dl>
+<div class="textblock"><p>Header file for enemies. </p>
+<dl class="section date"><dt>Date</dt><dd>14-01-2024 </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
