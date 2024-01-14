@@ -226,8 +226,8 @@ class MovementSystem : public ISystem {
                 if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Velocity>(entity))) {
                     auto position = ecs.getComponent<Position>(entity);
                     auto velocity = ecs.getComponent<Velocity>(entity);
-                    position->x += velocity->x * velocity->magnitude;
-                    position->y += velocity->y * velocity->magnitude;
+                    position->x += velocity->x;
+                    position->y += velocity->y;
                 }
             }
         }

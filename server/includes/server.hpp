@@ -13,8 +13,8 @@
 #include <unordered_map>
 
 #include "../../engine/includes/network_library/boost_udp.hpp"
+#include "../../engine/includes/parser.hpp"
 #include "../../engine/includes/ECS.hpp"
-#include "parser.hpp"
 
 /**
  * @brief Server class
@@ -29,6 +29,8 @@ class Server {
             _ecs.registerComponent<Player>();
             _ecs.registerComponent<Enemy>();
             _ecs.registerComponent<Sprite>();
+            _ecs.registerComponent<Bullet>();
+            _ecs.registerSystem<MovementSystem>();
         }
         ~Server() = default;
 
