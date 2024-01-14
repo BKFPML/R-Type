@@ -136,6 +136,7 @@ struct Npc {
 /**
  * @brief Enemy component
  * @param name Name of the enemy
+ * @param id ID of the enemy
  */
 struct Enemy {
     std::string name;

@@ -16,7 +16,6 @@ void Server::init_enemies()
         std::string enemyType = _ecs.getComponent<Enemy>(enemy)->name;
         std::cout << "enemyType: " << enemyType << std::endl;
         _ecs.addComponent<Health>(enemy, {enemyTypes[enemyType].health});
-        _ecs.addComponent<Position>(enemy, {10, 10});
         _ecs.addComponent<Rotation>(enemy, {enemyTypes[enemyType].rotation});
         _ecs.addComponent<Sprite>(enemy, {enemyTypes[enemyType].texture, enemyTypes[enemyType].width, enemyTypes[enemyType].height, enemyTypes[enemyType].startX, enemyTypes[enemyType].startY, enemyTypes[enemyType].scale});
         _ecs.addComponent<Freeze>(enemy, {0});

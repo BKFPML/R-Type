@@ -31,7 +31,10 @@ class Server {
             _ecs.registerComponent<Sprite>();
             _ecs.registerComponent<Bullet>();
             _ecs.registerComponent<SpawnTime>();
+            _ecs.registerComponent<Freeze>();
+            _ecs.registerComponent<Attack>();
             _ecs.registerSystem<MovementSystem>();
+
 
             _componentFactories = {
                 {"Player", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createPlayerComponent(entity, params); }},

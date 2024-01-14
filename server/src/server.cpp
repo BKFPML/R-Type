@@ -174,6 +174,12 @@ void print_all_ecs_entity(ECS& ecs)
         if (ecs.hasComponent<Bullet>(entity)) {
             std::cout << "Bullet: " << ecs.getComponent<Bullet>(entity)->id << " " << ecs.getComponent<Bullet>(entity)->team << std::endl;
         }
+        if (ecs.hasComponent<Attack>(entity)) {
+            std::cout << "Attack: " << ecs.getComponent<Attack>(entity)->damage << std::endl;
+        }
+        if (ecs.hasComponent<Freeze>(entity)) {
+            std::cout << "Freeze: " << ecs.getComponent<Freeze>(entity)->frames << std::endl;
+        }
         if (ecs.hasComponent<Position>(entity)) {
             std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
         }
@@ -221,7 +227,7 @@ int Server::run()
             _ecs.updateSystems();
             std::string bullet;
             int i = 0;
-            std::cout << "enittydsf";
+            // std::cout << "enittydsf";
             for (auto& entity : _ecs.getEntities()) {
                 if (_ecs.hasComponent<Bullet>(entity)) {
                     if (_ecs.getComponent<Position>(entity)->x < -50 || _ecs.getComponent<Position>(entity)->x > 2050 || _ecs.getComponent<Position>(entity)->y < -50 || _ecs.getComponent<Position>(entity)->y > 1250) {
@@ -236,7 +242,7 @@ int Server::run()
                 }
                 if (_ecs.hasComponent<Enemy>(entity)) {
                     auto now = std::chrono::system_clock::now();
-                    if (_ecs.getComponent<Health>(entity)->hp <= 0) {
+                    if (_ecs.getComponent<Health>(entity)->hp <= 0 || _ecs.getComponent<Position>(entity)->x < -50 || _ecs.getComponent<Position>(entity)->x > 2250 || _ecs.getComponent<Position>(entity)->y < -50 || _ecs.getComponent<Position>(entity)->y > 1250) {
                         for (auto& client : clients_send)
                             client.send("delete enemy " + std::to_string(entity));
                         _ecs.removeEntity(entity);
@@ -263,14 +269,14 @@ int Server::run()
                 }
             }
         }
-        std::cout << "entity" << std::endl;
+        // std::cout << "entity" << std::endl;
         for (auto& entity : _ecs.getEntities()) {
             auto now = std::chrono::system_clock::now();
-            std::cout << "entity1" << std::endl;
+            // std::cout << "entity1" << std::endl;
             if (_ecs.hasComponent<Enemy>(entity)) {
-                std::cout << "entity enemy" << std::endl;
+                // std::cout << "entity enemy" << std::endl;
                 if (_ecs.hasComponent<Freeze>(entity)) {
-                    std::cout << "entity freeze" << std::endl;
+                    // std::cout << "entity freeze" << std::endl;
                     if (std::chrono::duration_cast<std::chrono::seconds>(now - _start_wave).count() > _ecs.getComponent<SpawnTime>(entity)->time) {
                         std::cout << "entity spawn" << std::endl;
                         _ecs.removeComponent<Freeze>(entity);
@@ -288,14 +294,14 @@ int Server::run()
                             std::cout << std::to_string(_ecs.getComponent<Sprite>(entity)->scale) << std::endl;
 
                             for (auto& client : clients_send)
-                                client.send("new enemy " + std::to_string(_ecs.getComponent<Enemy>(entity)->id) + std::to_string(_ecs.getComponent<Position>(entity)->x) + " " + std::to_string(_ecs.getComponent<Position>(entity)->y) + " " + _ecs.getComponent<Sprite>(entity)->texture + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->width) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->height) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->scale));
+                                client.send("new enemy " + std::to_string(_ecs.getComponent<Enemy>(entity)->id) + " " +std::to_string(_ecs.getComponent<Position>(entity)->x) + " " + std::to_string(_ecs.getComponent<Position>(entity)->y) + " " + _ecs.getComponent<Sprite>(entity)->texture + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->width) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->height) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->scale));
                         }
                         std::cout << "entity spawn3" << std::endl;
                     }
                 }
             }
         }
-        std::cout << "entit2y" << std::endl;
+        // std::cout << "entit2y" << std::endl;
         parse_data_received();
     }
     r.join();
