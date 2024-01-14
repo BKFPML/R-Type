@@ -1,0 +1,84 @@
+/**
+ * @page level_configuration Level Configuration Documentation
+ *
+ * @section overview Overview
+ *
+ * This document describes the structure and editing process for the level configuration 
+ * files used to load entities into the server's Entity Component System (ECS). 
+ * These configuration files are written in JSON format and define the entities 
+ * along with their respective components for each level.
+ *
+ * @section file_structure File Structure
+ *
+ * The level configuration files are JSON arrays containing objects. Each object 
+ * represents an entity with specified components. Components define the properties 
+ * and behaviors of the entity.
+ *
+ * Example from level_1.conf:
+ * \verbatim
+ [
+     {
+         "Enemy": {
+             "name": "crawler"
+         },
+         "SpawnTime": {
+             "time": "10"
+         },
+         "Position": {
+             "x": "100",
+             "y": "100"
+         }
+     },
+     {
+         "Enemy": {
+             "name": "shooter"
+         },
+         "SpawnTime": {
+             "time": "20"
+         },
+         "Position": {
+             "x": "500",
+             "y": "500"
+         }
+     }
+ ]
+ \endverbatim
+ *
+ * @section components Available Components
+ *
+ * Entities can be created with any of the available components registered in the ECS. 
+ * Components such as Position, Rotation, Velocity, Health, etc., define various 
+ * aspects and behaviors of an entity.
+ *
+ * Example of component registration in the server class:
+ * \verbatim
+ _ecs.registerComponent<Position>();
+ _ecs.registerComponent<Rotation>();
+ _ecs.registerComponent<Velocity>();
+ _ecs.registerComponent<Health>();
+ _ecs.registerComponent<Player>();
+ _ecs.registerComponent<Enemy>();
+ _ecs.registerComponent<Sprite>();
+ _ecs.registerComponent<Bullet>();
+ _ecs.registerComponent<SpawnTime>();
+ _ecs.registerSystem<MovementSystem>();
+ \endverbatim
+ *
+ * @section editing Editing Configuration Files
+ *
+ * To edit a level configuration file:
+ * 1. Define the entity as a JSON object.
+ * 2. Add components as keys with corresponding values.
+ * 3. Ensure the component names match those registered in the ECS.
+ * 4. Use the correct data types for component values (e.g., numbers, strings).
+ *
+ * @section usage Using Configuration Files
+ *
+ * Configuration files are parsed using a JSON parser integrated into the server. 
+ * The server uses a factory system to instantiate entities with the specified components 
+ * based on the configuration file. For detailed implementation, refer to the server class 
+ * in the Doxygen documentation.
+ *
+ * Note: The configuration file structure allows for the creation of entities with diverse 
+ * combinations of components, enabling a flexible and dynamic level design.
+ */
