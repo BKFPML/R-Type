@@ -141,7 +141,7 @@ void rtype::Client::doShooting()
     Sprite *sprite = _ecs.getComponent<Sprite>(_player);
 
     // sender.send("new bullet " + std::to_string(pos->x) + " " + std::to_string(pos->y) + " " + std::to_string(vel->x) + " " + std::to_string(vel->y) + " " + sprite->texture + " " + std::to_string(sprite->width) + " " + std::to_string(sprite->height) + " " + std::to_string(sprite->startX) + " " + std::to_string(sprite->startY) + " " + std::to_string(sprite->scale));
-    sender.send("new bullet " + std::to_string(pos->x) + " " + std::to_string(pos->y) + " 10 1 bullet 5 18 80 0 4");
+    sender.send("new bullet " + std::to_string(pos->x - 100) + " " + std::to_string(pos->y) + " 10 1 bullet 2 14 80 0 4");
 }
 
 /**
@@ -209,7 +209,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                         level_selected = 1;
                     } else if (_keys.mouse.x >= 1256 && _keys.mouse.x <= 1383 && _keys.mouse.y >= 600 && _keys.mouse.y <= 632) {
                         level_selected = 2;
-                    } else if (_keys.mouse.x >= 850 && _keys.mouse.x <= 1000 && _keys.mouse.y >= 795 && _keys.mouse.y <= 835 && level_selected != -1 && nbPlayersInRoom() == 1) {
+                    } else if (_keys.mouse.x >= 850 && _keys.mouse.x <= 1000 && _keys.mouse.y >= 795 && _keys.mouse.y <= 835 && level_selected != -1 && nbPlayersInRoom() > 0) {
                         sender.send("start " + std::to_string(level_selected));
                     }
                 }
