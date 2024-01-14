@@ -21,7 +21,7 @@
  */
 class Server {
     public:
-        Server(int port) : server_receive(port), _ecs(ECS()) {
+        Server(int port) : server_receive(port), _ecs(ECS()), game_launch(false) {
             _ecs.registerComponent<Position>();
             _ecs.registerComponent<Rotation>();
             _ecs.registerComponent<Velocity>();
@@ -81,4 +81,6 @@ class Server {
         * @note This is a map of component types to functions that create the component
         */
         std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&)>> _componentFactories;
+        bool game_launch;
+
 };

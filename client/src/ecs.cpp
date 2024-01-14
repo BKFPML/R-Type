@@ -115,24 +115,19 @@ void rtype::Client::updatePlayer(std::unordered_map<std::string, std::string>  j
 void rtype::Client::updateBullet(std::unordered_map<std::string, std::string> json)
 {
     if (json.find("Bullet") != json.end()) {
-        bool found = false;
-        for (auto& entity : _ecs.getEntities()) {
-            if (_ecs.hasComponent<Bullet>(entity)) {
-                if (_ecs.getComponent<Bullet>(entity)->id == std::stoi(_parser.getNestValue(json, "Bullet", "id"))) {
-                    found = true;
-                    _ecs.getComponent<Position>(entity)->x = std::stoi(_parser.getNestValue(json, "Position", "x"));
-                    _ecs.getComponent<Position>(entity)->y = std::stoi(_parser.getNestValue(json, "Position", "y"));
-
+        try {
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Bullet>(entity)) {
+                    if (_ecs.getComponent<Bullet>(entity)->id == std::stoi(_parser.getNestValue(json, "Bullet", "id"))) {
+                        _ecs.getComponent<Position>(entity)->x = std::stoi(_parser.getNestValue(json, "Position", "x"));
+                        _ecs.getComponent<Position>(entity)->y = std::stoi(_parser.getNestValue(json, "Position", "y"));
+                        break;
+                    }
                 }
             }
+        } catch (const std::exception& e) {
+            std::cerr << "Error bullet message: " << e.what() << std::endl;
         }
-        if (!found) {
-            _ecs.createEntity();
-            _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(_parser.getNestValue(json, "Position", "x")), std::stof(_parser.getNestValue(json, "Position", "y"))});
-            _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {std::size_t(std::stoi(_parser.getNestValue(json, "Bullet", "id"))), ALLY});
-            _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {_parser.getNestValue(json, "Sprite", "texture"), std::stoi(_parser.getNestValue(json, "Sprite", "width")), std::stoi(_parser.getNestValue(json, "Sprite", "height")), std::stoi(_parser.getNestValue(json, "Sprite", "startX")), std::stoi(_parser.getNestValue(json, "Sprite", "startY")), std::stof(_parser.getNestValue(json, "Sprite", "scale"))});
-        }
-
     }
 }
 
