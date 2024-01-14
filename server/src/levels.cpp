@@ -15,12 +15,11 @@ using json = nlohmann::json;
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("time") != params.end()) {
         float time = std::stof(params.at("time"));
-        ecs->addComponent(entity, SpawnTime{time});
+        _ecs.addComponent(entity, SpawnTime{time});
     } else {
         std::cerr << "SpawnTime component requires 'Time' parameter." << std::endl;
     }
@@ -31,13 +30,12 @@ void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("id") != params.end() && params.find("name") != params.end()) {
         int id = std::stoi(params.at("id"));
         std::string name = params.at("name");
-        ecs->addComponent(entity, Player{id, name});
+        _ecs.addComponent(entity, Player{id, name});
     } else {
         std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;
     }
@@ -48,12 +46,11 @@ void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::str
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("name") != params.end()) {
         std::string name = params.at("name");
-        ecs->addComponent(entity, Enemy{name});
+        _ecs.addComponent(entity, Enemy{name});
     } else {
         std::cerr << "Enemy component requires 'Name' parameter." << std::endl;
     }
@@ -64,13 +61,12 @@ void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::stri
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("x") != params.end() && params.find("y") != params.end()) {
         float x = std::stof(params.at("x"));
         float y = std::stof(params.at("y"));
-        ecs->addComponent(entity, Position{x, y});
+        _ecs.addComponent(entity, Position{x, y});
     } else {
         std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;
     }
@@ -81,9 +77,8 @@ void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::s
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("texture") != params.end() && params.find("width") != params.end() && params.find("height") != params.end() && params.find("startX") != params.end() && params.find("startY") != params.end() && params.find("scale") != params.end()) {
         std::string texture = params.at("texture");
         int width = std::stoi(params.at("width"));
@@ -91,7 +86,7 @@ void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::str
         int startX = std::stoi(params.at("startX"));
         int startY = std::stoi(params.at("startY"));
         float scale = std::stof(params.at("scale"));
-        ecs->addComponent(entity, Sprite{texture, width, height, startX, startY, scale});
+        _ecs.addComponent(entity, Sprite{texture, width, height, startX, startY, scale});
     } else {
         std::cerr << "Sprite component requires 'Texture', 'StartX', 'StartY', 'Width' and 'Height' parameters." << std::endl;
     }
@@ -102,13 +97,12 @@ void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::str
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("x") != params.end() && params.find("y") != params.end()) {
         float x = std::stof(params.at("x"));
         float y = std::stof(params.at("y"));
-        ecs->addComponent(entity, Velocity{x, y});
+        _ecs.addComponent(entity, Velocity{x, y});
     } else {
         std::cerr << "Velocity component requires 'X' and 'Y' parameters." << std::endl;
     }
@@ -119,12 +113,11 @@ void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::s
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("angle") != params.end()) {
         float angle = std::stof(params.at("angle"));
-        ecs->addComponent(entity, Rotation{angle});
+        _ecs.addComponent(entity, Rotation{angle});
     } else {
         std::cerr << "Rotation component requires 'Angle' parameter." << std::endl;
     }
@@ -135,12 +128,11 @@ void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::s
  *
  * @param entity
  * @param params
- * @param ecs
  */
-void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
+void Server::createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("hp") != params.end()) {
         int hp = std::stoi(params.at("hp"));
-        ecs->addComponent(entity, Health{hp});
+        _ecs.addComponent(entity, Health{hp});
     } else {
         std::cerr << "Health component requires 'HP' parameter." << std::endl;
     }
@@ -166,15 +158,13 @@ nlohmann::json loadJsonData(const std::string& filename) {
  * @brief Processes a JSON object and creates the corresponding entity and components
  *
  * @param jsonObj
- * @param ecs
- * @return std::shared_ptr<ECS>
  */
-std::shared_ptr<ECS> Server::processJsonObject(const nlohmann::json& jsonObj, std::shared_ptr<ECS> ecs) {
-    auto entity = ecs->createEntity();
+void Server::processJsonObject(const nlohmann::json& jsonObj) {
+    auto entity = _ecs.createEntity();
     for (const auto& element : jsonObj.items()) {
         const auto& componentType = element.key();
         const auto& componentData = element.value();
-        if (componentFactories.find(componentType) != componentFactories.end()) {
+        if (_componentFactories.find(componentType) != _componentFactories.end()) {
             std::unordered_map<std::string, std::string> params;
             if (componentData.is_primitive()) {
                 params[componentType] = componentData.get<std::string>();
@@ -183,44 +173,25 @@ std::shared_ptr<ECS> Server::processJsonObject(const nlohmann::json& jsonObj, st
                     params[nestedElement.key()] = nestedElement.value().get<std::string>();
                 }
             }
-            componentFactories[componentType](entity, params, ecs);
+            _componentFactories[componentType](entity, params);
         }
     }
-    return (ecs);
+    // return (ecs);
 }
 
 /**
  * @brief Loads a level from a JSON file
  *
  * @param levelConfig
- * @param ecs
- * @return std::shared_ptr<ECS>
  */
-std::shared_ptr<ECS> Server::loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs) {
+void Server::loadLevel(const std::string& levelConfig) {
     try {
         auto jsonArray = loadJsonData(levelConfig);
         for (const auto& jsonObj : jsonArray) {
-            ecs = processJsonObject(jsonObj, ecs);
+            processJsonObject(jsonObj);
         }
         init_enemies();
     } catch (const std::exception& e) {
         std::cerr << "Error loading level: " << e.what() << std::endl;
     }
-    return (ecs);
 }
-
-/**
- * @brief Component factories
- *
- * @note This is a map of component types to functions that create the component
- */
-std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, std::shared_ptr<ECS>&)>> Server::componentFactories = {
-    {"Player", createPlayerComponent},
-    {"Position", createPositionComponent},
-    {"Velocity", createVelocityComponent},
-    {"Rotation", createRotationComponent},
-    {"Health", createHealthComponent},
-    {"Sprite", createSpriteComponent},
-    {"Enemy", createEnemyComponent},
-    {"SpawnTime", createSpawnTimeComponent}
-};

@@ -9,7 +9,7 @@
 void Server::init_enemies()
 {
     std::cout << "Init enemies" << std::endl;
-    _enemies = _ecs.getEnemies();   
+    _enemies = _ecs.getEnemies();
     for (auto& enemy : _enemies) {
         std::cout << "Enemy: " << enemy << std::endl;
         // _ecs.addComponent<Position>(enemy, Position(0, 0));

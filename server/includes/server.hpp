@@ -31,6 +31,17 @@ class Server {
             _ecs.registerComponent<Sprite>();
             _ecs.registerComponent<Bullet>();
             _ecs.registerSystem<MovementSystem>();
+
+            _componentFactories = {
+                {"Player", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createPlayerComponent(entity, params); }},
+                {"Position", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createPositionComponent(entity, params); }},
+                {"Velocity", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createVelocityComponent(entity, params); }},
+                {"Rotation", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createRotationComponent(entity, params); }},
+                {"Health", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createHealthComponent(entity, params); }},
+                {"Sprite", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createSpriteComponent(entity, params); }},
+                {"Enemy", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createEnemyComponent(entity, params); }},
+                {"SpawnTime", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createSpawnTimeComponent(entity, params); }}
+            };
         }
         ~Server() = default;
 
@@ -46,9 +57,15 @@ class Server {
         void init_enemies();
 
         //* Levels
-        std::shared_ptr<ECS> loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs);
-        static std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, std::shared_ptr<ECS>&)>> componentFactories;
-        std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::shared_ptr<ECS> ecs);
+        void loadLevel(const std::string& levelConfig);
+        void processJsonObject(const nlohmann::json& jsonObj);        void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
+        void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params);
 
     private:
         UDPBoostNetwork::UDPReceiver server_receive;
@@ -57,4 +74,10 @@ class Server {
         ECS _ecs;
         Parser parser;
         std::vector<ECS::Entity> _enemies;
+        /**
+        * @brief Component factories
+        *
+        * @note This is a map of component types to functions that create the component
+        */
+        std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&)>> _componentFactories;
 };
