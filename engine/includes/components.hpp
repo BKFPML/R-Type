@@ -146,7 +146,14 @@ enum class GraphicalType {
     Text
 };
 
+enum CollisionType {
+    ATTACK,
+    DEFEND
+};
+
 struct Collision {
+    CollisionType type;
+    Collision(CollisionType type) : type(type) {}
 };
 
 /**

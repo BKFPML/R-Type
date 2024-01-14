@@ -307,26 +307,30 @@ public:
         auto entities = ecs.getCollidableEntities();
         for (size_t i = 0; i < entities.size(); ++i) {
             for (size_t j = i + 1; j < entities.size(); ++j) {
-                std::cout << "Checking collision between " << entities[i] << " and " << entities[j] << std::endl;
                 checkCollision(ecs, entities[i], entities[j]);
             }
         }
     }
 
 private:
+    /**
+     * @brief checks the collision of collidable entities
+     * 
+     * @param ecs 
+     * @param entity1 
+     * @param entity2 
+     */
     void checkCollision(ECS& ecs, ECS::Entity entity1, ECS::Entity entity2) {
         auto pos1 = ecs.getComponent<Position>(entity1);
         auto sprite1 = ecs.getComponent<Sprite>(entity1);
         auto pos2 = ecs.getComponent<Position>(entity2);
         auto sprite2 = ecs.getComponent<Sprite>(entity2);
 
-        // Calculate bounding boxes and check for overlap
-        // Assuming the position is the top-left corner of the sprite
         if (pos1->x < pos2->x + sprite2->width * sprite2->scale &&
             pos1->x + sprite1->width * sprite1->scale > pos2->x &&
             pos1->y < pos2->y + sprite2->height * sprite2->scale &&
             pos1->y + sprite1->height * sprite1->scale > pos2->y) {
-            // Collision detected between entity1 and entity2
+                std::cout << "Collision detected between entity " << entity1 << " and entity " << entity2 << std::endl;
         }
     }
 };
