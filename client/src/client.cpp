@@ -162,6 +162,5 @@ void rtype::Client::gameLoop(IReceiver& receive)
             std::cerr << "Error processing message: " << e.what() << std::endl;
         }
     }
-    receive.set_running(false);
     _graphical->stopMusic("mainTheme");
 }

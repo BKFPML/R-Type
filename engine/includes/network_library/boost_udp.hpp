@@ -1,8 +1,9 @@
-/**
- * @file boost_udp.hpp
+ /**
+ * @file boost.hpp
  * @brief Boost class header file
  * @date 30-12-2023
  */
+
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
 #include <boost/bind/bind.hpp>
@@ -11,6 +12,7 @@
 #include <vector>
 #include <chrono>
 #include "../network.hpp"
+
 /**
  * @brief Boost Network Class
  */
@@ -22,6 +24,7 @@ class UDPBoostNetwork {
         class UDPSender : public ISender {
         public:
             UDPSender(int port_to_send, std::string ip) : _udp_port(port_to_send), _ip(ip) {}
+
             /**
              * @brief Send a message with UDP
              * 
@@ -31,12 +34,15 @@ class UDPBoostNetwork {
                 boost::asio::io_context io_context;
                 boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
                 boost::asio::ip::udp::resolver resolver(io_context);
-                // std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
+                std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
+
                 boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
                 socket.connect(receiver_endpoint);
                 socket.send(boost::asio::buffer(message, message.size()));
                 socket.close();
+
             }
+
             /**
              * @brief Get the port object
              * 
@@ -56,8 +62,10 @@ class UDPBoostNetwork {
                 } catch (std::exception& e) {
                     std::cerr << e.what() << std::endl;
                 }
+
                 return "";
             }
+
             /**
              * 
              * @brief Send a vector of messages with UDP
@@ -69,6 +77,7 @@ class UDPBoostNetwork {
                     send(message);
                 }
             }
+
             /**
              * @brief Get the port object
              * 
@@ -77,6 +86,7 @@ class UDPBoostNetwork {
             int get_port() override {
                 return _udp_port;
             }
+
             /**
              * @brief Get the ip object
              * 
@@ -85,6 +95,7 @@ class UDPBoostNetwork {
             std::string get_ip() override {
                 return _ip;
             }
+
         private:
             int _udp_port;
             std::string _ip;
@@ -95,8 +106,9 @@ class UDPBoostNetwork {
         */
         class UDPReceiver : public IReceiver {
         public:
-            UDPReceiver(int port, std::string ip) : _udp_port(port), _ip(ip), _isRunning(true) {}
-            UDPReceiver(int port) : _udp_port(port), _ip(getLocalIPAddress()), _isRunning(true) {}
+        UDPReceiver(int port) : _udp_port(port), _ip(getLocalIPAddress()) {}
+
+
             /**
              * @brief Receive a message with UDP
              * 
@@ -106,24 +118,20 @@ class UDPBoostNetwork {
                 std::cout << "Listening on port: " << _udp_port << std::endl;
                 boost::asio::io_context io_context;
                 boost::array<char, 1024> recv_buffer;
-                std::cout << "Server Ip: " << _ip << " Port: " << _udp_port << std::endl;
-                receiver_endpoint = boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
+            std::cout << "Serveur Ip: " << _ip << " Port: " << _udp_port << std::endl;
+            boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
                 boost::asio::ip::udp::socket socket(io_context, receiver_endpoint);
-                asyncReceive(socket, recv_buffer);
-                while (_isRunning) {
-                    io_context.run();
-
-                }
-                if (socket.is_open()) {
-                    socket.close();
+            boost::system::error_code error;
+            while (true) {
+                size_t len = socket.receive_from(boost::asio::buffer(recv_buffer), receiver_endpoint, 0, error);
+                if (error && error != boost::asio::error::message_size)
+                    throw boost::system::system_error(error);
+                std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
+                std::cout << "Message received: " << message << std::endl;
+                received_data.push_back(message);
                 }
             }
 
-            /**
-             * @brief Get the ip object
-             *
-             * @return int
-             */
             std::string getLocalIPAddress() {
                 try {
                     boost::asio::io_service netService;
@@ -192,22 +200,8 @@ class UDPBoostNetwork {
              * @return std::vector<std::string> 
              */
             std::vector<std::string> get_received_data() override {
-                try {
-                    return received_data;
-                } catch (const std::exception& e) {
-                    std::cerr << e.what() << std::endl;
-                }
-                return {};
+                return received_data;
             }
-            /**
-             * @brief set the running object
-             *
-             * @param running
-             */
-            void set_running(bool running) override {
-                _isRunning = running;
-            }
-            
             /**
              * @brief Clear the received data object
              * 
@@ -237,63 +231,9 @@ class UDPBoostNetwork {
             void clear_last_received_data() override {
                 received_data.pop_back();
             }
-            
         private:
-            bool _isRunning;
             int _udp_port;
             std::string _ip;
             std::vector<std::string> received_data;
-            boost::asio::ip::udp::endpoint receiver_endpoint;  // Declaration here
-            /**
-             * @brief Asynchronous receive
-             * 
-             * @param socket 
-             * @param recv_buffer 
-             */
-            void asyncReceive(boost::asio::ip::udp::socket& socket, boost::array<char, 1024>& recv_buffer) {
-                if (!_isRunning) {
-                    if (socket.is_open()) {
-                        socket.close();
-                    }
-                    return;
-                }
-                socket.async_receive_from(
-                    boost::asio::buffer(recv_buffer),
-                    receiver_endpoint,
-                    boost::bind(&UDPReceiver::handleReceive, this,
-                                boost::asio::placeholders::error,
-                                boost::asio::placeholders::bytes_transferred,
-                                boost::ref(socket),
-                                boost::ref(recv_buffer)));
-            }
-            /**
-             * @brief Handle the received message
-             * 
-             * @param error 
-             * @param bytes_transferred 
-             * @param socket 
-             * @param recv_buffer 
-             */
-            void handleReceive(const boost::system::error_code& error, std::size_t len, boost::asio::ip::udp::socket& socket, boost::array<char, 1024>& recv_buffer) {
-                if (error && error != boost::asio::error::message_size)
-                    throw boost::system::system_error(error);
-
-                if (!_isRunning) {
-                    if (socket.is_open()) {
-                        socket.close();
-                    }
-                    return;
-                }
-
-                try {
-                    std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
-                    // std::cout << "Received: " << message << std::endl;
-                    received_data.push_back(message);
-                } catch (const std::exception& e) {
-                    std::cerr << e.what() << std::endl;
-                }
-
-                asyncReceive(socket, recv_buffer);
-            }
         };
 };
