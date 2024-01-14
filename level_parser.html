@@ -107,7 +107,7 @@ Processing JSON Objects</h1>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassECS_html_a41b876f3725cbb04aac3f2edd95522c6"><div class="ttname"><a href="classECS.html#a41b876f3725cbb04aac3f2edd95522c6">ECS::createEntity</a></div><div class="ttdeci">Entity createEntity()</div><div class="ttdoc">Creates a new entity.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:46</div></div>
+<div class="ttc" id="aclassECS_html_a41b876f3725cbb04aac3f2edd95522c6"><div class="ttname"><a href="classECS.html#a41b876f3725cbb04aac3f2edd95522c6">ECS::createEntity</a></div><div class="ttdeci">Entity createEntity()</div><div class="ttdoc">Creates a new entity.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:47</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="componentCreation"></a>
 Component Creation</h1>
 <p>Component creation functions such as <code>createPlayerComponent</code>, <code>createPositionComponent</code>, etc., are used to add specific components to entities. These functions parse parameters from the JSON object and apply them to the components. Example of a component creation function: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="classServer.html#a60d5d6dd570ce49fb2b5ec9f49d3b330">Server::createPositionComponent</a>(ECS::Entity entity, <span class="keyword">const</span> std::unordered_map&lt;std::string, std::string&gt;&amp; params) {</div>
@@ -119,7 +119,7 @@ Component Creation</h1>
 <div class="line">        std::cerr &lt;&lt; <span class="stringliteral">&quot;Position component requires both &#39;X&#39; and &#39;Y&#39; parameters.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassECS_html_a3e470b32582ec8a6943017d143ceed73"><div class="ttname"><a href="classECS.html#a3e470b32582ec8a6943017d143ceed73">ECS::addComponent</a></div><div class="ttdeci">void addComponent(Entity entity, T component)</div><div class="ttdoc">Adds a component to an entity.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:71</div></div>
+<div class="ttc" id="aclassECS_html_a3e470b32582ec8a6943017d143ceed73"><div class="ttname"><a href="classECS.html#a3e470b32582ec8a6943017d143ceed73">ECS::addComponent</a></div><div class="ttdeci">void addComponent(Entity entity, T component)</div><div class="ttdoc">Adds a component to an entity.</div><div class="ttdef"><b>Definition:</b> ECS.hpp:72</div></div>
 <div class="ttc" id="aclassServer_html_a60d5d6dd570ce49fb2b5ec9f49d3b330"><div class="ttname"><a href="classServer.html#a60d5d6dd570ce49fb2b5ec9f49d3b330">Server::createPositionComponent</a></div><div class="ttdeci">void createPositionComponent(ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params)</div><div class="ttdoc">Create a Position Component object.</div><div class="ttdef"><b>Definition:</b> levels.cpp:65</div></div>
 <div class="ttc" id="astructPosition_html"><div class="ttname"><a href="structPosition.html">Position</a></div><div class="ttdoc">Position component.</div><div class="ttdef"><b>Definition:</b> components.hpp:26</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="errorHandling"></a>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-TYPE: ISystem Class Reference</title>
+<title>R-TYPE: CollisionSystem Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,37 +63,34 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classISystem-members.html">List of all members</a>  </div>
+<a href="classCollisionSystem-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ISystem Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">CollisionSystem Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>The interface for a system.  
- <a href="classISystem.html#details">More...</a></p>
+<p>The collision system. Checks for collisions between entities.  
+ <a href="classCollisionSystem.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ECS_8hpp_source.html">ECS.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for ISystem:</div>
+Inheritance diagram for CollisionSystem:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classISystem.png" usemap="#ISystem_map" alt=""/>
-  <map id="ISystem_map" name="ISystem_map">
-<area href="classCollisionSystem.html" title="The collision system. Checks for collisions between entities." alt="CollisionSystem" shape="rect" coords="0,56,110,80"/>
-<area href="classDamageSystem.html" title="The damage system. Updates the health of entities based on the damage they take." alt="DamageSystem" shape="rect" coords="120,56,230,80"/>
-<area href="classImmunitySystem.html" title="The immunity system. Updates the immunity frames of entities." alt="ImmunitySystem" shape="rect" coords="240,56,350,80"/>
-<area href="classMovementSystem.html" title="The movement system. Updates the position of based on their velocity." alt="MovementSystem" shape="rect" coords="360,56,470,80"/>
+  <img src="classCollisionSystem.png" usemap="#CollisionSystem_map" alt=""/>
+  <map id="CollisionSystem_map" name="CollisionSystem_map">
+<area href="classISystem.html" title="The interface for a system." alt="ISystem" shape="rect" coords="0,0,100,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aff1703783add9d3f1fa63aaac4a0b6c9"><td class="memItemLeft" align="right" valign="top"><a id="aff1703783add9d3f1fa63aaac4a0b6c9"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (<a class="el" href="classECS.html">ECS</a> &amp;ecs)=0</td></tr>
-<tr class="separator:aff1703783add9d3f1fa63aaac4a0b6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2b09ffac3b68426e6a72ae033a2160a"><td class="memItemLeft" align="right" valign="top"><a id="ad2b09ffac3b68426e6a72ae033a2160a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (<a class="el" href="classECS.html">ECS</a> &amp;ecs) override</td></tr>
+<tr class="separator:ad2b09ffac3b68426e6a72ae033a2160a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The interface for a system. </p>
+<div class="textblock"><p>The collision system. Checks for collisions between entities. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>engine/includes/<a class="el" href="ECS_8hpp_source.html">ECS.hpp</a></li>
 </ul>

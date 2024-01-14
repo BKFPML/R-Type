@@ -158,31 +158,42 @@ $(function() {
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="structText.html">Text</a></div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;};</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="structGraphical.html">  153</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structGraphical.html">Graphical</a> {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <a class="code" href="components_8hpp.html#a6e59176e002c5ff36fde8bdd0cfef506">GraphicalType</a> type;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="structGraphical.html">Graphical</a>(<a class="code" href="components_8hpp.html#a6e59176e002c5ff36fde8bdd0cfef506">GraphicalType</a> type) : type(type) {}</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;};</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="structSprite.html">  161</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSprite.html">Sprite</a> {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    std::string texture;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordtype">int</span> width, height, startX, startY;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">float</span> scale;</div>
-<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0">  175</a></span>&#160;    <a class="code" href="structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0">Sprite</a>(std::string texture, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keywordtype">int</span> startX, <span class="keywordtype">int</span> startY, <span class="keywordtype">float</span> scale) : texture(texture), width(width), height(height), startX(startX), startY(startY), scale(scale) {}</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;};</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="structText.html">  184</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structText.html">Text</a> {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    std::string text;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    std::string font;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordtype">int</span> size;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="structText.html">Text</a>(std::string text, std::string font, <span class="keywordtype">int</span> size) : text(text), font(font), size(size) {}</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;};</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">enum</span> CollisionType {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    ATTACK,</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    DEFEND</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;};</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="structCollision.html">  154</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCollision.html">Collision</a> {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    CollisionType type;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="structCollision.html">Collision</a>(CollisionType type) : type(type) {}</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;};</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="structGraphical.html">  163</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structGraphical.html">Graphical</a> {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="components_8hpp.html#a6e59176e002c5ff36fde8bdd0cfef506">GraphicalType</a> type;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="structGraphical.html">Graphical</a>(<a class="code" href="components_8hpp.html#a6e59176e002c5ff36fde8bdd0cfef506">GraphicalType</a> type) : type(type) {}</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;};</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="structSprite.html">  171</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structSprite.html">Sprite</a> {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    std::string texture;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordtype">int</span> width, height, startX, startY;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordtype">float</span> scale;</div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0">  185</a></span>&#160;    <a class="code" href="structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0">Sprite</a>(std::string texture, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keywordtype">int</span> startX, <span class="keywordtype">int</span> startY, <span class="keywordtype">float</span> scale) : texture(texture), width(width), height(height), startX(startX), startY(startY), scale(scale) {}</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;};</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="structText.html">  194</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structText.html">Text</a> {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    std::string text;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    std::string font;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordtype">int</span> size;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <a class="code" href="structText.html">Text</a>(std::string text, std::string font, <span class="keywordtype">int</span> size) : text(text), font(font), size(size) {}</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;};</div>
 <div class="ttc" id="acomponents_8hpp_html_a6e59176e002c5ff36fde8bdd0cfef506"><div class="ttname"><a href="components_8hpp.html#a6e59176e002c5ff36fde8bdd0cfef506">GraphicalType</a></div><div class="ttdeci">GraphicalType</div><div class="ttdoc">Enum that defines the type of graphical entity used with the GraphicalType component.</div><div class="ttdef"><b>Definition:</b> components.hpp:144</div></div>
 <div class="ttc" id="acomponents_8hpp_html_a90549f45cfc442187c1d769596107d3e"><div class="ttname"><a href="components_8hpp.html#a90549f45cfc442187c1d769596107d3e">StatusType</a></div><div class="ttdeci">StatusType</div><div class="ttdoc">Enum that defines the status of an entity Used with the Status component.</div><div class="ttdef"><b>Definition:</b> components.hpp:74</div></div>
 <div class="ttc" id="astructAttack_html"><div class="ttname"><a href="structAttack.html">Attack</a></div><div class="ttdoc">Attack component.</div><div class="ttdef"><b>Definition:</b> components.hpp:65</div></div>
 <div class="ttc" id="astructBullet_html"><div class="ttname"><a href="structBullet.html">Bullet</a></div><div class="ttdef"><b>Definition:</b> components.hpp:121</div></div>
+<div class="ttc" id="astructCollision_html"><div class="ttname"><a href="structCollision.html">Collision</a></div><div class="ttdef"><b>Definition:</b> components.hpp:154</div></div>
 <div class="ttc" id="astructDamage_html"><div class="ttname"><a href="structDamage.html">Damage</a></div><div class="ttdoc">Damage component.</div><div class="ttdef"><b>Definition:</b> components.hpp:92</div></div>
 <div class="ttc" id="astructEnemy_html"><div class="ttname"><a href="structEnemy.html">Enemy</a></div><div class="ttdoc">Enemy component.</div><div class="ttdef"><b>Definition:</b> components.hpp:134</div></div>
-<div class="ttc" id="astructGraphical_html"><div class="ttname"><a href="structGraphical.html">Graphical</a></div><div class="ttdoc">GraphicalType component.</div><div class="ttdef"><b>Definition:</b> components.hpp:153</div></div>
+<div class="ttc" id="astructGraphical_html"><div class="ttname"><a href="structGraphical.html">Graphical</a></div><div class="ttdoc">GraphicalType component.</div><div class="ttdef"><b>Definition:</b> components.hpp:163</div></div>
 <div class="ttc" id="astructHealth_html"><div class="ttname"><a href="structHealth.html">Health</a></div><div class="ttdoc">Health component.</div><div class="ttdef"><b>Definition:</b> components.hpp:56</div></div>
 <div class="ttc" id="astructImmunity_html"><div class="ttname"><a href="structImmunity.html">Immunity</a></div><div class="ttdoc">Immunity component.</div><div class="ttdef"><b>Definition:</b> components.hpp:101</div></div>
 <div class="ttc" id="astructNpc_html"><div class="ttname"><a href="structNpc.html">Npc</a></div><div class="ttdef"><b>Definition:</b> components.hpp:127</div></div>
@@ -190,10 +201,10 @@ $(function() {
 <div class="ttc" id="astructPosition_html"><div class="ttname"><a href="structPosition.html">Position</a></div><div class="ttdoc">Position component.</div><div class="ttdef"><b>Definition:</b> components.hpp:26</div></div>
 <div class="ttc" id="astructRotation_html"><div class="ttname"><a href="structRotation.html">Rotation</a></div><div class="ttdoc">Rotation component.</div><div class="ttdef"><b>Definition:</b> components.hpp:47</div></div>
 <div class="ttc" id="astructSpawnTime_html"><div class="ttname"><a href="structSpawnTime.html">SpawnTime</a></div><div class="ttdoc">Spawn Time component.</div><div class="ttdef"><b>Definition:</b> components.hpp:16</div></div>
-<div class="ttc" id="astructSprite_html"><div class="ttname"><a href="structSprite.html">Sprite</a></div><div class="ttdoc">Sprite component, stores sprites and related data.</div><div class="ttdef"><b>Definition:</b> components.hpp:161</div></div>
-<div class="ttc" id="astructSprite_html_a01f7c73cb5076ea1f32f3c5a059b3fc0"><div class="ttname"><a href="structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0">Sprite::Sprite</a></div><div class="ttdeci">Sprite(std::string texture, int width, int height, int startX, int startY, float scale)</div><div class="ttdoc">Construct a new Sprite object.</div><div class="ttdef"><b>Definition:</b> components.hpp:175</div></div>
+<div class="ttc" id="astructSprite_html"><div class="ttname"><a href="structSprite.html">Sprite</a></div><div class="ttdoc">Sprite component, stores sprites and related data.</div><div class="ttdef"><b>Definition:</b> components.hpp:171</div></div>
+<div class="ttc" id="astructSprite_html_a01f7c73cb5076ea1f32f3c5a059b3fc0"><div class="ttname"><a href="structSprite.html#a01f7c73cb5076ea1f32f3c5a059b3fc0">Sprite::Sprite</a></div><div class="ttdeci">Sprite(std::string texture, int width, int height, int startX, int startY, float scale)</div><div class="ttdoc">Construct a new Sprite object.</div><div class="ttdef"><b>Definition:</b> components.hpp:185</div></div>
 <div class="ttc" id="astructStatus_html"><div class="ttname"><a href="structStatus.html">Status</a></div><div class="ttdoc">Status component.</div><div class="ttdef"><b>Definition:</b> components.hpp:83</div></div>
-<div class="ttc" id="astructText_html"><div class="ttname"><a href="structText.html">Text</a></div><div class="ttdoc">Text component.</div><div class="ttdef"><b>Definition:</b> components.hpp:184</div></div>
+<div class="ttc" id="astructText_html"><div class="ttname"><a href="structText.html">Text</a></div><div class="ttdoc">Text component.</div><div class="ttdef"><b>Definition:</b> components.hpp:194</div></div>
 <div class="ttc" id="astructVelocity_html"><div class="ttname"><a href="structVelocity.html">Velocity</a></div><div class="ttdoc">Velocity component, normalized.</div><div class="ttdef"><b>Definition:</b> components.hpp:37</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

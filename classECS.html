@@ -119,9 +119,12 @@ template&lt;typename ... T&gt; </td></tr>
 <tr class="memitem:a58da96890cf3a3b38455e19c1536af97"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a58da96890cf3a3b38455e19c1536af97">getDrawableEntities</a> ()</td></tr>
 <tr class="memdesc:a58da96890cf3a3b38455e19c1536af97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the entities that are drawable.  <a href="classECS.html#a58da96890cf3a3b38455e19c1536af97">More...</a><br /></td></tr>
 <tr class="separator:a58da96890cf3a3b38455e19c1536af97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78dabf2d2db0f1b05c0cabd68b8ed096"><td class="memItemLeft" align="right" valign="top"><a id="a78dabf2d2db0f1b05c0cabd68b8ed096"></a>
-std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getEnemies</b> ()</td></tr>
+<tr class="memitem:a78dabf2d2db0f1b05c0cabd68b8ed096"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a78dabf2d2db0f1b05c0cabd68b8ed096">getEnemies</a> ()</td></tr>
+<tr class="memdesc:a78dabf2d2db0f1b05c0cabd68b8ed096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the entities that are enemies.  <a href="classECS.html#a78dabf2d2db0f1b05c0cabd68b8ed096">More...</a><br /></td></tr>
 <tr class="separator:a78dabf2d2db0f1b05c0cabd68b8ed096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95245130827cbfc10100098e31b85091"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Entity &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classECS.html#a95245130827cbfc10100098e31b85091">getCollidableEntities</a> ()</td></tr>
+<tr class="memdesc:a95245130827cbfc10100098e31b85091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the entities that are collidable.  <a href="classECS.html#a95245130827cbfc10100098e31b85091">More...</a><br /></td></tr>
+<tr class="separator:a95245130827cbfc10100098e31b85091"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f78a9213243d2060a456a3c2ec53953"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
 <tr class="memitem:a5f78a9213243d2060a456a3c2ec53953"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classECS.html#a5f78a9213243d2060a456a3c2ec53953">registerSystem</a> (Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a5f78a9213243d2060a456a3c2ec53953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a new system.  <a href="classECS.html#a5f78a9213243d2060a456a3c2ec53953">More...</a><br /></td></tr>
@@ -219,6 +222,34 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="a95245130827cbfc10100098e31b85091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95245130827cbfc10100098e31b85091">&#9670;&nbsp;</a></span>getCollidableEntities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;Entity&gt; ECS::getCollidableEntities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all the entities that are collidable. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Entity&gt; A vector of all the entities </dd></dl>
+
+</div>
+</div>
 <a id="a9528399640fc20d2042127473249e77a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9528399640fc20d2042127473249e77a">&#9670;&nbsp;</a></span>getComponent()</h2>
 
@@ -286,6 +317,34 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Gets all the entities that are drawable. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Entity&gt; A vector of all the entities </dd></dl>
+
+</div>
+</div>
+<a id="a78dabf2d2db0f1b05c0cabd68b8ed096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78dabf2d2db0f1b05c0cabd68b8ed096">&#9670;&nbsp;</a></span>getEnemies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;Entity&gt; ECS::getEnemies </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all the entities that are enemies. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Entity&gt; A vector of all the entities </dd></dl>
 
 </div>
