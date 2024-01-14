@@ -120,7 +120,8 @@ struct Player{
 
 enum BulletTeam {
     ALLY,
-    ENEMY
+    ENEMY,
+    DESTROYED
 };
 
 struct Bullet {
