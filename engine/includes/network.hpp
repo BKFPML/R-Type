@@ -8,7 +8,7 @@
 #include <vector>
 
 /**
- * @brief Virtual receive class
+ * @brief Interface for a receiver
 */
 class IReceiver {
 public:
@@ -20,11 +20,12 @@ public:
     virtual bool is_port_bound() = 0;
     virtual void clear_received_data(int index) = 0;
     virtual void clear_last_received_data() = 0;
+    virtual void set_running(bool running) = 0;
     virtual void clear_first_received_data() = 0;
 };
 
 /**
- * @brief Virtual send class
+ * @brief Interface for a sender
 */
 class ISender {
 public:

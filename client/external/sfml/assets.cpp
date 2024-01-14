@@ -23,6 +23,7 @@
 #include "letter_box.h"
 #include "fps_30_60.h"
 #include "fps_120.h"
+#include "bullet.h"
 
 //* Fonts
 #include "rTypeFont.h"
@@ -89,6 +90,7 @@ void rtype::SFML::loadAssets()
     initTextures("fps_30_60", fps_30_60, fps_30_60_len);
     initTextures("fps_120", fps_120, fps_120_len);
     initTextures("r_typesheet42", r_typesheet42, r_typesheet42_len);
+    initTextures("bullet", bullet, bullet_len);
 
     if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;

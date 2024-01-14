@@ -10,7 +10,7 @@
  * @brief Constructs a new rtype::Client::Client object
  */
 rtype::Client::Client(std::string ip, int port)
-: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50), _start_bind(std::chrono::system_clock::now()), level_selected(-1)
+: _isRunning(true), _start(std::chrono::system_clock::now()), _ecs(initECS()), _graphical(std::make_unique<SFML>()), _currentScene(MAIN_MENU), fps(60), _drawClock(std::chrono::system_clock::now()), _received_port(port), _received_ip(ip), sender(0, "1.1.1.1"), soundVolume(50), _start_bind(std::chrono::system_clock::now()), level_selected(-1), _parser()
 {
     std::cout << "This is the R-Type Client" << std::endl;
     srand(std::time(0));
@@ -71,29 +71,45 @@ rtype::Client::~Client()
 }
 
 
-std::string rtype::Client::ecsToJsonString () {
-    std::string json = "[";
-    return json;
-}
-
 void rtype::Client::parse_data_received(IReceiver& receive) {
-    std::vector<std::string> data = receive.get_received_data();
-    for (auto& d : data) {
-        std::cout << "Received: " << d << std::endl;
-        if (split(d, " ").front() == "new") {
-            std::vector<std::string> data_split = split(d, " ");
-            initPlayer(data_split);
+    try {
+        std::vector<std::string> data = receive.get_received_data();
+        for (auto& d : data) {
+            try {
+                // std::cout << "Received: " << d << std::endl;
+                if (split(d, " ").front() == "new") {
+                    std::vector<std::string> data_split = split(d, " ");
+                    initPlayer(data_split);
+                }
+                else if (split(d, " ").front() == "delete") {
+                    std::vector<std::string> data_split = split(d, " ");
+                    deletePlayer(data_split);
+                    deleteBullet(data_split);
+                }
+                else if (split(d, " ").front() == "start") {
+                    std::vector<std::string> data_split = split(d, " ");
+                    _currentScene = GAME;
+                } else {
+                    try {
+                        auto json = _parser.parseMessage(d);
+                        if (json.empty())
+                            continue;
+                        updatePlayer(json);
+                        updateBullet(json);
+                    } catch (const std::exception& e) {
+                        std::cerr << d << std::endl;
+                        std::cerr << "Error parsing message: " << e.what() << std::endl;
+                    }
+                }
+            } catch (const std::exception& e) {
+                std::cerr << d << std::endl;
+                std::cerr << "Error split message: " << e.what() << std::endl;
+            }
         }
-        if (split(d, " ").front() == "delete") {
-            std::vector<std::string> data_split = split(d, " ");
-            deletePlayer(data_split);
-        }
-        if (split(d, " ").front() == "start") {
-            std::vector<std::string> data_split = split(d, " ");
-            _currentScene = GAME;
-        }
+        receive.clear_received_data();
+    } catch (const std::exception& e) {
+        std::cerr << "Error loop message: " << e.what() << std::endl;
     }
-    receive.clear_received_data();
 }
 /**
  * @brief Runs the game loop
@@ -107,22 +123,23 @@ void rtype::Client::gameLoop(IReceiver& receive)
     _graphical->playMusic("mainTheme", true);
 
     while (_isRunning) {
-        auto now = std::chrono::system_clock::now();
-        parse_data_received(receive);
-        std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
-        _keys = keyState.first;
-        _previousKeys = keyState.second;
-        handleInput();
-        for (auto &c: _ecs.getEntities()) {
-            if (_ecs.hasComponent<Player>(c) && _ecs.hasComponent<Position>(c)) {
-                std::cout << "Player: " << _ecs.getComponent<Player>(c)->id << "name: " << _ecs.getComponent<Player>(c)->name << std::endl;
+        try {
+            auto now = std::chrono::system_clock::now();
+            parse_data_received(receive);
+            std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
+            _keys = keyState.first;
+            _previousKeys = keyState.second;
+            handleInput();
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 10 && _currentScene == GAME) {
+                _start = now;
+                sender.send(_parser.playerToJson(_ecs, id));
+
             }
+            sceneManager();
+        } catch (const std::exception& e) {
+            std::cerr << "Error processing message: " << e.what() << std::endl;
         }
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 100 && _currentScene == GAME) {
-            _start = now;
-            sender.send(ecsToJsonString());
-        }
-        sceneManager();
     }
+    receive.set_running(false);
     _graphical->stopMusic("mainTheme");
 }
