@@ -35,10 +35,10 @@ void rtype::Client::drawWaitingRoom()
         _graphical->drawText("Medium", 1260, 500, 30);
         _graphical->drawText("Hard", 1260, 600, 30);
     }
-    if (id == 0 && nbPlayersInRoom() > 1 && level_selected != -1)
+    if (id == 0 && level_selected != -1)
         _graphical->drawText("Start", 860, 800, 30);
-    else if (id == 0 && nbPlayersInRoom() == 1)
-        _graphical->drawText("Waiting for players", 660, 800, 30);
+    else if (id == 0 && level_selected == -1)
+        _graphical->drawText("Select Mode", 660, 800, 30);
     else if (id == 0 && nbPlayersInRoom() > 1)
         _graphical->drawText("Please select difficulty", 660, 800, 30);
     else if (id != 0)

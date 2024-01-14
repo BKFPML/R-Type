@@ -78,21 +78,19 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
         for (auto& u : data) {
             try {
                 for (auto& d : split(u, ";")) {
-                    std::cout << "Received: " << d << std::endl;
+                    // std::cout << d << std::endl;
                     if (split(d, " ").front() == "new") {
+                        // std::cout << "New: " << d << std::endl;
                         std::vector<std::string> data_split = split(d, " ");
                         initPlayer(data_split);
-                        if (data_split.at(1) == "bullet") {
-                            _ecs.createEntity();
-                            _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {size_t(std::stoi(data_split.at(2))), ALLY});
-                            _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(3)), std::stof(data_split.at(4))});
-                            _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {data_split.at(5), std::stoi(data_split.at(6)), std::stoi(data_split.at(7)), std::stoi(data_split.at(8)), std::stoi(data_split.at(9)), std::stof(data_split.at(10))});
-                        }
+                        initBullet(data_split);
+                        initEnemy(data_split);
                     }
                     else if (split(d, " ").front() == "delete") {
                         std::vector<std::string> data_split = split(d, " ");
                         deletePlayer(data_split);
                         deleteBullet(data_split);
+                        deleteEnemy(data_split);
                     }
                     else if (split(d, " ").front() == "start") {
                         std::vector<std::string> data_split = split(d, " ");
@@ -104,6 +102,7 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
                                 continue;
                             updatePlayer(json);
                             updateBullet(json);
+                            updateEnemy(json);
                         } catch (const std::exception& e) {
                             std::cerr << d << std::endl;
                             std::cerr << "Error parsing message: " << e.what() << std::endl;
@@ -141,19 +140,19 @@ void rtype::Client::gameLoop(IReceiver& receive)
             _previousKeys = keyState.second;
             handleInput();
             if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 5 && _currentScene == GAME) {
-                for (auto& entity : _ecs.getEntities()) {
-                    std::cout << "Entity: " << entity << std::endl;
-                    if (_ecs.hasComponent<Bullet>(entity)) {
-                        std::cout << "Bullet: " << _ecs.getComponent<Bullet>(entity)->id << " " << _ecs.getComponent<Bullet>(entity)->team << std::endl;
-                    }
-                    if (_ecs.hasComponent<Player>(entity)) {
-                        std::cout << "Player: " << _ecs.getComponent<Player>(entity)->id << " " << _ecs.getComponent<Player>(entity)->name << std::endl;
-                    }
-                    if (_ecs.hasComponent<Position>(entity)) {
-                        std::cout << "Position: " << _ecs.getComponent<Position>(entity)->x << " " << _ecs.getComponent<Position>(entity)->y << std::endl;
-                    }
-                    std::cout << std::endl;
-                }
+                // for (auto& entity : _ecs.getEntities()) {
+                //     std::cout << "Entity: " << entity << std::endl;
+                //     if (_ecs.hasComponent<Bullet>(entity)) {
+                //         std::cout << "Bullet: " << _ecs.getComponent<Bullet>(entity)->id << " " << _ecs.getComponent<Bullet>(entity)->team << std::endl;
+                //     }
+                //     if (_ecs.hasComponent<Player>(entity)) {
+                //         std::cout << "Player: " << _ecs.getComponent<Player>(entity)->id << " " << _ecs.getComponent<Player>(entity)->name << std::endl;
+                //     }
+                //     if (_ecs.hasComponent<Position>(entity)) {
+                //         std::cout << "Position: " << _ecs.getComponent<Position>(entity)->x << " " << _ecs.getComponent<Position>(entity)->y << std::endl;
+                //     }
+                //     std::cout << std::endl;
+                // }
                 _start = now;
                 sender.send(_parser.playerToJson(_ecs, id));
             }

@@ -141,7 +141,7 @@ void rtype::Client::doShooting()
     Sprite *sprite = _ecs.getComponent<Sprite>(_player);
 
     // sender.send("new bullet " + std::to_string(pos->x) + " " + std::to_string(pos->y) + " " + std::to_string(vel->x) + " " + std::to_string(vel->y) + " " + sprite->texture + " " + std::to_string(sprite->width) + " " + std::to_string(sprite->height) + " " + std::to_string(sprite->startX) + " " + std::to_string(sprite->startY) + " " + std::to_string(sprite->scale));
-    sender.send("new bullet " + std::to_string(pos->x - 50) + " " + std::to_string(pos->y - 85) + " 10 0 bullet 20 14 200 0 4");
+    sender.send("new bullet " + std::to_string(pos->x - 50) + " " + std::to_string(pos->y - 85) + " 10 0 bullet 20 14 200 0 4 20");
 }
 
 /**
