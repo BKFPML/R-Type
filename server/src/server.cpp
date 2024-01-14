@@ -26,6 +26,7 @@ void Server::init_entity(std::string data)
             _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(2)), std::stof(data_split.at(3))});
             _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {std::stof(data_split.at(4)), std::stof(data_split.at(5))});
             _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {data_split.at(6), std::stoi(data_split.at(7)), std::stoi(data_split.at(8)), std::stoi(data_split.at(9)), std::stoi(data_split.at(10)), std::stof(data_split.at(11))});
+            _ecs.addComponent<Attack>(_ecs.getEntities().back(), {std::stoi(data_split.at(12))});
             for (auto& client : clients_send) {
                 client.send("new bullet " + std::to_string(_ecs.getComponent<Bullet>(_ecs.getEntities().back())->id) + " " + std::to_string(_ecs.getComponent<Position>(_ecs.getEntities().back())->x) + " " + std::to_string(_ecs.getComponent<Position>(_ecs.getEntities().back())->y) + " " + _ecs.getComponent<Sprite>(_ecs.getEntities().back())->texture + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->width) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->height) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(_ecs.getEntities().back())->scale));
             }
