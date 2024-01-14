@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['network_20message_20norm_20documentation_332',['Network Message Norm Documentation',['../network_message_norm.html',1,'']]],
-  ['network_20protocol_20rfc_20documentation_333',['Network Protocol RFC Documentation',['../network_protocol_rfc.html',1,'']]]
+  ['how_20to_20add_20a_20new_20component_335',['How To Add a New Component',['../how_to_add_component.html',1,'']]]
 ];

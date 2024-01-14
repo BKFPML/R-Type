@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['r_2dtype_20game_20engine_20technical_20documentation_334',['R-Type Game Engine Technical Documentation',['../index.html',1,'']]]
+  ['level_20configuration_20documentation_336',['Level Configuration Documentation',['../level_configuration.html',1,'']]],
+  ['level_20parsing_20documentation_337',['Level Parsing Documentation',['../level_parser.html',1,'']]]
 ];

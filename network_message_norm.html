@@ -67,40 +67,47 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="overview"></a>
 Overview</h1>
-<p>This document outlines the standard message format utilised by the server in our network application. The message norm is designed to ensure consistency, efficiency, and ease of parsing across all network communications.</p>
+<p>This document defines the standard message formats utilised by the server in our network application. There are two types of message formats:</p><ol type="1">
+<li>JSON format for messages related to the Entity Component System (<a class="el" href="classECS.html" title="The Entity Component System manager class.">ECS</a>).</li>
+<li>A simpler, space-separated format for purely network-related messages.</li>
+</ol>
+<p>The JSON message norm is designed for consistency, efficiency, and simplicity in parsing. The IP address is only included in the initialisation message and not in the subsequent messages.</p>
 <h1><a class="anchor" id="message_format"></a>
 Message Format</h1>
-<p>Each message follows a specific structure to maintain uniformity. The general format is: </p><pre class="fragment">element:value-element:value-ip:ip_address
-</pre><h2><a class="anchor" id="components"></a>
-Components</h2>
-<ul>
-<li><b>Element</b>: Represents a key in the message. It is a string that describes the type of data.</li>
-<li><b>Value</b>: The value associated with the corresponding element. It can be a string, number, or any other data type as per requirement.</li>
-<li><b>IP Address</b>: A special element representing the IP address of the sender or target, depending on the context.</li>
-</ul>
-<h2><a class="anchor" id="separator"></a>
-Separator</h2>
-<ul>
-<li>Elements and their values are separated by a colon <b>:</b>.</li>
-<li>Different key-value pairs are separated by a hyphen <b>-</b>.</li>
-</ul>
+<h2><a class="anchor" id="json_format"></a>
+JSON Format</h2>
+<p>Used for ECS-related messages. Example of an entity with the <a class="el" href="structHealth.html" title="Health component.">Health</a>, <a class="el" href="structPosition.html" title="Position component.">Position</a> and <a class="el" href="structVelocity.html" title="Velocity component, normalized.">Velocity</a> components: </p><pre class="fragment">  {
+      "Health": 100,
+      "Position": {"x": 10, "y": 20},
+      "Velocity": {"x": 5, "y": 5, "speed": 30}
+  }</pre><p> Subsequent messages omit the IP address and follow a similar structure.</p>
+<h2><a class="anchor" id="network_format"></a>
+Network Message Format</h2>
+<p>For purely network-related communications, a simpler format is used, as demonstrated below: </p><pre class="fragment">  sender.send("new player " + _input_frames_state.at(0).second + " " + _received_ip + ":" + std::to_string(_received_port));</pre><p> This format typically includes one of the commands new, delete or start followed by program specific elements. In this demo we are sending to the server that a new player is initialised.</p>
 <h1><a class="anchor" id="rules"></a>
 Rules</h1>
 <ol type="1">
-<li><b>Order</b>: The order of key-value pairs in a message is not fixed and can vary.</li>
-<li><b>Uniqueness</b>: Each key within a single message must be unique. If a key is repeated, the last occurrence is considered valid.</li>
-<li><b>IP Address Format</b>: The IP address should follow the standard IPv4 or IPv6 formatting.</li>
-<li><b>Special Characters</b>: Avoid using the colon <b>:</b> and hyphen <b>-</b> within keys and values, as these are reserved for separating message components.</li>
+<li><b>Key Uniqueness</b> (JSON Format): Ensure every key in a JSON message is distinct.</li>
+<li><b>Data Types</b> (JSON Format): Supports various JSON data types like numbers, strings, arrays, and objects.</li>
+<li><b>Formatting Consistency</b> (Network Format): Maintain consistent spacing and order in network messages.</li>
 </ol>
 <h1><a class="anchor" id="example_messages"></a>
 Example Messages</h1>
 <ol type="1">
-<li><b>Basic Message</b>: <pre class="fragment">x:0-y:10-hp:40-ip:127.0.0.1:13151 </pre> This message contains three data elements (<b>x</b>, <b>y</b>, <b>hp</b>) and the IP address.</li>
-<li><b>Variable Elements</b>: <pre class="fragment">status:active-id:12345-ip:192.168.1.10:13152 </pre> A different set of data elements showing the flexibility of the message format.</li>
+<li><b><a class="el" href="structBullet.html">Bullet</a> information message (JSON)</b>: <pre class="fragment">[{"Bullet":{"id":"2"},"Position":{"x":"145.000000","y":"185.000000"}}];
+</pre> This message is sent once a bullet is shot.</li>
+<li><b>Standard Message (JSON)</b>: <pre class="fragment">{
+  "Health": 80,
+  "Position": {"x": 15, "y": 25},
+  "Velocity": {"x": 10, "y": 10, "speed": 35}
+}
+</pre> Subsequent JSON messages follow this format, omitting the IP address.</li>
+<li><b>Network Command Example</b>: <pre class="fragment">  sender.send("new player " + _input_frames_state.at(0).second + " " + _received_ip + ":" + std::to_string(_received_port));
+</pre> Example of a network-related message, using a simple, space-separated format.</li>
 </ol>
 <h1><a class="anchor" id="parsing"></a>
 Parsing</h1>
-<p>Messages should be parsed according to the defined separators. Ensure that the parser is robust enough to handle variations in the order of elements and the inclusion of different data types as values. </p>
+<p>JSON messages should be interpreted using a reliable JSON parser, ensuring accurate interpretation of JSON syntax. Network messages require parsing based on space separation and appropriate handling of individual components. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
