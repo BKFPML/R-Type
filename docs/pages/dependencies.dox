@@ -7,10 +7,11 @@
 
     ### Client:
 
-    - **SFML** 2.5.1 (for the graphics)
+    - **SFML** (for the graphics)
 
     ### Server:
 
     - **Boost** 1.72.0 (for the networking)
+    - **nlohmann-json** (for parsing json)
 
 */
