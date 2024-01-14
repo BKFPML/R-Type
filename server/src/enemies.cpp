@@ -5,13 +5,14 @@
  */
 
 #include "server.hpp"
+#include "enemies.hpp"
 
 void Server::init_enemies()
 {
     std::cout << "Init enemies" << std::endl;
     _enemies = _ecs.getEnemies();
     for (auto& enemy : _enemies) {
-        std::cout << "Enemy: " << enemy << std::endl;
+        std::cout << "Enemy: " << _ecs.getComponent<Enemy>(enemy)->name << std::endl;
         // _ecs.addComponent<Position>(enemy, Position(0, 0));
         // _ecs.addComponent<Rotation>(enemy, Rotation(0));
         // _ecs.addComponent<Velocity>(enemy, Velocity(0, 0));

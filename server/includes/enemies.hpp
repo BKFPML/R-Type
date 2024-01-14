@@ -1,6 +1,6 @@
 /**
  * @file enemies.hpp
- * @brief 
+ * @brief Header file for enemies
  * @date 14-01-2024
  */
 
@@ -9,6 +9,9 @@
 #include "../../engine/includes/ECS.hpp"
 #include "../../engine/includes/components.hpp"
 
+/**
+ * @brief Attributes of an enemy
+ */
 struct Attributes {
     int health;
     int rotation;
@@ -22,6 +25,10 @@ struct Attributes {
 std::map<std::string, Attributes> createEnemyTypes()
 {
     std::map<std::string, Attributes> associations;
-    associations["crawler"] = Attributes(100, 180, "r_typesheet8", 32, 32, 0, 0, 3);
-    associations["robot"] = Attributes(100, 180, "r_typesheet9", 55, 55, 0, 0, 3);
+    std::string crawler = "crawler";
+    std::string typesheet8 = "r_typesheet8";
+    associations[crawler] = Attributes(100, 180, typesheet8, 32, 32, 0, 0, 3);
+    // associations["robot"] = Attributes(100, 180, "r_typesheet9", 55, 55, 0, 0, 3);
+
+    return associations;
 }
