@@ -159,10 +159,12 @@ struct Bullet {
 /**
  * @brief Enemy component
  * @param name Name of the enemy
+ * @param id ID of the enemy
  */
 struct Enemy {
     std::string name;
-    Enemy(std::string name) : name(name) {}
+    size_t id;
+    Enemy(std::string name, size_t id) : name(name), id(id) {}
 };
 
 // *Graphical components

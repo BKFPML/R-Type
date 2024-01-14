@@ -34,7 +34,7 @@ class UDPBoostNetwork {
                 boost::asio::io_context io_context;
                 boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
                 boost::asio::ip::udp::resolver resolver(io_context);
-                std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
+                // std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
 
                 boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
                 socket.connect(receiver_endpoint);
@@ -127,7 +127,7 @@ class UDPBoostNetwork {
                     if (error && error != boost::asio::error::message_size)
                         throw boost::system::system_error(error);
                     std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
-                    std::cout << "Message received: " << message << std::endl;
+                    // std::cout << "Message received: " << message << std::endl;
                     received_data.push_back(message);
                 }
             }

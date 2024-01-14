@@ -92,7 +92,7 @@ void Server::createPlayerComponent(ECS::Entity entity, const std::unordered_map<
 void Server::createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("name") != params.end()) {
         std::string name = params.at("name");
-        _ecs.addComponent(entity, Enemy{name});
+        _ecs.addComponent(entity, Enemy{name, entity});
     } else {
         std::cerr << "Enemy component requires 'Name' parameter." << std::endl;
     }
@@ -108,6 +108,7 @@ void Server::createPositionComponent(ECS::Entity entity, const std::unordered_ma
     if (params.find("x") != params.end() && params.find("y") != params.end()) {
         float x = std::stof(params.at("x"));
         float y = std::stof(params.at("y"));
+        std::cout << "Creating position component for entity " << entity << " with x: " << x << " and y: " << y << std::endl;
         _ecs.addComponent(entity, Position{x, y});
     } else {
         std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;

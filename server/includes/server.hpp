@@ -31,9 +31,15 @@ class Server {
             _ecs.registerComponent<Sprite>();
             _ecs.registerComponent<Bullet>();
             _ecs.registerComponent<SpawnTime>();
+            _ecs.registerComponent<Freeze>();
+            _ecs.registerComponent<Attack>();
             _ecs.registerComponent<HealthPack>();
             _ecs.registerComponent<Collision>();
             _ecs.registerSystem<MovementSystem>();
+            _ecs.registerSystem<CollisionSystem>();
+
+
+
 
             _componentFactories = {
                 {"Player", [this](ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) { createPlayerComponent(entity, params); }},
@@ -82,6 +88,7 @@ class Server {
         ECS _ecs;
         Parser parser;
         std::vector<ECS::Entity> _enemies;
+        std::chrono::time_point<std::chrono::system_clock> _start_wave;
         /**
         * @brief Component factories
         *
