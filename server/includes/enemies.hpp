@@ -20,6 +20,7 @@ struct Attributes {
     float scale;
 
     Attributes(int health, int rotation, std::string texture, int width, int height, int startX, int startY, float scale) : health(health), texture(texture), width(width), height(height), startX(startX), startY(startY), scale(scale) {}
+    Attributes() : health(0), rotation(0), texture(""), width(0), height(0), startX(0), startY(0), scale(0.0f) {}
 };
 
 std::map<std::string, Attributes> createEnemyTypes()
