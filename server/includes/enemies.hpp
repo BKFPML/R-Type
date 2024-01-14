@@ -29,6 +29,7 @@ std::map<std::string, Attributes> createEnemyTypes()
     std::map<std::string, Attributes> associations;
     associations["crawler"] = Attributes(100, 180, "r_typesheet8", 32, 32, 0, 0, 3, 2);
     associations["shooter"] = Attributes(200, 180, "r_typesheet9", 55, 55, 0, 0, 3, 1);
+    associations["boss"] = Attributes(1000, 180, "r_typesheet32", 260, 143, 0, 0, 3, 0.5);
 
     return associations;
 }

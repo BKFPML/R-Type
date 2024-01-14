@@ -27,6 +27,7 @@
 #include "fps_120.h"
 #include "bullet.h"
 #include "healthPack.h"
+#include "r_typesheet32.h"
 
 //* Fonts
 #include "rTypeFont.h"
@@ -98,6 +99,7 @@ void rtype::SFML::loadAssets()
     initTextures("r_typesheet42", r_typesheet42, r_typesheet42_len);
     initTextures("bullet", bullet, bullet_len);
     initTextures("healthPack", healthPack, healthPack_len);
+    initTextures("r_typesheet32", r_typesheet32, r_typesheet32_len);
 
     if (!font.loadFromMemory(rTypeFont, rTypeFont_len)) {
         std::cerr << "Error loading font" << std::endl;
