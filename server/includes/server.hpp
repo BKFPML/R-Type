@@ -30,6 +30,7 @@ class Server {
             _ecs.registerComponent<Enemy>();
             _ecs.registerComponent<Sprite>();
             _ecs.registerComponent<Bullet>();
+            _ecs.registerComponent<SpawnTime>();
             _ecs.registerSystem<MovementSystem>();
 
             _componentFactories = {

@@ -58,10 +58,9 @@ void rtype::SFML::playMusic(std::string music, bool loop = true)
     }
 }
 
-
 /**
  * @brief Stops a music
- * 
+ *
  * @param music std::string name of the music to stop
  */
 
@@ -76,7 +75,7 @@ void rtype::SFML::stopMusic(std::string music)
 
 /**
  * @brief Sets the volume of the music
- * 
+ *
  * @param volume int volume of the music
  */
 void rtype::SFML::setVolume(int volume)
