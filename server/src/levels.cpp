@@ -40,7 +40,6 @@ void Server::createCollisionComponent(ECS::Entity entity, const std::unordered_m
         } else if (type == "defend") {
             colType = CollisionType::DEFEND;
         } else if (type == "health_pack") {
-            std::cout << "Found a health pack" << std::endl;
             colType = CollisionType::HEALTH_PACK;
         } else {
             std::cerr << "Invalid collision type: " << type << std::endl;
