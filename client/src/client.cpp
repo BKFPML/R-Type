@@ -130,6 +130,7 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
 void rtype::Client::gameLoop(IReceiver& receive)
 {
     _graphical->playMusic("mainTheme", true);
+    _ecs.registerSystem<CollisionSystem>();
 
     while (_isRunning) {
         try {
@@ -155,8 +156,8 @@ void rtype::Client::gameLoop(IReceiver& receive)
                 }
                 _start = now;
                 sender.send(_parser.playerToJson(_ecs, id));
-
             }
+            _ecs.updateSystems();
             sceneManager();
         } catch (const std::exception& e) {
             std::cerr << "Error processing message: " << e.what() << std::endl;
