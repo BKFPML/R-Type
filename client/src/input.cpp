@@ -182,11 +182,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
             if (_keys.mouse.left && !_previousKeys.mouse.left) {
                 _graphical->playMusic("click", false);
                 if (_currentScene == MAIN_MENU) {
-                    if (_keys.mouse.x >= 773 && _keys.mouse.x <= 1146 && _keys.mouse.y >= 498 && _keys.mouse.y <= 534) {
-                        _graphical->stopMusic("menu");
-                        _currentScene = GAME;
-                        launchSinglePlayer();
-                    } else if (_keys.mouse.x >= 789 && _keys.mouse.x <= 1134 && _keys.mouse.y >= 599 && _keys.mouse.y <= 635) {
+                    if (_keys.mouse.x >= 789 && _keys.mouse.x <= 1134 && _keys.mouse.y >= 599 && _keys.mouse.y <= 635) {
                         _graphical->stopMusic("menu");
                         _currentScene = CONNECTION;
                     }
