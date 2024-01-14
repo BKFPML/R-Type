@@ -44,7 +44,7 @@ void rtype::Client::drawSettings()
 
     _graphical->drawText("Music/SFX", 1275, 500, 30);
     _graphical->drawSprite("bar", 1175, 600, 0, 0, 0.45, 0, 0, 0);
-    _graphical->drawSprite("button", 1183 + soundVolume * 0, 0, 4.05, 585, 0.2, 0, 0, 0);
+    _graphical->drawSprite("button", 1183 + soundVolume * 4, 585, 4.05, 585, 0.2, 0, 0, 0);
     _graphical->drawText("Exit", 920, 800, 30);
 
     _graphical->display();
