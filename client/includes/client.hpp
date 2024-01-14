@@ -12,6 +12,7 @@
 #include "./input.hpp"
 #include "../external/sfml/sfml.hpp"
 #include "../../../engine/includes/ECS.hpp"
+#include "../../../engine/includes/parser.hpp"
 #include "../../../engine/includes/network_library/boost_udp.hpp"
 #include "./IGraphical.hpp"
 
@@ -40,6 +41,9 @@ namespace rtype
             ECS initECS();
             void initPlayer(std::vector<std::string> data_split);
             void deletePlayer(std::vector<std::string> data_split);
+            void deleteBullet(std::vector<std::string> data_split);
+            void updatePlayer(std::unordered_map<std::string, std::string> data_split);
+            void updateBullet(std::unordered_map<std::string, std::string> data_split);
             void gameLoop(IReceiver& receive);
             void performAction(Action action, bool performAction);
             void sceneManager();
@@ -87,6 +91,8 @@ namespace rtype
             int soundVolume;
             int level_selected;
             int id;
+            Parser _parser;
             bool _singlePlayer;
+            
     };
 }

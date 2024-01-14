@@ -5,8 +5,7 @@
  */
 
 #include "levels.hpp"
-#include <iostream>
-#include <fstream>
+
 
 using json = nlohmann::json;
 
@@ -103,13 +102,12 @@ void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::str
  * @param ecs
  */
 void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
-    if (params.find("x") != params.end() && params.find("y") != params.end() && params.find("speed") != params.end()) {
+    if (params.find("x") != params.end() && params.find("y") != params.end()) {
         float x = std::stof(params.at("x"));
         float y = std::stof(params.at("y"));
-        float speed = std::stof(params.at("speed"));
-        ecs->addComponent(entity, Velocity{x, y, speed});
+        ecs->addComponent(entity, Velocity{x, y});
     } else {
-        std::cerr << "Velocity component requires 'X', 'Y' and 'Speed' parameters." << std::endl;
+        std::cerr << "Velocity component requires 'X' and 'Y' parameters." << std::endl;
     }
 }
 

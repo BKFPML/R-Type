@@ -7,11 +7,11 @@
 #pragma once
 
 #include "../../engine/includes/ECS.hpp"
-
-#include "parser.hpp"
+#include "../../engine/includes/parser.hpp"
 #include <fstream>
 #include <functional>
 #include <unordered_map>
+#include <iostream>
 
 /**
  * @brief The Levels class is used to load levels from JSON files

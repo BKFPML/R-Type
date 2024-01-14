@@ -9,7 +9,7 @@
 #include <iostream>
 #include <chrono>
 #include "../../engine/includes/network_library/boost_udp.hpp"
-#include "../includes/parser.hpp"
+#include "../../engine/includes/parser.hpp"
 #include "../../engine/includes/ECS.hpp"
 
 /**
@@ -25,6 +25,8 @@ class Server {
             _ecs.registerComponent<Player>();
             _ecs.registerComponent<Enemy>();
             _ecs.registerComponent<Sprite>();
+            _ecs.registerComponent<Bullet>();
+            _ecs.registerSystem<MovementSystem>();
         }
         ~Server() = default;
 
