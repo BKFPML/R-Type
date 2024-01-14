@@ -26,8 +26,8 @@ rtype::Client::Client(std::string ip, int port)
     for (int i = 0; i < 7; i++)
         _input_frames_state.push_back(std::make_pair(false, ""));
 
-    _input_frames_state.at(0).second = "durbaon";
-    _input_frames_state.at(1).second = "192.168.0.138";
+    _input_frames_state.at(0).second = "";
+    _input_frames_state.at(1).second = "";
     _input_frames_state.at(2).second = "UP";
     _input_frames_state.at(3).second = "DOWN";
     _input_frames_state.at(4).second = "LEFT";
