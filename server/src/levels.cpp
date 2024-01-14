@@ -4,7 +4,7 @@
  * @date 08-01-2024
  */
 
-#include "levels.hpp"
+#include "server.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -12,7 +12,7 @@ using json = nlohmann::json;
 
 /**
  * @brief Create a Spawn Time Component object
- * 
+ *
  * @param entity
  * @param params
  * @param ecs
@@ -45,7 +45,10 @@ void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::str
 
 /**
  * @brief Create an enemy component
- * 
+ *
+ * @param entity
+ * @param params
+ * @param ecs
  */
 void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("name") != params.end()) {
@@ -93,7 +96,6 @@ void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::str
         std::cerr << "Sprite component requires 'Texture', 'StartX', 'StartY', 'Width' and 'Height' parameters." << std::endl;
     }
 }
-
 
 /**
  * @brief Create a Velocity Component object
@@ -168,12 +170,12 @@ nlohmann::json loadJsonData(const std::string& filename) {
  * @param ecs
  * @return std::shared_ptr<ECS>
  */
-std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::shared_ptr<ECS> ecs) {
+std::shared_ptr<ECS> Server::processJsonObject(const nlohmann::json& jsonObj, std::shared_ptr<ECS> ecs) {
     auto entity = ecs->createEntity();
     for (const auto& element : jsonObj.items()) {
         const auto& componentType = element.key();
         const auto& componentData = element.value();
-        if (Levels::componentFactories.find(componentType) != Levels::componentFactories.end()) {
+        if (componentFactories.find(componentType) != componentFactories.end()) {
             std::unordered_map<std::string, std::string> params;
             if (componentData.is_primitive()) {
                 params[componentType] = componentData.get<std::string>();
@@ -182,7 +184,7 @@ std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::share
                     params[nestedElement.key()] = nestedElement.value().get<std::string>();
                 }
             }
-            Levels::componentFactories[componentType](entity, params, ecs);
+            componentFactories[componentType](entity, params, ecs);
         }
     }
     return (ecs);
@@ -195,12 +197,13 @@ std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::share
  * @param ecs
  * @return std::shared_ptr<ECS>
  */
-std::shared_ptr<ECS> Levels::loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs) {
+std::shared_ptr<ECS> Server::loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs) {
     try {
         auto jsonArray = loadJsonData(levelConfig);
         for (const auto& jsonObj : jsonArray) {
             ecs = processJsonObject(jsonObj, ecs);
         }
+        init_enemies();
     } catch (const std::exception& e) {
         std::cerr << "Error loading level: " << e.what() << std::endl;
     }
@@ -212,7 +215,7 @@ std::shared_ptr<ECS> Levels::loadLevel(const std::string& levelConfig, std::shar
  *
  * @note This is a map of component types to functions that create the component
  */
-std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, std::shared_ptr<ECS>&)>> Levels::componentFactories = {
+std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, std::shared_ptr<ECS>&)>> Server::componentFactories = {
     {"Player", createPlayerComponent},
     {"Position", createPositionComponent},
     {"Velocity", createVelocityComponent},

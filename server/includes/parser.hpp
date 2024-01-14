@@ -1,6 +1,6 @@
 /**
  * @file parser.hpp
- * @brief 
+ * @brief Header file for parser
  * @date 26-12-2023
  */
 
@@ -57,9 +57,8 @@
 
 /**
  * @brief Parser class
- * 
+ *
  * This class is used to parse the message received from the client
- * 
  */
 class Parser {
 public:

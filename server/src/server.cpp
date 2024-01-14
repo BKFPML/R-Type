@@ -5,8 +5,6 @@
  */
 
 #include "../includes/server.hpp"
-#include "levels.hpp"
-
 
 /**
  * @brief Check for new connections
