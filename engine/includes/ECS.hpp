@@ -348,7 +348,7 @@ private:
             std::cout << "Health: " << std::to_string(HP.hp) << std::endl;
             std::cout << "Health: " << std::to_string(ecs.getComponent<Health>(entity2)->hp) << std::endl;
             ecs.updateComponent<Health>(entity2, [&ATK](Health& health) {
-                health.hp -= 20;
+                health.hp -= ATK.damage;
             });
             std::cout << "Health: " << std::to_string(ecs.getComponent<Health>(entity2)->hp) << std::endl;
 
