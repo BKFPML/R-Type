@@ -146,6 +146,9 @@ enum class GraphicalType {
     Text
 };
 
+struct Collision {
+};
+
 /**
  * @brief GraphicalType component
  * @param type GraphicalType (Sprite or Text)
