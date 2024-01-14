@@ -78,7 +78,7 @@ public:
             try {
                 auto nestedObj = json::parse(it->second);
                 std::string nestedValue = nestedObj[nestKey].get<std::string>();
-                std::cout << "Found nested value for key " << nestKey << ": " << nestedValue << std::endl;
+                // std::cout << "Found nested value for key " << nestKey << ": " << nestedValue << std::endl;
                 return nestedValue;
             } catch (json::parse_error& e) {
                 std::cerr << "Parse error: " << e.what() << std::endl;
@@ -160,10 +160,12 @@ public:
             if (ecs.hasComponent<Bullet>(entity)) {
                 Bullet* bullet = ecs.getComponent<Bullet>(entity);
                 Position* position = ecs.getComponent<Position>(entity);
+                Sprite* sprite = ecs.getComponent<Sprite>(entity);
                 if (bullet->id == id) {
                     json entityJson;
                     entityJson["Bullet"] = {{"id", std::to_string(bullet->id)}};
                     entityJson["Position"] = {{"x", std::to_string(position->x)}, {"y", std::to_string(position->y)}};
+                    entityJson["Sprite"] = {{"texture", sprite->texture}, {"width", std::to_string(sprite->width)}, {"height", std::to_string(sprite->height)}, {"startX", std::to_string(sprite->startX)}, {"startY", std::to_string(sprite->startY)}, {"scale", std::to_string(sprite->scale)}};
                     allEntitiesJson.push_back(entityJson);
                 }
             }

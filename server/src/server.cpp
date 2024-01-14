@@ -21,6 +21,7 @@ void Server::init_entity(std::string data)
         std::vector<std::string> data_split = split(data, " ");
         init_player(data_split);
         if (data_split.at(1) == "bullet") {
+            std::cout << "new bullet" << std::endl;
             _ecs.createEntity();
             _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {_ecs.getEntities().back() , ALLY});
             _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(data_split.at(2)), std::stof(data_split.at(3))});
@@ -156,6 +157,9 @@ void print_all_ecs_entity(ECS& ecs)
     std::cout << "--- ECS ---" << std::endl;
     for (auto& entity : ecs.getEntities()) {
         std::cout << "Entity: " << entity << std::endl;
+        if (ecs.hasComponent<Bullet>(entity)) {
+            std::cout << "Bullet: " << ecs.getComponent<Bullet>(entity)->id << " " << ecs.getComponent<Bullet>(entity)->team << std::endl;
+        }
         if (ecs.hasComponent<Position>(entity)) {
             std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
         }
@@ -198,7 +202,14 @@ int Server::run()
             for (auto& client : clients_send) {
                 for (auto& entity : _ecs.getEntities()) {
                     if (_ecs.hasComponent<Bullet>(entity)) {
-                        parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id);
+                        if (_ecs.getComponent<Position>(entity)->x < -50 || _ecs.getComponent<Position>(entity)->x > 2050 || _ecs.getComponent<Position>(entity)->y < -50 || _ecs.getComponent<Position>(entity)->y > 1250) {
+                            for (auto& client : clients_send)
+                                client.send("delete bullet " + std::to_string(_ecs.getComponent<Bullet>(entity)->id));
+                            _ecs.removeEntity(entity);
+                        } else {
+                            for (auto& client : clients_send)
+                                client.send(parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id));
+                        }
                     }
                 }
             }

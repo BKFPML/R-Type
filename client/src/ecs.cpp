@@ -21,6 +21,7 @@ ECS rtype::Client::initECS()
     ecs.registerComponent<Sprite>();
     ecs.registerComponent<Player>();
     ecs.registerComponent<Rotation>();
+    ecs.registerComponent<Bullet>();
     return ecs;
 }
 
@@ -64,6 +65,79 @@ void rtype::Client::deletePlayer(std::vector<std::string> data)
         }
     }
 }
+
+/**
+ * @brief delete entity bullet
+ *
+ */
+void rtype::Client::deleteBullet(std::vector<std::string> data)
+{
+    if (data.at(1) == "bullet") {
+        int bulletIdToDelete = std::stoi(data.at(2));
+        for (auto& entity : _ecs.getEntities()) {
+            if (_ecs.hasComponent<Bullet>(entity)) {
+                if (_ecs.getComponent<Bullet>(entity)->id == bulletIdToDelete) {
+                    _ecs.removeEntity(entity);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief update entity player
+ * 
+ * @param data 
+ */
+
+void rtype::Client::updatePlayer(std::unordered_map<std::string, std::string>  json)
+{   
+    if (json.find("Player") != json.end()) {
+        for (auto&data : json) {
+            std::cout << data.first << " " << data.second << std::endl;
+        }
+        int id_player = std::stoi(_parser.getNestValue(json, "Player", "id"));
+        for (auto& entity : _ecs.getEntities()) {
+            if (_ecs.hasComponent<Player>(entity)) {
+                if (_ecs.getComponent<Player>(entity)->id == id_player) {
+                    _ecs.getComponent<Position>(entity)->x = std::stoi(_parser.getNestValue(json, "Position", "x"));
+                    _ecs.getComponent<Position>(entity)->y = std::stoi(_parser.getNestValue(json, "Position", "y"));
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief update entity bullet
+ * 
+ * @param data 
+ */
+void rtype::Client::updateBullet(std::unordered_map<std::string, std::string> json)
+{
+    if (json.find("Bullet") != json.end()) {
+        bool found = false;
+        for (auto& entity : _ecs.getEntities()) {
+            if (_ecs.hasComponent<Bullet>(entity)) {
+                if (_ecs.getComponent<Bullet>(entity)->id == std::stoi(_parser.getNestValue(json, "Bullet", "id"))) {
+                    found = true;
+                    _ecs.getComponent<Position>(entity)->x = std::stoi(_parser.getNestValue(json, "Position", "x"));
+                    _ecs.getComponent<Position>(entity)->y = std::stoi(_parser.getNestValue(json, "Position", "y"));
+
+                }
+            }
+        }
+        if (!found) {
+            _ecs.createEntity();
+            _ecs.addComponent<Position>(_ecs.getEntities().back(), {std::stof(_parser.getNestValue(json, "Position", "x")), std::stof(_parser.getNestValue(json, "Position", "y"))});
+            _ecs.addComponent<Bullet>(_ecs.getEntities().back(), {std::size_t(std::stoi(_parser.getNestValue(json, "Bullet", "id"))), ALLY});
+            _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {_parser.getNestValue(json, "Sprite", "texture"), std::stoi(_parser.getNestValue(json, "Sprite", "width")), std::stoi(_parser.getNestValue(json, "Sprite", "height")), std::stoi(_parser.getNestValue(json, "Sprite", "startX")), std::stoi(_parser.getNestValue(json, "Sprite", "startY")), std::stof(_parser.getNestValue(json, "Sprite", "scale"))});
+        }
+
+    }
+}
+
 
 /**
  * @brief nb of players

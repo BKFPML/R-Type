@@ -74,32 +74,29 @@ rtype::Client::~Client()
 void rtype::Client::parse_data_received(IReceiver& receive) {
     std::vector<std::string> data = receive.get_received_data();
     for (auto& d : data) {
-        std::cout << "Received: " << d << std::endl;
-        if (split(d, " ").front() == "new") {
-            std::vector<std::string> data_split = split(d, " ");
-            initPlayer(data_split);
-        }
-        else if (split(d, " ").front() == "delete") {
-            std::vector<std::string> data_split = split(d, " ");
-            deletePlayer(data_split);
-        }
-        else if (split(d, " ").front() == "start") {
-            std::vector<std::string> data_split = split(d, " ");
-            _currentScene = GAME;
-        } else {
-            std::unordered_map<std::string, std::string> json = _parser.parseMessage(d);
-            for (auto&data : json) {
-                std::cout << data.first << " " << data.second << std::endl;
+        try {
+            // std::cout << "Received: " << d << std::endl;
+            if (split(d, " ").front() == "new") {
+                std::vector<std::string> data_split = split(d, " ");
+                initPlayer(data_split);
             }
-            int id_player = std::stoi(_parser.getNestValue(json, "Player", "id"));
-            for (auto& entity : _ecs.getEntities()) {
-                if (_ecs.hasComponent<Player>(entity)) {
-                    if (_ecs.getComponent<Player>(entity)->id == id_player) {
-                        _ecs.getComponent<Position>(entity)->x = std::stoi(_parser.getNestValue(json, "Position", "x"));
-                        _ecs.getComponent<Position>(entity)->y = std::stoi(_parser.getNestValue(json, "Position", "y"));
-                    }
-                }
+            else if (split(d, " ").front() == "delete") {
+                std::vector<std::string> data_split = split(d, " ");
+                deletePlayer(data_split);
+                deleteBullet(data_split);
             }
+            else if (split(d, " ").front() == "start") {
+                std::vector<std::string> data_split = split(d, " ");
+                _currentScene = GAME;
+            } else {
+                std::unordered_map<std::string, std::string> json = _parser.parseMessage(d);
+                if (json.empty())
+                    continue;
+                updatePlayer(json);
+                updateBullet(json);
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Error processing message: " << e.what() << std::endl;
         }
     }
     receive.clear_received_data();
@@ -122,13 +119,14 @@ void rtype::Client::gameLoop(IReceiver& receive)
         _keys = keyState.first;
         _previousKeys = keyState.second;
         handleInput();
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 5 && _currentScene == GAME) {
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 1000 && _currentScene == GAME) {
             _start = now;
 
-            sender.send(_parser.playerToJson(_ecs, id));
+            // sender.send(_parser.playerToJson(_ecs, id));
 
         }
         sceneManager();
     }
+    receive.set_running(false);
     _graphical->stopMusic("mainTheme");
 }

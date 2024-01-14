@@ -35,6 +35,9 @@ namespace rtype
             ECS initECS();
             void initPlayer(std::vector<std::string> data_split);
             void deletePlayer(std::vector<std::string> data_split);
+            void deleteBullet(std::vector<std::string> data_split);
+            void updatePlayer(std::unordered_map<std::string, std::string> data_split);
+            void updateBullet(std::unordered_map<std::string, std::string> data_split);
             void gameLoop(IReceiver& receive);
             void performAction(Action action, bool performAction);
             void sceneManager();
@@ -84,5 +87,6 @@ namespace rtype
             int id;
             Parser _parser;
             bool _singlePlayer;
+            
     };
 }

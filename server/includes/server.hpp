@@ -25,6 +25,8 @@ class Server {
             _ecs.registerComponent<Player>();
             _ecs.registerComponent<Npc>();
             _ecs.registerComponent<Sprite>();
+            _ecs.registerComponent<Bullet>();
+            _ecs.registerSystem<MovementSystem>();
         }
         ~Server() = default;
 
