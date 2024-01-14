@@ -227,6 +227,7 @@ int Server::run()
         if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 20 && game_launch) {
             now = std::chrono::system_clock::now();
             _ecs.updateSystems();
+            // print_all_ecs_entity(_ecs);
             std::string bullet;
             int i = 0;
             for (auto& entity : _ecs.getEntities()) {
@@ -267,6 +268,20 @@ int Server::run()
                     client.send(bullet);
                 }
             }
+            for (auto& entity : _ecs.getEntities()) {
+                for (auto& entity2 : _ecs.getEntities()) {
+                    if (_ecs.hasComponent<Collision>(entity) && _ecs.hasComponent<Collision>(entity2)) {
+                        if (_ecs.getComponent<Collision>(entity)->type == ATTACK && _ecs.getComponent<Collision>(entity2)->type == DEFEND) {
+                            if (_ecs.getComponent<Position>(entity)->x < _ecs.getComponent<Position>(entity2)->x + _ecs.getComponent<Sprite>(entity2)->width * _ecs.getComponent<Sprite>(entity2)->scale && _ecs.getComponent<Position>(entity)->x + _ecs.getComponent<Sprite>(entity)->width * _ecs.getComponent<Sprite>(entity)->scale > _ecs.getComponent<Position>(entity2)->x && _ecs.getComponent<Position>(entity)->y < _ecs.getComponent<Position>(entity2)->y + _ecs.getComponent<Sprite>(entity2)->height * _ecs.getComponent<Sprite>(entity2)->scale && _ecs.getComponent<Position>(entity)->y + _ecs.getComponent<Sprite>(entity)->height * _ecs.getComponent<Sprite>(entity)->scale > _ecs.getComponent<Position>(entity2)->y) {
+                                _ecs.getComponent<Health>(entity2)->hp -= _ecs.getComponent<Attack>(entity)->damage;
+                                if (_ecs.getComponent<Bullet>(entity)->team == ALLY) {
+                                    _ecs.getComponent<Bullet>(entity)->team = DESTROYED;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         for (auto& entity : _ecs.getEntities()) {
             auto now = std::chrono::system_clock::now();
@@ -279,8 +294,8 @@ int Server::run()
                     }
                 }
             }
-            
         }
+        
         parse_data_received();
     }
     r.join();
