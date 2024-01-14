@@ -336,29 +336,61 @@ private:
             pos1->x + sprite1->width * sprite1->scale > pos2->x &&
             pos1->y < pos2->y + sprite2->height * sprite2->scale &&
             pos1->y + sprite1->height * sprite1->scale > pos2->y) {
-                std::cout << "Collision detected" << std::endl;
                 handleCollision(ecs, entity1, entity2);
         }
     }
-    void handleCollision(ECS& ecs, ECS::Entity entity1, ECS::Entity entity2) {
-        if (ecs.hasComponent<Attack>(entity1) && ecs.hasComponent<Health>(entity2)) {
-            Attack ATK = ecs.getComponent<Attack>(entity1)->damage;
-            Health HP = ecs.getComponent<Health>(entity2)->hp;
-            std::cout << "Attack: " << std::to_string(ATK.damage) << std::endl;
-            std::cout << "Health: " << std::to_string(HP.hp) << std::endl;
-            std::cout << "Health: " << std::to_string(ecs.getComponent<Health>(entity2)->hp) << std::endl;
-            ecs.updateComponent<Health>(entity2, [&ATK](Health& health) {
-                health.hp -= ATK.damage;
-            });
-            std::cout << "Health: " << std::to_string(ecs.getComponent<Health>(entity2)->hp) << std::endl;
 
-
-            ecs.removeComponent<Attack>(entity1);
-            if (ecs.hasComponent<Bullet>(entity1)) {
-                ecs.updateComponent<Bullet>(entity1, [](Bullet& bullet) {
-                    bullet.team = DESTROYED;
-                });
+    void print_all_ecs_entity(ECS& ecs)
+    {
+        std::cout << "--- ECS ---" << std::endl;
+        for (auto& entity : ecs.getEntities()) {
+            std::cout << "Entity: " << entity << std::endl;
+            if (ecs.hasComponent<Bullet>(entity)) {
+                std::cout << "Bullet: " << ecs.getComponent<Bullet>(entity)->id << " " << ecs.getComponent<Bullet>(entity)->team << std::endl;
             }
+            if (ecs.hasComponent<Attack>(entity)) {
+                std::cout << "Attack: " << ecs.getComponent<Attack>(entity)->damage << std::endl;
+            }
+            if (ecs.hasComponent<Freeze>(entity)) {
+                std::cout << "Freeze: " << ecs.getComponent<Freeze>(entity)->frames << std::endl;
+            }
+            if (ecs.hasComponent<Position>(entity)) {
+                std::cout << "Position: " << ecs.getComponent<Position>(entity)->x << " " << ecs.getComponent<Position>(entity)->y << std::endl;
+            }
+            if (ecs.hasComponent<Rotation>(entity)) {
+                std::cout << "Rotation: " << ecs.getComponent<Rotation>(entity)->angle << std::endl;
+            }
+            if (ecs.hasComponent<Velocity>(entity)) {
+                std::cout << "Velocity: " << ecs.getComponent<Velocity>(entity)->x << " " << ecs.getComponent<Velocity>(entity)->y << std::endl;
+            }
+            if (ecs.hasComponent<Health>(entity)) {
+                std::cout << "Health: " << ecs.getComponent<Health>(entity)->hp << std::endl;
+            }
+            if (ecs.hasComponent<Player>(entity)) {
+                std::cout << "Player: " << ecs.getComponent<Player>(entity)->id << " " << ecs.getComponent<Player>(entity)->name << std::endl;
+            }
+            if (ecs.hasComponent<Sprite>(entity)) {
+                std::cout << "Sprite: " << ecs.getComponent<Sprite>(entity)->texture << " " << ecs.getComponent<Sprite>(entity)->width << " " << ecs.getComponent<Sprite>(entity)->height << " " << ecs.getComponent<Sprite>(entity)->scale << std::endl;
+            }
+            if (ecs.hasComponent<Enemy>(entity)) {
+                std::cout << "Enemy: " << ecs.getComponent<Enemy>(entity)->name << std::endl;
+            }
+            if (ecs.hasComponent<SpawnTime>(entity)) {
+                std::cout << "SpawnTime: " << ecs.getComponent<SpawnTime>(entity)->time << std::endl;
+            }
+
+            std::cout << std::endl;
+        }
+        std::cout << "-----------" << std::endl;
+    }
+    void handleCollision(ECS& ecs, ECS::Entity entity1, ECS::Entity entity2) {
+        print_all_ecs_entity(ecs);
+        if (ecs.hasComponent<Enemy>(entity1) && ecs.hasComponent<Player>(entity2)) {
+           std::cout << "Enemy collided with player" << std::endl;
+        } else if (ecs.hasComponent<Enemy>(entity2) && ecs.hasComponent<Bullet>(entity1)) {
+            std::cout << "Bullet collided with enemy" << std::endl;
+        } else {
+            std::cout << "Unknown collision between entity " << entity1 << " and " << entity2 << std::endl;
         }
     }
 };
