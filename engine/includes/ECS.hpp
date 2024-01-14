@@ -245,7 +245,7 @@ class MovementSystem : public ISystem {
         void update(ECS& ecs) override
         {
             for (auto entity: ecs.getEntities()) {
-                if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Velocity>(entity))) {
+                if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Velocity>(entity)) && (!ecs.hasComponent<Freeze>(entity))) {
                     auto position = ecs.getComponent<Position>(entity);
                     auto velocity = ecs.getComponent<Velocity>(entity);
                     position->x += velocity->x;
@@ -263,7 +263,7 @@ class ImmunitySystem : public ISystem {
         void update(ECS& ecs) override
         {
             for (auto entity: ecs.getEntities()) {
-                if (ecs.hasComponent<Immunity>(entity)) {
+                if (ecs.hasComponent<Immunity>(entity) && (!ecs.hasComponent<Freeze>(entity))) {
                     auto immunity = ecs.getComponent<Immunity>(entity);
                     if (immunity->frames > 0) {
                         immunity->frames--;
@@ -284,7 +284,7 @@ class DamageSystem : public ISystem {
         void update(ECS& ecs) override
         {
             for (auto entity: ecs.getEntities()) {
-                if ((ecs.hasComponent<Health>(entity)) && (ecs.hasComponent<Damage>(entity))) {
+                if ((ecs.hasComponent<Health>(entity)) && (ecs.hasComponent<Damage>(entity)) && (!ecs.hasComponent<Immunity>(entity)) && (!ecs.hasComponent<Freeze>(entity))) {
                     auto health = ecs.getComponent<Health>(entity);
                     auto damage = ecs.getComponent<Damage>(entity);
                     if (!ecs.hasComponent<Immunity>(entity))
@@ -306,7 +306,13 @@ public:
     void update(ECS& ecs) override {
         auto entities = ecs.getCollidableEntities();
         for (size_t i = 0; i < entities.size(); ++i) {
+            if (ecs.hasComponent<Freeze>(entities[i])) {
+                continue;
+            }
             for (size_t j = i + 1; j < entities.size(); ++j) {
+                if (ecs.hasComponent<Freeze>(entities[j])) {
+                    continue;
+                }
                 checkCollision(ecs, entities[i], entities[j]);
             }
         }

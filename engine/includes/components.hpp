@@ -103,6 +103,11 @@ struct Immunity {
     Immunity(int frames) : frames(frames) {}
 };
 
+struct Freeze {
+    int frames;
+    Freeze(int frames) : frames(frames) {}
+};
+
 /**
  * @brief Player component
  * @param id ID of the player
