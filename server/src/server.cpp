@@ -220,6 +220,7 @@ int Server::run()
             _ecs.updateSystems();
             std::string bullet;
             int i = 0;
+            std::cout << "enittydsf";
             for (auto& entity : _ecs.getEntities()) {
                 if (_ecs.hasComponent<Bullet>(entity)) {
                     if (_ecs.getComponent<Position>(entity)->x < -50 || _ecs.getComponent<Position>(entity)->x > 2050 || _ecs.getComponent<Position>(entity)->y < -50 || _ecs.getComponent<Position>(entity)->y > 1250) {
@@ -261,19 +262,39 @@ int Server::run()
                 }
             }
         }
+        std::cout << "entity" << std::endl;
         for (auto& entity : _ecs.getEntities()) {
+            auto now = std::chrono::system_clock::now();
+            std::cout << "entity1" << std::endl;
             if (_ecs.hasComponent<Enemy>(entity)) {
+                std::cout << "entity enemy" << std::endl;
                 if (_ecs.hasComponent<Freeze>(entity)) {
-                    auto now = std::chrono::system_clock::now();
+                    std::cout << "entity freeze" << std::endl;
                     if (std::chrono::duration_cast<std::chrono::seconds>(now - _start_wave).count() > _ecs.getComponent<SpawnTime>(entity)->time) {
+                        std::cout << "entity spawn" << std::endl;
                         _ecs.removeComponent<Freeze>(entity);
+                        std::cout << "entity spawn2" << std::endl;
                         for (auto& client : clients_send) {
-                            client.send("new enemy " + std::to_string(entity) + std::to_string(_ecs.getComponent<Position>(entity)->x) + " " + std::to_string(_ecs.getComponent<Position>(entity)->y) + " " + _ecs.getComponent<Sprite>(entity)->texture + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->width) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->height) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->scale));
+                            std::cout << "entity spawn3" << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Enemy>(entity)->id) << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Position>(entity)->x) << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Position>(entity)->y) << std::endl;
+                            std::cout << _ecs.getComponent<Sprite>(entity)->texture << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Sprite>(entity)->width) << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Sprite>(entity)->height) << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Sprite>(entity)->startX) << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Sprite>(entity)->startY) << std::endl;
+                            std::cout << std::to_string(_ecs.getComponent<Sprite>(entity)->scale) << std::endl;
+
+                            for (auto& client : clients_send)
+                                client.send("new enemy " + std::to_string(_ecs.getComponent<Enemy>(entity)->id) + std::to_string(_ecs.getComponent<Position>(entity)->x) + " " + std::to_string(_ecs.getComponent<Position>(entity)->y) + " " + _ecs.getComponent<Sprite>(entity)->texture + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->width) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->height) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startX) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->startY) + " " + std::to_string(_ecs.getComponent<Sprite>(entity)->scale));
                         }
+                        std::cout << "entity spawn3" << std::endl;
                     }
                 }
             }
         }
+        std::cout << "entit2y" << std::endl;
         parse_data_received();
     }
     r.join();

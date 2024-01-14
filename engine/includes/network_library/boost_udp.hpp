@@ -127,7 +127,7 @@ class UDPBoostNetwork {
                     if (error && error != boost::asio::error::message_size)
                         throw boost::system::system_error(error);
                     std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
-                    std::cout << "Message received: " << message << std::endl;
+                    // std::cout << "Message received: " << message << std::endl;
                     received_data.push_back(message);
                 }
             }
