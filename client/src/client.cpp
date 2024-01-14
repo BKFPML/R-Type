@@ -78,7 +78,9 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
         for (auto& u : data) {
             try {
                 for (auto& d : split(u, ";")) {
+                    // std::cout << d << std::endl;
                     if (split(d, " ").front() == "new") {
+                        std::cout << "New: " << d << std::endl;
                         std::vector<std::string> data_split = split(d, " ");
                         initPlayer(data_split);
                         initBullet(data_split);
@@ -138,19 +140,19 @@ void rtype::Client::gameLoop(IReceiver& receive)
             _previousKeys = keyState.second;
             handleInput();
             if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 5 && _currentScene == GAME) {
-                for (auto& entity : _ecs.getEntities()) {
-                    std::cout << "Entity: " << entity << std::endl;
-                    if (_ecs.hasComponent<Bullet>(entity)) {
-                        std::cout << "Bullet: " << _ecs.getComponent<Bullet>(entity)->id << " " << _ecs.getComponent<Bullet>(entity)->team << std::endl;
-                    }
-                    if (_ecs.hasComponent<Player>(entity)) {
-                        std::cout << "Player: " << _ecs.getComponent<Player>(entity)->id << " " << _ecs.getComponent<Player>(entity)->name << std::endl;
-                    }
-                    if (_ecs.hasComponent<Position>(entity)) {
-                        std::cout << "Position: " << _ecs.getComponent<Position>(entity)->x << " " << _ecs.getComponent<Position>(entity)->y << std::endl;
-                    }
-                    std::cout << std::endl;
-                }
+                // for (auto& entity : _ecs.getEntities()) {
+                //     std::cout << "Entity: " << entity << std::endl;
+                //     if (_ecs.hasComponent<Bullet>(entity)) {
+                //         std::cout << "Bullet: " << _ecs.getComponent<Bullet>(entity)->id << " " << _ecs.getComponent<Bullet>(entity)->team << std::endl;
+                //     }
+                //     if (_ecs.hasComponent<Player>(entity)) {
+                //         std::cout << "Player: " << _ecs.getComponent<Player>(entity)->id << " " << _ecs.getComponent<Player>(entity)->name << std::endl;
+                //     }
+                //     if (_ecs.hasComponent<Position>(entity)) {
+                //         std::cout << "Position: " << _ecs.getComponent<Position>(entity)->x << " " << _ecs.getComponent<Position>(entity)->y << std::endl;
+                //     }
+                //     std::cout << std::endl;
+                // }
                 _start = now;
                 sender.send(_parser.playerToJson(_ecs, id));
             }
