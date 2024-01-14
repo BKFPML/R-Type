@@ -161,6 +161,7 @@ int rtype::Client::nbPlayersInRoom()
     int nb = 0;
     for (auto& entity : _ecs.getEntities()) {
         if (_ecs.hasComponent<Player>(entity)) {
+            // _ecs.updateComponent<Sprite>(entity, {texture})
             nb++;
         }
     }
@@ -175,10 +176,10 @@ void rtype::Client::launchSinglePlayer()
     _ecs.addComponent<Health>(_ecs.getEntities().back(), 100);
     _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {0, 0});
     _ecs.addComponent<Collision>(_ecs.getEntities().back(), {DEFEND});
-    std::string texture = "player_red";
-    _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 34, 34, 0, 0, 3});
+    std::string texture = "r_typesheet42";
+    _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 32, 16, 64, 0, 3});
     _ecs.addComponent<Player>(_ecs.getEntities().back(), {0, "player"});
-    _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {180});
+    _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {0});
 
     ECS::Entity test = _ecs.createEntity();
     _ecs.addComponent<Position>(test, {100, 100});
