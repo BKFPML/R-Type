@@ -1,0 +1,98 @@
+/**
+ * @page level_parser Level Parsing Documentation
+ *
+ * @section overview Overview
+ *
+ * This document details the implementation of level parsing in the game server,
+ * specifically how the server loads and processes level configuration files.
+ * These files are JSON formatted and define entities along with their components for each level.
+ *
+ * @section loadLevel Loading Levels
+ *
+ * The `loadLevel` function is responsible for loading level configuration from a JSON file.
+ * It processes each JSON object to create entities with the specified components.
+ *
+ * @code
+ void Server::loadLevel(const std::string& levelConfig) {
+     try {
+         auto jsonArray = loadJsonData(levelConfig);
+         for (const auto& jsonObj : jsonArray) {
+             processJsonObject(jsonObj);
+         }
+         init_enemies();
+     } catch (const std::exception& e) {
+         std::cerr << "Error loading level: " << e.what() << std::endl;
+     }
+ }
+ * @endcode
+ *
+ * @section processJsonObject Processing JSON Objects
+ *
+ * The `processJsonObject` function iterates over each element in a JSON object,
+ * identifies the component type, and creates the respective components for an entity.
+ *
+ * @code
+ void Server::processJsonObject(const nlohmann::json& jsonObj) {
+     auto entity = _ecs.createEntity();
+     for (const auto& element : jsonObj.items()) {
+         const auto& componentType = element.key();
+         const auto& componentData = element.value();
+
+         if (_componentFactories.find(componentType) != _componentFactories.end()) {
+             std::unordered_map<std::string, std::string> params;
+             if (componentData.is_primitive()) {
+                 params[componentType] = componentData.get<std::string>();
+             } else {
+                 for (const auto& nestedElement : componentData.items()) {
+                     params[nestedElement.key()] = nestedElement.value().get<std::string>();
+                 }
+             }
+             _componentFactories[componentType](entity, params);
+         }
+     }
+ }
+ * @endcode
+ *
+ * @section componentCreation Component Creation
+ * Component creation functions such as `createPlayerComponent`, `createPositionComponent`, etc.,
+ * are used to add specific components to entities. These functions parse parameters from the JSON object
+ * and apply them to the components.
+ * Example of a component creation function:
+ * @code
+ void Server::createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
+     if (params.find("x") != params.end() && params.find("y") != params.end()) {
+         float x = std::stof(params.at("x"));
+         float y = std::stof(params.at("y"));
+         _ecs.addComponent(entity, Position{x, y});
+     } else {
+         std::cerr << "Position component requires both 'X' and 'Y' parameters." << std::endl;
+     }
+ }
+ * @endcode
+ *
+ * @section errorHandling Error Handling
+ * Error handling is implemented within each component creation function,
+ * ensuring that all required parameters are provided. If a parameter is missing,
+ * an error message is logged to the standard error stream.
+ *
+ * @section loadJsonData JSON File Loading
+ * The `loadJsonData` function is responsible for reading the level configuration file,
+ * parsing it into a JSON object, and returning it for further processing.
+ * @code
+ nlohmann::json loadJsonData(const std::string& filename) {
+     std::ifstream file(filename);
+     if (!file.is_open()) {
+         throw std::runtime_error("Failed to open file: " + filename);
+     }
+     nlohmann::json jsonArray;
+     file >> jsonArray;
+     return jsonArray;
+ }
+ * @endcode
+ *
+ * @section conclusion Conclusion
+ * This level parsing implementation provides a flexible and efficient way to load
+ * and configure game levels using JSON files. It allows for dynamic creation
+ * of entities with various components, facilitating rich and varied game environments.
+ */
+
