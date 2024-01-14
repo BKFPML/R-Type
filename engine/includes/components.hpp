@@ -103,6 +103,11 @@ struct Immunity {
     Immunity(int frames) : frames(frames) {}
 };
 
+struct Freeze {
+    int frames;
+    Freeze(int frames) : frames(frames) {}
+};
+
 /**
  * @brief Player component
  * @param id ID of the player
@@ -145,6 +150,16 @@ struct Enemy {
 enum class GraphicalType {
     Sprite,
     Text
+};
+
+enum CollisionType {
+    ATTACK,
+    DEFEND
+};
+
+struct Collision {
+    CollisionType type;
+    Collision(CollisionType type) : type(type) {}
 };
 
 /**

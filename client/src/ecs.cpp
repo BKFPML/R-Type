@@ -22,6 +22,7 @@ ECS rtype::Client::initECS()
     ecs.registerComponent<Player>();
     ecs.registerComponent<Rotation>();
     ecs.registerComponent<Bullet>();
+    ecs.registerComponent<Collision>();
     ecs.registerComponent<Enemy>();
     return ecs;
 }
@@ -168,15 +169,25 @@ int rtype::Client::nbPlayersInRoom()
 
 void rtype::Client::launchSinglePlayer()
 {
+    _singlePlayer = true;
     _player = _ecs.createEntity();
     _ecs.addComponent<Position>(_ecs.getEntities().back(), {100, 100});
     _ecs.addComponent<Health>(_ecs.getEntities().back(), 100);
     _ecs.addComponent<Velocity>(_ecs.getEntities().back(), {0, 0});
+    _ecs.addComponent<Collision>(_ecs.getEntities().back(), {DEFEND});
     std::string texture = "player_red";
     _ecs.addComponent<Sprite>(_ecs.getEntities().back(), {texture, 34, 34, 0, 0, 3});
     _ecs.addComponent<Player>(_ecs.getEntities().back(), {0, "player"});
     _ecs.addComponent<Rotation>(_ecs.getEntities().back(), {180});
-    _singlePlayer = true;
+
+    ECS::Entity test = _ecs.createEntity();
+    _ecs.addComponent<Position>(test, {100, 100});
+    _ecs.addComponent<Health>(test, 100);
+    _ecs.addComponent<Velocity>(test, {0, 0});
+    _ecs.addComponent<Collision>(test, {DEFEND});
+    std::string texture2 = "player_red";
+    _ecs.addComponent<Sprite>(test, {texture2, 34, 34, 0, 0, 3});
+    _ecs.addComponent<Rotation>(test, {180});
 }
 
 /**

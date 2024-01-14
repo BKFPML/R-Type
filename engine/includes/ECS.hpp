@@ -12,6 +12,7 @@
 #include <memory>
 #include <typeindex>
 #include <vector>
+#include <iostream>
 
 class ECS;
 
@@ -163,6 +164,11 @@ class ECS {
             return drawableEntities;
         }
 
+        /**
+         * @brief Gets all the entities that are enemies
+         *
+         * @return std::vector<Entity> A vector of all the entities
+         */
         std::vector<Entity> getEnemies() {
             std::vector<Entity> entities = getEntities();
             std::vector<Entity> enemies;
@@ -172,6 +178,22 @@ class ECS {
                 }
             }
             return enemies;
+        }
+
+        /**
+         * @brief Gets all the entities that are collidable
+         *
+         * @return std::vector<Entity> A vector of all the entities
+         */
+        std::vector<Entity> getCollidableEntities() {
+            std::vector<Entity> entities = getEntities();
+            std::vector<Entity> collidableEntities;
+            for (int i = 0; i < entities.size(); i++) {
+                if (hasComponent<Position>(entities[i]) && hasComponent<Sprite>(entities[i]) && hasComponent<Collision>(entities[i])) {
+                    collidableEntities.push_back(entities[i]);
+                }
+            }
+            return collidableEntities;
         }
 
         /**
@@ -223,7 +245,7 @@ class MovementSystem : public ISystem {
         void update(ECS& ecs) override
         {
             for (auto entity: ecs.getEntities()) {
-                if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Velocity>(entity))) {
+                if ((ecs.hasComponent<Position>(entity)) && (ecs.hasComponent<Velocity>(entity)) && (!ecs.hasComponent<Freeze>(entity))) {
                     auto position = ecs.getComponent<Position>(entity);
                     auto velocity = ecs.getComponent<Velocity>(entity);
                     position->x += velocity->x;
@@ -241,7 +263,7 @@ class ImmunitySystem : public ISystem {
         void update(ECS& ecs) override
         {
             for (auto entity: ecs.getEntities()) {
-                if (ecs.hasComponent<Immunity>(entity)) {
+                if (ecs.hasComponent<Immunity>(entity) && (!ecs.hasComponent<Freeze>(entity))) {
                     auto immunity = ecs.getComponent<Immunity>(entity);
                     if (immunity->frames > 0) {
                         immunity->frames--;
@@ -262,7 +284,7 @@ class DamageSystem : public ISystem {
         void update(ECS& ecs) override
         {
             for (auto entity: ecs.getEntities()) {
-                if ((ecs.hasComponent<Health>(entity)) && (ecs.hasComponent<Damage>(entity))) {
+                if ((ecs.hasComponent<Health>(entity)) && (ecs.hasComponent<Damage>(entity)) && (!ecs.hasComponent<Immunity>(entity)) && (!ecs.hasComponent<Freeze>(entity))) {
                     auto health = ecs.getComponent<Health>(entity);
                     auto damage = ecs.getComponent<Damage>(entity);
                     if (!ecs.hasComponent<Immunity>(entity))
@@ -274,4 +296,47 @@ class DamageSystem : public ISystem {
                 }
             }
         }
+};
+
+/**
+ * @brief The collision system. Checks for collisions between entities
+ */
+class CollisionSystem : public ISystem {
+public:
+    void update(ECS& ecs) override {
+        auto entities = ecs.getCollidableEntities();
+        for (size_t i = 0; i < entities.size(); ++i) {
+            if (ecs.hasComponent<Freeze>(entities[i])) {
+                continue;
+            }
+            for (size_t j = i + 1; j < entities.size(); ++j) {
+                if (ecs.hasComponent<Freeze>(entities[j])) {
+                    continue;
+                }
+                checkCollision(ecs, entities[i], entities[j]);
+            }
+        }
+    }
+
+private:
+    /**
+     * @brief checks the collision of collidable entities
+     * 
+     * @param ecs 
+     * @param entity1 
+     * @param entity2 
+     */
+    void checkCollision(ECS& ecs, ECS::Entity entity1, ECS::Entity entity2) {
+        auto pos1 = ecs.getComponent<Position>(entity1);
+        auto sprite1 = ecs.getComponent<Sprite>(entity1);
+        auto pos2 = ecs.getComponent<Position>(entity2);
+        auto sprite2 = ecs.getComponent<Sprite>(entity2);
+
+        if (pos1->x < pos2->x + sprite2->width * sprite2->scale &&
+            pos1->x + sprite1->width * sprite1->scale > pos2->x &&
+            pos1->y < pos2->y + sprite2->height * sprite2->scale &&
+            pos1->y + sprite1->height * sprite1->scale > pos2->y) {
+                std::cout << "Collision detected between entity " << entity1 << " and entity " << entity2 << std::endl;
+        }
+    }
 };
