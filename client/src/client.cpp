@@ -72,34 +72,39 @@ rtype::Client::~Client()
 
 
 void rtype::Client::parse_data_received(IReceiver& receive) {
-    std::vector<std::string> data = receive.get_received_data();
-    for (auto& d : data) {
-        try {
-            // std::cout << "Received: " << d << std::endl;
-            if (split(d, " ").front() == "new") {
-                std::vector<std::string> data_split = split(d, " ");
-                initPlayer(data_split);
+    try {
+        std::vector<std::string> data = receive.get_received_data();
+        for (auto& d : data) {
+            try {
+                // std::cout << "Received: " << d << std::endl;
+                if (split(d, " ").front() == "new") {
+                    std::vector<std::string> data_split = split(d, " ");
+                    initPlayer(data_split);
+                }
+                else if (split(d, " ").front() == "delete") {
+                    std::vector<std::string> data_split = split(d, " ");
+                    deletePlayer(data_split);
+                    deleteBullet(data_split);
+                }
+                else if (split(d, " ").front() == "start") {
+                    std::vector<std::string> data_split = split(d, " ");
+                    _currentScene = GAME;
+                } else {
+                    std::unordered_map<std::string, std::string> json = _parser.parseMessage(d);
+                    if (json.empty())
+                        continue;
+                    updatePlayer(json);
+                    updateBullet(json);
+                }
+            } catch (const std::exception& e) {
+                std::cerr << d << std::endl;
+                std::cerr << "Error processing message: " << e.what() << std::endl;
             }
-            else if (split(d, " ").front() == "delete") {
-                std::vector<std::string> data_split = split(d, " ");
-                deletePlayer(data_split);
-                deleteBullet(data_split);
-            }
-            else if (split(d, " ").front() == "start") {
-                std::vector<std::string> data_split = split(d, " ");
-                _currentScene = GAME;
-            } else {
-                std::unordered_map<std::string, std::string> json = _parser.parseMessage(d);
-                if (json.empty())
-                    continue;
-                updatePlayer(json);
-                updateBullet(json);
-            }
-        } catch (const std::exception& e) {
-            std::cerr << "Error processing message: " << e.what() << std::endl;
         }
+        receive.clear_received_data();
+    } catch (const std::exception& e) {
+        std::cerr << "Error processing message: " << e.what() << std::endl;
     }
-    receive.clear_received_data();
 }
 /**
  * @brief Runs the game loop
@@ -113,19 +118,22 @@ void rtype::Client::gameLoop(IReceiver& receive)
     _graphical->playMusic("mainTheme", true);
 
     while (_isRunning) {
-        auto now = std::chrono::system_clock::now();
-        parse_data_received(receive);
-        std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
-        _keys = keyState.first;
-        _previousKeys = keyState.second;
-        handleInput();
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 1000 && _currentScene == GAME) {
-            _start = now;
+        try {
+            auto now = std::chrono::system_clock::now();
+            parse_data_received(receive);
+            std::pair<KeyState, KeyState> keyState = _graphical->handleEvents();
+            _keys = keyState.first;
+            _previousKeys = keyState.second;
+            handleInput();
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 1000 && _currentScene == GAME) {
+                _start = now;
+                sender.send(_parser.playerToJson(_ecs, id));
 
-            // sender.send(_parser.playerToJson(_ecs, id));
-
+            }
+            sceneManager();
+        } catch (const std::exception& e) {
+            std::cerr << "Error processing message: " << e.what() << std::endl;
         }
-        sceneManager();
     }
     receive.set_running(false);
     _graphical->stopMusic("mainTheme");

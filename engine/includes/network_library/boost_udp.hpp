@@ -31,7 +31,7 @@ class UDPBoostNetwork {
                 boost::asio::io_context io_context;
                 boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0));
                 boost::asio::ip::udp::resolver resolver(io_context);
-                std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
+                // std::cout << "Sent: " << message << " to "<< _ip <<":"<<_udp_port << std::endl;
                 boost::asio::ip::udp::endpoint receiver_endpoint(boost::asio::ip::address::from_string(_ip), _udp_port);
                 socket.connect(receiver_endpoint);
                 socket.send(boost::asio::buffer(message, message.size()));
@@ -111,7 +111,11 @@ class UDPBoostNetwork {
                 boost::asio::ip::udp::socket socket(io_context, receiver_endpoint);
                 asyncReceive(socket, recv_buffer);
                 while (_isRunning) {
-                    io_context.poll();  // Process asynchronous operations without blocking
+                    try {
+                        io_context.run();
+                    } catch (const std::exception& e) {
+                        std::cerr << e.what() << std::endl;
+                    }
                 }
                 if (socket.is_open()) {
                     socket.close();
@@ -191,7 +195,12 @@ class UDPBoostNetwork {
              * @return std::vector<std::string> 
              */
             std::vector<std::string> get_received_data() override {
-                return received_data;
+                try {
+                    return received_data;
+                } catch (const std::exception& e) {
+                    std::cerr << e.what() << std::endl;
+                }
+                return {};
             }
             /**
              * @brief set the running object
@@ -245,14 +254,12 @@ class UDPBoostNetwork {
              * @param recv_buffer 
              */
             void asyncReceive(boost::asio::ip::udp::socket& socket, boost::array<char, 1024>& recv_buffer) {
-                std::cout << "async Listening on port: " << _udp_port << std::endl;
                 if (!_isRunning) {
                     if (socket.is_open()) {
                         socket.close();
                     }
                     return;
                 }
-                std::cout << "async Listening on port: " << _udp_port << std::endl;
                 socket.async_receive_from(
                     boost::asio::buffer(recv_buffer),
                     receiver_endpoint,
@@ -271,21 +278,24 @@ class UDPBoostNetwork {
              * @param recv_buffer 
              */
             void handleReceive(const boost::system::error_code& error, std::size_t len, boost::asio::ip::udp::socket& socket, boost::array<char, 1024>& recv_buffer) {
-                std::cout << "Received: " << len << " bytes" << std::endl;
                 if (error && error != boost::asio::error::message_size)
                     throw boost::system::system_error(error);
-                std::cout << "Received: " << len << " bytes" << std::endl;
+
                 if (!_isRunning) {
                     if (socket.is_open()) {
                         socket.close();
                     }
                     return;
                 }
-                std::cout << "Received: " << len << " bytes" << std::endl;
-                std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
-                std::cout << "Message received: " << message << std::endl;
-                received_data.push_back(message);
-                // Continue the loop by initiating the next asynchronous receive operation
+
+                try {
+                    std::string message(recv_buffer.begin(), recv_buffer.begin() + len);
+                    // std::cout << "Received: " << message << std::endl;
+                    received_data.push_back(message);
+                } catch (const std::exception& e) {
+                    std::cerr << e.what() << std::endl;
+                }
+
                 asyncReceive(socket, recv_buffer);
             }
         };

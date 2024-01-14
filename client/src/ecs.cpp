@@ -94,9 +94,6 @@ void rtype::Client::deleteBullet(std::vector<std::string> data)
 void rtype::Client::updatePlayer(std::unordered_map<std::string, std::string>  json)
 {   
     if (json.find("Player") != json.end()) {
-        for (auto&data : json) {
-            std::cout << data.first << " " << data.second << std::endl;
-        }
         int id_player = std::stoi(_parser.getNestValue(json, "Player", "id"));
         for (auto& entity : _ecs.getEntities()) {
             if (_ecs.hasComponent<Player>(entity)) {

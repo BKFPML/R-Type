@@ -141,7 +141,7 @@ void rtype::Client::doShooting()
     Sprite *sprite = _ecs.getComponent<Sprite>(_player);
 
     // sender.send("new bullet " + std::to_string(pos->x) + " " + std::to_string(pos->y) + " " + std::to_string(vel->x) + " " + std::to_string(vel->y) + " " + sprite->texture + " " + std::to_string(sprite->width) + " " + std::to_string(sprite->height) + " " + std::to_string(sprite->startX) + " " + std::to_string(sprite->startY) + " " + std::to_string(sprite->scale));
-    sender.send("new bullet " + std::to_string(pos->x - 100) + " " + std::to_string(pos->y) + " 10 1 bullet 2 14 80 0 4");
+    sender.send("new bullet " + std::to_string(pos->x - 50) + " " + std::to_string(pos->y - 85) + " 30 1 bullet 20 14 200 0 4");
 }
 
 /**
@@ -181,8 +181,6 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
         case CLICK_PRESS:
             if (_keys.mouse.left && !_previousKeys.mouse.left) {
                 _graphical->playMusic("click", false);
-                std::cout << "Left click pressed" << std::endl;
-                std::cout << "X: " << _keys.mouse.x << " Y: " << _keys.mouse.y << std::endl;
                 if (_currentScene == MAIN_MENU) {
                     if (_keys.mouse.x >= 773 && _keys.mouse.x <= 1146 && _keys.mouse.y >= 498 && _keys.mouse.y <= 534) {
                         _graphical->stopMusic("menu");
@@ -237,16 +235,14 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                         int x = 0;
                         for (int i = 2; i < 7; i++) {
                             if (_input_frames_state.at(i).second.size() > 0) {
-                                std::cout << "Key " << _input_frames_state.at(i).second << std::endl;
                                 for (int j = 2; j < 7; j++) {
-                                    std::cout << "vs Key " << _input_frames_state.at(j).second << std::endl;
                                     if (_input_frames_state.at(i).second == _input_frames_state.at(j).second && i != j) {
-                                        std::cout << "Please enter different keys" << std::endl;
+                                        // std::cout << "Please enter different keys" << std::endl;
                                         x = 1;
                                     }
                                 }
                             } else {
-                                std::cout << "Please fill all the inputs" << std::endl;
+                                // std::cout << "Please fill all the inputs" << std::endl;
                                 x = 1;
                             }
                         }
@@ -307,7 +303,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                 if (_currentScene == SETTINGS) {
                     if (_keys.mouse.x >= 1203 && _keys.mouse.x <= 1615 && _keys.mouse.y >= 585 && _keys.mouse.y <= 615) {
                         soundVolume = (_keys.mouse.x - 1203) / 4.05;
-                        std::cout << "Volume: " << soundVolume << std::endl;
+                        // std::cout << "Volume: " << soundVolume << std::endl;
                         _graphical->setVolume(soundVolume);
                     }
                 }
@@ -871,7 +867,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
             break;
 
         default:
-            std::cout << "Unknown action" << std::endl;
+            // std::cout << "Unknown action" << std::endl;
             break;
     }
 }
