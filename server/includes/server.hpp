@@ -33,7 +33,11 @@ class Server {
             _ecs.registerComponent<SpawnTime>();
             _ecs.registerComponent<Freeze>();
             _ecs.registerComponent<Attack>();
+            _ecs.registerComponent<Collision>();
             _ecs.registerSystem<MovementSystem>();
+            _ecs.registerSystem<CollisionSystem>();
+
+
 
 
             _componentFactories = {
