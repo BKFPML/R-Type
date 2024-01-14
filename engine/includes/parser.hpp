@@ -174,4 +174,33 @@ public:
 
         return allEntitiesJson.dump();
     }
+
+    /**
+     * @brief enemyToJson
+     * 
+     * @param ecs 
+     * @param id 
+     * @return std::string 
+     */
+    std::string enemyToJson(ECS& ecs, size_t id, bool init)
+    {
+        json allEntitiesJson;
+
+        for (auto& entity : ecs.getEntities()) {
+            if (ecs.hasComponent<Enemy>(entity)) {
+                Position* position = ecs.getComponent<Position>(entity);
+                Sprite* sprite = ecs.getComponent<Sprite>(entity);
+                if (entity == id) {
+                    json entityJson;
+                    entityJson["Enemy"] = {{"id", std::to_string(entity)}};
+                    entityJson["Position"] = {{"x", std::to_string(position->x)}, {"y", std::to_string(position->y)}};
+                    if (init)
+                        entityJson["Sprite"] = {{"texture", sprite->texture}, {"width", std::to_string(sprite->width)}, {"height", std::to_string(sprite->height)}, {"startX", std::to_string(sprite->startX)}, {"startY", std::to_string(sprite->startY)}, {"scale", std::to_string(sprite->scale)}};
+                    allEntitiesJson.push_back(entityJson);
+                }
+            }
+        }
+
+        return allEntitiesJson.dump();
+    }
 };

@@ -32,6 +32,7 @@ void Server::init_entity(std::string data)
         }
     }
 }
+
 /**
  * @brief delete entity
  *
@@ -125,10 +126,17 @@ void Server::parse_data_received()
         else if (split(data, " ").front() == "start") {
             std::vector<std::string> data_split = split(data, " ");
             game_launch = true;
+            _start_wave = std::chrono::system_clock::now();
             for (auto& client : clients_send) {
                 client.send("start " + data_split.at(1));
             }
-            loadLevel("server/levels/config_files/level_1.conf");
+            int lvl = std::stoi(data_split.at(1));
+            if (lvl == 0)
+                loadLevel("server/levels/config_files/level_1.conf");
+            else if (lvl == 1)
+                loadLevel("server/levels/config_files/level_2.conf");
+            else if (lvl == 2)
+                loadLevel("server/levels/config_files/level_3.conf");
         } else {
             std::unordered_map<std::string, std::string> data_parsed = parser.parseMessage(data);
             int id_player = std::stoi(parser.getNestValue(data_parsed, "Player", "id"));
@@ -208,30 +216,42 @@ int Server::run()
     {
         if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - now).count() > 20 && game_launch) {
             now = std::chrono::system_clock::now();
-            // print_all_ecs_entity(_ecs);
+            print_all_ecs_entity(_ecs);
             _ecs.updateSystems();
             std::string bullet;
             int i = 0;
-            for (auto& client : clients_send) {
-                for (auto& entity : _ecs.getEntities()) {
-                    if (_ecs.hasComponent<Bullet>(entity)) {
-                        if (_ecs.getComponent<Position>(entity)->x < -50 || _ecs.getComponent<Position>(entity)->x > 2050 || _ecs.getComponent<Position>(entity)->y < -50 || _ecs.getComponent<Position>(entity)->y > 1250) {
-                            for (auto& client : clients_send)
-                                client.send("delete bullet " + std::to_string(_ecs.getComponent<Bullet>(entity)->id));
-                            _ecs.removeEntity(entity);
-                        } else {
-                            i += 1;
-                            bullet += parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id, false) + ";";
-                            if (i == 10) {
-                                for (auto& client : clients_send) {
-                                    std::cout << "Send: " << bullet << std::endl;
-                                    client.send(bullet);
-                                }
-                                i = 0;
-                                bullet = "";
-                            }
-                        }
+            for (auto& entity : _ecs.getEntities()) {
+                if (_ecs.hasComponent<Bullet>(entity)) {
+                    if (_ecs.getComponent<Position>(entity)->x < -50 || _ecs.getComponent<Position>(entity)->x > 2050 || _ecs.getComponent<Position>(entity)->y < -50 || _ecs.getComponent<Position>(entity)->y > 1250) {
+                        for (auto& client : clients_send)
+                            client.send("delete bullet " + std::to_string(_ecs.getComponent<Bullet>(entity)->id));
+                        _ecs.removeEntity(entity);
+                    } else {
+                        i += 1;
+                        bullet += parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id, false) + ";";
+
                     }
+                }
+                if (_ecs.hasComponent<Enemy>(entity)) {
+                    auto now = std::chrono::system_clock::now();
+                    if (_ecs.getComponent<Health>(entity)->hp <= 0) {
+                        for (auto& client : clients_send)
+                            client.send("delete enemy " + std::to_string(entity));
+                        _ecs.removeEntity(entity);
+                    }
+                    else if (std::chrono::duration_cast<std::chrono::seconds>(now - _start_wave).count() > _ecs.getComponent<SpawnTime>(entity)->time) {
+                        i += 1;
+                        bullet += parser.enemyToJson(_ecs, entity, false) + ";";
+                    }
+
+                }
+                if (i >= 10) {
+                    for (auto& client : clients_send) {
+                        std::cout << "Send: " << bullet << std::endl;
+                        client.send(bullet);
+                    }
+                    i = 0;
+                    bullet = "";
                 }
             }
             if (bullet != "") {

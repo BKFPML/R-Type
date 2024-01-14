@@ -75,6 +75,7 @@ class Server {
         ECS _ecs;
         Parser parser;
         std::vector<ECS::Entity> _enemies;
+        std::chrono::time_point<std::chrono::system_clock> _start_wave;
         /**
         * @brief Component factories
         *

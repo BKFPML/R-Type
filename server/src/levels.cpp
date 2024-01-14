@@ -50,7 +50,7 @@ void Server::createPlayerComponent(ECS::Entity entity, const std::unordered_map<
 void Server::createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params) {
     if (params.find("name") != params.end()) {
         std::string name = params.at("name");
-        _ecs.addComponent(entity, Enemy{name});
+        _ecs.addComponent(entity, Enemy{name, entity});
     } else {
         std::cerr << "Enemy component requires 'Name' parameter." << std::endl;
     }

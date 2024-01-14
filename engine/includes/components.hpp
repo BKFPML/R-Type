@@ -133,7 +133,8 @@ struct Npc {
  */
 struct Enemy {
     std::string name;
-    Enemy(std::string name) : name(name) {}
+    size_t id;
+    Enemy(std::string name, size_t id) : name(name), id(id) {}
 };
 
 // *Graphical components
