@@ -78,7 +78,6 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
         for (auto& u : data) {
             try {
                 for (auto& d : split(u, ";")) {
-                    std::cout << "Received: " << d << std::endl;
                     if (split(d, " ").front() == "new") {
                         std::vector<std::string> data_split = split(d, " ");
                         initPlayer(data_split);

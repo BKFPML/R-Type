@@ -212,6 +212,7 @@ int Server::run()
             // print_all_ecs_entity(_ecs);
             _ecs.updateSystems();
             std::string bullet;
+            int i = 0;
             for (auto& client : clients_send) {
                 for (auto& entity : _ecs.getEntities()) {
                     if (_ecs.hasComponent<Bullet>(entity)) {
@@ -220,7 +221,16 @@ int Server::run()
                                 client.send("delete bullet " + std::to_string(_ecs.getComponent<Bullet>(entity)->id));
                             _ecs.removeEntity(entity);
                         } else {
+                            i += 1;
                             bullet += parser.bulletToJson(_ecs, _ecs.getComponent<Bullet>(entity)->id, false) + ";";
+                            if (i == 10) {
+                                for (auto& client : clients_send) {
+                                    std::cout << "Send: " << bullet << std::endl;
+                                    client.send(bullet);
+                                }
+                                i = 0;
+                                bullet = "";
+                            }
                         }
                     }
                 }
