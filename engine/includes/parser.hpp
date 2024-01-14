@@ -152,7 +152,7 @@ public:
      * @param id 
      * @return std::string 
      */
-    std::string bulletToJson(ECS& ecs, int id)
+    std::string bulletToJson(ECS& ecs, int id, bool init)
     {
         json allEntitiesJson;
 
@@ -165,7 +165,8 @@ public:
                     json entityJson;
                     entityJson["Bullet"] = {{"id", std::to_string(bullet->id)}};
                     entityJson["Position"] = {{"x", std::to_string(position->x)}, {"y", std::to_string(position->y)}};
-                    entityJson["Sprite"] = {{"texture", sprite->texture}, {"width", std::to_string(sprite->width)}, {"height", std::to_string(sprite->height)}, {"startX", std::to_string(sprite->startX)}, {"startY", std::to_string(sprite->startY)}, {"scale", std::to_string(sprite->scale)}};
+                    if (init)
+                        entityJson["Sprite"] = {{"texture", sprite->texture}, {"width", std::to_string(sprite->width)}, {"height", std::to_string(sprite->height)}, {"startX", std::to_string(sprite->startX)}, {"startY", std::to_string(sprite->startY)}, {"scale", std::to_string(sprite->scale)}};
                     allEntitiesJson.push_back(entityJson);
                 }
             }

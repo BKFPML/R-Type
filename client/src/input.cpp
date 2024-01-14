@@ -141,7 +141,7 @@ void rtype::Client::doShooting()
     Sprite *sprite = _ecs.getComponent<Sprite>(_player);
 
     // sender.send("new bullet " + std::to_string(pos->x) + " " + std::to_string(pos->y) + " " + std::to_string(vel->x) + " " + std::to_string(vel->y) + " " + sprite->texture + " " + std::to_string(sprite->width) + " " + std::to_string(sprite->height) + " " + std::to_string(sprite->startX) + " " + std::to_string(sprite->startY) + " " + std::to_string(sprite->scale));
-    sender.send("new bullet " + std::to_string(pos->x - 50) + " " + std::to_string(pos->y - 85) + " 30 1 bullet 20 14 200 0 4");
+    sender.send("new bullet " + std::to_string(pos->x - 50) + " " + std::to_string(pos->y - 85) + " 10 0 bullet 20 14 200 0 4");
 }
 
 /**
@@ -390,7 +390,7 @@ void rtype::Client::performAction(Action action, bool game_bind_pressed) {
                     _currentScene = MAIN_MENU;
                 }
                 else if (_currentScene == GAME) {
-                    _currentScene = MAIN_MENU;
+                    _currentScene = WAITING_ROOM;
                 } else if (_currentScene == WAITING_ROOM) {
                     _currentScene = CONNECTION;
                     sender.send("delete player " + std::to_string(_ecs.getComponent<Player>(_player)->id));
