@@ -17,7 +17,7 @@ void rtype::Client::drawSettings()
     _graphical->drawText("Settings", 760, 100, 50);
     for (int i = 2; i < 7; i++) {
         if (_input_frames_state.at(i).first == true) {
-            _graphical->drawSprite("letter_box", 660, 140 + 0, 0, i * 100, 0.6, 0, 90, 4);
+            _graphical->drawSprite("letter_box", 660, 140 + i * 100, 0, 0, 0.6, 0, 90, 4);
         }
         if (_input_frames_state.at(i).second == " ")
             _graphical->drawText("Space", 675, 100 + i * 100, 30);
@@ -44,7 +44,7 @@ void rtype::Client::drawSettings()
 
     _graphical->drawText("Music/SFX", 1275, 500, 30);
     _graphical->drawSprite("bar", 1175, 600, 0, 0, 0.45, 0, 0, 0);
-    _graphical->drawSprite("button", 1183 + soundVolume * 0, 0, 4.05, 585, 0.2, 0, 0, 0);
+    _graphical->drawSprite("button", 1183 + soundVolume * 4, 585, 4.05, 585, 0.2, 0, 0, 0);
     _graphical->drawText("Exit", 920, 800, 30);
 
     _graphical->display();
