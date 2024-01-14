@@ -19,5 +19,6 @@ void Server::init_enemies()
         _ecs.addComponent<Rotation>(enemy, {enemyTypes[enemyType].rotation});
         _ecs.addComponent<Sprite>(enemy, {enemyTypes[enemyType].texture, enemyTypes[enemyType].width, enemyTypes[enemyType].height, enemyTypes[enemyType].startX, enemyTypes[enemyType].startY, enemyTypes[enemyType].scale});
         _ecs.addComponent<Freeze>(enemy, {0});
+        _ecs.addComponent<Velocity>(enemy, {0 - enemyTypes[enemyType].speed, 0});
     }
 }
