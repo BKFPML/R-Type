@@ -139,7 +139,7 @@ void rtype::Client::gameLoop(IReceiver& receive)
             _keys = keyState.first;
             _previousKeys = keyState.second;
             handleInput();
-            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 1000 && _currentScene == GAME) {
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - _start).count() > 5 && _currentScene == GAME) {
                 for (auto& entity : _ecs.getEntities()) {
                     std::cout << "Entity: " << entity << std::endl;
                     if (_ecs.hasComponent<Bullet>(entity)) {
