@@ -134,10 +134,53 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>init_enemies</b> ()</
 <tr class="memitem:a286a6896594536fc53ff1188118f119e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a286a6896594536fc53ff1188118f119e">createSpawnTimeComponent</a> (ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params)</td></tr>
 <tr class="memdesc:a286a6896594536fc53ff1188118f119e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Spawn Time Component object.  <a href="classServer.html#a286a6896594536fc53ff1188118f119e">More...</a><br /></td></tr>
 <tr class="separator:a286a6896594536fc53ff1188118f119e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66f670e47a70fc4f166ee8d1ad91f0ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a66f670e47a70fc4f166ee8d1ad91f0ac">createCollisionComponent</a> (ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params)</td></tr>
+<tr class="memdesc:a66f670e47a70fc4f166ee8d1ad91f0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="structCollision.html" title="Collision component.">Collision</a> Component object.  <a href="classServer.html#a66f670e47a70fc4f166ee8d1ad91f0ac">More...</a><br /></td></tr>
+<tr class="separator:a66f670e47a70fc4f166ee8d1ad91f0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f59122ba19103589a38b5ade6cb2dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a34f59122ba19103589a38b5ade6cb2dd">createHealthPackComponent</a> (ECS::Entity entity, const std::unordered_map&lt; std::string, std::string &gt; &amp;params)</td></tr>
+<tr class="memdesc:a34f59122ba19103589a38b5ade6cb2dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="structHealth.html" title="Health component.">Health</a> Pack Component object.  <a href="classServer.html#a34f59122ba19103589a38b5ade6cb2dd">More...</a><br /></td></tr>
+<tr class="separator:a34f59122ba19103589a38b5ade6cb2dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classServer.html" title="Server class.">Server</a> class. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a66f670e47a70fc4f166ee8d1ad91f0ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66f670e47a70fc4f166ee8d1ad91f0ac">&#9670;&nbsp;</a></span>createCollisionComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::createCollisionComponent </td>
+          <td>(</td>
+          <td class="paramtype">ECS::Entity&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::unordered_map&lt; std::string, std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a <a class="el" href="structCollision.html" title="Collision component.">Collision</a> Component object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td></td></tr>
+    <tr><td class="paramname">params</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="acbb4493f830db094da42fe526d7f28d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acbb4493f830db094da42fe526d7f28d0">&#9670;&nbsp;</a></span>createEnemyComponent()</h2>
 
@@ -202,6 +245,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>init_enemies</b> ()</
 </div><div class="memdoc">
 
 <p>Create a <a class="el" href="structHealth.html" title="Health component.">Health</a> Component object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td></td></tr>
+    <tr><td class="paramname">params</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a34f59122ba19103589a38b5ade6cb2dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f59122ba19103589a38b5ade6cb2dd">&#9670;&nbsp;</a></span>createHealthPackComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Server::createHealthPackComponent </td>
+          <td>(</td>
+          <td class="paramtype">ECS::Entity&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::unordered_map&lt; std::string, std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a <a class="el" href="structHealth.html" title="Health component.">Health</a> Pack Component object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entity</td><td></td></tr>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['statustype_338',['StatusType',['../components_8hpp.html#a90549f45cfc442187c1d769596107d3e',1,'components.hpp']]]
+  ['graphicaltype_345',['GraphicalType',['../components_8hpp.html#a6e59176e002c5ff36fde8bdd0cfef506',1,'components.hpp']]]
 ];

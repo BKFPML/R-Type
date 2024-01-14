@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['attack_174',['Attack',['../structAttack.html',1,'']]],
-  ['attributes_175',['Attributes',['../structAttributes.html',1,'']]]
+  ['attack_178',['Attack',['../structAttack.html',1,'']]],
+  ['attributes_179',['Attributes',['../structAttributes.html',1,'']]]
 ];
