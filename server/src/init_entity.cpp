@@ -1,6 +1,6 @@
 /**
  * @file init_entity.cpp
- * @brief 
+ * @brief Delcaration of the init_entity class methods
  * @date 12-01-2024
  */
 
@@ -8,7 +8,6 @@
 
 /**
  * @brief function to find a free id for a player
- *
  */
 int Server::find_free_id_player()
 {

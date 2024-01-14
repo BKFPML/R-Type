@@ -1,5 +1,5 @@
 /**
- * @file inputs.cpp
+ * @file input.cpp
  * @brief Implementation of the inputs handling
  * @date 09-01-2024
  */
@@ -996,7 +996,7 @@ KeyBinding connectionKeyBindings() {
 
 /**
  * @brief returns connection keybinds
- * 
+ *
  * @return KeyBinding keybinds
  */
 KeyBinding settingsKeyBindings() {
@@ -1057,7 +1057,6 @@ KeyBinding settingsKeyBindings() {
 
 /**
  * @brief reset all keybinds to default setting
- *
  */
 void rtype::Client::resetKeyBindings() {
     _keyBindings = defaultKeyBindings();
@@ -1065,7 +1064,6 @@ void rtype::Client::resetKeyBindings() {
 
 /**
  * @brief maps the keys to the actions
- *
  */
 void rtype::Client::handleInput() {
     KeyState keys = _keys;

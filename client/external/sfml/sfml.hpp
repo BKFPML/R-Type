@@ -13,15 +13,33 @@
 #include "../../includes/input.hpp"
 #include "../../includes/IGraphical.hpp"
 
+/**
+ * @brief Window width
+ */
 #define WINDOW_WIDTH 1920
+/**
+ * @brief Window height
+ */
 #define WINDOW_HEIGHT 1080
+/**
+ * @brief Window name
+ */
 #define WINDOW_NAME "R-Type"
 
+/**
+ * @brief Half of the window width
+ */
 #define HALF_WINDOW_WIDTH WINDOW_WIDTH / 2
+/**
+ * @brief Half of the window height
+ */
 #define HALF_WINDOW_HEIGHT WINDOW_HEIGHT / 2
 
 namespace rtype
 {
+    /**
+     * @brief Instance of the IGraphical interface for the SFML library
+     */
     class SFML: public IGraphical {
         public:
             SFML();

@@ -1,5 +1,5 @@
 /**
- * @file boost.hpp
+ * @file boost_udp.hpp
  * @brief Boost class header file
  * @date 30-12-2023
  */
@@ -111,11 +111,8 @@ class UDPBoostNetwork {
                 boost::asio::ip::udp::socket socket(io_context, receiver_endpoint);
                 asyncReceive(socket, recv_buffer);
                 while (_isRunning) {
-                    try {
-                        io_context.run();
-                    } catch (const std::exception& e) {
-                        std::cerr << e.what() << std::endl;
-                    }
+                    io_context.run();
+
                 }
                 if (socket.is_open()) {
                     socket.close();

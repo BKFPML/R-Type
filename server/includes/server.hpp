@@ -23,7 +23,7 @@ class Server {
             _ecs.registerComponent<Velocity>();
             _ecs.registerComponent<Health>();
             _ecs.registerComponent<Player>();
-            _ecs.registerComponent<Npc>();
+            _ecs.registerComponent<Enemy>();
             _ecs.registerComponent<Sprite>();
             _ecs.registerComponent<Bullet>();
             _ecs.registerSystem<MovementSystem>();

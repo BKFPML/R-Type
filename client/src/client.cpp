@@ -90,20 +90,25 @@ void rtype::Client::parse_data_received(IReceiver& receive) {
                     std::vector<std::string> data_split = split(d, " ");
                     _currentScene = GAME;
                 } else {
-                    std::unordered_map<std::string, std::string> json = _parser.parseMessage(d);
-                    if (json.empty())
-                        continue;
-                    updatePlayer(json);
-                    updateBullet(json);
+                    try {
+                        auto json = _parser.parseMessage(d);
+                        if (json.empty())
+                            continue;
+                        updatePlayer(json);
+                        updateBullet(json);
+                    } catch (const std::exception& e) {
+                        std::cerr << d << std::endl;
+                        std::cerr << "Error parsing message: " << e.what() << std::endl;
+                    }
                 }
             } catch (const std::exception& e) {
                 std::cerr << d << std::endl;
-                std::cerr << "Error processing message: " << e.what() << std::endl;
+                std::cerr << "Error split message: " << e.what() << std::endl;
             }
         }
         receive.clear_received_data();
     } catch (const std::exception& e) {
-        std::cerr << "Error processing message: " << e.what() << std::endl;
+        std::cerr << "Error loop message: " << e.what() << std::endl;
     }
 }
 /**
