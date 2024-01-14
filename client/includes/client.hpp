@@ -97,6 +97,5 @@ namespace rtype
             int id;
             Parser _parser;
             bool _singlePlayer;
-            
     };
 }
