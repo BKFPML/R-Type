@@ -10,10 +10,10 @@
 
 /**
  * @brief Check for new connections
- * 
- * @param clients 
- * @param client_boost_receive 
- * @return std::vector<Network::Sender> 
+ *
+ * @param clients
+ * @param client_boost_receive
+ * @return std::vector<Network::Sender>
  */
 void Server::init_entity(std::string data)
 {
@@ -32,8 +32,8 @@ void Server::init_entity(std::string data)
 }
 /**
  * @brief delete entity
- * 
- * @param data 
+ *
+ * @param data
  */
 void Server::delete_entity(std::string data)
 {
@@ -75,21 +75,16 @@ void Server::delete_entity(std::string data)
                 }
                 clients_send_id.at(0) = 0;
             }
-
-
-
-            
-
         }
     }
 }
 
 /**
  * @brief Split a string
- * 
- * @param str 
- * @param token 
- * @return std::vector<std::string> 
+ *
+ * @param str
+ * @param token
+ * @return std::vector<std::string>
  */
 std::vector<std::string> Server::split(const std::string& str, const std::string& delim)
 {
@@ -111,9 +106,9 @@ std::vector<std::string> Server::split(const std::string& str, const std::string
 
 /**
  * @brief Parse data received
- * 
- * @param clients 
- * @param client_boost_receive 
+ *
+ * @param clients
+ * @param client_boost_receive
  */
 void Server::parse_data_received()
 {
@@ -133,6 +128,11 @@ void Server::parse_data_received()
     server_receive.clear_received_data();
 }
 
+/**
+ * @brief Print all ECS entity (temporary function)
+ *
+ * @param ecs
+ */
 void print_all_ecs_entity(ECS& ecs)
 {
     std::cout << "--- ECS ---" << std::endl;

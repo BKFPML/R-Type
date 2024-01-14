@@ -1,5 +1,5 @@
 /**
- * @file boost.hpp
+ * @file boost_udp.hpp
  * @brief Boost class header file
  * @date 30-12-2023
  */
@@ -27,8 +27,8 @@ public:
 
         /**
          * @brief Send a message with UDP
-         * 
-         * @param message 
+         *
+         * @param message Message to send
          */
         void send(std::string message) override {
             boost::asio::io_context io_context;
@@ -44,9 +44,9 @@ public:
         }
 
         /**
-         * @brief Get the port object
-         * 
-         * @return int 
+         * @brief Get the local IP address
+         *
+         * @return string local IP address
          */
         std::string getLocalIPAddress() {
             try {
@@ -67,10 +67,9 @@ public:
         }
 
         /**
-         * 
          * @brief Send a vector of messages with UDP
-         * 
-         * @param messages 
+         *
+         * @param messages Vector of messages to send
          */
         void send(std::vector<std::string> messages) override {
             for (const auto& message : messages) {
@@ -80,8 +79,8 @@ public:
 
         /**
          * @brief Get the port object
-         * 
-         * @return int 
+         *
+         * @return int Port
          */
         int get_port() override {
             return _udp_port;
@@ -89,8 +88,8 @@ public:
 
         /**
          * @brief Get the ip object
-         * 
-         * @return std::string 
+         *
+         * @return std::string IP address
          */
         std::string get_ip() override {
             return _ip;
@@ -107,12 +106,11 @@ public:
     class UDPReceiver : public IReceiver {
     public:
         UDPReceiver(int port) : _udp_port(port), _ip(getLocalIPAddress()) {}
-        
 
         /**
          * @brief Receive a message with UDP
-         * 
-         * @return std::string 
+         *
+         * @return std::string Message received
          */
         void receive() override {
             std::cout << "Listening on port: " << _udp_port << std::endl;
@@ -132,6 +130,11 @@ public:
             }
         }
 
+        /**
+         * @brief Get the local IP address
+         *
+         * @return string local IP address
+         */
         std::string getLocalIPAddress() {
             try {
                 boost::asio::io_service netService;
@@ -148,12 +151,13 @@ public:
             }
             return "";
         }
+
         /**
          * @brief Split a string
-         * 
-         * @param str 
-         * @param token 
-         * @return std::vector<std::string> 
+         *
+         * @param str String to split
+         * @param token Token to split with
+         * @return std::vector<std::string> Vector of strings
          */
         std::vector<std::string> split(const std::string& str, const std::string& delim)
         {
@@ -170,10 +174,11 @@ public:
             } while (pos < str.length() && prev < str.length());
             return tokens;
         }
+
         /**
-         * @brief Get the port object
-         * 
-         * @return int 
+         * @brief Check if the port is bound
+         *
+         * @return bool True if the port is bound, false otherwise
          */
         bool is_port_bound() override {
             boost::asio::io_context io_context;
@@ -194,39 +199,41 @@ public:
                 }
             }
         }
+
         /**
          * @brief Get the received data object
-         * 
-         * @return std::vector<std::string> 
+         *
+         * @return std::vector<std::string> Received data
          */
         std::vector<std::string> get_received_data() override {
             return received_data;
         }
+
         /**
          * @brief Clear the received data object
-         * 
          */
         void clear_received_data() override {
             received_data.clear();
         }
+
         /**
          * @brief Clear the received data object
-         * 
-         * @param index 
+         *
+         * @param index Index of the data to clear
          */
         void clear_received_data(int index) override {
             received_data.erase(received_data.begin() + index);
         }
+
         /**
          * @brief Clear the first received data object
-         * 
          */
         void clear_first_received_data() override {
             received_data.erase(received_data.begin());
         }
+
         /**
          * @brief Clear the last received data object
-         * 
          */
         void clear_last_received_data() override {
             received_data.pop_back();

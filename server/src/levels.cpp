@@ -1,6 +1,6 @@
 /**
  * @file levels.cpp
- * @brief 
+ * @brief Declaration of the levels class methods
  * @date 08-01-2024
  */
 
@@ -28,10 +28,10 @@ void createSpawnTimeComponent(ECS::Entity entity, const std::unordered_map<std::
 
 /**
  * @brief Create a Player Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
+ *
+ * @param entity
+ * @param params
+ * @param ecs
  */
 void createPlayerComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("id") != params.end() && params.find("name") != params.end()) {
@@ -58,10 +58,10 @@ void createEnemyComponent(ECS::Entity entity, const std::unordered_map<std::stri
 
 /**
  * @brief Create a Position Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
+ *
+ * @param entity
+ * @param params
+ * @param ecs
  */
 void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("x") != params.end() && params.find("y") != params.end()) {
@@ -75,10 +75,10 @@ void createPositionComponent(ECS::Entity entity, const std::unordered_map<std::s
 
 /**
  * @brief Create a Sprite Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
+ *
+ * @param entity
+ * @param params
+ * @param ecs
  */
 void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("texture") != params.end() && params.find("width") != params.end() && params.find("height") != params.end() && params.find("startX") != params.end() && params.find("startY") != params.end() && params.find("scale") != params.end()) {
@@ -97,10 +97,10 @@ void createSpriteComponent(ECS::Entity entity, const std::unordered_map<std::str
 
 /**
  * @brief Create a Velocity Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
+ *
+ * @param entity
+ * @param params
+ * @param ecs
  */
 void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("x") != params.end() && params.find("y") != params.end() && params.find("speed") != params.end()) {
@@ -115,10 +115,10 @@ void createVelocityComponent(ECS::Entity entity, const std::unordered_map<std::s
 
 /**
  * @brief Create a Rotation Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
+ *
+ * @param entity
+ * @param params
+ * @param ecs
  */
 void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("angle") != params.end()) {
@@ -131,10 +131,10 @@ void createRotationComponent(ECS::Entity entity, const std::unordered_map<std::s
 
 /**
  * @brief Create a Health Component object
- * 
- * @param entity 
- * @param params 
- * @param ecs 
+ *
+ * @param entity
+ * @param params
+ * @param ecs
  */
 void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::string, std::string>& params, std::shared_ptr<ECS>& ecs) {
     if (params.find("hp") != params.end()) {
@@ -147,9 +147,9 @@ void createHealthComponent(ECS::Entity entity, const std::unordered_map<std::str
 
 /**
  * @brief Loads a JSON file
- * 
- * @param filename 
- * @return nlohmann::json 
+ *
+ * @param filename
+ * @return nlohmann::json
  */
 nlohmann::json loadJsonData(const std::string& filename) {
     std::ifstream file(filename);
@@ -163,10 +163,10 @@ nlohmann::json loadJsonData(const std::string& filename) {
 
 /**
  * @brief Processes a JSON object and creates the corresponding entity and components
- * 
- * @param jsonObj 
- * @param ecs 
- * @return std::shared_ptr<ECS> 
+ *
+ * @param jsonObj
+ * @param ecs
+ * @return std::shared_ptr<ECS>
  */
 std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::shared_ptr<ECS> ecs) {
     auto entity = ecs->createEntity();
@@ -190,10 +190,10 @@ std::shared_ptr<ECS> processJsonObject(const nlohmann::json& jsonObj, std::share
 
 /**
  * @brief Loads a level from a JSON file
- * 
- * @param levelConfig 
- * @param ecs 
- * @return std::shared_ptr<ECS> 
+ *
+ * @param levelConfig
+ * @param ecs
+ * @return std::shared_ptr<ECS>
  */
 std::shared_ptr<ECS> Levels::loadLevel(const std::string& levelConfig, std::shared_ptr<ECS> ecs) {
     try {
@@ -209,7 +209,7 @@ std::shared_ptr<ECS> Levels::loadLevel(const std::string& levelConfig, std::shar
 
 /**
  * @brief Component factories
- * 
+ *
  * @note This is a map of component types to functions that create the component
  */
 std::unordered_map<std::string, std::function<void(ECS::Entity, const std::unordered_map<std::string, std::string>&, std::shared_ptr<ECS>&)>> Levels::componentFactories = {

@@ -15,6 +15,9 @@
 #include "../../../engine/includes/network_library/boost_udp.hpp"
 #include "./IGraphical.hpp"
 
+/**
+ * @brief Enum for the different scenes of the client
+ */
 enum ClientScene {
     MAIN_MENU,
     CONNECTION,
@@ -26,6 +29,9 @@ enum ClientScene {
 
 namespace rtype
 {
+    /**
+     * @brief Client Class
+     */
     class Client {
         public:
             Client(std::string ip, int port);
