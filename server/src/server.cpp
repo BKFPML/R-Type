@@ -204,6 +204,9 @@ void print_all_ecs_entity(ECS& ecs)
         if (ecs.hasComponent<SpawnTime>(entity)) {
             std::cout << "SpawnTime: " << ecs.getComponent<SpawnTime>(entity)->time << std::endl;
         }
+        if (ecs.hasComponent<HealthPack>(entity)) {
+            std::cout << "HealthPack: " << ecs.getComponent<HealthPack>(entity)->hp << std::endl;
+        }
 
         std::cout << std::endl;
     }
