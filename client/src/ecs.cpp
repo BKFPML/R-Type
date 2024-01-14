@@ -22,6 +22,7 @@ ECS rtype::Client::initECS()
     ecs.registerComponent<Player>();
     ecs.registerComponent<Rotation>();
     ecs.registerComponent<Bullet>();
+    ecs.registerComponent<Enemy>();
     return ecs;
 }
 
