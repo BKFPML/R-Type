@@ -69,246 +69,247 @@ $(function() {
 <div class="title">input.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<a href="input_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">enum</span> Action{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    EMPTY,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    CLICK_PRESS,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    CLICK_RELEASE,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    UP,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    DOWN,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    LEFT,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    RIGHT,</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    MOVE_UP,</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    MOVE_DOWN,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    MOVE_LEFT,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    MOVE_RIGHT,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    SHOOT,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    EXIT,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    GOBACK,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    DEL,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    SPACE,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    A,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    B,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    C,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    D,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    E,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    F,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    G,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    H,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    I,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    J,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    K,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    L,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    M,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    N,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    O,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    P,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    Q,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    R,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    S,</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    T,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    U,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    V,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    W,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    X,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    Y,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    Z,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    DOT,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    ZERO,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    ONE,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    TWO,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    THREE,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    FOUR,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    FIVE,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    SIX,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    SEVEN,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    EIGHT,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    NINE</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structKeyBinding.html">   73</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structKeyBinding.html">KeyBinding</a> {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    Action lClickPressAction;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    Action rClickPressAction;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    Action upAction;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    Action downAction;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    Action leftAction;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    Action rightAction;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    Action spaceAction;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    Action shiftAction;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    Action ctrlAction;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    Action altAction;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    Action enterAction;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    Action escapeAction;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    Action tabAction;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    Action backspaceAction;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    Action aAction;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    Action bAction;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    Action cAction;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    Action dAction;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    Action eAction;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    Action fAction;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    Action gAction;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    Action hAction;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    Action iAction;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    Action jAction;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    Action kAction;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    Action lAction;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    Action mAction;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    Action nAction;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    Action oAction;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    Action pAction;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    Action qAction;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    Action rAction;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    Action sAction;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    Action tAction;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    Action uAction;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    Action vAction;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    Action wAction;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    Action xAction;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    Action yAction;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    Action zAction;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    Action dotAction;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    Action zeroAction;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    Action oneAction;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    Action twoAction;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    Action threeAction;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    Action fourAction;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    Action fiveAction;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    Action sixAction;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    Action sevenAction;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    Action eightAction;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    Action nineAction;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> removeAction(Action&amp; actionToRemove) {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">if</span> (upAction == actionToRemove)</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            upAction = EMPTY;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span> (downAction == actionToRemove)</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            downAction = EMPTY;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span> (leftAction == actionToRemove)</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            leftAction = EMPTY;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">if</span> (rightAction == actionToRemove)</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            rightAction = EMPTY;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">if</span> (spaceAction == actionToRemove)</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            spaceAction = EMPTY;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">if</span> (aAction == actionToRemove)</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            aAction = EMPTY;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span> (bAction == actionToRemove)</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            bAction = EMPTY;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">if</span> (cAction == actionToRemove)</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            cAction = EMPTY;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">if</span> (dAction == actionToRemove)</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            dAction = EMPTY;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">if</span> (eAction == actionToRemove)</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            eAction = EMPTY;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">if</span> (fAction == actionToRemove)</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            fAction = EMPTY;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">if</span> (gAction == actionToRemove)</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            gAction = EMPTY;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">if</span> (hAction == actionToRemove)</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            hAction = EMPTY;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">if</span> (iAction == actionToRemove)</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            iAction = EMPTY;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">if</span> (jAction == actionToRemove)</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            jAction = EMPTY;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">if</span> (kAction == actionToRemove)</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            kAction = EMPTY;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span> (lAction == actionToRemove)</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            lAction = EMPTY;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span> (mAction == actionToRemove)</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            mAction = EMPTY;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">if</span> (nAction == actionToRemove)</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            nAction = EMPTY;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span> (oAction == actionToRemove)</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            oAction = EMPTY;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordflow">if</span> (pAction == actionToRemove)</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            pAction = EMPTY;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">if</span> (qAction == actionToRemove)</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            qAction = EMPTY;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">if</span> (rAction == actionToRemove)</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            rAction = EMPTY;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">if</span> (sAction == actionToRemove)</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            sAction = EMPTY;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">if</span> (tAction == actionToRemove)</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            tAction = EMPTY;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> (uAction == actionToRemove)</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            uAction = EMPTY;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordflow">if</span> (vAction == actionToRemove)</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            vAction = EMPTY;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">if</span> (wAction == actionToRemove)</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            wAction = EMPTY;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">if</span> (xAction == actionToRemove)</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            xAction = EMPTY;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">if</span> (yAction == actionToRemove)</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            yAction = EMPTY;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">if</span> (zAction == actionToRemove)</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            zAction = EMPTY;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;};</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="structMouseState.html">  192</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structMouseState.html">MouseState</a> {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordtype">int</span> x;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordtype">int</span> y;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordtype">bool</span> left;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordtype">bool</span> right;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;};</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="structKeyState.html">  202</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structKeyState.html">KeyState</a> {</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="structMouseState.html">MouseState</a> mouse;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordtype">bool</span> up;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordtype">bool</span> down;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">bool</span> left;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">bool</span> right;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordtype">bool</span> space;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordtype">bool</span> shift;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordtype">bool</span> ctrl;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordtype">bool</span> alt;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordtype">bool</span> enter;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">bool</span> escape;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordtype">bool</span> tab;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordtype">bool</span> backspace;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordtype">bool</span> a;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordtype">bool</span> b;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">bool</span> c;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">bool</span> d;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordtype">bool</span> e;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">bool</span> f;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">bool</span> g;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">bool</span> h;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordtype">bool</span> i;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordtype">bool</span> j;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">bool</span> k;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordtype">bool</span> l;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordtype">bool</span> m;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordtype">bool</span> n;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keywordtype">bool</span> o;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordtype">bool</span> p;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordtype">bool</span> q;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">bool</span> r;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordtype">bool</span> s;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">bool</span> t;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordtype">bool</span> u;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordtype">bool</span> v;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordtype">bool</span> w;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordtype">bool</span> x;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordtype">bool</span> y;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordtype">bool</span> z;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordtype">bool</span> dot;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordtype">bool</span> zero;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordtype">bool</span> one;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordtype">bool</span> two;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordtype">bool</span> three;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordtype">bool</span> four;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordtype">bool</span> five;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordtype">bool</span> six;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordtype">bool</span> seven;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordtype">bool</span> eight;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordtype">bool</span> nine;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;};</div>
-<div class="ttc" id="astructKeyBinding_html"><div class="ttname"><a href="structKeyBinding.html">KeyBinding</a></div><div class="ttdoc">this struct contains the keybindings for the actions</div><div class="ttdef"><b>Definition:</b> input.hpp:73</div></div>
-<div class="ttc" id="astructKeyState_html"><div class="ttname"><a href="structKeyState.html">KeyState</a></div><div class="ttdoc">these Keystates describe the state of the keys on the keyboard</div><div class="ttdef"><b>Definition:</b> input.hpp:202</div></div>
-<div class="ttc" id="astructMouseState_html"><div class="ttname"><a href="structMouseState.html">MouseState</a></div><div class="ttdef"><b>Definition:</b> input.hpp:192</div></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">   12</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a>{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    EMPTY,</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    CLICK_PRESS,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    CLICK_RELEASE,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    UP,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    DOWN,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    LEFT,</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    RIGHT,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    MOVE_UP,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    MOVE_DOWN,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    MOVE_LEFT,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    MOVE_RIGHT,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    SHOOT,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    EXIT,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    GOBACK,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    DEL,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    SPACE,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    A,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    B,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    C,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    D,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    E,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    F,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    G,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    H,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    I,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    J,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    K,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    L,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    M,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    N,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    O,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    P,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    Q,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    R,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    S,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    T,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    U,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    V,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    W,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    X,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    Y,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    Z,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    DOT,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    ZERO,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    ONE,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    TWO,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    THREE,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    FOUR,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    FIVE,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    SIX,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    SEVEN,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    EIGHT,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    NINE</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structKeyBinding.html">   71</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structKeyBinding.html">KeyBinding</a> {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> lClickPressAction;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> rClickPressAction;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> upAction;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> downAction;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> leftAction;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> rightAction;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> spaceAction;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> shiftAction;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> ctrlAction;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> altAction;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> enterAction;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> escapeAction;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> tabAction;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> backspaceAction;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> aAction;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> bAction;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> cAction;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> dAction;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> eAction;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> fAction;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> gAction;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> hAction;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> iAction;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> jAction;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> kAction;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> lAction;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> mAction;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> nAction;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> oAction;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> pAction;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> qAction;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> rAction;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> sAction;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> tAction;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> uAction;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> vAction;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> wAction;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> xAction;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> yAction;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> zAction;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> dotAction;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> zeroAction;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> oneAction;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> twoAction;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> threeAction;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> fourAction;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> fiveAction;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> sixAction;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> sevenAction;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> eightAction;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a> nineAction;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">void</span> removeAction(<a class="code" href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a>&amp; actionToRemove) {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">if</span> (upAction == actionToRemove)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            upAction = EMPTY;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">if</span> (downAction == actionToRemove)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            downAction = EMPTY;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span> (leftAction == actionToRemove)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            leftAction = EMPTY;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span> (rightAction == actionToRemove)</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            rightAction = EMPTY;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">if</span> (spaceAction == actionToRemove)</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            spaceAction = EMPTY;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">if</span> (aAction == actionToRemove)</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            aAction = EMPTY;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">if</span> (bAction == actionToRemove)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            bAction = EMPTY;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span> (cAction == actionToRemove)</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            cAction = EMPTY;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">if</span> (dAction == actionToRemove)</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            dAction = EMPTY;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">if</span> (eAction == actionToRemove)</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            eAction = EMPTY;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">if</span> (fAction == actionToRemove)</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            fAction = EMPTY;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">if</span> (gAction == actionToRemove)</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            gAction = EMPTY;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">if</span> (hAction == actionToRemove)</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            hAction = EMPTY;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">if</span> (iAction == actionToRemove)</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            iAction = EMPTY;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">if</span> (jAction == actionToRemove)</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            jAction = EMPTY;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">if</span> (kAction == actionToRemove)</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            kAction = EMPTY;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">if</span> (lAction == actionToRemove)</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            lAction = EMPTY;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span> (mAction == actionToRemove)</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            mAction = EMPTY;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span> (nAction == actionToRemove)</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            nAction = EMPTY;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">if</span> (oAction == actionToRemove)</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            oAction = EMPTY;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span> (pAction == actionToRemove)</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            pAction = EMPTY;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordflow">if</span> (qAction == actionToRemove)</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            qAction = EMPTY;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">if</span> (rAction == actionToRemove)</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            rAction = EMPTY;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">if</span> (sAction == actionToRemove)</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            sAction = EMPTY;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">if</span> (tAction == actionToRemove)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            tAction = EMPTY;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">if</span> (uAction == actionToRemove)</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            uAction = EMPTY;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> (vAction == actionToRemove)</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            vAction = EMPTY;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordflow">if</span> (wAction == actionToRemove)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            wAction = EMPTY;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">if</span> (xAction == actionToRemove)</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            xAction = EMPTY;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">if</span> (yAction == actionToRemove)</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            yAction = EMPTY;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">if</span> (zAction == actionToRemove)</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            zAction = EMPTY;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;};</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="structMouseState.html">  193</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structMouseState.html">MouseState</a> {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordtype">int</span> x;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordtype">int</span> y;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordtype">bool</span> left;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordtype">bool</span> right;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;};</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="structKeyState.html">  203</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structKeyState.html">KeyState</a> {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="code" href="structMouseState.html">MouseState</a> mouse;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordtype">bool</span> up;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">bool</span> down;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">bool</span> left;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordtype">bool</span> right;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordtype">bool</span> space;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordtype">bool</span> shift;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordtype">bool</span> ctrl;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordtype">bool</span> alt;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">bool</span> enter;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordtype">bool</span> escape;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordtype">bool</span> tab;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordtype">bool</span> backspace;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordtype">bool</span> a;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">bool</span> b;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">bool</span> c;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordtype">bool</span> d;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">bool</span> e;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">bool</span> f;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">bool</span> g;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordtype">bool</span> h;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordtype">bool</span> i;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">bool</span> j;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordtype">bool</span> k;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordtype">bool</span> l;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordtype">bool</span> m;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keywordtype">bool</span> n;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordtype">bool</span> o;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordtype">bool</span> p;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">bool</span> q;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordtype">bool</span> r;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">bool</span> s;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordtype">bool</span> t;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordtype">bool</span> u;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordtype">bool</span> v;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordtype">bool</span> w;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordtype">bool</span> x;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordtype">bool</span> y;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordtype">bool</span> z;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordtype">bool</span> dot;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordtype">bool</span> zero;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordtype">bool</span> one;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordtype">bool</span> two;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordtype">bool</span> three;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordtype">bool</span> four;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordtype">bool</span> five;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordtype">bool</span> six;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordtype">bool</span> seven;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordtype">bool</span> eight;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">bool</span> nine;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;};</div>
+<div class="ttc" id="ainput_8hpp_html_a8bb1ef53467e4f61410d12822d922498"><div class="ttname"><a href="input_8hpp.html#a8bb1ef53467e4f61410d12822d922498">Action</a></div><div class="ttdeci">Action</div><div class="ttdoc">these actions describe the state of the abstracted actions</div><div class="ttdef"><b>Definition:</b> input.hpp:12</div></div>
+<div class="ttc" id="astructKeyBinding_html"><div class="ttname"><a href="structKeyBinding.html">KeyBinding</a></div><div class="ttdoc">this struct contains the keybindings for the actions</div><div class="ttdef"><b>Definition:</b> input.hpp:71</div></div>
+<div class="ttc" id="astructKeyState_html"><div class="ttname"><a href="structKeyState.html">KeyState</a></div><div class="ttdoc">these Keystates describe the state of the keys on the keyboard</div><div class="ttdef"><b>Definition:</b> input.hpp:203</div></div>
+<div class="ttc" id="astructMouseState_html"><div class="ttname"><a href="structMouseState.html">MouseState</a></div><div class="ttdoc">Possible states of the mouse.</div><div class="ttdef"><b>Definition:</b> input.hpp:193</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

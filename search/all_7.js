@@ -1,19 +1,9 @@
 var searchData=
 [
-  ['igraphical_65',['IGraphical',['../classrtype_1_1IGraphical.html',1,'rtype']]],
-  ['igraphical_2ehpp_66',['IGraphical.hpp',['../IGraphical_8hpp.html',1,'']]],
-  ['immunity_67',['Immunity',['../structImmunity.html',1,'']]],
-  ['immunitysystem_68',['ImmunitySystem',['../classImmunitySystem.html',1,'']]],
-  ['init_5fentity_69',['init_entity',['../classServer.html#a4d1b29e88a2cbd39fc4b0eb44a41e826',1,'Server']]],
-  ['init_5fentity_2ecpp_70',['init_entity.cpp',['../init__entity_8cpp.html',1,'']]],
-  ['init_5fkey_5fbindings_71',['init_key_bindings',['../classrtype_1_1SFML.html#a55929b9ace10278b1cb07d7aed048eb8',1,'rtype::SFML']]],
-  ['init_5fplayer_72',['init_player',['../classServer.html#a0d916035e72ad1b989d46a91abad52a7',1,'Server']]],
-  ['initecs_73',['initECS',['../classrtype_1_1Client.html#a6f243757ed056372217fd14056d477e3',1,'rtype::Client']]],
-  ['initmusic_74',['initMusic',['../classrtype_1_1SFML.html#a14b03d964360d8901617ca3abc45f630',1,'rtype::SFML']]],
-  ['initplayer_75',['initPlayer',['../classrtype_1_1Client.html#a32f0d14205f5c1f729607c88d18be810',1,'rtype::Client']]],
-  ['inittextures_76',['initTextures',['../classrtype_1_1SFML.html#a875fb67ddee37abe0f9c15a352e7be62',1,'rtype::SFML']]],
-  ['ireceiver_77',['IReceiver',['../classIReceiver.html',1,'']]],
-  ['is_5fport_5fbound_78',['is_port_bound',['../classUDPBoostNetwork_1_1UDPReceiver.html#ad1c69a54767d796b4e6c6374d1884967',1,'UDPBoostNetwork::UDPReceiver']]],
-  ['isender_79',['ISender',['../classISender.html',1,'']]],
-  ['isystem_80',['ISystem',['../classISystem.html',1,'']]]
+  ['half_5fwindow_5fheight_66',['HALF_WINDOW_HEIGHT',['../sfml_8hpp.html#adc6f3024a671caf992ee10522a78efb8',1,'sfml.hpp']]],
+  ['half_5fwindow_5fwidth_67',['HALF_WINDOW_WIDTH',['../sfml_8hpp.html#a1597998bc213033cbd2a20c1dfd1b60a',1,'sfml.hpp']]],
+  ['handleevents_68',['handleEvents',['../classrtype_1_1SFML.html#a658dc24e3c58e1b7938f18ab0df5c24e',1,'rtype::SFML']]],
+  ['handleinput_69',['handleInput',['../classrtype_1_1Client.html#af5a815d673d86db80c8abbc47957e31f',1,'rtype::Client']]],
+  ['hascomponent_70',['hasComponent',['../classECS.html#ad353dd9a1d3c7a8e96bf181be7428589',1,'ECS']]],
+  ['health_71',['Health',['../structHealth.html',1,'']]]
 ];

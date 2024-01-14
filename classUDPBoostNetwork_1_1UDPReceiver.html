@@ -83,7 +83,7 @@ Inheritance diagram for UDPBoostNetwork::UDPReceiver:</div>
  <div class="center">
   <img src="classUDPBoostNetwork_1_1UDPReceiver.png" usemap="#UDPBoostNetwork::UDPReceiver_map" alt=""/>
   <map id="UDPBoostNetwork::UDPReceiver_map" name="UDPBoostNetwork::UDPReceiver_map">
-<area href="classIReceiver.html" title="Virtual receive class." alt="IReceiver" shape="rect" coords="0,0,196,24"/>
+<area href="classIReceiver.html" title="Interface for a receiver." alt="IReceiver" shape="rect" coords="0,0,196,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -95,14 +95,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1fd644fa35eb3e142c51e50766787ca2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#a1fd644fa35eb3e142c51e50766787ca2">receive</a> () override</td></tr>
 <tr class="memdesc:a1fd644fa35eb3e142c51e50766787ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive a message with UDP.  <a href="classUDPBoostNetwork_1_1UDPReceiver.html#a1fd644fa35eb3e142c51e50766787ca2">More...</a><br /></td></tr>
 <tr class="separator:a1fd644fa35eb3e142c51e50766787ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90568c446a88d09875bf7b9dcdfe0d10"><td class="memItemLeft" align="right" valign="top"><a id="a90568c446a88d09875bf7b9dcdfe0d10"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getLocalIPAddress</b> ()</td></tr>
+<tr class="memitem:a90568c446a88d09875bf7b9dcdfe0d10"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#a90568c446a88d09875bf7b9dcdfe0d10">getLocalIPAddress</a> ()</td></tr>
+<tr class="memdesc:a90568c446a88d09875bf7b9dcdfe0d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the local IP address.  <a href="classUDPBoostNetwork_1_1UDPReceiver.html#a90568c446a88d09875bf7b9dcdfe0d10">More...</a><br /></td></tr>
 <tr class="separator:a90568c446a88d09875bf7b9dcdfe0d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0b88e7d6efe4ed75c429ee3ea0ba5be"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be">split</a> (const std::string &amp;str, const std::string &amp;delim)</td></tr>
 <tr class="memdesc:ab0b88e7d6efe4ed75c429ee3ea0ba5be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split a string.  <a href="classUDPBoostNetwork_1_1UDPReceiver.html#ab0b88e7d6efe4ed75c429ee3ea0ba5be">More...</a><br /></td></tr>
 <tr class="separator:ab0b88e7d6efe4ed75c429ee3ea0ba5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1c69a54767d796b4e6c6374d1884967"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#ad1c69a54767d796b4e6c6374d1884967">is_port_bound</a> () override</td></tr>
-<tr class="memdesc:ad1c69a54767d796b4e6c6374d1884967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the port object.  <a href="classUDPBoostNetwork_1_1UDPReceiver.html#ad1c69a54767d796b4e6c6374d1884967">More...</a><br /></td></tr>
+<tr class="memdesc:ad1c69a54767d796b4e6c6374d1884967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the port is bound.  <a href="classUDPBoostNetwork_1_1UDPReceiver.html#ad1c69a54767d796b4e6c6374d1884967">More...</a><br /></td></tr>
 <tr class="separator:ad1c69a54767d796b4e6c6374d1884967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc7b924b0d4ce1cdda64a4e44f9deec2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPBoostNetwork_1_1UDPReceiver.html#abc7b924b0d4ce1cdda64a4e44f9deec2">get_received_data</a> () override</td></tr>
 <tr class="memdesc:abc7b924b0d4ce1cdda64a4e44f9deec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the received data object.  <a href="classUDPBoostNetwork_1_1UDPReceiver.html#abc7b924b0d4ce1cdda64a4e44f9deec2">More...</a><br /></td></tr>
@@ -153,7 +153,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Clear the received data object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index</td><td></td></tr>
+    <tr><td class="paramname">index</td><td>Index of the data to clear </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,9 +186,37 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Get the received data object. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; Received data </dd></dl>
 
 <p>Implements <a class="el" href="classIReceiver.html">IReceiver</a>.</p>
+
+</div>
+</div>
+<a id="a90568c446a88d09875bf7b9dcdfe0d10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90568c446a88d09875bf7b9dcdfe0d10">&#9670;&nbsp;</a></span>getLocalIPAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string UDPBoostNetwork::UDPReceiver::getLocalIPAddress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the local IP address. </p>
+<dl class="section return"><dt>Returns</dt><dd>string local IP address </dd></dl>
 
 </div>
 </div>
@@ -215,8 +243,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 </div><div class="memdoc">
 
-<p>Get the port object. </p>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<p>Check if the port is bound. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool True if the port is bound, false otherwise </dd></dl>
 
 <p>Implements <a class="el" href="classIReceiver.html">IReceiver</a>.</p>
 
@@ -246,7 +274,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Receive a message with UDP. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string Message received </dd></dl>
 
 <p>Implements <a class="el" href="classIReceiver.html">IReceiver</a>.</p>
 
@@ -289,12 +317,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Split a string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">str</td><td></td></tr>
-    <tr><td class="paramname">token</td><td></td></tr>
+    <tr><td class="paramname">str</td><td>String to split </td></tr>
+    <tr><td class="paramname">token</td><td>Token to split with </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; Vector of strings </dd></dl>
 
 </div>
 </div>
